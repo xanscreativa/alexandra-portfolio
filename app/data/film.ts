@@ -27,7 +27,7 @@ export const films: Film[] = [
     title: "Data Wak Atom",
     category: "Trading Campaign",
     client: "Data Wak Atom",
-    role: "Video Editor & Motion Graphic Artist",
+    role: "Video Editor",
     description:
       "Short-form educational videos for trading campaigns and social media.",
     duration: "0:18",
@@ -52,7 +52,7 @@ export const films: Film[] = [
     title: "Sinyal Ordal",
     category: "Financial Education",
     client: "Sinyal Ordal",
-    role: "Short-Form Video Specialist",
+    role: "Video Editor",
     description:
       "Creative short-form videos for financial education content.",
     duration: "0:26",
@@ -76,7 +76,7 @@ export const films: Film[] = [
     title: "Raka Trabas",
     category: "Trading Education",
     client: "Raka Trabas",
-    role: "Video Editor & Content Creator",
+    role: "Video Editor",
     description:
       "Creative video editing for educational trading campaigns.",
     duration: "0:31",
