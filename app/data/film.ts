@@ -10,6 +10,8 @@ export interface Film {
   client?: string;
   role?: string;
   description: string;
+  year?: string;
+  softwareUsed?: string[];
   duration: string;
   orientation: "portrait" | "landscape";
   preview: string;
@@ -28,8 +30,10 @@ export const films: Film[] = [
     category: "Trading Campaign",
     client: "Data Wak Atom",
     role: "Video Editor",
+    year: "2025–2026",
+    softwareUsed: ["Adobe Premiere Pro", "CapCut"],
     description:
-      "Short-form educational videos for trading campaigns and social media.",
+      "Video editing for a mysterious, fearless, and knowledgeable character with a playful side.",
     duration: "0:18",
     orientation: "portrait",
     preview: "/videos/previews/data-wak-atom.mp4",
@@ -53,8 +57,10 @@ export const films: Film[] = [
     category: "Financial Education",
     client: "Sinyal Ordal",
     role: "Video Editor",
+    year: "2026",
+    softwareUsed: ["CapCut"],
     description:
-      "Creative short-form videos for financial education content.",
+      "Short-form video editing for a mysterious, fearless, friendly, and cool male character.",
     duration: "0:26",
     orientation: "portrait",
     preview: "/videos/previews/sinyal-ordal.mp4",
@@ -77,8 +83,10 @@ export const films: Film[] = [
     category: "Trading Education",
     client: "Raka Trabas",
     role: "Video Editor",
+    year: "2026",
+    softwareUsed: ["CapCut"],
     description:
-      "Creative video editing for educational trading campaigns.",
+      "Short-form video editing for a humorous, cool, knowledgeable, and fearless character.",
     duration: "0:31",
     orientation: "portrait",
     preview: "/videos/previews/raka-trabas.mp4",
@@ -101,6 +109,7 @@ export const films: Film[] = [
     category: "Gold Trading Education",
     client: "Global Trading Education",
     role: "Lead Video Editor",
+    year: "2025",
     description:
       "Educational videos focused on international gold trading.",
     duration: "0:24",
