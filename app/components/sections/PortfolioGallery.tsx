@@ -88,8 +88,8 @@ const WORKS: WorkItem[] = [
   },
   {
     id: "work-7",
-    category: "MISCELLANEOUS DESIGN",
-    title: "Desain Lain",
+    category: "PRINT & CAMPAIGN DESIGN",
+    title: "Print & Campaign Design",
     titleKey: "work7Title",
     image: "/portfolio/desain-lain.avif",
     slug: "desain-lain",
