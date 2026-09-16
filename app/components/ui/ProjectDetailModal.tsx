@@ -80,7 +80,7 @@ export default function ProjectDetailModal({
   const duration = p.duration || "60 Seconds";
   const format = p.format || (isPortrait ? "9:16 Vertical HD" : "16:9 Landscape 4K");
   const platform = p.platform || "Instagram, TikTok, & YouTube";
-  const summary = p.tagline || p.summary || project.description.slice(0, 140) + "...";
+  const summary = p.tagline || p.summary || project.description;
   const challenge = p.challenge || "Capturing audience attention within the critical first 3 seconds while maintaining high aesthetic standards and clear brand messaging across fast-paced digital feeds.";
   
   const creativeDirection = p.creativeDirection || {
