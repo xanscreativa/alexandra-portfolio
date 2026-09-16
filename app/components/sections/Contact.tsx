@@ -8,7 +8,7 @@ import { useLanguage } from "@/context/LanguageContext";
 export default function ContactCTA() {
   const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
-  const email = "xans.creativa@gmail.com";
+  const email = "alexandra.dorothea16@gmail.com";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(email);
