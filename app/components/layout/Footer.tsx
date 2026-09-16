@@ -111,33 +111,33 @@ export default function Footer() {
           <div className="flex flex-col gap-3 text-left">
             
             {/* EXPLORE PANEL */}
-            <div className="flex items-center justify-between px-4 sm:px-5 py-3 rounded-2xl bg-[#E85D8E]/[0.035] border border-[#E85D8E]/[0.12]">
-              <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#E85D8E] shrink-0">
+            <div className="grid grid-cols-[auto_1fr] items-center gap-5 rounded-2xl border border-[#E85D8E]/[0.14] bg-[#E85D8E]/[0.035] px-4 sm:px-5 py-3.5">
+              <h4 className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-[#E85D8E] whitespace-nowrap">
                 {t("footerExplore")}
               </h4>
-              <div className="flex flex-nowrap items-center gap-x-2 sm:gap-x-3 text-[11px] sm:text-xs font-bold text-[#2D2433]">
+              <nav className="flex min-w-0 items-center justify-end gap-2.5 sm:gap-4 text-[11px] sm:text-xs font-bold text-[#2D2433]">
                 {navLinks.map((link, idx) => (
                   <React.Fragment key={`${link.labelKey}-${link.href}-${idx}`}>
                     <Link
                       href={link.href}
-                      className="group inline-flex items-center hover:text-[#E85D8E] transition-colors tracking-wide whitespace-nowrap"
+                      className="group inline-flex items-center rounded-full px-1 py-0.5 hover:text-[#E85D8E] transition-colors tracking-wide whitespace-nowrap"
                     >
                       <span>{t(link.labelKey)}</span>
                     </Link>
                     {idx < navLinks.length - 1 && (
-                      <span className="text-[#E85D8E]/50 text-[10px] select-none">·</span>
+                      <span className="text-[#E85D8E]/35 text-[9px] select-none">•</span>
                     )}
                   </React.Fragment>
                 ))}
-              </div>
+              </nav>
             </div>
 
-            {/* CONNECT PANEL (Optimized 1-Row with compact sizing) */}
-            <div className="flex items-center justify-between px-4 sm:px-5 py-3 rounded-2xl bg-[#E85D8E]/[0.06] border border-[#E85D8E]/[0.18]">
-              <h4 className="text-[8px] font-bold uppercase tracking-[0.15em] text-[#E85D8E] shrink-0">
+            {/* CONNECT PANEL */}
+            <div className="grid grid-cols-[auto_1fr] items-center gap-5 rounded-2xl border border-[#E85D8E]/[0.18] bg-[#E85D8E]/[0.055] px-4 sm:px-5 py-3.5">
+              <h4 className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.18em] text-[#E85D8E] whitespace-nowrap">
                 {t("footerConnect")}
               </h4>
-              <div className="flex flex-nowrap items-center gap-x-1.5 sm:gap-x-2.5 text-[10px] sm:text-[11px] font-bold text-[#2D2433]">
+              <div className="flex min-w-0 items-center justify-end gap-3 sm:gap-5 text-[10px] sm:text-[11px] font-bold text-[#2D2433]">
                 {socials.map((item) => {
                   const IconComp = item.icon;
                   return (
@@ -146,11 +146,11 @@ export default function Footer() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-0.5 hover:text-[#E85D8E] transition-colors tracking-tight whitespace-nowrap"
+                      className="group inline-flex items-center gap-1 hover:text-[#E85D8E] transition-colors tracking-tight whitespace-nowrap"
                     >
-                      <IconComp className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-[#E85D8E] group-hover:scale-110 transition-transform shrink-0" />
+                      <IconComp className="h-3 w-3 text-[#E85D8E] group-hover:scale-110 transition-transform shrink-0" />
                       <span>{item.label}</span>
-                      <ArrowUpRight className="h-2 w-2 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" />
+                      <ArrowUpRight className="h-2.5 w-2.5 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" />
                     </a>
                   );
                 })}
