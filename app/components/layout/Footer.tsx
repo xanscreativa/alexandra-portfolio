@@ -66,78 +66,40 @@ export default function Footer() {
       
       <div className="relative z-10 mx-auto w-[90%] max-w-none">
         
-        {/* MAIN DESKTOP ASYMMETRIC GRID (1.4fr / 0.6fr) */}
-        <div className="grid grid-cols-1 gap-10 lg:gap-16 items-start mb-14">
-          
-          {/* LEFT COLUMN: Brand Identity & Closing Statement */}
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
-            <div className="flex items-center gap-2.5">
-              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#E85D8E] text-white shadow-2xs">
-                <Sparkles className="h-4 w-4" />
-              </div>
-              <span className="text-sm sm:text-base font-black tracking-[0.2em] text-[#2D2433]">
-                XANS STUDIO
-              </span>
-            </div>
-
-            <div className="space-y-2">
-              <p className="text-xs font-bold text-[#E85D8E] tracking-wider uppercase">
-                {t("roleSubtitle")}
-              </p>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#2D2433] leading-[1.15]">
-                {t("footerHeadline1")} <br className="hidden sm:block" />
-                <span className="text-[#E85D8E]">{t("footerHeadline2")}</span>
-              </h2>
-            </div>
-
-            <p className="max-w-md text-xs sm:text-sm leading-relaxed text-[#2D2433]/70">
-              {t("footerDescription")}
-            </p>
-
-            <div className="inline-flex items-center gap-3 rounded-full border border-[#E85D8E]/20 bg-[#E85D8E]/5 px-3.5 py-1.5 text-xs font-mono text-[#2D2433]/80 shadow-2xs backdrop-blur-xs">
-              <span className="flex items-center gap-1.5">
-                <Globe className="h-3.5 w-3.5 text-[#E85D8E]" />
-                <span>{t("footerLocation")}</span>
-              </span>
-              <span className="text-[#E85D8E]/30">|</span>
-              <span className="flex items-center gap-1.5">
-                <Clock className="h-3.5 w-3.5 text-[#E85D8E]" />
-                <span>{time || t("timezoneFallback")}</span>
-              </span>
-            </div>
-          </div>
-
-          {/* RIGHT COLUMN: Explore & Connect Compact Modules */}
-          <div className="lg:col-span-2 flex flex-col gap-12 w-full">
+        {/* REFERENCE FOOTER CAPSULES */}
+        <div className="mx-auto w-[90%] max-w-[1920px]">
+          <div className="flex flex-col gap-[18px]">
             
-            {/* EXPLORE PANEL */}
-            <div className="h-[100px] w-full rounded-[50px] border border-[#E85D8E]/[0.18] bg-[#E85D8E]/[0.025] px-6 sm:px-8 lg:px-10 flex items-center">
-              <h4 className="shrink-0 w-[27%] text-[14px] sm:text-[16px] lg:text-[18px] font-bold uppercase tracking-[0.18em] text-[#D94D82] whitespace-nowrap">
+            {/* EXPLORE */}
+            <div className="flex h-[66px] w-full items-center rounded-full border border-[#E85D8E]/30 bg-white/35 px-7 sm:px-8 lg:px-8">
+              <span className="w-[22%] shrink-0 text-[11px] font-extrabold uppercase tracking-[0.22em] text-[#D45D88] sm:text-xs">
                 {t("footerExplore")}
-              </h4>
-              <nav className="flex flex-1 min-w-0 items-center justify-between text-[15px] sm:text-[17px] lg:text-[19px] font-bold tracking-[-0.02em] text-[#2D2433]">
-                {navLinks.map((link, idx) => (
-                  <React.Fragment key={link.labelKey + "-" + link.href + "-" + idx}>
+              </span>
+
+              <nav className="flex flex-1 items-center justify-between gap-3 text-[13px] font-bold sm:text-[15px] lg:text-[16px]">
+                {navLinks.map((item, index) => (
+                  <span key={item.labelKey} className="flex items-center gap-4 lg:gap-7">
                     <Link
-                      href={link.href}
-                      className="group inline-flex items-center whitespace-nowrap transition-colors hover:text-[#E85D8E]"
+                      href={item.href}
+                      className="whitespace-nowrap transition-colors hover:text-[#D45D88]"
                     >
-                      <span>{t(link.labelKey)}</span>
+                      {t(item.labelKey)}
                     </Link>
-                    {idx < navLinks.length - 1 && (
-                      <span className="mx-2 sm:mx-3 lg:mx-5 text-[#E85D8E] text-[9px] sm:text-[10px] lg:text-[11px] select-none">•</span>
+                    {index < navLinks.length - 1 && (
+                      <span className="text-[#D45D88]">•</span>
                     )}
-                  </React.Fragment>
+                  </span>
                 ))}
               </nav>
             </div>
 
-            {/* CONNECT PANEL */}
-            <div className="h-[164px] w-full rounded-[82px] border border-[#E85D8E]/[0.18] bg-[#E85D8E]/[0.025] px-10 sm:px-14 lg:px-20 flex items-center">
-              <h4 className="shrink-0 w-[27%] text-[24px] sm:text-[28px] lg:text-[34px] font-bold uppercase tracking-[0.22em] text-[#D94D82] whitespace-nowrap">
+            {/* CONNECT */}
+            <div className="flex h-[66px] w-full items-center rounded-full border border-[#E85D8E]/30 bg-white/35 px-7 sm:px-8 lg:px-8">
+              <span className="w-[22%] shrink-0 text-[11px] font-extrabold uppercase tracking-[0.22em] text-[#D45D88] sm:text-xs">
                 {t("footerConnect")}
-              </h4>
-              <div className="flex flex-1 min-w-0 items-center justify-between text-[13px] sm:text-[15px] lg:text-[17px] font-bold tracking-[-0.025em] text-[#2D2433]">
+              </span>
+
+              <div className="flex flex-1 items-center justify-between gap-3 text-[11px] font-bold sm:text-[13px] lg:text-[14px]">
                 {socials.map((item) => {
                   const IconComp = item.icon;
                   return (
@@ -146,11 +108,11 @@ export default function Footer() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-1.5 sm:gap-2 lg:gap-2.5 whitespace-nowrap transition-colors hover:text-[#E85D8E]"
+                      className="group inline-flex items-center gap-2 whitespace-nowrap transition-colors hover:text-[#D45D88]"
                     >
-                      <IconComp className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-[#D94D82] group-hover:scale-105 transition-transform shrink-0" />
+                      <IconComp className="h-4 w-4 shrink-0 text-[#D45D88] sm:h-5 sm:w-5" />
                       <span>{item.label}</span>
-                      <ArrowUpRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 lg:h-5 lg:w-5 text-[#8B8790] transition-all group-hover:text-[#E85D8E] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
+                      <ArrowUpRight className="h-3 w-3 shrink-0 text-[#8B8790] transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                     </a>
                   );
                 })}
@@ -158,7 +120,6 @@ export default function Footer() {
             </div>
 
           </div>
-
         </div>
 
         {/* SINGLE CLEAN DIVIDER */}
