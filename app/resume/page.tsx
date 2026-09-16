@@ -355,7 +355,7 @@ export default function ResumePage() {
                         <span className="text-pink-400">•</span>
                         <span>
                           Spirituality Ministry Content at SIMS Working Group
-                          GPIB Children's Ministry Council (2023)
+                          GPIB Children's Ministry Council (2021)
                         </span>
                       </li>
 
