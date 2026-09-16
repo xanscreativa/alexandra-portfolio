@@ -123,6 +123,7 @@ export default function PortfolioGallery() {
   };
 
   return (
+    <>
     {loading && (
       <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white/20 backdrop-blur-[5px]">
         <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/50 bg-white/35 shadow-lg backdrop-blur-md">
@@ -273,5 +274,6 @@ export default function PortfolioGallery() {
         </div>
       </div>
     </section>
+    </>
   );
 }
