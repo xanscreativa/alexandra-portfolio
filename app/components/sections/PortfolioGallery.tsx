@@ -93,9 +93,20 @@ const WORKS: WorkItem[] = [
     titleKey: "work7Title",
     image: "/portfolio/desain-lain.avif",
     slug: "desain-lain",
-    span: "col-span-12", // Full-width
-    aspectRatio: "16/9", // Rasio landscape 1920x1080
+    span: "col-span-6",
+    aspectRatio: "1/1",
     number: "07",
+  },
+  {
+    id: "work-8",
+    category: "FASHION DESIGN",
+    title: "Milenial's Batik Ecoo-Fashion",
+    titleKey: "work8Title",
+    image: "/portfolio/milenial-batik-ecoo-fashion.avif",
+    slug: "milenials-batik-ecoo-fashion",
+    span: "col-span-6",
+    aspectRatio: "4/5",
+    number: "08",
   },
 ];
 
