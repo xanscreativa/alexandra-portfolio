@@ -64,10 +64,10 @@ export default function Footer() {
   return (
     <footer className="relative bg-[#FFFDFC] text-[#2D2433] pt-16 pb-12 overflow-hidden border-t border-[#E85D8E]/15 selection:bg-[#E85D8E] selection:text-white">
       
-      <div className="relative z-10 mx-auto w-[90%] max-w-7xl">
+      <div className="relative z-10 mx-auto w-[90%] max-w-none">
         
         {/* MAIN DESKTOP ASYMMETRIC GRID (1.4fr / 0.6fr) */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_0.6fr] gap-10 lg:gap-16 items-start mb-14">
+        <div className="grid grid-cols-1 gap-10 lg:gap-16 items-start mb-14">
           
           {/* LEFT COLUMN: Brand Identity & Closing Statement */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
@@ -108,24 +108,24 @@ export default function Footer() {
           </div>
 
           {/* RIGHT COLUMN: Explore & Connect Compact Modules */}
-          <div className="flex flex-col gap-3 text-left">
+          <div className="lg:col-span-2 flex flex-col gap-12 w-full">
             
             {/* EXPLORE PANEL */}
-            <div className="flex flex-col gap-3 rounded-2xl border border-[#E85D8E]/[0.14] bg-[#E85D8E]/[0.035] px-4 sm:px-5 py-3.5 sm:flex-row sm:items-center sm:gap-6 lg:w-[calc(100%+6rem)] lg:-ml-12">
-              <h4 className="shrink-0 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-[#E85D8E] whitespace-nowrap sm:w-[120px]">
+            <div className="h-[164px] w-full rounded-[82px] border border-[#E85D8E]/[0.18] bg-[#E85D8E]/[0.025] px-10 sm:px-14 lg:px-20 flex items-center">
+              <h4 className="shrink-0 w-[27%] text-[24px] sm:text-[28px] lg:text-[34px] font-bold uppercase tracking-[0.22em] text-[#D94D82] whitespace-nowrap">
                 {t("footerExplore")}
               </h4>
-              <nav className="flex min-w-0 flex-1 flex-wrap items-center justify-start sm:justify-between gap-x-3 gap-y-1.5 text-[11px] sm:text-xs font-bold text-[#2D2433]">
+              <nav className="flex flex-1 min-w-0 items-center justify-between text-[20px] sm:text-[25px] lg:text-[34px] font-bold tracking-[-0.02em] text-[#2D2433]">
                 {navLinks.map((link, idx) => (
-                  <React.Fragment key={`${link.labelKey}-${link.href}-${idx}`}>
+                  <React.Fragment key={link.labelKey + "-" + link.href + "-" + idx}>
                     <Link
                       href={link.href}
-                      className="group inline-flex items-center rounded-full px-1 py-0.5 hover:text-[#E85D8E] transition-colors tracking-wide whitespace-nowrap"
+                      className="group inline-flex items-center whitespace-nowrap transition-colors hover:text-[#E85D8E]"
                     >
                       <span>{t(link.labelKey)}</span>
                     </Link>
                     {idx < navLinks.length - 1 && (
-                      <span className="text-[#E85D8E]/35 text-[9px] select-none">•</span>
+                      <span className="mx-3 sm:mx-5 lg:mx-8 text-[#E85D8E] text-[16px] sm:text-[19px] lg:text-[22px] select-none">•</span>
                     )}
                   </React.Fragment>
                 ))}
@@ -133,11 +133,11 @@ export default function Footer() {
             </div>
 
             {/* CONNECT PANEL */}
-            <div className="flex flex-col gap-3 rounded-2xl border border-[#E85D8E]/[0.18] bg-[#E85D8E]/[0.055] px-4 sm:px-5 py-3.5 sm:flex-row sm:items-center sm:gap-6 lg:w-[calc(100%+6rem)] lg:-ml-12">
-              <h4 className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.18em] text-[#E85D8E] whitespace-nowrap">
+            <div className="h-[164px] w-full rounded-[82px] border border-[#E85D8E]/[0.18] bg-[#E85D8E]/[0.025] px-10 sm:px-14 lg:px-20 flex items-center">
+              <h4 className="shrink-0 w-[27%] text-[24px] sm:text-[28px] lg:text-[34px] font-bold uppercase tracking-[0.22em] text-[#D94D82] whitespace-nowrap">
                 {t("footerConnect")}
               </h4>
-              <div className="flex min-w-0 flex-1 flex-wrap items-center justify-start sm:justify-between gap-x-4 gap-y-2 text-[10px] sm:text-[11px] font-bold text-[#2D2433]">
+              <div className="flex flex-1 min-w-0 items-center justify-between text-[17px] sm:text-[21px] lg:text-[31px] font-bold tracking-[-0.025em] text-[#2D2433]">
                 {socials.map((item) => {
                   const IconComp = item.icon;
                   return (
@@ -146,11 +146,11 @@ export default function Footer() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-1 hover:text-[#E85D8E] transition-colors tracking-tight whitespace-nowrap"
+                      className="group inline-flex items-center gap-2 sm:gap-3 lg:gap-4 whitespace-nowrap transition-colors hover:text-[#E85D8E]"
                     >
-                      <IconComp className="h-3 w-3 text-[#E85D8E] group-hover:scale-110 transition-transform shrink-0" />
+                      <IconComp className="h-7 w-7 sm:h-8 sm:w-8 lg:h-10 lg:w-10 text-[#D94D82] group-hover:scale-105 transition-transform shrink-0" />
                       <span>{item.label}</span>
-                      <ArrowUpRight className="h-2.5 w-2.5 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" />
+                      <ArrowUpRight className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 text-[#8B8790] transition-all group-hover:text-[#E85D8E] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
                     </a>
                   );
                 })}
