@@ -22,8 +22,8 @@ const navItems: NavItem[] = [
   },
   {
     labelKey: "about",
-    href: "/about",
-    isAnchor: false,
+    href: "/#about",
+    isAnchor: true,
   },
   {
     labelKey: "navResume",
