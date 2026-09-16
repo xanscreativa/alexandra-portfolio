@@ -4,40 +4,64 @@ import FadeUp from "@/components/animation/FadeUp";
 
 const experiences = [
   {
+    year: "2026",
+    title: "Design Club Coach",
+    company: "Forum Anak GPIB Immanuel Pekanbaru",
+    duration: "2026 — Present",
+  },
+  {
+    year: "2025",
+    title: "Video Editor & Graphic Designer",
+    company: "PT. Tera Infinity Ultima",
+    duration: "2025 — 2026",
+  },
+  {
+    year: "2025",
+    title: "Graphic Design Extracurricular Teacher",
+    company: "SMP Kalam Kudus Pekanbaru",
+    duration: "2025 — 2026",
+  },
+  {
+    year: "2025",
+    title: "Painting Extracurricular Teacher",
+    company: "SMP Kalam Kudus Pekanbaru",
+    duration: "2025 — 2026",
+  },
+  {
     year: "2023",
-    title: "Graphic Designer (Freelance)",
-    company: "SIMS Working Group GPIB Children's Ministry Council",
-    duration: "2022 — Present",
+    title: "Graphic Designer",
+    company: "PT. Tera Infinity Ultima",
+    duration: "2023 — 2025",
   },
   {
     year: "2022",
-    title: "Content Creator",
-    company: "Promotion, Public Relations & Alumni Bureau - SWCU",
-    duration: "Internship",
+    title: "Graphic Designer (Internship)",
+    company: "Biro Promosi, Humas dan Alumni, Satya Wacana Christian University",
+    duration: "3 Months",
   },
   {
     year: "2022",
     title: "Packaging Assistant Lecturer",
-    company: "Visual Communication Design - SWCU",
+    company: "Visual Communication Design Major, SWCU",
     duration: "4 Months",
   },
   {
-    year: "2022",
+    year: "2021",
     title: "Research Project Assistant",
-    company: "Matching Fund Kedaireka 2022",
+    company: "Matching Fund Kedaireka Program — “Milenial’s Batik Eco-Fashion”",
+    duration: "2021 — 2022",
+  },
+  {
+    year: "2021",
+    title: "Research Project Assistant (Graphic Designer)",
+    company: "Productive Innovative Research Team (Rispro), SWCU",
     duration: "1 Year",
   },
   {
     year: "2021",
-    title: "Graphic Designer",
+    title: "Graphic Design & Photographer (Internship)",
     company: "Dreams Studio Salatiga",
-    duration: "Internship",
-  },
-  {
-    year: "2018",
-    title: "Content Creator",
-    company: "Pelkat PA GPIB Taman Sari Salatiga",
-    duration: "Freelance",
+    duration: "3 Months",
   },
 ];
 
