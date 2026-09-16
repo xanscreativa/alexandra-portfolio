@@ -560,11 +560,81 @@ export const portfolioCollections: PortfolioCollection[] = [
     ],
   },
 
-  // =========================================================
-  // 7. DESAIN LAIN
+    // =========================================================
+  // 7. MILENIAL'S BATIK ECO-FASHION
   // =========================================================
   {
     id: 7,
+    slug: "milenials-batik-eco-fashion",
+    title: "Milenial's Batik Eco-Fashion",
+    category: "FASHION DESIGN",
+    tagline: "Batik fashion project presented through lookbook, packaging, and print media design.",
+    description: "Milenial's Batik Eco-Fashion is a visual design project presented through three lookbook designs, packaging design, and print media. The project brings the fashion collection into a cohesive visual presentation across editorial and physical touchpoints.",
+    cover: "/portfolio/milenial-batik-eco-fashion.avif",
+    overview: "This project showcases three lookbook designs that can be opened individually to explore the visual presentation, followed by packaging design and print media applications.",
+    challenge: "To present the batik fashion collection consistently across lookbook, packaging, and printed media.",
+    solution: "Developed a cohesive visual direction across three lookbook pieces, packaging, and print media so each application supports the same fashion identity.",
+    outcome: "A collection of connected visual materials that presents the Milenial's Batik Eco-Fashion project across editorial, packaging, and print formats.",
+    meta: {
+      client: "Milenial's Batik Eco-Fashion",
+      industry: "Fashion & Sustainable Design",
+      role: "Graphic Designer",
+      year: "2026",
+      deliverables: "3 Lookbooks, Packaging Design, Print Media",
+      tools: "Adobe Illustrator, Adobe Photoshop",
+    },
+    gallery: [
+      {
+        type: "portrait-4-5",
+        src: "/portfolio/milenial-batik-eco-fashion.avif",
+        alt: "Milenial's Batik Eco-Fashion cover",
+        caption: "Milenial's Batik Eco-Fashion",
+      },
+    ],
+    items: [
+      {
+        title: "Lookbook 01",
+        subtitle: "Lookbook Design",
+        description: "Lookbook design — open to explore the full piece.",
+        cover: "/portfolio/milenial-batik-eco-fashion.avif",
+        images: ["/portfolio/milenial-batik-eco-fashion.avif"],
+      },
+      {
+        title: "Lookbook 02",
+        subtitle: "Lookbook Design",
+        description: "Lookbook design — open to explore the full piece.",
+        cover: "/portfolio/milenial-batik-eco-fashion.avif",
+        images: ["/portfolio/milenial-batik-eco-fashion.avif"],
+      },
+      {
+        title: "Lookbook 03",
+        subtitle: "Lookbook Design",
+        description: "Lookbook design — open to explore the full piece.",
+        cover: "/portfolio/milenial-batik-eco-fashion.avif",
+        images: ["/portfolio/milenial-batik-eco-fashion.avif"],
+      },
+      {
+        title: "Packaging Design",
+        subtitle: "Packaging",
+        description: "Packaging design for the fashion project.",
+        cover: "/portfolio/milenial-batik-eco-fashion.avif",
+        images: ["/portfolio/milenial-batik-eco-fashion.avif"],
+      },
+      {
+        title: "Print Media",
+        subtitle: "Print Design",
+        description: "Print media applications for the fashion project.",
+        cover: "/portfolio/milenial-batik-eco-fashion.avif",
+        images: ["/portfolio/milenial-batik-eco-fashion.avif"],
+      },
+    ],
+  },
+
+  // =========================================================
+  // 8. DESAIN LAIN
+  // =========================================================
+  {
+    id: 8,
     slug: "desain-lain",
     title: "Print & Campaign Design",
     category: "PRINT & CAMPAIGN DESIGN",
@@ -637,78 +707,7 @@ export const portfolioCollections: PortfolioCollection[] = [
       },
     ],
   },
-
-  // =========================================================
-  // 8. MILENIAL'S BATIK ECOO-FASHION
-  // =========================================================
-  {
-    id: 8,
-    slug: "milenials-batik-ecoo-fashion",
-    title: "Milenial's Batik Ecoo-Fashion",
-    category: "FASHION DESIGN",
-    tagline: "Batik fashion project presented through lookbook, packaging, and print media design.",
-    description: "Milenial's Batik Ecoo-Fashion is a visual design project presented through three lookbook designs, packaging design, and print media. The project brings the fashion collection into a cohesive visual presentation across editorial and physical touchpoints.",
-    cover: "/portfolio/milenial-batik-ecoo-fashion.avif",
-    overview: "This project showcases three lookbook designs that can be opened individually to explore the visual presentation, followed by packaging design and print media applications.",
-    challenge: "To present the batik fashion collection consistently across lookbook, packaging, and printed media.",
-    solution: "Developed a cohesive visual direction across three lookbook pieces, packaging, and print media so each application supports the same fashion identity.",
-    outcome: "A collection of connected visual materials that presents the Milenial's Batik Ecoo-Fashion project across editorial, packaging, and print formats.",
-    meta: {
-      client: "Milenial's Batik Ecoo-Fashion",
-      industry: "Fashion & Sustainable Design",
-      role: "Graphic Designer",
-      year: "2026",
-      deliverables: "3 Lookbooks, Packaging Design, Print Media",
-      tools: "Adobe Illustrator, Adobe Photoshop",
-    },
-    gallery: [
-      {
-        type: "portrait-4-5",
-        src: "/portfolio/milenial-batik-ecoo-fashion.avif",
-        alt: "Milenial's Batik Ecoo-Fashion cover",
-        caption: "Milenial's Batik Ecoo-Fashion",
-      },
-    ],
-    items: [
-      {
-        title: "Lookbook 01",
-        subtitle: "Lookbook Design",
-        description: "Lookbook design — open to explore the full piece.",
-        cover: "/portfolio/milenial-batik-ecoo-fashion.avif",
-        images: ["/portfolio/milenial-batik-ecoo-fashion.avif"],
-      },
-      {
-        title: "Lookbook 02",
-        subtitle: "Lookbook Design",
-        description: "Lookbook design — open to explore the full piece.",
-        cover: "/portfolio/milenial-batik-ecoo-fashion.avif",
-        images: ["/portfolio/milenial-batik-ecoo-fashion.avif"],
-      },
-      {
-        title: "Lookbook 03",
-        subtitle: "Lookbook Design",
-        description: "Lookbook design — open to explore the full piece.",
-        cover: "/portfolio/milenial-batik-ecoo-fashion.avif",
-        images: ["/portfolio/milenial-batik-ecoo-fashion.avif"],
-      },
-      {
-        title: "Packaging Design",
-        subtitle: "Packaging",
-        description: "Packaging design for the fashion project.",
-        cover: "/portfolio/milenial-batik-ecoo-fashion.avif",
-        images: ["/portfolio/milenial-batik-ecoo-fashion.avif"],
-      },
-      {
-        title: "Print Media",
-        subtitle: "Print Design",
-        description: "Print media applications for the fashion project.",
-        cover: "/portfolio/milenial-batik-ecoo-fashion.avif",
-        images: ["/portfolio/milenial-batik-ecoo-fashion.avif"],
-      },
-    ],
-  },
-
-];
+  ];
 
 // =========================================================
 // GET PORTFOLIO BY SLUG
