@@ -12,6 +12,9 @@ export interface Film {
   description: string;
   year?: string;
   softwareUsed?: string[];
+  industry?: string;
+  platform?: string;
+  format?: string;
   duration: string;
   orientation: "portrait" | "landscape";
   preview: string;
@@ -27,6 +30,9 @@ export interface Film {
 export const films: Film[] = [
   {
     title: "Data Wak Atom",
+    industry: "Financial Content",
+    platform: "TikTok & Instagram Reels",
+    format: "9:16 Vertical",
     category: "Trading Campaign",
     client: "Data Wak Atom",
     role: "Video Editor",
@@ -54,6 +60,9 @@ export const films: Film[] = [
   },
   {
     title: "Sinyal Ordal",
+    industry: "Financial Education & Trading",
+    platform: "TikTok & Instagram Reels",
+    format: "9:16 Vertical",
     category: "Financial Education",
     client: "Sinyal Ordal",
     role: "Video Editor",
@@ -80,6 +89,9 @@ export const films: Film[] = [
   },
   {
     title: "Raka Trabas",
+    industry: "Trading Education",
+    platform: "TikTok & YouTube Shorts",
+    format: "9:16 Vertical",
     category: "Trading Education",
     client: "Raka Trabas",
     role: "Video Editor",
@@ -106,6 +118,9 @@ export const films: Film[] = [
   },
   {
     title: "GTE",
+    industry: "Commodities & Gold Trading",
+    platform: "Digital Campaigns",
+    format: "9:16 Vertical",
     category: "Gold Trading Education",
     client: "Global Trading Education",
     role: "Lead Video Editor",
