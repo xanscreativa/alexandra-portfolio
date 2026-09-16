@@ -289,7 +289,7 @@ export const portfolioCollections: PortfolioCollection[] = [
       client: "Multiple Organizations",
       industry: "Community & Culture",
       role: "Logo & Brand Mark Specialist",
-      year: "2023 - 2024",
+      year: "2023 - 2026",
       deliverables:
         "Logo Marks, Vector Assets, Brand Usage Guidelines",
       tools: "Illustrator, Figma",
@@ -566,34 +566,34 @@ export const portfolioCollections: PortfolioCollection[] = [
   {
     id: 7,
     slug: "desain-lain",
-    title: "Desain Lain",
-    category: "MISCELLANEOUS DESIGN",
+    title: "Print & Campaign Design",
+    category: "PRINT & CAMPAIGN DESIGN",
     tagline:
-      "A gallery showcasing various creative visual assets, print media, and promotional design experiments.",
+      "A collection of print, campaign, promotional, and apparel design projects.",
     description:
-      "A collection of various graphic design projects including banners, posters, and visual experiments.",
+      "A collection of graphic design projects including backdrops, banners, advertising campaigns, promotional materials, and apparel design.",
 
     cover: "/portfolio/mark.avif",
 
     overview:
-      "A flexible collection of promotional materials, posters, and miscellaneous visual design projects crafted across different client requests.",
+      "A selection of promotional and print-focused projects created for different visual communication needs.",
 
     challenge:
-      "Adapting quickly to diverse visual styles and print/digital technical requirements across non-standard formats.",
+      "Adapting visual concepts to different campaign needs, print formats, advertising materials, and apparel applications.",
 
     solution:
-      "Applied core graphic design fundamentals to deliver eye-catching visual communication regardless of media constraint.",
+      "Applied graphic design fundamentals to create clear, engaging visuals that work across physical and promotional media.",
 
     outcome:
-      "A rich visual gallery demonstrating adaptability and creative exploration across multiple mediums.",
+      "A varied selection that demonstrates adaptability across print, advertising, campaign, and merchandise applications.",
 
     meta: {
       client: "Various Clients",
       industry: "Creative Services",
       role: "Graphic Designer",
       year: "2023 - 2024",
-      deliverables: "Print Assets, Banners, Digital Graphics",
-      tools: "Photoshop, Illustrator",
+      deliverables: "Backdrops, Banners, Advertising Campaigns, Apparel Design",
+      tools: "Adobe Photoshop, Adobe Illustrator, Canva",
     },
 
     gallery: [
