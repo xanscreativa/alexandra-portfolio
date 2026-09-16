@@ -15,66 +15,87 @@ import type { ReactNode } from "react";
 
 const experiences = [
   {
-    title: "Graphic Design Artist",
-    date: "Feb 2024 – Present",
+    title: "Design Club Coach",
+    date: "2026 – Present",
+    company: "Forum Anak GPIB Immanuel Pekanbaru",
+  },
+  {
+    title: "Video Editor & Graphic Designer",
+    date: "2025 – 2026",
     company: "PT. Tera Infinity Ultima",
-  },
-  {
-    title: "Research Project Assistant",
-    date: "Jun 2022 – May 2023",
-    company: "Universitas Kristen Satya Wacana (UKSW)",
     description:
-      'Served as a research assistant in design and marketing for the "BaTecH" project under the Matching Fund Kedaireka 2022 program. Responsible for activity documentation and creating digital/print designs.',
+      "Created graphic design and video content for financial literacy challenges, comic series, entertainment, breaking news, and educational content across Instagram, TikTok, and YouTube.",
   },
   {
-    title: "Assistant Lecturer (Packaging Design)",
-    date: "Sep 2022 – Dec 2022",
+    title: "Graphic Design Extracurricular Teacher",
+    date: "2025 – 2026",
+    company: "SMP Kalam Kudus Pekanbaru",
+  },
+  {
+    title: "Painting Extracurricular Teacher",
+    date: "2025 – 2026",
+    company: "SMP Kalam Kudus Pekanbaru",
+  },
+  {
+    title: "Graphic Designer",
+    date: "2023 – 2025",
+    company: "PT. Tera Infinity Ultima",
+    description:
+      "Handled visual design and creative output for Jendela Finansial across Instagram, TikTok, and YouTube.",
+  },
+  {
+    title: "Graphic Designer (Internship)",
+    date: "3 Months",
+    company: "Biro Promosi, Humas dan Alumni, Satya Wacana Christian University",
+  },
+  {
+    title: "Packaging Assistant Lecturer",
+    date: "4 Months",
     company: "Visual Communication Design Major, SWCU",
   },
   {
     title: "Research Project Assistant",
-    date: "Sep 2021 – Aug 2022",
-    company: "Universitas Kristen Satya Wacana (UKSW)",
+    date: "2021 – 2022",
+    company: "Matching Fund Kedaireka Program — “Milenial’s Batik Eco-Fashion”",
     description:
-      'Assisted in design and marketing research for the "Millenial Batik Eco Fashion" project (Matching Fund Kedaireka 2021). Designed the lookbook for sustainable millennial batik fashion products and managed documentation.',
+      "Designed three lookbooks, three packaging types, promotional materials, and photographed products for the collection.",
   },
   {
-    title: "Graphic Designer",
-    date: "Feb 2022 – Apr 2022",
-    company: "Biro Promosi, Humas dan Alumni (BPHA) SWCU",
-    description:
-      "Handled university activity documentation, design planning, Instagram content creation, and photo editing.",
+    title: "Research Project Assistant (Graphic Designer)",
+    date: "1 Year",
+    company: "Productive Innovative Research Team (Rispro), SWCU",
   },
   {
-    title: "Assistant Lecturer (Photography)",
-    date: "Sep 2021 – Dec 2021",
-    company: "Visual Communication Design Major, SWCU",
-  },
-  {
-    title: "Graphic Designer",
-    date: "Aug 2021 – Nov 2021",
+    title: "Graphic Design & Photographer (Internship)",
+    date: "3 Months",
     company: "Dreams Studio Salatiga",
-    description:
-      "Collaborated on design briefs with clients, created Instagram posts, and worked as a photographer and photo editor.",
   },
 ];
 
 const skills = [
   "Graphic Design",
-  "Layoutting",
-  "Videography",
-  "Research",
-  "Writing",
-  "Photography",
+  "Branding & Visual Identity",
+  "Illustration",
   "Packaging Design",
+  "Layout Design",
+  "Video Editing",
+  "Photography",
+  "Art Direction",
+  "Team Leadership",
+  "Teaching & Mentoring",
   "Copywriting",
+  "AI-Assisted Creative Design",
+  "Print Design",
+  "Marketing Collateral",
 ];
 
 const software = [
-  "Adobe Illustrator (Ai)",
-  "Adobe Photoshop (Ps)",
-  "Adobe Premiere Pro (Pr)",
+  "Adobe Illustrator",
+  "Adobe Premiere Pro",
+  "Adobe Photoshop",
+  "Figma",
   "CapCut",
+  "Canva",
 ];
 
 export default function ResumePage() {
