@@ -637,6 +637,49 @@ export const portfolioCollections: PortfolioCollection[] = [
       },
     ],
   },
+
+  // =========================================================
+  // 8. MILENIAL'S BATIK ECOO-FASHION
+  // =========================================================
+  {
+    id: 8,
+    slug: "milenials-batik-ecoo-fashion",
+    title: "Milenial's Batik Ecoo-Fashion",
+    category: "FASHION DESIGN",
+    tagline: "Placeholder project — cover image will be added later.",
+    description: "A placeholder for the Milenial's Batik Ecoo-Fashion project. Project details and visuals will be updated when the final assets are uploaded.",
+    cover: "/portfolio/milenial-batik-ecoo-fashion.avif",
+    overview: "Project placeholder.",
+    challenge: "To be updated.",
+    solution: "To be updated.",
+    outcome: "To be updated.",
+    meta: {
+      client: "Milenial's Batik Ecoo-Fashion",
+      industry: "Fashion & Sustainable Design",
+      role: "Graphic Designer",
+      year: "2026",
+      deliverables: "Fashion Visuals & Campaign Materials",
+      tools: "Adobe Illustrator, Adobe Photoshop",
+    },
+    gallery: [
+      {
+        type: "portrait-4-5",
+        src: "/portfolio/milenial-batik-ecoo-fashion.avif",
+        alt: "Milenial's Batik Ecoo-Fashion",
+        caption: "Project cover placeholder",
+      },
+    ],
+    items: [
+      {
+        title: "Milenial's Batik Ecoo-Fashion",
+        subtitle: "Fashion Design",
+        description: "Project placeholder — visuals and details will be added later.",
+        cover: "/portfolio/milenial-batik-ecoo-fashion.avif",
+        images: ["/portfolio/milenial-batik-ecoo-fashion.avif"],
+      },
+    ],
+  },
+
 ];
 
 // =========================================================
