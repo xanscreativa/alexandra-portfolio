@@ -27,8 +27,7 @@ const navItems: NavItem[] = [
   },
   {
     labelKey: "navResume",
-    href: "/resume.pdf",
-    isExternal: true,
+    href: "/resume",
   },
   {
     labelKey: "contact",
