@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
 import FadeUp from "../animation/FadeUp";
@@ -111,6 +113,7 @@ const WORKS: WorkItem[] = [
 ];
 
 export default function PortfolioGallery() {
+  const [loading, setLoading] = useState(false);
   const { t } = useLanguage();
 
   const getTranslation = (key: string, fallback: string) => {
@@ -120,6 +123,14 @@ export default function PortfolioGallery() {
   };
 
   return (
+    {loading && (
+      <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white/20 backdrop-blur-[5px]">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/50 bg-white/35 shadow-lg backdrop-blur-md">
+          <span className="h-6 w-6 animate-spin rounded-full border-2 border-pink-200 border-t-pink-600" />
+        </div>
+      </div>
+    )}
+
     <section className="relative overflow-hidden border-t border-pink-100/60 bg-gradient-to-b from-[#FFFDFC] via-[#FFFFFF] to-[#FFF7FB] py-12 text-[#2D2433] sm:py-20 lg:py-28">
       {/* Ambient Glows */}
       <div className="pointer-events-none absolute -left-48 top-1/4 -z-10 h-[350px] w-[350px] rounded-full bg-pink-100/40 blur-[130px] sm:h-[550px] sm:w-[550px]" />
@@ -167,6 +178,7 @@ export default function PortfolioGallery() {
               <FadeUp delay={index * 0.05}>
                 <Link
                   href={`/portfolio/${item.slug}`}
+                  onClick={() => setLoading(true)}
                   className="group relative flex cursor-pointer flex-col justify-between rounded-xl border border-pink-200/40 bg-white/80 p-2 shadow-xs backdrop-blur-xs transition-all duration-300 ease-out hover:-translate-y-1 hover:border-pink-300 hover:shadow-md sm:rounded-2xl sm:p-3.5"
                 >
                   <div className="relative z-10">
