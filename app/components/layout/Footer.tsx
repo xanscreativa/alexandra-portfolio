@@ -111,11 +111,11 @@ export default function Footer() {
           <div className="flex flex-col gap-3 text-left">
             
             {/* EXPLORE PANEL */}
-            <div className="flex flex-col gap-2.5 rounded-2xl border border-[#E85D8E]/[0.14] bg-[#E85D8E]/[0.035] px-4 sm:px-5 py-3.5 sm:flex-row sm:items-center sm:justify-between">
-              <h4 className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-[#E85D8E] whitespace-nowrap">
+            <div className="flex flex-col gap-3 rounded-2xl border border-[#E85D8E]/[0.14] bg-[#E85D8E]/[0.035] px-4 sm:px-5 py-3.5 sm:flex-row sm:items-center sm:gap-6 lg:w-[calc(100%+6rem)] lg:-ml-12">
+              <h4 className="shrink-0 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-[#E85D8E] whitespace-nowrap sm:w-[120px]">
                 {t("footerExplore")}
               </h4>
-              <nav className="flex min-w-0 flex-wrap items-center justify-start sm:justify-end gap-x-2.5 gap-y-1.5 sm:gap-x-4 text-[11px] sm:text-xs font-bold text-[#2D2433]">
+              <nav className="flex min-w-0 flex-1 flex-wrap items-center justify-start sm:justify-between gap-x-3 gap-y-1.5 text-[11px] sm:text-xs font-bold text-[#2D2433]">
                 {navLinks.map((link, idx) => (
                   <React.Fragment key={`${link.labelKey}-${link.href}-${idx}`}>
                     <Link
@@ -133,11 +133,11 @@ export default function Footer() {
             </div>
 
             {/* CONNECT PANEL */}
-            <div className="flex flex-col gap-2.5 rounded-2xl border border-[#E85D8E]/[0.18] bg-[#E85D8E]/[0.055] px-4 sm:px-5 py-3.5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-3 rounded-2xl border border-[#E85D8E]/[0.18] bg-[#E85D8E]/[0.055] px-4 sm:px-5 py-3.5 sm:flex-row sm:items-center sm:gap-6 lg:w-[calc(100%+6rem)] lg:-ml-12">
               <h4 className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.18em] text-[#E85D8E] whitespace-nowrap">
                 {t("footerConnect")}
               </h4>
-              <div className="flex min-w-0 flex-wrap items-center justify-start sm:justify-end gap-x-3 sm:gap-x-5 gap-y-2 text-[10px] sm:text-[11px] font-bold text-[#2D2433]">
+              <div className="flex min-w-0 flex-1 flex-wrap items-center justify-start sm:justify-between gap-x-4 gap-y-2 text-[10px] sm:text-[11px] font-bold text-[#2D2433]">
                 {socials.map((item) => {
                   const IconComp = item.icon;
                   return (
