@@ -80,7 +80,7 @@ export default function About() {
 
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-pink-600 to-rose-400 text-white shadow-md shadow-pink-500/25 sm:h-12 sm:w-12">
                     <span className="text-base font-black tracking-tight sm:text-xl">
-                      4+
+                      6+
                     </span>
                   </div>
 
