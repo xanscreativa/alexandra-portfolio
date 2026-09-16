@@ -111,11 +111,11 @@ export default function Footer() {
           <div className="lg:col-span-2 flex flex-col gap-12 w-full">
             
             {/* EXPLORE PANEL */}
-            <div className="h-[164px] w-full rounded-[82px] border border-[#E85D8E]/[0.18] bg-[#E85D8E]/[0.025] px-10 sm:px-14 lg:px-20 flex items-center">
-              <h4 className="shrink-0 w-[27%] text-[24px] sm:text-[28px] lg:text-[34px] font-bold uppercase tracking-[0.22em] text-[#D94D82] whitespace-nowrap">
+            <div className="h-[100px] w-full rounded-[50px] border border-[#E85D8E]/[0.18] bg-[#E85D8E]/[0.025] px-6 sm:px-8 lg:px-10 flex items-center">
+              <h4 className="shrink-0 w-[27%] text-[14px] sm:text-[16px] lg:text-[18px] font-bold uppercase tracking-[0.18em] text-[#D94D82] whitespace-nowrap">
                 {t("footerExplore")}
               </h4>
-              <nav className="flex flex-1 min-w-0 items-center justify-between text-[20px] sm:text-[25px] lg:text-[34px] font-bold tracking-[-0.02em] text-[#2D2433]">
+              <nav className="flex flex-1 min-w-0 items-center justify-between text-[15px] sm:text-[17px] lg:text-[19px] font-bold tracking-[-0.02em] text-[#2D2433]">
                 {navLinks.map((link, idx) => (
                   <React.Fragment key={link.labelKey + "-" + link.href + "-" + idx}>
                     <Link
@@ -125,7 +125,7 @@ export default function Footer() {
                       <span>{t(link.labelKey)}</span>
                     </Link>
                     {idx < navLinks.length - 1 && (
-                      <span className="mx-3 sm:mx-5 lg:mx-8 text-[#E85D8E] text-[16px] sm:text-[19px] lg:text-[22px] select-none">•</span>
+                      <span className="mx-2 sm:mx-3 lg:mx-5 text-[#E85D8E] text-[9px] sm:text-[10px] lg:text-[11px] select-none">•</span>
                     )}
                   </React.Fragment>
                 ))}
@@ -137,7 +137,7 @@ export default function Footer() {
               <h4 className="shrink-0 w-[27%] text-[24px] sm:text-[28px] lg:text-[34px] font-bold uppercase tracking-[0.22em] text-[#D94D82] whitespace-nowrap">
                 {t("footerConnect")}
               </h4>
-              <div className="flex flex-1 min-w-0 items-center justify-between text-[17px] sm:text-[21px] lg:text-[31px] font-bold tracking-[-0.025em] text-[#2D2433]">
+              <div className="flex flex-1 min-w-0 items-center justify-between text-[13px] sm:text-[15px] lg:text-[17px] font-bold tracking-[-0.025em] text-[#2D2433]">
                 {socials.map((item) => {
                   const IconComp = item.icon;
                   return (
@@ -146,11 +146,11 @@ export default function Footer() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-2 sm:gap-3 lg:gap-4 whitespace-nowrap transition-colors hover:text-[#E85D8E]"
+                      className="group inline-flex items-center gap-1.5 sm:gap-2 lg:gap-2.5 whitespace-nowrap transition-colors hover:text-[#E85D8E]"
                     >
-                      <IconComp className="h-7 w-7 sm:h-8 sm:w-8 lg:h-10 lg:w-10 text-[#D94D82] group-hover:scale-105 transition-transform shrink-0" />
+                      <IconComp className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-[#D94D82] group-hover:scale-105 transition-transform shrink-0" />
                       <span>{item.label}</span>
-                      <ArrowUpRight className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 text-[#8B8790] transition-all group-hover:text-[#E85D8E] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
+                      <ArrowUpRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 lg:h-5 lg:w-5 text-[#8B8790] transition-all group-hover:text-[#E85D8E] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
                     </a>
                   );
                 })}
