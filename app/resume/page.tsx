@@ -4,6 +4,7 @@ import {
   ArrowLeft,
   Mail,
   MapPin,
+  Phone,
   Globe,
   Award,
   BookOpen,
@@ -69,6 +70,11 @@ const experiences = [
     title: "Graphic Design & Photographer (Internship)",
     date: "3 Months",
     company: "Dreams Studio Salatiga",
+  },
+  {
+    title: "Photography Assistant Lecturer",
+    date: "4 Months",
+    company: "Visual Communication Design Major, SWCU",
   },
 ];
 
@@ -166,11 +172,7 @@ export default function ResumePage() {
                   </h1>
 
                   <p className="mt-3 text-sm font-semibold text-[#77717A] sm:text-base">
-                    Graphic Designer
-                    <span className="mx-1 text-pink-300">|</span>
-                    Layoutter
-                    <span className="mx-1 text-pink-300">|</span>
-                    Video Editor
+                    Visual / Brand Designer
                   </p>
 
                 </div>
@@ -200,6 +202,18 @@ export default function ResumePage() {
 
                     Pekanbaru, Riau, Indonesia
                   </div>
+
+                  {/* Phone */}
+                  <a
+                    href="tel:+6285180001184"
+                    className="flex items-center gap-2.5 transition-colors hover:text-pink-600"
+                  >
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-pink-50 text-pink-500">
+                      <Phone className="h-3.5 w-3.5" />
+                    </span>
+
+                    +62 851 8000 1184
+                  </a>
 
                   {/* Social Links */}
                   <div className="flex flex-wrap gap-2 pt-1">
@@ -249,12 +263,14 @@ export default function ResumePage() {
               <div className="rounded-2xl bg-pink-50/60 p-4 sm:p-5">
 
                 <p className="text-[11px] leading-[1.7] text-[#6B6570] sm:text-sm sm:leading-relaxed">
-                  A Graphic Designer, Layoutter, and Video Editor with a
-                  background in Visual Communication Design. Highly interested
-                  in graphic design, packaging design, layout, digital
-                  marketing, photography, videography, research, and
-                  copywriting. Able to work independently or within a team,
-                  highly adaptive, and enthusiastic about continuous learning.
+                  Visual & Brand Designer with 6+ years of hands-on experience
+                  across branding, packaging, visual communication, and video/photo
+                  content — including leading the visual design and creative direction
+                  for a financial brand's marketing materials. National award-winning
+                  in packaging and logo design, with additional experience teaching
+                  graphic design and mentoring young creatives. Comfortable owning a
+                  project from concept to final asset, and currently exploring
+                  AI-assisted workflows to speed up the creative process.
                 </p>
 
               </div>
@@ -315,7 +331,7 @@ export default function ResumePage() {
                   </div>
                 ))}
 
-                {/* Freelance & Organizational */}
+                {/* Creative / Organizational / Volunteer Experience */}
                 <div className="relative">
 
                   <span className="absolute -left-[25px] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-white bg-pink-500 shadow-[0_0_0_3px_rgba(244,114,182,0.15)] sm:-left-[35px]" />
@@ -323,48 +339,27 @@ export default function ResumePage() {
                   <div className="rounded-xl sm:p-1">
 
                     <div className="flex flex-col gap-1.5 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
-
                       <h3 className="text-sm font-bold leading-snug text-[#2D2433] sm:text-base">
-                        Freelance & Organizational Experience
+                        Creative / Organizational / Volunteer Experience
                       </h3>
-
                       <span className="w-fit shrink-0 rounded-full bg-pink-50 px-2.5 py-1 text-[9px] font-bold text-pink-600 sm:text-[10px]">
-                        2018 – Present
+                        2017 – Present
                       </span>
-
                     </div>
 
-                    <ul className="mt-3 space-y-1.5 text-[10.5px] leading-[1.6] text-[#77717A] sm:text-xs">
-
-                      <li className="flex gap-2">
-                        <span className="text-pink-400">•</span>
-                        <span>
-                          Graphic Design Freelancer (2022 – Present)
-                        </span>
-                      </li>
-
-                      <li className="flex gap-2">
-                        <span className="text-pink-400">•</span>
-                        <span>
-                          Content Creator at Pelkat PA GPIB Taman Sari
-                          Salatiga (2018 – 2021)
-                        </span>
-                      </li>
-
-                      <li className="flex gap-2">
-                        <span className="text-pink-400">•</span>
-                        <span>
-                          Spirituality Ministry Content at SIMS Working Group
-                          GPIB Children's Ministry Council (2021)
-                        </span>
-                      </li>
-
+                    <ul className="mt-3 space-y-2 text-[10.5px] leading-[1.6] text-[#77717A] sm:text-xs">
+                      <li className="flex gap-2"><span className="text-pink-400">•</span><span><strong>Pelkat Pelayanan Anak (Committee)</strong> — Pelkat PA GPIB Immanuel Pekanbaru (2025 – Present): Managed Instagram content and created Sunday worship posters and design materials.</span></li>
+                      <li className="flex gap-2"><span className="text-pink-400">•</span><span><strong>Graphic Design — SIMS Working Team</strong>, GPIB Children's Ministry Council (2022 – Present): Design and manage Instagram, event posters, and regular content series such as Bible Story posts and special-day greetings across multiple church ministry groups.</span></li>
+                      <li className="flex gap-2"><span className="text-pink-400">•</span><span><strong>Spirituality Ministry Content</strong> at SIMS Working Group, GPIB Children's Ministry Council (2021).</span></li>
+                      <li className="flex gap-2"><span className="text-pink-400">•</span><span><strong>Committee Member, Pelkat Pelayanan Anak</strong> — GPIB Immanuel Pekanbaru (2025 – Present) & GPIB Taman Sari Salatiga (2020 – 2023): Managed Instagram/YouTube content and produced Sunday worship posters and design materials for children's ministry programs across two congregations.</span></li>
+                      <li className="flex gap-2"><span className="text-pink-400">•</span><span><strong>Graphic Design Freelancer</strong> (2022 – Present).</span></li>
+                      <li className="flex gap-2"><span className="text-pink-400">•</span><span><strong>Content Creator</strong> at Pelkat PA GPIB Taman Sari Salatiga (2018 – 2021).</span></li>
+                      <li className="flex gap-2"><span className="text-pink-400">•</span><span><strong>Congregation Volunteer</strong> — Pelkat PA GPIB (2017 – Present).</span></li>
                     </ul>
 
                   </div>
 
                 </div>
-
               </div>
 
             </section>
@@ -403,6 +398,31 @@ export default function ResumePage() {
 
               </div>
 
+            </section>
+
+            {/* =========================================
+                SELECTED PROJECTS
+            ========================================== */}
+            <section className="mb-10">
+              <SectionTitle
+                icon={<Briefcase className="h-4 w-4" />}
+                title="Selected Projects"
+              />
+
+              <div className="rounded-2xl border border-pink-100 bg-pink-50/40 p-4 sm:p-5">
+                <h3 className="text-sm font-bold text-[#2D2433] sm:text-base">
+                  “Milenial's Batik Eco-Fashion” — Matching Fund Kedaireka Program, SWCU
+                </h3>
+                <p className="mt-1 text-[10px] font-semibold text-pink-600 sm:text-xs">
+                  2021 – 2022 · National-scale research-industry collaboration
+                </p>
+                <ul className="mt-3 space-y-1.5 text-[10.5px] leading-[1.6] text-[#77717A] sm:text-xs">
+                  <li>• Designed 3 lookbooks for the collection.</li>
+                  <li>• Designed 3 distinct packaging types — primary, main, and shipping packaging.</li>
+                  <li>• Designed promotional materials.</li>
+                  <li>• Photographed products during the fashion show and photoshoot for the lookbooks.</li>
+                </ul>
+              </div>
             </section>
 
             {/* =========================================
@@ -531,7 +551,7 @@ export default function ResumePage() {
             FOOTER
         ========================================== */}
         <p className="mt-5 text-center text-[9px] font-medium text-[#A39CA5]">
-          Dorothea Alexandra Manuputty · Graphic Designer · Portfolio Resume
+          Dorothea Alexandra Manuputty · Visual / Brand Designer · Portfolio Resume
         </p>
 
       </div>
