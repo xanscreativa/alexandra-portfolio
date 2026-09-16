@@ -266,7 +266,7 @@ export const videoPortfolioData: Record<string, VideoProject> = {
     category: 'Gold Trading Education',
     summary: 'Educational videos focused on international gold trading.',
     client: 'Global Trading Education',
-    year: '2026',
+    year: '2025',
     role: 'Lead Video Editor',
     industry: 'Commodities & Gold Trading',
     duration: '0:24',
