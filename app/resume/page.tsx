@@ -25,7 +25,7 @@ const experiences = [
     date: "2025 – 2026",
     company: "PT. Tera Infinity Ultima",
     description:
-      "Created graphic design and video content for financial literacy challenges, comic series, entertainment, breaking news, and educational content across Instagram, TikTok, and YouTube.",
+      "Expanded the role to include video editing, producing video content alongside graphic design deliverables for the same range of campaign formats (financial-literacy challenges, entertainment, breaking news, educational content) distributed on TikTok. Produced video edits and graphic design deliverables to support the company's brand identity and marketing needs.",
   },
   {
     title: "Graphic Design Extracurricular Teacher",
@@ -42,7 +42,7 @@ const experiences = [
     date: "2023 – 2025",
     company: "PT. Tera Infinity Ultima",
     description:
-      "Handled visual design and creative output for Jendela Finansial across Instagram, TikTok, and YouTube.",
+      "Owned visual design output and creative direction for Jendela Finansial's branding and marketing materials. Designed static and carousel content across a broad range of content pillars — financial-literacy “challenge” campaigns, comic series, entertainment content, breaking news, and educational content — distributed on Instagram, TikTok, and YouTube.",
   },
   {
     title: "Graphic Designer (Internship)",
