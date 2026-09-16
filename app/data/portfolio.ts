@@ -631,7 +631,7 @@ export const portfolioCollections: PortfolioCollection[] = [
   },
 
   // =========================================================
-  // 8. DESAIN LAIN
+  // 8. PRINT & CAMPAIGN DESIGN
   // =========================================================
   {
     id: 8,
