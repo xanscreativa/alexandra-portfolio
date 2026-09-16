@@ -150,7 +150,6 @@ export default function Footer() {
                     >
                       <IconComp className="h-4 w-4 shrink-0 text-[#D45D88] sm:h-5 sm:w-5" />
                       <span>{item.label}</span>
-                      <ArrowUpRight className="h-3 w-3 text-[#8B8790] transition-all group-hover:text-[#E85D8E] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
                     </a>
                   );
                 })}
