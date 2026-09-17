@@ -7,16 +7,19 @@ const lookbooks = [
     title: "Lookbook 01",
     subtitle: "Klaster Parahita",
     href: "https://online.fliphtml5.com/xanscreativa/Lookbook-Klaster-Parahita/",
+    image: "/portfolio/lookbook-parahita.avif",
   },
   {
     title: "Lookbook 02",
     subtitle: "Klaster Kab. Pati",
     href: "https://online.fliphtml5.com/xanscreativa/Lookbook-Klaster-Kab-Pati/",
+    image: "/portfolio/lookbook-pati.avif",
   },
   {
     title: "Lookbook 03",
-    subtitle: "Digital Lookbook",
+    subtitle: "Klaster Kota Semarang & Kota Surakarta",
     href: "https://online.fliphtml5.com/xanscreativa/jzyt/",
+    image: "/portfolio/lookbook-semarang.avif",
   },
 ];
 
@@ -35,7 +38,7 @@ export default function MilenialsBatikEcoFashionPage() {
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
           <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-[28px] border border-pink-100 bg-pink-50 shadow-[0_20px_60px_-25px_rgba(233,106,152,0.35)]">
             <Image
-              src="/portfolio/milenial-batik-eco-fashion.avif"
+              src="/portfolio/milenial.avif"
               alt="Milenial's Batik Eco-Fashion"
               width={900}
               height={1125}
@@ -83,8 +86,8 @@ export default function MilenialsBatikEcoFashionPage() {
               >
                 <div className="relative aspect-[4/5] overflow-hidden rounded-[18px] bg-pink-50">
                   <Image
-                    src="/portfolio/milenial-batik-eco-fashion.avif"
-                    alt={lookbook.title}
+                    src={lookbook.image}
+                    alt={`${lookbook.title} - ${lookbook.subtitle}`}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     sizes="(max-width: 768px) 100vw, 33vw"
@@ -123,7 +126,7 @@ export default function MilenialsBatikEcoFashionPage() {
             <h2 className="mt-2 text-2xl font-bold">Packaging Design</h2>
             <div className="mt-6 overflow-hidden rounded-2xl bg-pink-50">
               <Image
-                src="/portfolio/milenial-batik-eco-fashion.avif"
+                src="/portfolio/milenial.avif"
                 alt="Milenial's Batik Eco-Fashion packaging design"
                 width={900}
                 height={1125}
@@ -139,7 +142,7 @@ export default function MilenialsBatikEcoFashionPage() {
             <h2 className="mt-2 text-2xl font-bold">Print Media</h2>
             <div className="mt-6 overflow-hidden rounded-2xl bg-pink-50">
               <Image
-                src="/portfolio/milenial-batik-eco-fashion.avif"
+                src="/portfolio/milenial.avif"
                 alt="Milenial's Batik Eco-Fashion print media design"
                 width={900}
                 height={1125}
