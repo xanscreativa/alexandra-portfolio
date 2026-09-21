@@ -49,7 +49,7 @@ export default function MilenialsBatikEcoFashionPage() {
 
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-pink-600">
-              Lookbook Design · 2021–2022
+              Lookbook, Packaging, Print Design · 2021–2022
             </p>
             <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
               Milenial&apos;s Batik Eco-Fashion
