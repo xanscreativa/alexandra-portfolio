@@ -66,6 +66,13 @@ export default function MilenialPackagingPage() {
               <figcaption className="px-2 pb-2 pt-4 text-xs font-semibold uppercase tracking-[0.14em] text-[#6B6570]">
                 {["PRIMER PACKAGING", "SECONDARY PACKAGING", "SHIPPING PACKAGING"][index]}
               </figcaption>
+              <p className="px-2 pb-4 pt-1 text-sm leading-6 text-[#6B6570]">
+                {[
+                  "The primary packaging uses doorslag paper to wrap the product. A community logo sticker serves as a seal, keeping the fabric neatly folded.",
+                  "A roll-up packaging design that functions as both a tote bag and a tumbler or water bottle holder. Inspired by “HASTA KARYA,” it represents the power of hands in creating meaningful work. The design combines sustainable, empowering, and stylish elements, using blacu fabric and batik fabric scraps with coconut shell buttons. Reusable and locally crafted, it supports local artisans while creating a unique and fashionable experience.",
+                  "A single-wall corrugated cardboard box measuring 30 × 23 × 8 cm, designed for product shipping. Black ink is used for the packaging information, while a 10 × 18 cm kraft paper sticker serves as the receipt and thank-you seal. The unlaminated sticker allows Parahita Craft to write in the provided space."
+                ][index]}
+              </p>
             </figure>
           ))}
         </div>
