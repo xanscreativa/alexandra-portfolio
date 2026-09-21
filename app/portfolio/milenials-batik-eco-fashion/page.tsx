@@ -119,21 +119,29 @@ export default function MilenialsBatikEcoFashionPage() {
         </div>
 
         <div className="mt-20 grid gap-6 md:grid-cols-2">
-          <article className="rounded-[28px] border border-pink-100 bg-white p-6 shadow-[0_12px_35px_-20px_rgba(45,36,51,0.2)] sm:p-8">
+          <Link
+            href="/portfolio/milenials-batik-eco-fashion/packaging"
+            className="group block rounded-[28px] border border-pink-100 bg-white p-6 shadow-[0_12px_35px_-20px_rgba(45,36,51,0.2)] transition-all duration-300 hover:-translate-y-1 hover:border-pink-200 hover:shadow-[0_24px_45px_-18px_rgba(233,106,152,0.22)] sm:p-8"
+          >
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-pink-600">
               Packaging
             </p>
-            <h2 className="mt-2 text-2xl font-bold">Packaging Design</h2>
+            <div className="mt-2 flex items-center justify-between gap-4">
+              <h2 className="text-2xl font-bold">Packaging Design</h2>
+              <span className="text-xs font-bold uppercase tracking-[0.14em] text-pink-600 transition-transform duration-300 group-hover:translate-x-1">
+                View Project →
+              </span>
+            </div>
             <div className="mt-6 overflow-hidden rounded-2xl bg-pink-50">
               <Image
                 src="/portfolio/packaging-milenial.avif"
                 alt="Milenial's Batik Eco-Fashion packaging design"
                 width={900}
                 height={1125}
-                className="h-auto w-full object-cover"
+                className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
               />
             </div>
-          </article>
+          </Link>
 
           <article className="rounded-[28px] border border-pink-100 bg-white p-6 shadow-[0_12px_35px_-20px_rgba(45,36,51,0.2)] sm:p-8">
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-pink-600">
