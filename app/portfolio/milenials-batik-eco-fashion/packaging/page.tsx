@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 
 const gallery = [
   {
@@ -45,6 +45,16 @@ export default function MilenialPackagingPage() {
             uses reusable materials, supports local artisans, and extends the
             life of packaging through multifunctional designs.
           </p>
+
+          <a
+            href="https://www.insiden24.com/ragam/3968758733/luar-biasa-sandra-manuputy-mahasiswa-universitas-kristen-satya-salatiga-membuat-packing-yang-sustainable"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex items-center gap-2 rounded-full border border-pink-200 bg-pink-50 px-4 py-2.5 text-sm font-semibold text-pink-700 transition-colors hover:border-pink-300 hover:bg-pink-100"
+          >
+            Featured in InsideN24
+            <ExternalLink size={15} />
+          </a>
         </div>
 
         <div className="mt-14 grid gap-8">
