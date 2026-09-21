@@ -126,7 +126,7 @@ export default function MilenialsBatikEcoFashionPage() {
             <h2 className="mt-2 text-2xl font-bold">Packaging Design</h2>
             <div className="mt-6 overflow-hidden rounded-2xl bg-pink-50">
               <Image
-                src="/portfolio/milenial.avif"
+                src="/portfolio/packaging-milenial.avif"
                 alt="Milenial's Batik Eco-Fashion packaging design"
                 width={900}
                 height={1125}
@@ -142,7 +142,7 @@ export default function MilenialsBatikEcoFashionPage() {
             <h2 className="mt-2 text-2xl font-bold">Print Media</h2>
             <div className="mt-6 overflow-hidden rounded-2xl bg-pink-50">
               <Image
-                src="/portfolio/milenial.avif"
+                src="/portfolio/banner-milenial.avif"
                 alt="Milenial's Batik Eco-Fashion print media design"
                 width={900}
                 height={1125}
