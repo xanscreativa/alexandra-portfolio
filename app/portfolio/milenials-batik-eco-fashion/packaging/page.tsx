@@ -64,7 +64,7 @@ export default function MilenialPackagingPage() {
                 />
               </div>
               <figcaption className="px-2 pb-2 pt-4 text-xs font-semibold uppercase tracking-[0.14em] text-[#6B6570]">
-                Packaging Design · 0{index + 1}
+                {["PRIMER PACKAGING", "SECONDARY PACKAGING", "SHIPPING PACKAGING"][index]}
               </figcaption>
             </figure>
           ))}
