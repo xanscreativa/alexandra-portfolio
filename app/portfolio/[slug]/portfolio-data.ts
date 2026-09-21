@@ -343,7 +343,7 @@ export const socialSections: SectionData[] = [
     title: "Consistrade",
     username: "consistrade",
     bio: "Professional corporate and trading brand identity design 📈 Global trade made seamless.",
-    avatarImage: "/portfolio/consistrade-logo.avif",
+    avatarImage: "/portfolio/brand-consistrade.avif",
     avatarText: "C",
     avatarBg: "from-purple-500 to-pink-500",
     posts: [
