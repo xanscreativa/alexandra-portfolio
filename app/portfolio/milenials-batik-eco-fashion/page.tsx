@@ -28,7 +28,7 @@ export default function MilenialsBatikEcoFashionPage() {
     <main className="min-h-screen bg-[#FFFDFC] text-[#2D2433]">
       <section className="mx-auto max-w-6xl px-5 pb-20 pt-8 sm:px-8 sm:pt-12 lg:px-10">
         <Link
-          href="/portfolio"
+          href="/#portfolio"
           className="mb-10 inline-flex items-center gap-2 text-sm font-semibold text-[#6B6570] transition-colors hover:text-[#E85D8E]"
         >
           <ArrowLeft size={17} />
