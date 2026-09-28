@@ -45,7 +45,7 @@ export default function ColorPalette({ colors }: ColorPaletteProps) {
 
   return (
     <div className="w-full px-[2px] sm:px-2">
-      <div className="flex w-full items-start justify-between gap-x-[8px] sm:gap-x-3 lg:gap-x-5">
+      <div className="flex w-full items-start justify-between gap-x-[10px] sm:gap-x-3 lg:gap-x-5">
         {colors.map((color) => {
           const hex = color.toUpperCase();
           const name = COLOR_NAMES[hex] ?? "Color";
