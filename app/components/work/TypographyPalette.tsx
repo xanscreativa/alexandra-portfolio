@@ -13,6 +13,7 @@ type TypographyTheme = {
   heading: TypographyFont;
   subheading: TypographyFont;
   body: TypographyFont;
+  note?: string;
 };
 
 type TypographyPaletteProps = {
@@ -51,6 +52,17 @@ const JENDELA_THEMES: TypographyTheme[] = [
   },
 ];
 
+const HUT63_THEMES: TypographyTheme[] = [
+  {
+    name: "HUT 63 Type",
+    tone: "#2A8639",
+    heading: { family: "Lexend Deca" },
+    subheading: { family: "Lexend Deca" },
+    body: { family: "Lexend Deca" },
+    note: "Rounded Sans Serif · Decorative logo only",
+  },
+];
+
 const getRegisteredFamily = (font: TypographyFont, themeIndex: number, roleIndex: number) =>
   font.src
     ? `Typography-${themeIndex}-${roleIndex}-${font.family.replace(/[^a-zA-Z0-9]/g, "")}`
@@ -76,7 +88,9 @@ export default function TypographyPalette({
     ? themes
     : slug === "jendela-finansial"
       ? JENDELA_THEMES
-      : [fallbackTheme];
+      : slug === "hut-63-pelkat-pa"
+        ? HUT63_THEMES
+        : [fallbackTheme];
 
   return (
     <>
@@ -108,8 +122,8 @@ export default function TypographyPalette({
                     {theme.name}
                   </p>
                 </div>
-                <span className="hidden text-[7px] font-mono uppercase tracking-[0.14em] text-[#A39BA4] lg:inline lg:text-[8px]">
-                  TYPE SYSTEM
+                <span className="hidden max-w-[180px] text-right text-[7px] font-mono uppercase tracking-[0.1em] text-[#A39BA4] lg:inline lg:text-[8px]">
+                  {theme.note ?? "TYPE SYSTEM"}
                 </span>
               </div>
 
