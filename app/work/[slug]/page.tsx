@@ -8,6 +8,7 @@ import ProjectDetailNext from "@/components/work/ProjectDetailNext";
 import ProjectDetailSection from "@/components/work/ProjectDetailSection";
 import ProjectVideo from "@/components/work/ProjectVideo";
 import ColorPalette from "@/components/work/ColorPalette";
+import WorkTypography from "@/components/work/WorkTypography";
 
 // Optional Case Study Extensions for Type Safety
 interface CreativeProcessStep {
@@ -239,12 +240,7 @@ export default async function WorkPage({
                     <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#6B6570]">
                       Typography
                     </p>
-                    <p className="text-3xl font-black text-[#2D2433]">
-                      {project.typography.fontFamily}
-                    </p>
-                    <p className="mt-2 text-sm leading-relaxed text-[#6B6570]">
-                      {project.typography.description}
-                    </p>
+                    <WorkTypography project={project} />
                   </div>
                 )}
               </div>
