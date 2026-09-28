@@ -87,6 +87,17 @@ export default function TypographyPalette({ fontFamily = "Plus Jakarta Sans", fo
     );
   }
 
+  if (slug === "pelkat-pa-gpib-immanuel-pekanbaru") {
+    return (
+      <div className="w-full bg-white px-1 py-2 sm:px-2 sm:py-3">
+        <div className="max-w-3xl space-y-2 text-sm leading-6 text-[#40504A] sm:text-base sm:leading-7">
+          <p><span className="font-semibold">Heading:</span> Rounded and decorative fonts are used to create a playful, warm, and friendly visual character that suits the children&apos;s ministry identity.</p>
+          <p><span className="font-semibold">Body Text:</span> KG Primary and Poppins are used for clear, approachable, and easy-to-read supporting text.</p>
+        </div>
+      </div>
+    );
+  }
+
   const activeThemes = themes?.length
     ? themes
     : slug === "jendela-finansial"
