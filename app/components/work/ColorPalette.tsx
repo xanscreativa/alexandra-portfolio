@@ -44,7 +44,7 @@ export default function ColorPalette({ colors }: ColorPaletteProps) {
   if (!colors.length) return null;
 
   return (
-    <div className="w-full overflow-hidden px-[5px] sm:px-2">
+    <div className="w-full overflow-hidden px-[2px] sm:px-2">
       <div className="grid w-full grid-cols-6 items-start justify-items-center gap-x-[15px] sm:gap-x-3 lg:gap-x-5">
         {colors.map((color) => {
           const hex = color.toUpperCase();
