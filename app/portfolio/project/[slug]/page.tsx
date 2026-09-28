@@ -30,11 +30,11 @@ export default function ProjectDetailPage() {
   const coverImage = project.posts?.[0]?.src ?? images?.[0]?.src;
 
   const bigIdea = isGpibProject
-    ? "Developing a cohesive visual identity for GPIB Immanuel Pekanbaru through internal church branding, character design, social media visuals, and informative communication materials."
+    ? "Building a visual identity that reflects GPIB Immanuel Pekanbaru as a welcoming, faithful, and active church community. The identity brings together the congregation's heritage, local character, and spirit of service into a visual language that feels recognizable, meaningful, and relevant."
     : project.bigIdea || project.overview;
 
   const designApproach = isGpibProject
-    ? "I designed internal GPIB logos to visually represent the Immanuel congregation in Pekanbaru, created Elof as a character representing the church in serving its congregation, and developed social media branding and church information materials with a strong, informative, and artistic identity."
+    ? "I translated the concept into a practical visual system by redesigning the internal church logo, developing Elof as the church mascot, establishing colors, typography, graphic elements, and supporting symbols, then applying the system across social media and church information materials for a more consistent communication experience."
     : project.overview;
 
   return (
