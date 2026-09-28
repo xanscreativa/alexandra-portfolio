@@ -8,7 +8,6 @@ type TypographyFont = {
 };
 type TypographyTheme = { name: string; tone: string; heading: TypographyFont; subheading: TypographyFont; body: TypographyFont };
 type TypographyPaletteProps = { fontFamily?: string; fontSrc?: string; themes?: TypographyTheme[] };
-
 type GpibFont = TypographyFont & { role: "Primary" | "Secondary" | "Body Text" };
 
 const ROLE_META = [
@@ -26,7 +25,6 @@ const BRAND_PALETTES: Record<string, string[]> = {
   "hut-67-pelkat-pa": ["#EE6597", "#FAAF40", "#8BC53F", "#D8A1BD", "#FBBAC8", "#FCF7F3"],
 };
 
-// Contrast colors stay within each project's visual palette.
 const TYPE_COLORS: Record<string, string[]> = {
   "jendela-finansial": ["#087FC7", "#9A6500", "#202B3C"],
   "consistrade-brand": ["#081651", "#2846A9", "#7C60D7"],
@@ -142,17 +140,17 @@ export default function TypographyPalette({ fontFamily = "Plus Jakarta Sans", fo
             ))}
           </div>
         ) : slug === "gpib-immanuel-pekanbaru" ? (
-          <div className="grid grid-cols-5 gap-1.5 sm:gap-2 lg:gap-3">
+          <div className="grid grid-cols-5 gap-2 sm:gap-3 lg:gap-4">
             {GPIB_FONTS.map((font, index) => {
               const roleIndex = font.role === "Primary" ? 0 : font.role === "Secondary" ? 1 : 2;
               const color = typeColors[roleIndex];
               const roleBackground = palette[roleIndex];
               return (
-                <div key={font.family} className="min-w-0 text-center">
+                <div key={`${font.role}-${font.family}`} className="min-w-0 text-center">
                   <div className="mx-auto flex h-[34px] w-[58px] items-center justify-center rounded-lg sm:h-[36px] sm:w-[64px]" style={{ backgroundColor: withAlpha(roleBackground, "16") }}>
                     <span className="text-lg leading-none sm:text-xl" style={{ color, fontFamily: `'GPIB-${index}', sans-serif` }}>Aa</span>
                   </div>
-                  <p className="mt-2 break-words text-[9px] font-semibold leading-4 sm:text-[10px] sm:leading-4" style={{ color, fontFamily: `'GPIB-${index}', sans-serif` }} title={font.family}>{font.family}</p>
+                  <p className="mt-2 break-words text-[10px] font-semibold leading-4 sm:text-[11px] sm:leading-4" style={{ color, fontFamily: `'GPIB-${index}', sans-serif` }} title={font.family}>{font.family}</p>
                   <p className="mt-0.5 text-[8px] leading-3 text-[#5A535D] sm:text-[9px]">({font.role})</p>
                 </div>
               );
