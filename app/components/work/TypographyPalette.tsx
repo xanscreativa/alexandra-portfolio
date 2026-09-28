@@ -21,6 +21,15 @@ const BRAND_PALETTES: Record<string, string[]> = {
   "hut-67-pelkat-pa": ["#EE6597", "#FAAF40", "#8BC53F", "#D8A1BD", "#FBBAC8", "#FCF7F3"],
 };
 
+const TYPE_DARK_COLORS: Record<string, string[]> = {
+  "jendela-finansial": ["#075A8C", "#7A5700", "#3F3D38"],
+  "consistrade-brand": ["#081651", "#17337F", "#365A78"],
+  "gpib-immanuel-pekanbaru": ["#103A6B", "#2C588C", "#765F27"],
+  "pelkat-pa-gpib-immanuel-pekanbaru": ["#4F7D50", "#3E6F82", "#806316"],
+  "hut-63-pelkat-pa": ["#1F642B", "#A96816", "#3F7523"],
+  "hut-67-pelkat-pa": ["#9B3F64", "#A86216", "#4E711F"],
+};
+
 const JENDELA_THEMES: TypographyTheme[] = [
   { name: "Blue Theme", tone: "#087FC7", heading: { family: "Small Print", src: "/fonts/branding/SmallPrint.woff2" }, subheading: { family: "Poppins", src: "/fonts/branding/Poppins.woff2" }, body: { family: "Mulish", src: "/fonts/branding/Mulish.woff2" } },
   { name: "Yellow Theme", tone: "#FFB719", heading: { family: "Alphakind", src: "/fonts/branding/Alphakind.woff2" }, subheading: { family: "Poppins", src: "/fonts/branding/Poppins.woff2" }, body: { family: "Mulish", src: "/fonts/branding/Mulish.woff2" } },
@@ -67,6 +76,7 @@ export default function TypographyPalette({ fontFamily = "Plus Jakarta Sans", fo
         : [fallbackTheme];
 
   const palette = BRAND_PALETTES[slug ?? ""] ?? ["#E85D8E", "#F8D9E5", "#2D2433"];
+  const darkColors = TYPE_DARK_COLORS[slug ?? ""] ?? ["#3B3040", "#3B3040", "#3B3040"];
 
   return (
     <>
@@ -93,17 +103,18 @@ export default function TypographyPalette({ fontFamily = "Plus Jakarta Sans", fo
                   {ROLE_META.map((item, roleIndex) => {
                     const font = theme[item.key];
                     const registeredFamily = getRegisteredFamily(font, themeIndex, roleIndex);
+                    const aaColor = darkColors[roleIndex];
                     return (
                       <div key={item.role} className="min-w-0 text-center">
                         <div
                           className="mx-auto flex h-[34px] w-[58px] items-center justify-center rounded-lg sm:h-[36px] sm:w-[64px]"
                           style={{ backgroundColor: withAlpha(theme.tone, "22") }}
                         >
-                          <span className="text-lg leading-none sm:text-xl" style={{ color: theme.tone, fontFamily: `'${registeredFamily}', sans-serif` }}>Aa</span>
+                          <span className="text-lg leading-none sm:text-xl" style={{ color: aaColor, fontFamily: `'${registeredFamily}', sans-serif` }}>Aa</span>
                         </div>
                         <p
                           className="mt-2 break-words text-[10px] font-semibold leading-4 sm:text-[11px] sm:leading-4"
-                          style={{ color: theme.tone, fontFamily: `'${registeredFamily}', sans-serif` }}
+                          style={{ color: aaColor, fontFamily: `'${registeredFamily}', sans-serif` }}
                           title={font.family}
                         >
                           {font.family}
@@ -122,17 +133,18 @@ export default function TypographyPalette({ fontFamily = "Plus Jakarta Sans", fo
               const font = activeThemes[0][item.key];
               const registeredFamily = getRegisteredFamily(font, 0, roleIndex);
               const roleColor = palette[roleIndex % Math.min(3, palette.length)];
+              const aaColor = darkColors[roleIndex];
               return (
                 <div key={item.role} className="min-w-0 text-center">
                   <div
                     className="mx-auto flex h-[34px] w-[58px] items-center justify-center rounded-lg sm:h-[36px] sm:w-[64px]"
                     style={{ backgroundColor: withAlpha(roleColor, "22") }}
                   >
-                    <span className="text-lg leading-none sm:text-xl" style={{ color: roleColor, fontFamily: `'${registeredFamily}', sans-serif` }}>Aa</span>
+                    <span className="text-lg leading-none sm:text-xl" style={{ color: aaColor, fontFamily: `'${registeredFamily}', sans-serif` }}>Aa</span>
                   </div>
                   <p
                     className="mt-2 break-words text-[10px] font-semibold leading-4 sm:text-[11px] sm:leading-4"
-                    style={{ color: roleColor, fontFamily: `'${registeredFamily}', sans-serif` }}
+                    style={{ color: aaColor, fontFamily: `'${registeredFamily}', sans-serif` }}
                     title={font.family}
                   >
                     {font.family}
