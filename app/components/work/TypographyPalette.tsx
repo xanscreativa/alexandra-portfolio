@@ -123,11 +123,11 @@ export default function TypographyPalette({
                   return (
                     <div key={item.role} className="min-w-0 text-center">
                       <div
-                        className="mx-auto flex aspect-square w-full max-w-[82px] items-center justify-center rounded-[14px] sm:max-w-[92px] sm:rounded-[16px]"
+                        className="mx-auto flex aspect-square w-full max-w-[41px] items-center justify-center rounded-[9px] sm:max-w-[46px] sm:rounded-[10px]"
                         style={{ backgroundColor: item.bg }}
                       >
                         <span
-                          className="text-2xl leading-none text-[#5F7FBE] sm:text-3xl"
+                          className="text-lg leading-none text-[#5F7FBE] sm:text-xl"
                           style={{ fontFamily: `'${registeredFamily}', sans-serif` }}
                         >
                           Aa
