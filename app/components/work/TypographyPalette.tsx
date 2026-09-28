@@ -59,7 +59,6 @@ const HUT67_THEMES: TypographyTheme[] = [
     heading: { family: "Howdybun", src: "/fonts/branding/Howdybun.woff2" },
     subheading: { family: "Open Sans Condensed", src: "/fonts/branding/OpenSansCondensed.woff2" },
     body: { family: "Outfit", src: "/fonts/branding/Outfit.woff2" },
-    note: "BRAND TYPE SYSTEM",
   },
 ];
 
@@ -115,37 +114,56 @@ export default function TypographyPalette({
         )
         .join("\n")}`}</style>
 
-      <div className="w-full rounded-2xl bg-white px-3 py-4 sm:px-5 sm:py-5">
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-3 lg:gap-4">
-          {activeThemes.map((theme, themeIndex) => (
-            <div key={theme.name} className="rounded-2xl border border-pink-100 bg-[#FFFBFD] p-3 sm:p-3 lg:p-4">
-              <div className="mb-3 flex items-center justify-between gap-2 lg:mb-4">
-                <div className="flex min-w-0 items-center gap-2">
-                  <span className="h-2.5 w-2.5 flex-shrink-0 rounded-full" style={{ backgroundColor: theme.tone }} />
-                  <p className="truncate text-[9px] font-bold uppercase tracking-[0.14em] text-[#2D2433] lg:text-[10px]">{theme.name}</p>
+      {slug === "jendela-finansial" ? (
+        <div className="w-full rounded-2xl bg-white px-3 py-4 sm:px-5 sm:py-5">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-3 lg:gap-4">
+            {activeThemes.map((theme, themeIndex) => (
+              <div key={theme.name} className="rounded-2xl border border-pink-100 bg-[#FFFBFD] p-3 sm:p-3 lg:p-4">
+                <div className="mb-3 flex items-center justify-between gap-2 lg:mb-4">
+                  <div className="flex min-w-0 items-center gap-2">
+                    <span className="h-2.5 w-2.5 flex-shrink-0 rounded-full" style={{ backgroundColor: theme.tone }} />
+                    <p className="truncate text-[9px] font-bold uppercase tracking-[0.14em] text-[#2D2433] lg:text-[10px]">{theme.name}</p>
+                  </div>
                 </div>
-                <span className="hidden max-w-[180px] text-right text-[7px] font-mono uppercase tracking-[0.1em] text-[#A39BA4] lg:inline lg:text-[8px]">{theme.note ?? "TYPE SYSTEM"}</span>
-              </div>
 
-              <div className="grid grid-cols-3 gap-2 lg:gap-3">
-                {ROLE_META.map((item, roleIndex) => {
-                  const font = theme[item.key];
-                  const registeredFamily = getRegisteredFamily(font, themeIndex, roleIndex);
-                  return (
-                    <div key={item.role} className="min-w-0 text-center">
-                      <div className="mx-auto flex aspect-square w-full max-w-[41px] items-center justify-center rounded-[9px] lg:max-w-[46px] lg:rounded-[10px]" style={{ backgroundColor: item.bg }}>
-                        <span className="text-lg leading-none text-[#5F7FBE] lg:text-xl" style={{ fontFamily: `'${registeredFamily}', sans-serif` }}>Aa</span>
+                <div className="grid grid-cols-3 gap-2 lg:gap-3">
+                  {ROLE_META.map((item, roleIndex) => {
+                    const font = theme[item.key];
+                    const registeredFamily = getRegisteredFamily(font, themeIndex, roleIndex);
+                    return (
+                      <div key={item.role} className="min-w-0 text-center">
+                        <div className="mx-auto flex aspect-square w-full max-w-[41px] items-center justify-center rounded-[9px] lg:max-w-[46px] lg:rounded-[10px]" style={{ backgroundColor: item.bg }}>
+                          <span className="text-lg leading-none text-[#5F7FBE] lg:text-xl" style={{ fontFamily: `'${registeredFamily}', sans-serif` }}>Aa</span>
+                        </div>
+                        <p className="mt-2 truncate text-[7px] font-semibold leading-3 text-[#2D2433] lg:mt-2.5 lg:text-[9px]" style={{ fontFamily: `'${registeredFamily}', sans-serif` }} title={font.family}>{font.family}</p>
+                        <p className="mt-0.5 text-[7px] leading-3 text-[#6B6570] lg:text-[8px]">({item.role})</p>
                       </div>
-                      <p className="mt-2 truncate text-[7px] font-semibold leading-3 text-[#2D2433] lg:mt-2.5 lg:text-[9px]" style={{ fontFamily: `'${registeredFamily}', sans-serif` }} title={font.family}>{font.family}</p>
-                      <p className="mt-0.5 text-[7px] leading-3 text-[#6B6570] lg:text-[8px]">({item.role})</p>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="w-full bg-white px-1 py-2 sm:px-2 sm:py-3">
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-6">
+            {ROLE_META.map((item, roleIndex) => {
+              const font = activeThemes[0][item.key];
+              const registeredFamily = getRegisteredFamily(font, 0, roleIndex);
+              return (
+                <div key={item.role} className="min-w-0 text-center">
+                  <div className="mx-auto flex aspect-square w-full max-w-[41px] items-center justify-center rounded-[9px] lg:max-w-[46px] lg:rounded-[10px]" style={{ backgroundColor: item.bg }}>
+                    <span className="text-lg leading-none text-[#5F7FBE] lg:text-xl" style={{ fontFamily: `'${registeredFamily}', sans-serif` }}>Aa</span>
+                  </div>
+                  <p className="mt-2 truncate text-[7px] font-semibold leading-3 text-[#2D2433] lg:mt-2.5 lg:text-[9px]" style={{ fontFamily: `'${registeredFamily}', sans-serif` }} title={font.family}>{font.family}</p>
+                  <p className="mt-0.5 text-[7px] leading-3 text-[#6B6570] lg:text-[8px]">({item.role})</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </>
   );
 }
