@@ -2,7 +2,11 @@
 
 import { usePathname } from "next/navigation";
 
-type TypographyFont = { family: string; src?: string };
+type TypographyFont = {
+  family: string;
+  src?: string;
+  alternateSrc?: string;
+};
 type TypographyTheme = { name: string; tone: string; heading: TypographyFont; subheading: TypographyFont; body: TypographyFont };
 type TypographyPaletteProps = { fontFamily?: string; fontSrc?: string; themes?: TypographyTheme[] };
 
@@ -21,8 +25,7 @@ const BRAND_PALETTES: Record<string, string[]> = {
   "hut-67-pelkat-pa": ["#EE6597", "#FAAF40", "#8BC53F", "#D8A1BD", "#FBBAC8", "#FCF7F3"],
 };
 
-// Contrast colors intentionally stay within each project's palette rather than defaulting to black.
-// Each value is paired with a very light tint of the same palette so the Aa remains vivid and readable.
+// Contrast colors stay within each project's visual palette.
 const TYPE_COLORS: Record<string, string[]> = {
   "jendela-finansial": ["#087FC7", "#9A6500", "#202B3C"],
   "consistrade-brand": ["#081651", "#2846A9", "#7C60D7"],
@@ -44,6 +47,22 @@ const CONSISTRADE_THEME: TypographyTheme = {
   heading: { family: "Poppins Black", src: "/fonts/branding/Poppins-Black.woff2" },
   subheading: { family: "Poppins Semi Bold", src: "/fonts/branding/Poppins-SemiBold.woff2" },
   body: { family: "Outfit", src: "/fonts/branding/Outfit.woff2" },
+};
+
+const GPIB_THEME: TypographyTheme = {
+  name: "GPIB Type",
+  tone: "#164A8A",
+  heading: {
+    family: "League Spartan + Bebas Neue",
+    src: "/fonts/branding/LeagueSpartan.woff2",
+    alternateSrc: "/fonts/branding/BebasNeue.woff2",
+  },
+  subheading: {
+    family: "Christmas Snowy + Alucky",
+    src: "/fonts/branding/ChristmasSnowy.woff2",
+    alternateSrc: "/fonts/branding/Alucky.woff2",
+  },
+  body: { family: "Afacad", src: "/fonts/branding/Afacad.woff2" },
 };
 
 const HUT67_THEMES: TypographyTheme[] = [
@@ -83,20 +102,28 @@ export default function TypographyPalette({ fontFamily = "Plus Jakarta Sans", fo
       ? JENDELA_THEMES
       : slug === "consistrade-brand"
         ? [CONSISTRADE_THEME]
-        : slug === "hut-67-pelkat-pa"
-          ? HUT67_THEMES
-          : [fallbackTheme];
+        : slug === "gpib-immanuel-pekanbaru"
+          ? [GPIB_THEME]
+          : slug === "hut-67-pelkat-pa"
+            ? HUT67_THEMES
+            : [fallbackTheme];
 
   const palette = BRAND_PALETTES[slug ?? ""] ?? ["#E85D8E", "#F8D9E5", "#2D2433"];
   const typeColors = TYPE_COLORS[slug ?? ""] ?? ["#2D2433", "#2D2433", "#2D2433"];
 
   return (
     <>
-      <style>{`${activeThemes.flatMap((theme, themeIndex) => ROLE_META.map((item, roleIndex) => {
+      <style>{`${activeThemes.flatMap((theme, themeIndex) => ROLE_META.flatMap((item, roleIndex) => {
         const font = theme[item.key];
-        if (!font.src) return "";
-        const family = getRegisteredFamily(font, themeIndex, roleIndex);
-        return `@font-face { font-family: '${family}'; src: url('${font.src}') format('woff2'); font-display: swap; }`;
+        const rules = [];
+        if (font.src) {
+          const family = getRegisteredFamily(font, themeIndex, roleIndex);
+          rules.push(`@font-face { font-family: '${family}'; src: url('${font.src}') format('woff2'); font-display: swap; }`);
+          if (font.alternateSrc) {
+            rules.push(`@font-face { font-family: '${family}-alt'; src: url('${font.alternateSrc}') format('woff2'); font-display: swap; }`);
+          }
+        }
+        return rules;
       })).join("\n")}`}</style>
 
       <div className="w-full bg-white px-1 py-2 sm:px-2 sm:py-3">
