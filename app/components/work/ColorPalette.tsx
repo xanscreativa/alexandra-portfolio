@@ -44,8 +44,8 @@ export default function ColorPalette({ colors }: ColorPaletteProps) {
   if (!colors.length) return null;
 
   return (
-    <div className="w-full overflow-hidden px-[15px] sm:px-2">
-      <div className="grid w-full grid-cols-6 items-start gap-x-[15px] sm:gap-x-3 lg:gap-x-5">
+    <div className="w-full overflow-hidden px-4 sm:px-2">
+      <div className="grid w-full grid-cols-6 items-start gap-x-2 sm:gap-x-3 lg:gap-x-5">
         {colors.map((color) => {
           const hex = color.toUpperCase();
           const name = COLOR_NAMES[hex] ?? "Color";
@@ -53,7 +53,7 @@ export default function ColorPalette({ colors }: ColorPaletteProps) {
           return (
             <div key={color} className="flex min-w-0 flex-col items-center text-center">
               <div
-                className="h-11 w-11 shrink-0 rounded-full border border-black/10 sm:h-[68px] sm:w-[68px] lg:h-[96px] lg:w-[96px]"
+                className="h-[42px] w-[42px] shrink-0 rounded-full border border-black/10 sm:h-[68px] sm:w-[68px] lg:h-[96px] lg:w-[96px]"
                 style={{ backgroundColor: color }}
                 aria-label={`${name} ${hex}`}
               />
