@@ -6,7 +6,6 @@ import { notFound, useParams } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 
 import { getProjectBySlug } from "../../[slug]/portfolio-data";
-import { useLanguage } from "@/context/LanguageContext";
 import ColorPalette from "@/components/work/ColorPalette";
 import TypographyPalette from "@/components/work/TypographyPalette";
 
@@ -47,7 +46,6 @@ const brandTypography: Record<string, { fontFamily: string; fontSrc?: string }> 
 };
 
 export default function ProjectDetailPage() {
-  const { t } = useLanguage();
   const params = useParams();
   const slug = params?.slug as string;
   const project = getProjectBySlug(slug);
@@ -59,10 +57,6 @@ export default function ProjectDetailPage() {
   const coverImage = brandBanners[slug] ?? project.posts?.[0]?.src ?? images?.[0]?.src;
   const colorPalette = brandColorPalettes[slug];
   const typography = brandTypography[slug] ?? { fontFamily: "Plus Jakarta Sans" };
-
-  const bigIdea = slug === "gpib-immanuel-pekanbaru"
-    ? "Building a visual identity that reflects GPIB Immanuel Pekanbaru as a welcoming, faithful, and active church community. The identity brings together the congregation's heritage, local character, and spirit of service into a visual language that feels recognizable, meaningful, and relevant."
-    : project.bigIdea || project.overview;
 
   const designApproach = slug === "gpib-immanuel-pekanbaru"
     ? "I translated the concept into a practical visual system by redesigning the internal church logo, developing Elof as the church mascot, establishing colors, typography, graphic elements, and supporting symbols, then applying the system across social media and church information materials for a more consistent communication experience."
@@ -98,11 +92,31 @@ export default function ProjectDetailPage() {
       </div>
 
       <section className="mx-auto max-w-6xl px-5 pb-8 sm:px-8 sm:pb-12 lg:px-10">
-        <div className="grid gap-8 md:grid-cols-2 md:gap-12 lg:gap-20">
-          <div><span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">BIG IDEA</span><p className="mt-4 max-w-2xl text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{bigIdea}</p></div>
-          <div><span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">DESIGN APPROACH</span><p className="mt-4 max-w-2xl text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{designApproach}</p></div>
-        </div>
-        {project.challenge && <div className="mt-10 border-t border-pink-100 pt-8 sm:mt-14 sm:pt-10"><div className="max-w-4xl"><span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">CHALLENGE</span><p className="mt-4 text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{project.challenge}</p></div></div>}
+        {isBrandProject ? (
+          <div>
+            <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">DESIGN APPROACH</span>
+            <p className="mt-4 max-w-4xl text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{designApproach}</p>
+          </div>
+        ) : (
+          <div className="grid gap-8 md:grid-cols-2 md:gap-12 lg:gap-20">
+            <div>
+              <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">BIG IDEA</span>
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{project.bigIdea || project.overview}</p>
+            </div>
+            <div>
+              <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">DESIGN APPROACH</span>
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{designApproach}</p>
+            </div>
+          </div>
+        )}
+        {project.challenge && (
+          <div className="mt-10 border-t border-pink-100 pt-8 sm:mt-14 sm:pt-10">
+            <div className="max-w-4xl">
+              <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">CHALLENGE</span>
+              <p className="mt-4 text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{project.challenge}</p>
+            </div>
+          </div>
+        )}
       </section>
 
       <section className="mx-auto max-w-6xl px-5 pb-10 sm:px-8 sm:pb-16 lg:px-10">
@@ -118,7 +132,10 @@ export default function ProjectDetailPage() {
       {isBrandProject ? (
         <section className="mx-auto max-w-6xl px-4 pb-12 pt-3 sm:px-8 sm:pb-20 sm:pt-5 lg:px-10">
           <div className="mb-6 flex items-end justify-between gap-4 sm:mb-8">
-            <div><span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">BRAND DEVELOPMENT</span><h2 className="mt-3 text-2xl font-extrabold uppercase tracking-tight text-[#2D2433] sm:text-3xl">Brand Guideline</h2></div>
+            <div>
+              <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">BRAND DEVELOPMENT</span>
+              <h2 className="mt-3 text-2xl font-extrabold uppercase tracking-tight text-[#2D2433] sm:text-3xl">Brand Guideline</h2>
+            </div>
             <span className="hidden rounded-full border border-pink-100 bg-white px-3 py-1 text-[8px] font-mono font-bold uppercase tracking-wider text-[#A39BA4] sm:block">6 IMAGE SLOTS</span>
           </div>
           <div className="space-y-5 sm:space-y-7">
@@ -127,7 +144,13 @@ export default function ProjectDetailPage() {
               return (
                 <article key={number} className="overflow-hidden rounded-[24px] border border-pink-100 bg-[#FFFBFD] shadow-[0_18px_50px_-25px_rgba(45,36,51,0.22)] sm:rounded-[30px]">
                   <div className="flex items-center justify-between gap-4 border-b border-pink-100 px-4 py-4 sm:px-6 sm:py-5">
-                    <div className="flex items-center gap-3 sm:gap-4"><span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-pink-50 text-[10px] font-mono font-bold text-pink-600 sm:h-11 sm:w-11 sm:text-xs">{number}</span><div><h3 className="text-sm font-extrabold uppercase tracking-wide text-[#2D2433] sm:text-base">{title}</h3><p className="mt-0.5 text-[10px] leading-relaxed text-[#8A818C] sm:text-xs">{description}</p></div></div>
+                    <div className="flex items-center gap-3 sm:gap-4">
+                      <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-pink-50 text-[10px] font-mono font-bold text-pink-600 sm:h-11 sm:w-11 sm:text-xs">{number}</span>
+                      <div>
+                        <h3 className="text-sm font-extrabold uppercase tracking-wide text-[#2D2433] sm:text-base">{title}</h3>
+                        <p className="mt-0.5 text-[10px] leading-relaxed text-[#8A818C] sm:text-xs">{description}</p>
+                      </div>
+                    </div>
                     <span className="hidden rounded-full border border-pink-100 bg-white px-3 py-1 text-[8px] font-mono font-bold uppercase tracking-wider text-[#A39BA4] sm:block">{index === 1 && colorPalette ? "COLOR GUIDE" : index === 2 ? "TYPE GUIDE" : image ? "IMAGE READY" : "ADD IMAGE"}</span>
                   </div>
                   <div className="p-3 sm:p-5">
