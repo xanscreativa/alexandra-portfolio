@@ -8,6 +8,7 @@ import { ArrowLeft } from "lucide-react";
 import { getProjectBySlug } from "../../[slug]/portfolio-data";
 import { useLanguage } from "@/context/LanguageContext";
 import ColorPalette from "@/components/work/ColorPalette";
+import TypographyPalette from "@/components/work/TypographyPalette";
 
 const guidelineSlots = [
   ["01", "LOGO", "Logo utama, variasi logo, dan penjelasan sistem identitas."],
@@ -36,52 +37,7 @@ const brandBanners: Record<string, string> = {
   "pelkat-pa-gpib-immanuel-pekanbaru": "/portfolio/banner-pelkatpa.avif",
 };
 
-const typographyRoles = [
-  { role: "Heading", weight: 800, bg: "#F8D9E5" },
-  { role: "Subheading", weight: 600, bg: "#FCEEF3" },
-  { role: "Body Text", weight: 400, bg: "#F7F5F0" },
-] as const;
 
-function TypographyPalette() {
-  const fontFamily = "Plus Jakarta Sans";
-
-  return (
-    <div className="rounded-2xl bg-white px-3 py-6 sm:px-6 sm:py-8">
-      <div className="grid grid-cols-3 gap-x-3 sm:gap-x-6 lg:gap-x-10">
-        {typographyRoles.map((item) => (
-          <div key={item.role} className="min-w-0 text-center">
-            <div
-              className="flex aspect-square w-full items-center justify-center rounded-[18px] sm:rounded-[22px]"
-              style={{ backgroundColor: item.bg }}
-            >
-              <span
-                className="text-3xl leading-none text-[#5F7FBE] sm:text-5xl lg:text-6xl"
-                style={{ fontFamily: `'${fontFamily}', sans-serif`, fontWeight: item.weight }}
-              >
-                Aa
-              </span>
-            </div>
-            <p
-              className="mt-3 text-[9px] font-semibold leading-3 text-[#2D2433] sm:mt-4 sm:text-xs lg:text-sm"
-              style={{ fontFamily: `'${fontFamily}', sans-serif`, fontWeight: item.weight }}
-            >
-              {fontFamily}
-            </p>
-            <p className="mt-1 text-[8px] leading-3 text-[#6B6570] sm:text-[10px] lg:text-xs">({item.role})</p>
-          </div>
-        ))}
-      </div>
-      <div className="mt-6 border-t border-pink-100 pt-4 text-center sm:mt-7 sm:pt-5">
-        <p className="break-words text-sm text-[#2D2433] sm:text-base lg:text-lg" style={{ fontFamily: `'${fontFamily}', sans-serif` }}>
-          Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
-        </p>
-        <p className="mt-1.5 font-mono text-[8px] uppercase tracking-[0.16em] text-[#8A808A] sm:text-[9px]">
-          {fontFamily} · 1234567890
-        </p>
-      </div>
-    </div>
-  );
-}
 
 export default function ProjectDetailPage() {
   const { t } = useLanguage();
