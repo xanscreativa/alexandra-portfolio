@@ -19,54 +19,21 @@ const guidelineSlots = [
 ] as const;
 
 const brandColorPalettes: Record<string, string[]> = {
-  "jendela-finansial": [
-    "#087FC7",
-    "#FFB719",
-    "#FFFFFF",
-    "#5F8FD1",
-    "#FFF4D6",
-    "#202B3C",
-  ],
-  "consistrade-brand": [
-    "#081651",
-    "#2846A9",
-    "#72B6F5",
-    "#7C60D7",
-    "#CF71EA",
-    "#F9F6FC",
-  ],
-  "gpib-immanuel-pekanbaru": [
-    "#164A8A",
-    "#3C72B5",
-    "#C9A85C",
-    "#AFC7DE",
-    "#F7F5F0",
-    "#243247",
-  ],
-  "pelkat-pa-gpib-immanuel-pekanbaru": [
-    "#8BCB8A",
-    "#A9DDF0",
-    "#FFD98E",
-    "#F5B6C8",
-    "#FFF9F2",
-    "#40504A",
-  ],
-  "hut-63-pelkat-pa": [
-    "#2A8639",
-    "#F4A83E",
-    "#6DC043",
-    "#76C944",
-    "#FCD64B",
-    "#FCF7F3",
-  ],
-  "hut-67-pelkat-pa": [
-    "#EE6597",
-    "#FAAF40",
-    "#8BC53F",
-    "#D8A1BD",
-    "#FBBAC8",
-    "#FCF7F3",
-  ],
+  "jendela-finansial": ["#087FC7", "#FFB719", "#FFFFFF", "#5F8FD1", "#FFF4D6", "#202B3C"],
+  "consistrade-brand": ["#081651", "#2846A9", "#72B6F5", "#7C60D7", "#CF71EA", "#F9F6FC"],
+  "gpib-immanuel-pekanbaru": ["#164A8A", "#3C72B5", "#C9A85C", "#AFC7DE", "#F7F5F0", "#243247"],
+  "pelkat-pa-gpib-immanuel-pekanbaru": ["#8BCB8A", "#A9DDF0", "#FFD98E", "#F5B6C8", "#FFF9F2", "#40504A"],
+  "hut-63-pelkat-pa": ["#2A8639", "#F4A83E", "#6DC043", "#76C944", "#FCD64B", "#FCF7F3"],
+  "hut-67-pelkat-pa": ["#EE6597", "#FAAF40", "#8BC53F", "#D8A1BD", "#FBBAC8", "#FCF7F3"],
+};
+
+const brandBanners: Record<string, string> = {
+  "jendela-finansial": "/portfolio/banner-jendela.avif",
+  "consistrade-brand": "/portfolio/banner-consistrade.avif",
+  "hut-67-pelkat-pa": "/portfolio/banner-hut67.avif",
+  "hut-63-pelkat-pa": "/portfolio/banner-hut63.avif",
+  "gpib-immanuel-pekanbaru": "/portfolio/banner-gpib.avif",
+  "pelkat-pa-gpib-immanuel-pekanbaru": "/portfolio/banner-pelkatpa.avif",
 };
 
 export default function ProjectDetailPage() {
@@ -79,7 +46,7 @@ export default function ProjectDetailPage() {
 
   const images = project.projectImages ?? project.posts;
   const isBrandProject = project.category?.toUpperCase() === "BRAND IDENTITY";
-  const coverImage = project.posts?.[0]?.src ?? images?.[0]?.src;
+  const coverImage = brandBanners[slug] ?? project.posts?.[0]?.src ?? images?.[0]?.src;
   const colorPalette = brandColorPalettes[slug];
 
   const bigIdea = slug === "gpib-immanuel-pekanbaru"
