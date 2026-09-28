@@ -147,17 +147,19 @@ export default function TypographyPalette({
         </div>
       ) : (
         <div className="w-full bg-white px-1 py-2 sm:px-2 sm:py-3">
-          <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-6">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4 lg:gap-6">
             {ROLE_META.map((item, roleIndex) => {
               const font = activeThemes[0][item.key];
               const registeredFamily = getRegisteredFamily(font, 0, roleIndex);
               return (
-                <div key={item.role} className="min-w-0 text-center">
-                  <div className="mx-auto flex aspect-square w-full max-w-[41px] items-center justify-center rounded-[9px] lg:max-w-[46px] lg:rounded-[10px]" style={{ backgroundColor: item.bg }}>
-                    <span className="text-lg leading-none text-[#5F7FBE] lg:text-xl" style={{ fontFamily: `'${registeredFamily}', sans-serif` }}>Aa</span>
+                <div key={item.role} className="flex min-w-0 items-center gap-3 text-left">
+                  <div className="flex h-[46px] w-[46px] flex-shrink-0 items-center justify-center rounded-[10px]" style={{ backgroundColor: item.bg }}>
+                    <span className="text-xl leading-none text-[#5F7FBE]" style={{ fontFamily: `'${registeredFamily}', sans-serif` }}>Aa</span>
                   </div>
-                  <p className="mt-2 truncate text-[7px] font-semibold leading-3 text-[#2D2433] lg:mt-2.5 lg:text-[9px]" style={{ fontFamily: `'${registeredFamily}', sans-serif` }} title={font.family}>{font.family}</p>
-                  <p className="mt-0.5 text-[7px] leading-3 text-[#6B6570] lg:text-[8px]">({item.role})</p>
+                  <div className="min-w-0">
+                    <p className="truncate text-[9px] font-semibold leading-4 text-[#2D2433]" style={{ fontFamily: `'${registeredFamily}', sans-serif` }} title={font.family}>{font.family}</p>
+                    <p className="mt-0.5 text-[8px] leading-3 text-[#6B6570]">({item.role})</p>
+                  </div>
                 </div>
               );
             })}
