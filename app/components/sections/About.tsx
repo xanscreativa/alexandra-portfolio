@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import localFont from "next/font/local";
+import { Pacifico } from "next/font/google";
 import FadeUp from "../animation/FadeUp";
 import { useLanguage } from "@/context/LanguageContext";
 
-const christmasSnowy = localFont({
-  src: "../../../public/fonts/branding/ChristmasSnowy.woff2",
+const pacifico = Pacifico({
+  subsets: ["latin"],
+  weight: "400",
   display: "swap",
 });
 
@@ -31,8 +32,19 @@ export default function About() {
       <div className="relative mx-auto w-[86%] max-w-5xl sm:w-[92%]">
         <div className="mx-auto w-full">
           <FadeUp delay={0.1}>
-            <h2 className={`${christmasSnowy.className} text-center text-5xl leading-tight text-pink-500 sm:text-6xl lg:text-7xl`}>
-              Hello!
+            <h2 className={`${pacifico.className} text-center text-5xl leading-tight sm:text-6xl lg:text-7xl`}>
+              <span
+                className="inline-block"
+                style={{
+                  background: "linear-gradient(90deg, #D62B70 0%, #E85D8E 55%, #F06B9A 100%)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  color: "transparent",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                Hello!
+              </span>
             </h2>
           </FadeUp>
 
@@ -48,13 +60,23 @@ export default function About() {
               <p className="text-center text-[9px] font-mono font-bold uppercase tracking-[0.22em] text-pink-400 sm:text-xs">
                 {t("specialtiesTitle")}
               </p>
-              <div className="-mx-3 mx-auto mt-3 flex w-[calc(100%+24px)] flex-nowrap items-center justify-center gap-1 min-[360px]:gap-1.5 max-[359px]:-mx-[21px] max-[359px]:w-[calc(100%+42px)] sm:mx-auto sm:w-full sm:gap-2.5">
+              <div className="relative left-1/2 mx-0 mt-3 flex w-[116.28%] -translate-x-1/2 flex-nowrap items-stretch justify-center gap-1.5 overflow-visible px-3 max-[359px]:justify-start max-[359px]:overflow-x-auto sm:static sm:mx-auto sm:w-full sm:translate-x-0 sm:items-center sm:justify-center sm:gap-4 sm:overflow-x-visible sm:px-10">
                 {specialties.map((item) => (
                   <span
                     key={item}
-                    className="inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-full border border-pink-200/70 bg-white px-0.5 py-1 text-[9px] font-bold tracking-[-0.04em] text-[#2D2433] transition-all duration-300 hover:-translate-y-0.5 hover:border-pink-400 hover:bg-pink-50/70 hover:text-pink-600 hover:shadow-sm hover:shadow-pink-500/10 max-[359px]:px-0 min-[360px]:px-1.5 sm:px-3.5 sm:py-1.5 sm:text-[10px] sm:tracking-normal"
+                    className="flex min-w-0 flex-1 basis-0 items-center justify-center rounded-full border border-pink-200/70 bg-white px-[5px] py-1 text-center text-[10px] font-bold leading-[1.2] tracking-[-0.04em] text-[#2D2433] transition-all duration-300 hover:-translate-y-0.5 hover:border-pink-400 hover:bg-pink-50/70 hover:text-pink-600 hover:shadow-sm hover:shadow-pink-500/10 max-[359px]:w-16 max-[359px]:flex-none max-[359px]:text-[9px] max-[359px]:tracking-[-0.05em] sm:inline-flex sm:flex-none sm:basis-auto sm:whitespace-nowrap sm:px-3.5 sm:py-1.5 sm:text-[10px] sm:leading-normal sm:tracking-normal"
                   >
-                    {item}
+                    <span className="line-clamp-2 sm:line-clamp-none">
+                      {item === "Social Media Design" ? (
+                        <>
+                          <span className="whitespace-nowrap">Social Media</span>
+                          <br className="hidden max-[359px]:block" />{" "}
+                          Design
+                        </>
+                      ) : (
+                        item
+                      )}
+                    </span>
                   </span>
                 ))}
               </div>
