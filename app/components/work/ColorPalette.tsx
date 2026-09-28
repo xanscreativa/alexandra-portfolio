@@ -44,8 +44,8 @@ export default function ColorPalette({ colors }: ColorPaletteProps) {
   if (!colors.length) return null;
 
   return (
-    <div className="w-full overflow-hidden">
-      <div className="grid w-full grid-cols-6 items-start gap-x-1 gap-y-2 sm:gap-x-2 lg:gap-x-4">
+    <div className="w-full overflow-hidden px-1 sm:px-2">
+      <div className="grid w-full grid-cols-6 items-start gap-x-1.5 sm:gap-x-3 lg:gap-x-5">
         {colors.map((color) => {
           const hex = color.toUpperCase();
           const name = COLOR_NAMES[hex] ?? "Color";
@@ -53,14 +53,14 @@ export default function ColorPalette({ colors }: ColorPaletteProps) {
           return (
             <div key={color} className="flex min-w-0 flex-col items-center text-center">
               <div
-                className="h-[48px] w-[48px] rounded-full border border-black/10 sm:h-[72px] sm:w-[72px] lg:h-[104px] lg:w-[104px]"
+                className="h-11 w-11 shrink-0 rounded-full border border-black/10 sm:h-[68px] sm:w-[68px] lg:h-[96px] lg:w-[96px]"
                 style={{ backgroundColor: color }}
                 aria-label={`${name} ${hex}`}
               />
-              <p className="mt-2 min-h-[28px] max-w-full break-words text-[8px] font-semibold leading-3 text-[#2D2433] sm:mt-3 sm:min-h-[32px] sm:text-[10px] sm:leading-4 lg:text-xs">
+              <p className="mt-2 min-h-[28px] w-full break-words text-[9px] font-semibold leading-3 text-[#2D2433] sm:mt-3 sm:min-h-[32px] sm:text-[10px] sm:leading-4 lg:text-xs">
                 {name}
               </p>
-              <p className="mt-0.5 font-mono text-[7px] leading-3 text-[#6B6570] sm:text-[9px] lg:text-xs">
+              <p className="mt-0.5 whitespace-nowrap font-mono text-[7px] leading-3 text-[#6B6570] sm:text-[9px] lg:text-xs">
                 {hex}
               </p>
             </div>
