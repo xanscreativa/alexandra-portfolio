@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 type TypographyFont = {
   family: string;
@@ -73,8 +73,8 @@ export default function TypographyPalette({
   fontSrc,
   themes,
 }: TypographyPaletteProps) {
-  const params = useParams();
-  const slug = params?.slug as string | undefined;
+  const pathname = usePathname();
+  const slug = pathname?.split("/").filter(Boolean).pop();
 
   const fallbackTheme: TypographyTheme = {
     name: "Primary",
