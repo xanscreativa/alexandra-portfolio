@@ -40,10 +40,10 @@ export default function ProjectDetailPage() {
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-white text-[#2D2433] selection:bg-pink-100 selection:text-pink-900">
-      {/* FACEBOOK-STYLE COVER */}
+      {/* FULL-BLEED BRANDING COVER */}
       {coverImage && (
-        <section className="mx-auto max-w-6xl px-4 pt-20 sm:px-8 sm:pt-24 lg:px-10 lg:pt-28">
-          <div className="relative aspect-[820/312] w-full overflow-hidden rounded-[22px] border border-pink-100 bg-pink-50 shadow-[0_20px_60px_-25px_rgba(233,106,152,0.2)] sm:rounded-[30px]">
+        <section className="mx-auto max-w-6xl pt-20 sm:pt-24 lg:pt-28">
+          <div className="relative aspect-[820/312] w-full overflow-hidden bg-pink-50">
             <Image
               src={coverImage}
               alt={`${project.title} cover`}
@@ -53,9 +53,6 @@ export default function ProjectDetailPage() {
               className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#2D2433]/20 via-transparent to-white/5" />
-            <span className="absolute bottom-4 left-4 rounded-full border border-white/60 bg-white/85 px-3 py-1 text-[8px] font-mono font-bold uppercase tracking-[0.14em] text-[#2D2433] backdrop-blur-sm sm:bottom-6 sm:left-6 sm:px-4 sm:py-1.5 sm:text-[9px]">
-              COVER · 820 × 312
-            </span>
           </div>
         </section>
       )}
