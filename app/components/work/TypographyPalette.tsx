@@ -1,76 +1,135 @@
+type TypographyFont = {
+  family: string;
+  src?: string;
+};
+
+type TypographyTheme = {
+  name: string;
+  tone: string;
+  heading: TypographyFont;
+  subheading: TypographyFont;
+  body: TypographyFont;
+};
+
 type TypographyPaletteProps = {
   fontFamily?: string;
   fontSrc?: string;
+  themes?: TypographyTheme[];
 };
 
-const TYPOGRAPHY_ROLES = [
-  { role: "Heading", weight: 800, bg: "#F8D9E5" },
-  { role: "Subheading", weight: 600, bg: "#FCEEF3" },
-  { role: "Body Text", weight: 400, bg: "#F7F5F0" },
+const ROLE_META = [
+  { key: "heading", role: "Heading", bg: "#F8D9E5" },
+  { key: "subheading", role: "Subheading", bg: "#FCEEF3" },
+  { key: "body", role: "Body Text", bg: "#F7F5F0" },
 ] as const;
+
+const fontFace = (font: TypographyFont, index: number, themeIndex = 0) => {
+  if (!font.src) return null;
+  const family = `Typography-${themeIndex}-${index}-${font.family.replace(/[^a-zA-Z0-9]/g, "")}`;
+  return `@font-face { font-family: '${family}'; src: url('${font.src}') format('woff2'); font-display: swap; }`;
+};
 
 export default function TypographyPalette({
   fontFamily = "Plus Jakarta Sans",
   fontSrc,
+  themes,
 }: TypographyPaletteProps) {
+  const fallbackTheme: TypographyTheme = {
+    name: "Primary",
+    tone: "",
+    heading: { family: fontFamily, src: fontSrc },
+    subheading: { family: fontFamily, src: fontSrc },
+    body: { family: fontFamily, src: fontSrc },
+  };
+
+  const activeThemes = themes?.length ? themes : [fallbackTheme];
+
   return (
     <>
-      {fontSrc && (
-        <style>{`
-          @font-face {
-            font-family: '${fontFamily}';
-            src: url('${fontSrc}') format('woff2');
-            font-display: swap;
-          }
-        `}</style>
-      )}
+      <style>{`
+        ${activeThemes
+          .flatMap((theme, themeIndex) =>
+            ROLE_META.map((item, roleIndex) =>
+              fontFace(theme[item.key], roleIndex, themeIndex),
+            ),
+          )
+          .filter(Boolean)
+          .join("\n")}
+      `}</style>
 
       <div className="w-full rounded-2xl bg-white px-3 py-4 sm:px-5 sm:py-5">
-        <div className="mx-auto grid max-w-[420px] grid-cols-3 gap-x-2 sm:gap-x-4">
-          {TYPOGRAPHY_ROLES.map((item) => (
-            <div key={item.role} className="min-w-0 text-center">
-              <div
-                className="mx-auto flex aspect-square w-full max-w-[96px] items-center justify-center rounded-[16px] sm:max-w-[104px] sm:rounded-[18px]"
-                style={{ backgroundColor: item.bg }}
-              >
-                <span
-                  className="text-3xl leading-none text-[#5F7FBE] sm:text-4xl"
-                  style={{
-                    fontFamily: `'${fontFamily}', sans-serif`,
-                    fontWeight: item.weight,
-                  }}
-                >
-                  Aa
+        <div className="space-y-5 sm:space-y-6">
+          {activeThemes.map((theme, themeIndex) => (
+            <div
+              key={theme.name}
+              className="rounded-2xl border border-pink-100 bg-[#FFFBFD] p-3 sm:p-4"
+            >
+              <div className="mb-3 flex items-center justify-between gap-3 sm:mb-4">
+                <div className="flex min-w-0 items-center gap-2.5">
+                  <span
+                    className="h-2.5 w-2.5 flex-shrink-0 rounded-full"
+                    style={{ backgroundColor: theme.tone || "#E85D8E" }}
+                  />
+                  <p className="truncate text-[9px] font-bold uppercase tracking-[0.14em] text-[#2D2433] sm:text-[10px]">
+                    {theme.name}
+                  </p>
+                </div>
+                <span className="text-[7px] font-mono uppercase tracking-[0.14em] text-[#A39BA4] sm:text-[8px]">
+                  TYPE SYSTEM
                 </span>
               </div>
 
-              <p
-                className="mt-2.5 truncate text-[8px] font-semibold leading-3 text-[#2D2433] sm:mt-3 sm:text-[10px]"
-                style={{
-                  fontFamily: `'${fontFamily}', sans-serif`,
-                  fontWeight: item.weight,
-                }}
-                title={fontFamily}
-              >
-                {fontFamily}
-              </p>
-              <p className="mt-0.5 text-[8px] leading-3 text-[#6B6570] sm:text-[9px]">
-                ({item.role})
-              </p>
+              <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                {ROLE_META.map((item, roleIndex) => {
+                  const font = theme[item.key];
+                  const registeredFamily = font.src
+                    ? `Typography-${themeIndex}-${roleIndex}-${font.family.replace(/[^a-zA-Z0-9]/g, "")}`
+                    : font.family;
+
+                  return (
+                    <div key={item.role} className="min-w-0 text-center">
+                      <div
+                        className="mx-auto flex aspect-square w-full max-w-[82px] items-center justify-center rounded-[14px] sm:max-w-[92px] sm:rounded-[16px]"
+                        style={{ backgroundColor: item.bg }}
+                      >
+                        <span
+                          className="text-2xl leading-none text-[#5F7FBE] sm:text-3xl"
+                          style={{ fontFamily: `'${registeredFamily}', sans-serif` }}
+                        >
+                          Aa
+                        </span>
+                      </div>
+
+                      <p
+                        className="mt-2 truncate text-[7px] font-semibold leading-3 text-[#2D2433] sm:mt-2.5 sm:text-[9px]"
+                        style={{ fontFamily: `'${registeredFamily}', sans-serif` }}
+                        title={font.family}
+                      >
+                        {font.family}
+                      </p>
+                      <p className="mt-0.5 text-[7px] leading-3 text-[#6B6570] sm:text-[8px]">
+                        ({item.role})
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="mt-4 border-t border-pink-100 pt-3 text-center sm:mt-5 sm:pt-4">
+                <p
+                  className="break-words text-[10px] leading-4 text-[#2D2433] sm:text-xs sm:leading-5"
+                  style={{
+                    fontFamily: `'${theme.body.src ? `Typography-${themeIndex}-2-${theme.body.family.replace(/[^a-zA-Z0-9]/g, "")}` : theme.body.family}', sans-serif`,
+                  }}
+                >
+                  Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
+                </p>
+                <p className="mt-1 font-mono text-[6px] uppercase tracking-[0.16em] text-[#8A808A] sm:text-[7px]">
+                  {theme.heading.family} · {theme.subheading.family} · {theme.body.family}
+                </p>
+              </div>
             </div>
           ))}
-        </div>
-
-        <div className="mx-auto mt-5 max-w-[420px] border-t border-pink-100 pt-3 text-center sm:mt-6 sm:pt-4">
-          <p
-            className="break-words text-xs leading-5 text-[#2D2433] sm:text-sm sm:leading-6"
-            style={{ fontFamily: `'${fontFamily}', sans-serif` }}
-          >
-            Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
-          </p>
-          <p className="mt-1 font-mono text-[7px] uppercase tracking-[0.16em] text-[#8A808A] sm:text-[8px]">
-            {fontFamily} · 1234567890
-          </p>
         </div>
       </div>
     </>
