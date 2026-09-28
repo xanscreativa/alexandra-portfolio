@@ -1,3 +1,7 @@
+"use client";
+
+import { useParams } from "next/navigation";
+
 type TypographyFont = {
   family: string;
   src?: string;
@@ -23,37 +27,69 @@ const ROLE_META = [
   { key: "body", role: "Body Text", bg: "#F7F5F0" },
 ] as const;
 
-const fontFace = (font: TypographyFont, index: number, themeIndex = 0) => {
-  if (!font.src) return null;
-  const family = `Typography-${themeIndex}-${index}-${font.family.replace(/[^a-zA-Z0-9]/g, "")}`;
-  return `@font-face { font-family: '${family}'; src: url('${font.src}') format('woff2'); font-display: swap; }`;
-};
+const JENDELA_THEMES: TypographyTheme[] = [
+  {
+    name: "Blue Theme",
+    tone: "#087FC7",
+    heading: { family: "Small Print", src: "/fonts/branding/SmallPrint.woff2" },
+    subheading: { family: "Poppins", src: "/fonts/branding/Poppins.woff2" },
+    body: { family: "Mulish", src: "/fonts/branding/Mulish.woff2" },
+  },
+  {
+    name: "Yellow Theme",
+    tone: "#FFB719",
+    heading: { family: "Alphakind", src: "/fonts/branding/Alphakind.woff2" },
+    subheading: { family: "Poppins", src: "/fonts/branding/Poppins.woff2" },
+    body: { family: "Mulish", src: "/fonts/branding/Mulish.woff2" },
+  },
+  {
+    name: "White Theme",
+    tone: "#D7D2C9",
+    heading: { family: "Peach Days", src: "/fonts/branding/PeachDays.woff2" },
+    subheading: { family: "Dish Out", src: "/fonts/branding/DishOut.woff2" },
+    body: { family: "Mulish", src: "/fonts/branding/Mulish.woff2" },
+  },
+];
+
+const getRegisteredFamily = (font: TypographyFont, themeIndex: number, roleIndex: number) =>
+  font.src
+    ? `Typography-${themeIndex}-${roleIndex}-${font.family.replace(/[^a-zA-Z0-9]/g, "")}`
+    : font.family;
 
 export default function TypographyPalette({
   fontFamily = "Plus Jakarta Sans",
   fontSrc,
   themes,
 }: TypographyPaletteProps) {
+  const params = useParams();
+  const slug = params?.slug as string | undefined;
+
   const fallbackTheme: TypographyTheme = {
     name: "Primary",
-    tone: "",
+    tone: "#E85D8E",
     heading: { family: fontFamily, src: fontSrc },
     subheading: { family: fontFamily, src: fontSrc },
     body: { family: fontFamily, src: fontSrc },
   };
 
-  const activeThemes = themes?.length ? themes : [fallbackTheme];
+  const activeThemes = themes?.length
+    ? themes
+    : slug === "jendela-finansial"
+      ? JENDELA_THEMES
+      : [fallbackTheme];
 
   return (
     <>
       <style>{`
         ${activeThemes
           .flatMap((theme, themeIndex) =>
-            ROLE_META.map((item, roleIndex) =>
-              fontFace(theme[item.key], roleIndex, themeIndex),
-            ),
+            ROLE_META.map((item, roleIndex) => {
+              const font = theme[item.key];
+              if (!font.src) return "";
+              const family = getRegisteredFamily(font, themeIndex, roleIndex);
+              return `@font-face { font-family: '${family}'; src: url('${font.src}') format('woff2'); font-display: swap; }`;
+            }),
           )
-          .filter(Boolean)
           .join("\n")}
       `}</style>
 
@@ -68,7 +104,7 @@ export default function TypographyPalette({
                 <div className="flex min-w-0 items-center gap-2.5">
                   <span
                     className="h-2.5 w-2.5 flex-shrink-0 rounded-full"
-                    style={{ backgroundColor: theme.tone || "#E85D8E" }}
+                    style={{ backgroundColor: theme.tone }}
                   />
                   <p className="truncate text-[9px] font-bold uppercase tracking-[0.14em] text-[#2D2433] sm:text-[10px]">
                     {theme.name}
@@ -82,9 +118,7 @@ export default function TypographyPalette({
               <div className="grid grid-cols-3 gap-2 sm:gap-3">
                 {ROLE_META.map((item, roleIndex) => {
                   const font = theme[item.key];
-                  const registeredFamily = font.src
-                    ? `Typography-${themeIndex}-${roleIndex}-${font.family.replace(/[^a-zA-Z0-9]/g, "")}`
-                    : font.family;
+                  const registeredFamily = getRegisteredFamily(font, themeIndex, roleIndex);
 
                   return (
                     <div key={item.role} className="min-w-0 text-center">
@@ -119,7 +153,7 @@ export default function TypographyPalette({
                 <p
                   className="break-words text-[10px] leading-4 text-[#2D2433] sm:text-xs sm:leading-5"
                   style={{
-                    fontFamily: `'${theme.body.src ? `Typography-${themeIndex}-2-${theme.body.family.replace(/[^a-zA-Z0-9]/g, "")}` : theme.body.family}', sans-serif`,
+                    fontFamily: `'${getRegisteredFamily(theme.body, themeIndex, 2)}', sans-serif`,
                   }}
                 >
                   Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
