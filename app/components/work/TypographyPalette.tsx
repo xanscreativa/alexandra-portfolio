@@ -140,7 +140,7 @@ export default function TypographyPalette({ fontFamily = "Plus Jakarta Sans", fo
             ))}
           </div>
         ) : slug === "gpib-immanuel-pekanbaru" ? (
-          <div className="grid grid-cols-5 gap-2 sm:gap-3 lg:gap-4">
+          <div data-typography-layout="gpib-five-fonts" className="grid grid-cols-5 gap-1.5 sm:gap-2 lg:gap-3">
             {GPIB_FONTS.map((font, index) => {
               const roleIndex = font.role === "Primary" ? 0 : font.role === "Secondary" ? 1 : 2;
               const color = typeColors[roleIndex];
