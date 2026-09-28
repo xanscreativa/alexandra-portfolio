@@ -147,36 +147,6 @@ export const socialSections: SectionData[] = [
       { src: "/portfolio/pa-4.webp" },
       { src: "/portfolio/pa-5.webp" },
       { src: "/portfolio/pa-6.webp" },
-      {
-        src: "/portfolio/pa-7.webp",
-        alt: "Pelkat PA social media carousel 7",
-        caption: "Pelkat PA carousel 7",
-        subSlides: [
-          { src: "/portfolio/pa-7.webp" },
-          { src: "/portfolio/pa-7a.webp" },
-          { src: "/portfolio/pa-7b.webp" },
-          { src: "/portfolio/pa-7c.webp" },
-          { src: "/portfolio/pa-7d.webp" },
-        ],
-      },
-      {
-        src: "/portfolio/pa-8.webp",
-        alt: "Pelkat PA social media post 8",
-        caption: "Pelkat PA post 8",
-      },
-      {
-        src: "/portfolio/pa-9.webp",
-        alt: "Pelkat PA social media carousel 9",
-        caption: "Pelkat PA carousel 9",
-        subSlides: [
-          { src: "/portfolio/pa-9.webp" },
-          { src: "/portfolio/pa-9a.webp" },
-          { src: "/portfolio/pa-9b.webp" },
-          { src: "/portfolio/pa-9c.webp" },
-          { src: "/portfolio/pa-9d.webp" },
-          { src: "/portfolio/pa-9e.webp" },
-        ],
-      },
     ],
     details: {
       client: "Pelkat PA GPIB Immanuel Pekanbaru",
