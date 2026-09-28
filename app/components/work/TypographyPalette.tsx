@@ -5,10 +5,11 @@ import { usePathname } from "next/navigation";
 type TypographyFont = {
   family: string;
   src?: string;
-  alternateSrc?: string;
 };
 type TypographyTheme = { name: string; tone: string; heading: TypographyFont; subheading: TypographyFont; body: TypographyFont };
 type TypographyPaletteProps = { fontFamily?: string; fontSrc?: string; themes?: TypographyTheme[] };
+
+type GpibFont = TypographyFont & { role: "Primary" | "Secondary" | "Body Text" };
 
 const ROLE_META = [
   { key: "heading", role: "Heading" },
@@ -49,21 +50,13 @@ const CONSISTRADE_THEME: TypographyTheme = {
   body: { family: "Outfit", src: "/fonts/branding/Outfit.woff2" },
 };
 
-const GPIB_THEME: TypographyTheme = {
-  name: "GPIB Type",
-  tone: "#164A8A",
-  heading: {
-    family: "League Spartan + Bebas Neue",
-    src: "/fonts/branding/LeagueSpartan.woff2",
-    alternateSrc: "/fonts/branding/BebasNeue.woff2",
-  },
-  subheading: {
-    family: "Christmas Snowy + Alucky",
-    src: "/fonts/branding/ChristmasSnowy.woff2",
-    alternateSrc: "/fonts/branding/Alucky.woff2",
-  },
-  body: { family: "Afacad", src: "/fonts/branding/Afacad.woff2" },
-};
+const GPIB_FONTS: GpibFont[] = [
+  { family: "League Spartan", role: "Primary", src: "/fonts/branding/LeagueSpartan.woff2" },
+  { family: "Bebas Neue", role: "Primary", src: "/fonts/branding/BebasNeue.woff2" },
+  { family: "Christmas Snowy", role: "Secondary", src: "/fonts/branding/ChristmasSnowy.woff2" },
+  { family: "Alucky", role: "Secondary", src: "/fonts/branding/Alucky.woff2" },
+  { family: "Afacad", role: "Body Text", src: "/fonts/branding/Afacad.woff2" },
+];
 
 const HUT67_THEMES: TypographyTheme[] = [
   { name: "HUT 67 Type", tone: "#EE6597", heading: { family: "Howdybun", src: "/fonts/branding/Howdybun.woff2" }, subheading: { family: "Open Sans Condensed", src: "/fonts/branding/OpenSansCondensed.woff2" }, body: { family: "Outfit", src: "/fonts/branding/Outfit.woff2" } },
@@ -103,7 +96,7 @@ export default function TypographyPalette({ fontFamily = "Plus Jakarta Sans", fo
       : slug === "consistrade-brand"
         ? [CONSISTRADE_THEME]
         : slug === "gpib-immanuel-pekanbaru"
-          ? [GPIB_THEME]
+          ? []
           : slug === "hut-67-pelkat-pa"
             ? HUT67_THEMES
             : [fallbackTheme];
@@ -113,18 +106,15 @@ export default function TypographyPalette({ fontFamily = "Plus Jakarta Sans", fo
 
   return (
     <>
-      <style>{`${activeThemes.flatMap((theme, themeIndex) => ROLE_META.flatMap((item, roleIndex) => {
-        const font = theme[item.key];
-        const rules = [];
-        if (font.src) {
+      <style>{`${[
+        ...activeThemes.flatMap((theme, themeIndex) => ROLE_META.map((item, roleIndex) => {
+          const font = theme[item.key];
+          if (!font.src) return "";
           const family = getRegisteredFamily(font, themeIndex, roleIndex);
-          rules.push(`@font-face { font-family: '${family}'; src: url('${font.src}') format('woff2'); font-display: swap; }`);
-          if (font.alternateSrc) {
-            rules.push(`@font-face { font-family: '${family}-alt'; src: url('${font.alternateSrc}') format('woff2'); font-display: swap; }`);
-          }
-        }
-        return rules;
-      })).join("\n")}`}</style>
+          return `@font-face { font-family: '${family}'; src: url('${font.src}') format('woff2'); font-display: swap; }`;
+        })),
+        ...GPIB_FONTS.map((font, index) => `@font-face { font-family: 'GPIB-${index}'; src: url('${font.src}') format('woff2'); font-display: swap; }`),
+      ].join("\n")}`}</style>
 
       <div className="w-full bg-white px-1 py-2 sm:px-2 sm:py-3">
         {slug === "jendela-finansial" ? (
@@ -150,6 +140,23 @@ export default function TypographyPalette({ fontFamily = "Plus Jakarta Sans", fo
                 </div>
               </div>
             ))}
+          </div>
+        ) : slug === "gpib-immanuel-pekanbaru" ? (
+          <div className="grid grid-cols-5 gap-1.5 sm:gap-2 lg:gap-3">
+            {GPIB_FONTS.map((font, index) => {
+              const roleIndex = font.role === "Primary" ? 0 : font.role === "Secondary" ? 1 : 2;
+              const color = typeColors[roleIndex];
+              const roleBackground = palette[roleIndex];
+              return (
+                <div key={font.family} className="min-w-0 text-center">
+                  <div className="mx-auto flex h-[34px] w-[58px] items-center justify-center rounded-lg sm:h-[36px] sm:w-[64px]" style={{ backgroundColor: withAlpha(roleBackground, "16") }}>
+                    <span className="text-lg leading-none sm:text-xl" style={{ color, fontFamily: `'GPIB-${index}', sans-serif` }}>Aa</span>
+                  </div>
+                  <p className="mt-2 break-words text-[9px] font-semibold leading-4 sm:text-[10px] sm:leading-4" style={{ color, fontFamily: `'GPIB-${index}', sans-serif` }} title={font.family}>{font.family}</p>
+                  <p className="mt-0.5 text-[8px] leading-3 text-[#5A535D] sm:text-[9px]">({font.role})</p>
+                </div>
+              );
+            })}
           </div>
         ) : (
           <div className="grid grid-cols-3 gap-2 sm:gap-3 lg:gap-4">
