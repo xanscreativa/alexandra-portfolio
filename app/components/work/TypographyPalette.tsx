@@ -148,20 +148,6 @@ export default function TypographyPalette({
                   );
                 })}
               </div>
-
-              <div className="mt-4 border-t border-pink-100 pt-3 text-center sm:mt-5 sm:pt-4">
-                <p
-                  className="break-words text-[10px] leading-4 text-[#2D2433] sm:text-xs sm:leading-5"
-                  style={{
-                    fontFamily: `'${getRegisteredFamily(theme.body, themeIndex, 2)}', sans-serif`,
-                  }}
-                >
-                  Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
-                </p>
-                <p className="mt-1 font-mono text-[6px] uppercase tracking-[0.16em] text-[#8A808A] sm:text-[7px]">
-                  {theme.heading.family} · {theme.subheading.family} · {theme.body.family}
-                </p>
-              </div>
             </div>
           ))}
         </div>
