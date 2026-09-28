@@ -86,20 +86,10 @@ export default function TypographyPalette({
 
   if (slug === "hut-63-pelkat-pa") {
     return (
-      <div className="w-full rounded-2xl bg-white px-4 py-5 sm:px-6 sm:py-6">
-        <div className="rounded-2xl border border-pink-100 bg-[#FFFBFD] p-4 sm:p-5">
-          <div className="flex items-start gap-3">
-            <span className="mt-1 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-[#2A8639]" />
-            <div>
-              <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#2D2433] sm:text-xs">
-                Typography
-              </p>
-              <p className="mt-2 max-w-2xl text-xs leading-6 text-[#6B6570] sm:text-sm sm:leading-7">
-                The typography uses a rounded sans serif style, with decorative typography applied to the logo. Serif fonts such as Times New Roman should be avoided.
-              </p>
-            </div>
-          </div>
-        </div>
+      <div className="w-full bg-white px-1 py-2 sm:px-2 sm:py-3">
+        <p className="max-w-3xl text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">
+          The typography uses a rounded sans serif style, with decorative typography applied to the logo. Serif fonts such as Times New Roman should be avoided.
+        </p>
       </div>
     );
   }
