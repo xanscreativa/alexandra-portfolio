@@ -173,10 +173,11 @@ export const socialSections: SectionData[] = [
       caption: "Pelkat PA",
     },
     {
-      src: "/portfolio/pa-7a.avif",
+      src: "/portfolio/pa-7.avif",
       alt: "Pelkat PA carousel 7",
       caption: "Pelkat PA",
       subSlides: [
+        { src: "/portfolio/pa-7.avif" },        
         { src: "/portfolio/pa-7a.avif" },
         { src: "/portfolio/pa-7b.avif" },
         { src: "/portfolio/pa-7c.avif" },
@@ -189,10 +190,11 @@ export const socialSections: SectionData[] = [
       caption: "Pelkat PA",
     },
     {
-      src: "/portfolio/pa-9a.avif",
+      src: "/portfolio/pa-9.avif",
       alt: "Pelkat PA carousel 9",
       caption: "Pelkat PA",
       subSlides: [
+        { src: "/portfolio/pa-9.avif" },
         { src: "/portfolio/pa-9a.avif" },
         { src: "/portfolio/pa-9b.avif" },
         { src: "/portfolio/pa-9c.avif" },
