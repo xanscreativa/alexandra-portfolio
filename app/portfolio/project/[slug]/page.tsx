@@ -7,6 +7,7 @@ import { ArrowLeft } from "lucide-react";
 
 import { getProjectBySlug } from "../../[slug]/portfolio-data";
 import { useLanguage } from "@/context/LanguageContext";
+import ColorPalette from "@/components/work/ColorPalette";
 
 const guidelineSlots = [
   ["01", "LOGO", "Logo utama, variasi logo, dan penjelasan sistem identitas."],
@@ -16,6 +17,57 @@ const guidelineSlots = [
   ["05", "SUPPORTING ELEMENT", "Ikon, simbol, pattern, dan elemen pendukung komunikasi."],
   ["06", "CHARACTER", "Character / mascot beserta variasi pose dan penggunaannya."],
 ] as const;
+
+const brandColorPalettes: Record<string, string[]> = {
+  "jendela-finansial": [
+    "#087FC7",
+    "#FFB719",
+    "#FFFFFF",
+    "#5F8FD1",
+    "#FFF4D6",
+    "#202B3C",
+  ],
+  "consistrade-brand": [
+    "#081651",
+    "#2846A9",
+    "#72B6F5",
+    "#7C60D7",
+    "#CF71EA",
+    "#F9F6FC",
+  ],
+  "gpib-immanuel-pekanbaru": [
+    "#164A8A",
+    "#3C72B5",
+    "#C9A85C",
+    "#AFC7DE",
+    "#F7F5F0",
+    "#243247",
+  ],
+  "pelkat-pa-gpib-immanuel-pekanbaru": [
+    "#8BCB8A",
+    "#A9DDF0",
+    "#FFD98E",
+    "#F5B6C8",
+    "#FFF9F2",
+    "#40504A",
+  ],
+  "hut-63-pelkat-pa": [
+    "#2A8639",
+    "#F4A83E",
+    "#6DC043",
+    "#76C944",
+    "#FCD64B",
+    "#FCF7F3",
+  ],
+  "hut-67-pelkat-pa": [
+    "#EE6597",
+    "#FAAF40",
+    "#8BC53F",
+    "#D8A1BD",
+    "#FBBAC8",
+    "#FCF7F3",
+  ],
+};
 
 export default function ProjectDetailPage() {
   const { t } = useLanguage();
@@ -27,14 +79,14 @@ export default function ProjectDetailPage() {
 
   const images = project.projectImages ?? project.posts;
   const isBrandProject = project.category?.toUpperCase() === "BRAND IDENTITY";
-  const isGpibProject = slug === "gpib-immanuel-pekanbaru";
   const coverImage = project.posts?.[0]?.src ?? images?.[0]?.src;
+  const colorPalette = brandColorPalettes[slug];
 
-  const bigIdea = isGpibProject
+  const bigIdea = slug === "gpib-immanuel-pekanbaru"
     ? "Building a visual identity that reflects GPIB Immanuel Pekanbaru as a welcoming, faithful, and active church community. The identity brings together the congregation's heritage, local character, and spirit of service into a visual language that feels recognizable, meaningful, and relevant."
     : project.bigIdea || project.overview;
 
-  const designApproach = isGpibProject
+  const designApproach = slug === "gpib-immanuel-pekanbaru"
     ? "I translated the concept into a practical visual system by redesigning the internal church logo, developing Elof as the church mascot, establishing colors, typography, graphic elements, and supporting symbols, then applying the system across social media and church information materials for a more consistent communication experience."
     : project.overview;
 
@@ -151,11 +203,15 @@ export default function ProjectDetailPage() {
                         <p className="mt-0.5 text-[10px] leading-relaxed text-[#8A818C] sm:text-xs">{description}</p>
                       </div>
                     </div>
-                    <span className="hidden rounded-full border border-pink-100 bg-white px-3 py-1 text-[8px] font-mono font-bold uppercase tracking-wider text-[#A39BA4] sm:block">{image ? "IMAGE READY" : "ADD IMAGE"}</span>
+                    <span className="hidden rounded-full border border-pink-100 bg-white px-3 py-1 text-[8px] font-mono font-bold uppercase tracking-wider text-[#A39BA4] sm:block">{index === 1 && colorPalette ? "COLOR GUIDE" : image ? "IMAGE READY" : "ADD IMAGE"}</span>
                   </div>
 
                   <div className="p-3 sm:p-5">
-                    {image ? (
+                    {index === 1 && colorPalette ? (
+                      <div className="rounded-2xl bg-white px-4 py-6 sm:px-6 sm:py-8">
+                        <ColorPalette colors={colorPalette} />
+                      </div>
+                    ) : image ? (
                       <div className="relative w-full overflow-hidden rounded-2xl bg-white">
                         <Image
                           src={image.src}
