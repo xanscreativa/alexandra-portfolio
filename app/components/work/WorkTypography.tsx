@@ -5,123 +5,106 @@ interface Props {
 }
 
 export default function WorkTypography({ project }: Props) {
+  const fontFamily =
+    typeof project.typography === "string"
+      ? project.typography
+      : project.typography?.fontFamily || "Plus Jakarta Sans";
+
+  const fontDescription =
+    typeof project.typography === "string"
+      ? "Primary typeface used across the visual identity."
+      : project.typography?.description || "Primary typeface used across the visual identity.";
+
+  const typeStyles = [
+    {
+      label: "Small Print",
+      role: "Heading",
+      weight: 700,
+      sample: "Aa",
+      background: "#F8D9E5",
+    },
+    {
+      label: fontFamily,
+      role: "Subheading",
+      weight: 600,
+      sample: "Aa",
+      background: "#FCEEF3",
+    },
+    {
+      label: fontFamily,
+      role: "Body Text",
+      weight: 400,
+      sample: "Aa",
+      background: "#F7F5F0",
+    },
+  ];
+
   return (
-    <section className="bg-[#FFFDFB] py-24">
-
+    <section className="bg-[#FFFDFB] py-16 sm:py-20 lg:py-24">
       <div className="mx-auto w-[92%] max-w-7xl">
-
-        <p className="uppercase tracking-[0.35em] text-pink-500">
-          Typography
-        </p>
-
-        <h2 className="mt-4 text-5xl font-black text-[#2D2433]">
-          Typography System
-        </h2>
-
-        <div className="mt-16 grid gap-12 lg:grid-cols-2">
-
-          {/* Left */}
-
-          <div className="rounded-[36px] bg-white p-12 shadow-lg">
-
-            <p className="text-sm uppercase tracking-[0.35em] text-pink-500">
-              Font Family
-            </p>
-
-            <h3 className="mt-6 text-5xl font-black text-[#2D2433]">
-              {typeof project.typography === "string"
-                ? project.typography
-                : project.typography?.fontFamily}
-            </h3>
-
-            <div className="mt-10 space-y-6">
-
-              <h1 className="text-6xl font-black text-[#2D2433]">
-                Aa
-              </h1>
-
-              <p className="text-3xl font-bold text-[#2D2433]">
-                ABCDEFGHIJKLMNOPQRSTUVWXYZ
-              </p>
-
-              <p className="text-2xl text-[#6B6570]">
-                abcdefghijklmnopqrstuvwxyz
-              </p>
-
-              <p className="text-xl text-[#6B6570]">
-                1234567890
-              </p>
-
-            </div>
-
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="uppercase tracking-[0.35em] text-pink-500">Typography</p>
+            <h2 className="mt-3 text-3xl font-black text-[#2D2433] sm:text-4xl lg:text-5xl">
+              Typography System
+            </h2>
           </div>
-
-          {/* Right */}
-
-          <div className="rounded-[36px] bg-white p-12 shadow-lg">
-
-            <p className="text-sm uppercase tracking-[0.35em] text-pink-500">
-              Type Scale
-            </p>
-
-            <div className="mt-10 space-y-8">
-
-              <div>
-
-                <p className="text-sm text-pink-500">
-                  Display
-                </p>
-
-                <h1 className="text-6xl font-black text-[#2D2433]">
-                  Creative
-                </h1>
-
-              </div>
-
-              <div>
-
-                <p className="text-sm text-pink-500">
-                  Heading
-                </p>
-
-                <h2 className="text-4xl font-bold text-[#2D2433]">
-                  Premium Branding
-                </h2>
-
-              </div>
-
-              <div>
-
-                <p className="text-sm text-pink-500">
-                  Body
-                </p>
-
-                <p className="text-lg leading-8 text-[#6B6570]">
-                  The quick brown fox jumps over the lazy dog.
-                </p>
-
-              </div>
-
-              <div>
-
-                <p className="text-sm text-pink-500">
-                  Caption
-                </p>
-
-                <p className="text-sm text-[#6B6570]">
-                  Consistency creates memorable brands.
-                </p>
-
-              </div>
-
-            </div>
-
-          </div>
-
+          <p className="max-w-md text-sm leading-6 text-[#6B6570] sm:text-right">
+            {fontDescription}
+          </p>
         </div>
 
-      </div>
+        <div className="mt-10 rounded-[28px] bg-white p-4 sm:p-6 lg:p-8">
+          <div className="grid grid-cols-3 gap-x-3 sm:gap-x-6 lg:gap-x-10">
+            {typeStyles.map((style) => (
+              <div key={style.role} className="min-w-0">
+                <div
+                  className="flex h-24 w-full items-center justify-center rounded-[20px] sm:h-32 sm:rounded-[24px] lg:h-36"
+                  style={{ backgroundColor: style.background }}
+                >
+                  <span
+                    className="text-4xl leading-none text-[#5F7FBE] sm:text-5xl lg:text-6xl"
+                    style={{
+                      fontFamily: `'${fontFamily}', sans-serif`,
+                      fontWeight: style.weight,
+                    }}
+                  >
+                    {style.sample}
+                  </span>
+                </div>
 
+                <div className="mt-4 text-center">
+                  <p
+                    className="truncate text-[10px] font-semibold text-[#2D2433] sm:text-sm lg:text-base"
+                    style={{
+                      fontFamily: `'${fontFamily}', sans-serif`,
+                      fontWeight: style.weight,
+                    }}
+                    title={style.label}
+                  >
+                    {style.label}
+                  </p>
+                  <p className="mt-1 text-[9px] leading-3 text-[#6B6570] sm:text-xs lg:text-sm">
+                    ({style.role})
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 border-t border-[#F1E5EA] pt-6">
+            <p
+              className="break-words text-center text-lg text-[#2D2433] sm:text-xl lg:text-2xl"
+              style={{ fontFamily: `'${fontFamily}', sans-serif` }}
+            >
+              Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
+            </p>
+            <p className="mt-2 text-center font-mono text-[9px] uppercase tracking-[0.18em] text-[#8A808A] sm:text-[10px]">
+              {fontFamily} · 1234567890
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
