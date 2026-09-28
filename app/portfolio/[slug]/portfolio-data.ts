@@ -177,7 +177,7 @@ export const socialSections: SectionData[] = [
       alt: "Pelkat PA carousel 7",
       caption: "Pelkat PA",
       subSlides: [
-        { src: "/portfolio/pa-7.avif" },        
+        { src: "/portfolio/pa-7.avif" },
         { src: "/portfolio/pa-7a.avif" },
         { src: "/portfolio/pa-7b.avif" },
         { src: "/portfolio/pa-7c.avif" },
@@ -380,8 +380,7 @@ export const socialSections: SectionData[] = [
           { src: "/portfolio/jendela-6f.avif" },
         ],
       },
-    ],
-          {
+      {
         src: "/portfolio/jendela-7.avif",
         alt: "Jendela 7",
         caption: "Jendela 7",
@@ -422,6 +421,7 @@ export const socialSections: SectionData[] = [
           { src: "/portfolio/jendela-9g.avif" },
         ],
       },
+    ],
     details: {
       client: "Jendela Finansial",
       industry: "Financial Education",
