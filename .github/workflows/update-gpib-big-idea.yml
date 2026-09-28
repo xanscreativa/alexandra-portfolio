@@ -1,0 +1,38 @@
+name: Update GPIB Big Idea
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Update Big Idea text
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('app/portfolio/[slug]/portfolio-data.ts')
+          text = path.read_text(encoding='utf-8')
+          old = '''    bigIdea:\n      "Introducing 'Elof', a mascot inspired by Rudolf Knierim (the first missionary and pastor of GPIB). The name Immanuel Rudolf is abbreviated to Elof with the philosophy: E (ImmanuEl - God with us), L (Light - living in God's light), O (Obedience - walking in His path), and F (Faith - moving forward in faith). Core Philosophy: Walking together with God in light, obedience, and faith.)",'''
+          if old not in text:
+              old = '''    bigIdea:\n      "Introducing 'Elof', a mascot inspired by Rudolf Knierim (the first missionary and pastor of GPIB). The name Immanuel Rudolf is abbreviated to Elof with the philosophy: E (ImmanuEl - God with us), L (Light - living in God's light), O (Obedience - walking in His path), and F (Faith - moving forward in faith). Core Philosophy: Walking together with God in light, obedience, and faith.",'''
+          new = '''    bigIdea:\n      "Introducing ‘Elof,’ a mascot inspired by Rudolf Knierim, the first missionary and pastor of GPIB. The name Immanuel Rudolf is abbreviated to Elof, representing four core values: E — Immanuel, God with us; L — Light, living in God’s light; O — Obedience, walking in His path; and F — Faith, moving forward in faith. Core philosophy: Walking together with God in light, obedience, and faith.",'''
+          if old not in text:
+              raise SystemExit('Target Big Idea text not found; no changes made.')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/portfolio/'[slug]'/portfolio-data.ts
+          git diff --cached --quiet && exit 0
+          git commit -m "Update GPIB Immanuel Big Idea text"
+          git push
