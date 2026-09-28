@@ -21,13 +21,15 @@ const BRAND_PALETTES: Record<string, string[]> = {
   "hut-67-pelkat-pa": ["#EE6597", "#FAAF40", "#8BC53F", "#D8A1BD", "#FBBAC8", "#FCF7F3"],
 };
 
-const TYPE_DARK_COLORS: Record<string, string[]> = {
-  "jendela-finansial": ["#075A8C", "#684900", "#2D2C29"],
-  "consistrade-brand": ["#081651", "#17337F", "#24445E"],
-  "gpib-immanuel-pekanbaru": ["#103A6B", "#244E80", "#66501E"],
-  "pelkat-pa-gpib-immanuel-pekanbaru": ["#35613A", "#315F70", "#624B0D"],
-  "hut-63-pelkat-pa": ["#1B5B27", "#87500D", "#2E641C"],
-  "hut-67-pelkat-pa": ["#7E2D4E", "#8A4E0B", "#355B13"],
+// Contrast colors intentionally stay within each project's palette rather than defaulting to black.
+// Each value is paired with a very light tint of the same palette so the Aa remains vivid and readable.
+const TYPE_COLORS: Record<string, string[]> = {
+  "jendela-finansial": ["#087FC7", "#9A6500", "#202B3C"],
+  "consistrade-brand": ["#081651", "#2846A9", "#7C60D7"],
+  "gpib-immanuel-pekanbaru": ["#164A8A", "#3C72B5", "#80651F"],
+  "pelkat-pa-gpib-immanuel-pekanbaru": ["#3D7A42", "#2E7897", "#9A7000"],
+  "hut-63-pelkat-pa": ["#2A8639", "#B56A12", "#3D8A25"],
+  "hut-67-pelkat-pa": ["#B33F6C", "#B96E16", "#4F7E24"],
 };
 
 const JENDELA_THEMES: TypographyTheme[] = [
@@ -86,37 +88,31 @@ export default function TypographyPalette({ fontFamily = "Plus Jakarta Sans", fo
           : [fallbackTheme];
 
   const palette = BRAND_PALETTES[slug ?? ""] ?? ["#E85D8E", "#F8D9E5", "#2D2433"];
-  const darkColors = TYPE_DARK_COLORS[slug ?? ""] ?? ["#2D2433", "#2D2433", "#2D2433"];
+  const typeColors = TYPE_COLORS[slug ?? ""] ?? ["#2D2433", "#2D2433", "#2D2433"];
 
   return (
     <>
-      <style>{`${activeThemes
-        .flatMap((theme, themeIndex) =>
-          ROLE_META.map((item, roleIndex) => {
-            const font = theme[item.key];
-            if (!font.src) return "";
-            const family = getRegisteredFamily(font, themeIndex, roleIndex);
-            return `@font-face { font-family: '${family}'; src: url('${font.src}') format('woff2'); font-display: swap; }`;
-          }),
-        )
-        .join("\n")}`}</style>
+      <style>{`${activeThemes.flatMap((theme, themeIndex) => ROLE_META.map((item, roleIndex) => {
+        const font = theme[item.key];
+        if (!font.src) return "";
+        const family = getRegisteredFamily(font, themeIndex, roleIndex);
+        return `@font-face { font-family: '${family}'; src: url('${font.src}') format('woff2'); font-display: swap; }`;
+      })).join("\n")}`}</style>
 
       <div className="w-full bg-white px-1 py-2 sm:px-2 sm:py-3">
         {slug === "jendela-finansial" ? (
           <div className="space-y-5 sm:space-y-6">
             {activeThemes.map((theme, themeIndex) => (
               <div key={theme.name}>
-                <p className="mb-3 text-[9px] font-bold uppercase tracking-[0.14em] sm:text-[10px]" style={{ color: theme.tone }}>
-                  {theme.name}
-                </p>
+                <p className="mb-3 text-[9px] font-bold uppercase tracking-[0.14em] sm:text-[10px]" style={{ color: theme.tone }}>{theme.name}</p>
                 <div className="grid grid-cols-3 gap-2 sm:gap-3 lg:gap-4">
                   {ROLE_META.map((item, roleIndex) => {
                     const font = theme[item.key];
                     const registeredFamily = getRegisteredFamily(font, themeIndex, roleIndex);
-                    const aaColor = darkColors[roleIndex];
+                    const aaColor = typeColors[roleIndex];
                     return (
                       <div key={item.role} className="min-w-0 text-center">
-                        <div className="mx-auto flex h-[34px] w-[58px] items-center justify-center rounded-lg sm:h-[36px] sm:w-[64px]" style={{ backgroundColor: withAlpha(theme.tone, "22") }}>
+                        <div className="mx-auto flex h-[34px] w-[58px] items-center justify-center rounded-lg sm:h-[36px] sm:w-[64px]" style={{ backgroundColor: withAlpha(theme.tone, "16") }}>
                           <span className="text-lg leading-none sm:text-xl" style={{ color: aaColor, fontFamily: `'${registeredFamily}', sans-serif` }}>Aa</span>
                         </div>
                         <p className="mt-2 break-words text-[10px] font-semibold leading-4 sm:text-[11px] sm:leading-4" style={{ color: aaColor, fontFamily: `'${registeredFamily}', sans-serif` }} title={font.family}>{font.family}</p>
@@ -134,10 +130,10 @@ export default function TypographyPalette({ fontFamily = "Plus Jakarta Sans", fo
               const font = activeThemes[0][item.key];
               const registeredFamily = getRegisteredFamily(font, 0, roleIndex);
               const roleColor = palette[roleIndex % Math.min(3, palette.length)];
-              const aaColor = darkColors[roleIndex];
+              const aaColor = typeColors[roleIndex];
               return (
                 <div key={item.role} className="min-w-0 text-center">
-                  <div className="mx-auto flex h-[34px] w-[58px] items-center justify-center rounded-lg sm:h-[36px] sm:w-[64px]" style={{ backgroundColor: withAlpha(roleColor, "22") }}>
+                  <div className="mx-auto flex h-[34px] w-[58px] items-center justify-center rounded-lg sm:h-[36px] sm:w-[64px]" style={{ backgroundColor: withAlpha(roleColor, "16") }}>
                     <span className="text-lg leading-none sm:text-xl" style={{ color: aaColor, fontFamily: `'${registeredFamily}', sans-serif` }}>Aa</span>
                   </div>
                   <p className="mt-2 break-words text-[10px] font-semibold leading-4 sm:text-[11px] sm:leading-4" style={{ color: aaColor, fontFamily: `'${registeredFamily}', sans-serif` }} title={font.family}>{font.family}</p>
