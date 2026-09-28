@@ -38,15 +38,49 @@ const COLOR_NAMES: Record<string, string> = {
   "#F5B6C8": "Soft Pink",
   "#FFF9F2": "Warm Cream",
   "#40504A": "Sage Dark",
+  "#1C6B3E": "Deep Green",
+  "#60305D": "GPIB Purple",
+  "#D99A2B": "Warm Gold",
+  "#C94A3F": "Warm Red",
+  "#9E378D": "Plum Magenta",
 };
+
+const GPIB_OLD_PALETTE = [
+  "#164A8A",
+  "#3C72B5",
+  "#C9A85C",
+  "#AFC7DE",
+  "#F7F5F0",
+  "#243247",
+];
+
+const GPIB_PALETTE = [
+  "#FFFFFF",
+  "#1C6B3E",
+  "#60305D",
+  "#D99A2B",
+  "#C94A3F",
+  "#9E378D",
+];
+
+function resolvePalette(colors: string[]) {
+  const normalized = colors.map((color) => color.toUpperCase());
+  const isOldGPIBPalette =
+    normalized.length === GPIB_OLD_PALETTE.length &&
+    normalized.every((color, index) => color === GPIB_OLD_PALETTE[index]);
+
+  return isOldGPIBPalette ? GPIB_PALETTE : colors;
+}
 
 export default function ColorPalette({ colors }: ColorPaletteProps) {
   if (!colors.length) return null;
 
+  const displayColors = resolvePalette(colors);
+
   return (
     <div className="w-full px-[2px] sm:px-2">
       <div className="flex w-full items-start justify-between gap-x-[10px] sm:gap-x-3 lg:gap-x-5">
-        {colors.map((color) => {
+        {displayColors.map((color) => {
           const hex = color.toUpperCase();
           const name = COLOR_NAMES[hex] ?? "Color";
 
