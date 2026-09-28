@@ -37,7 +37,14 @@ const brandBanners: Record<string, string> = {
   "pelkat-pa-gpib-immanuel-pekanbaru": "/portfolio/banner-pelkatpa.avif",
 };
 
-
+const brandTypography: Record<string, { fontFamily: string; fontSrc?: string }> = {
+  "jendela-finansial": { fontFamily: "Plus Jakarta Sans" },
+  "consistrade-brand": { fontFamily: "Plus Jakarta Sans" },
+  "hut-67-pelkat-pa": { fontFamily: "Plus Jakarta Sans" },
+  "hut-63-pelkat-pa": { fontFamily: "Plus Jakarta Sans" },
+  "gpib-immanuel-pekanbaru": { fontFamily: "Plus Jakarta Sans" },
+  "pelkat-pa-gpib-immanuel-pekanbaru": { fontFamily: "Plus Jakarta Sans" },
+};
 
 export default function ProjectDetailPage() {
   const { t } = useLanguage();
@@ -51,6 +58,7 @@ export default function ProjectDetailPage() {
   const isBrandProject = project.category?.toUpperCase() === "BRAND IDENTITY";
   const coverImage = brandBanners[slug] ?? project.posts?.[0]?.src ?? images?.[0]?.src;
   const colorPalette = brandColorPalettes[slug];
+  const typography = brandTypography[slug] ?? { fontFamily: "Plus Jakarta Sans" };
 
   const bigIdea = slug === "gpib-immanuel-pekanbaru"
     ? "Building a visual identity that reflects GPIB Immanuel Pekanbaru as a welcoming, faithful, and active church community. The identity brings together the congregation's heritage, local character, and spirit of service into a visual language that feels recognizable, meaningful, and relevant."
@@ -126,7 +134,7 @@ export default function ProjectDetailPage() {
                     {index === 1 && colorPalette ? (
                       <div className="rounded-2xl bg-white px-4 py-6 sm:px-6 sm:py-8"><ColorPalette colors={colorPalette} /></div>
                     ) : index === 2 ? (
-                      <TypographyPalette />
+                      <TypographyPalette {...typography} />
                     ) : image ? (
                       <div className="relative w-full overflow-hidden rounded-2xl bg-white"><Image src={image.src} alt={image.alt || `${project.title} ${title}`} width={1920} height={1080} sizes="(max-width: 1280px) 100vw, 1152px" className="h-auto w-full object-contain" /></div>
                     ) : (
