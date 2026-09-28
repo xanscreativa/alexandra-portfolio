@@ -91,7 +91,7 @@ export default function ColorPalette({ colors }: ColorPaletteProps) {
                 style={{ backgroundColor: color }}
                 aria-label={`${name} ${hex}`}
               />
-              <p className="mt-2 min-h-[28px] w-full break-words text-[9px] font-semibold leading-3 text-[#2D2433] sm:mt-3 sm:min-h-[32px] sm:text-[10px] sm:leading-4 lg:text-xs">
+              <p className="mt-2 min-h-[28px] w-full break-words text-[8px] font-semibold leading-3 text-[#2D2433] sm:mt-3 sm:min-h-[32px] sm:text-[9px] sm:leading-4 lg:text-[11px]">
                 {name}
               </p>
               <p className="mt-0.5 whitespace-nowrap font-mono text-[7px] leading-3 text-[#6B6570] sm:text-[9px] lg:text-xs">
