@@ -15,7 +15,7 @@ const LinkedinIcon = ({ className = "h-3 w-3" }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
 );
 const YoutubeIcon = ({ className = "h-3 w-3" }: { className?: string }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.56 49.56 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.56 49.56 0 0 1-16.2 0"/><path d="m10 15 5-3-5-3z"/></svg>
 );
 const BehanceIcon = ({ className = "h-3 w-3" }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}><path d="M3 8h4.5a2.5 2.5 0 0 1 0 5 2.5 2.5 0 0 1 0 5H3V8z"/><path d="M3 13h4.5"/><path d="M14 13.5a2.5 2.5 0 1 1 5 0V16h-5a2.5 2.5 0 0 0 2.5 2.5c1.1 0 2-.6 2.3-1.5"/><path d="M14.5 9.5h4"/></svg>
@@ -111,11 +111,11 @@ export default function Footer() {
           <div className="self-start pt-1 lg:pt-14 flex flex-col gap-[18px] w-full">
             
             {/* EXPLORE PANEL */}
-            <div className="h-[66px] w-full rounded-full border border-[#E85D8E]/[0.18] bg-[#E85D8E]/[0.025] px-7 sm:px-8 lg:px-8 flex items-center">
-              <h4 className="shrink-0 w-[22%] text-[11px] font-extrabold uppercase tracking-[0.22em] sm:text-xs text-[#D94D82] whitespace-nowrap">
+            <div className="min-h-[92px] h-auto w-full rounded-[32px] border border-[#E85D8E]/[0.18] bg-[#E85D8E]/[0.025] px-5 py-4 flex flex-col items-center justify-center gap-2 sm:h-[66px] sm:min-h-0 sm:rounded-full sm:px-7 sm:py-0 sm:flex-row sm:justify-start sm:gap-0 lg:px-8">
+              <h4 className="shrink-0 w-auto sm:w-[22%] text-[11px] font-extrabold uppercase tracking-[0.22em] sm:text-xs text-[#D94D82] whitespace-nowrap text-center sm:text-left">
                 {t("footerExplore")}
               </h4>
-              <nav className="flex flex-1 min-w-0 items-center justify-between text-[13px] font-bold sm:text-[15px] lg:text-[16px] font-bold tracking-[-0.02em] text-[#2D2433]">
+              <nav className="flex flex-1 min-w-0 flex-wrap items-center justify-center sm:justify-between gap-x-2.5 gap-y-1 text-[13px] font-bold sm:text-[15px] lg:text-[16px] tracking-[-0.02em] text-[#2D2433]">
                 {navLinks.map((link, idx) => (
                   <React.Fragment key={link.labelKey + "-" + link.href + "-" + idx}>
                     <Link
@@ -133,11 +133,11 @@ export default function Footer() {
             </div>
 
             {/* CONNECT PANEL */}
-            <div className="h-[66px] w-full rounded-full border border-[#E85D8E]/30 bg-white/35 px-7 sm:px-8 lg:px-8 flex items-center">
-              <h4 className="w-[22%] shrink-0 text-[11px] font-extrabold uppercase tracking-[0.22em] text-[#D45D88] sm:text-xs">
+            <div className="min-h-[92px] h-auto w-full rounded-[32px] border border-[#E85D8E]/30 bg-white/35 px-5 py-4 flex flex-col items-center justify-center gap-2 sm:h-[66px] sm:min-h-0 sm:rounded-full sm:px-7 sm:py-0 sm:flex-row sm:justify-start sm:gap-0 lg:px-8">
+              <h4 className="w-auto shrink-0 sm:w-[22%] text-[11px] font-extrabold uppercase tracking-[0.22em] text-[#D45D88] sm:text-xs text-center sm:text-left">
                 {t("footerConnect")}
               </h4>
-              <div className="flex flex-1 min-w-0 items-center justify-between text-[11px] font-bold sm:text-[13px] lg:text-[14px] text-[#2D2433]">
+              <div className="flex flex-1 min-w-0 flex-wrap items-center justify-center sm:justify-between gap-x-4 gap-y-2 text-[11px] font-bold sm:text-[13px] lg:text-[14px] text-[#2D2433]">
                 {socials.map((item) => {
                   const IconComp = item.icon;
                   return (
@@ -146,7 +146,7 @@ export default function Footer() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-2 whitespace-nowrap transition-colors hover:text-[#E85D8E]"
+                      className="group inline-flex items-center gap-1.5 sm:gap-2 whitespace-nowrap transition-colors hover:text-[#E85D8E]"
                     >
                       <IconComp className="h-4 w-4 shrink-0 text-[#D45D88] sm:h-5 sm:w-5" />
                       <span>{item.label}</span>
