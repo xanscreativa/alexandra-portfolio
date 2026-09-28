@@ -577,7 +577,7 @@ export const brandSections: SectionData[] = [
       tools: "Illustrator, Figma, Photoshop",
     },
     overview:
-      "Designed internal logos, developed visual branding, created brand mascots, crafted social media content, and handled video editing for GPIB Immanuel Pekanbaru.",
+      "Developed the visual identity for GPIB Immanuel Pekanbaru by designing internal church logos that visually represent the congregation and its identity in Pekanbaru. The project also included creating Elof, a mascot representing GPIB Immanuel Pekanbaru in serving the congregation, as well as developing social media branding and church information materials with a strong, informative, and artistic identity. The visual system was designed to create consistency across church communications while remaining approachable, meaningful, and relevant to the congregation.",
     challenge:
       "Building a cohesive visual identity that bridges the church's long standing ministry heritage with a modern, approachable aesthetic for the whole congregation.",
     bigIdea:
