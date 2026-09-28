@@ -21,13 +21,15 @@ const BRAND_PALETTES: Record<string, string[]> = {
   "hut-67-pelkat-pa": ["#EE6597", "#FAAF40", "#8BC53F", "#D8A1BD", "#FBBAC8", "#FCF7F3"],
 };
 
+// High-contrast text colors derived from each project's palette.
+// These preserve the project's hue while keeping the typography legible on light tints.
 const TYPE_DARK_COLORS: Record<string, string[]> = {
-  "jendela-finansial": ["#075A8C", "#7A5700", "#3F3D38"],
-  "consistrade-brand": ["#081651", "#17337F", "#365A78"],
-  "gpib-immanuel-pekanbaru": ["#103A6B", "#2C588C", "#765F27"],
-  "pelkat-pa-gpib-immanuel-pekanbaru": ["#4F7D50", "#3E6F82", "#806316"],
-  "hut-63-pelkat-pa": ["#1F642B", "#A96816", "#3F7523"],
-  "hut-67-pelkat-pa": ["#9B3F64", "#A86216", "#4E711F"],
+  "jendela-finansial": ["#075A8C", "#684900", "#2D2C29"],
+  "consistrade-brand": ["#081651", "#17337F", "#24445E"],
+  "gpib-immanuel-pekanbaru": ["#103A6B", "#244E80", "#66501E"],
+  "pelkat-pa-gpib-immanuel-pekanbaru": ["#35613A", "#315F70", "#624B0D"],
+  "hut-63-pelkat-pa": ["#1B5B27", "#87500D", "#2E641C"],
+  "hut-67-pelkat-pa": ["#7E2D4E", "#8A4E0B", "#355B13"],
 };
 
 const JENDELA_THEMES: TypographyTheme[] = [
@@ -76,7 +78,7 @@ export default function TypographyPalette({ fontFamily = "Plus Jakarta Sans", fo
         : [fallbackTheme];
 
   const palette = BRAND_PALETTES[slug ?? ""] ?? ["#E85D8E", "#F8D9E5", "#2D2433"];
-  const darkColors = TYPE_DARK_COLORS[slug ?? ""] ?? ["#3B3040", "#3B3040", "#3B3040"];
+  const darkColors = TYPE_DARK_COLORS[slug ?? ""] ?? ["#2D2433", "#2D2433", "#2D2433"];
 
   return (
     <>
@@ -119,7 +121,7 @@ export default function TypographyPalette({ fontFamily = "Plus Jakarta Sans", fo
                         >
                           {font.family}
                         </p>
-                        <p className="mt-0.5 text-[8px] leading-3 text-[#6B6570] sm:text-[9px]">({item.role})</p>
+                        <p className="mt-0.5 text-[8px] leading-3 text-[#5A535D] sm:text-[9px]">({item.role})</p>
                       </div>
                     );
                   })}
@@ -149,7 +151,7 @@ export default function TypographyPalette({ fontFamily = "Plus Jakarta Sans", fo
                   >
                     {font.family}
                   </p>
-                  <p className="mt-0.5 text-[8px] leading-3 text-[#6B6570] sm:text-[9px]">({item.role})</p>
+                  <p className="mt-0.5 text-[8px] leading-3 text-[#5A535D] sm:text-[9px]">({item.role})</p>
                 </div>
               );
             })}
