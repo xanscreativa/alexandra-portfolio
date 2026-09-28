@@ -45,7 +45,7 @@ const colorNames: Record<string, string> = {
 export default function ColorPalette({ colors }: ColorPaletteProps) {
   return (
     <div className="w-full overflow-hidden">
-      <div className="flex w-full flex-nowrap items-start justify-between gap-2 sm:gap-3 md:gap-4">
+      <div className="flex w-full flex-nowrap items-start justify-between gap-1 sm:gap-2 md:gap-3">
         {colors.map((hex) => {
           const normalized = hex.toUpperCase();
           const name = colorNames[normalized] || "Color";
@@ -57,13 +57,13 @@ export default function ColorPalette({ colors }: ColorPaletteProps) {
             >
               <div
                 aria-label={`${name} ${hex}`}
-                className="aspect-square w-full max-w-[72px] rounded-full sm:max-w-[88px] md:max-w-[104px]"
+                className="aspect-square w-full max-w-[52px] rounded-full sm:max-w-[76px] md:max-w-[96px]"
                 style={{ backgroundColor: hex }}
               />
-              <p className="mt-2 min-h-[2.25rem] max-w-[90px] text-[8px] font-semibold leading-[1.15] text-[#2D2433] sm:mt-3 sm:text-[10px] md:text-xs">
+              <p className="mt-1 min-h-[2rem] max-w-[58px] text-[7px] font-semibold leading-[1.1] text-[#2D2433] sm:mt-2 sm:min-h-[2.25rem] sm:max-w-[80px] sm:text-[9px] md:text-xs">
                 {name}
               </p>
-              <p className="mt-0.5 whitespace-nowrap text-[8px] font-mono tracking-tight text-[#6B6570] sm:text-[10px] md:text-xs">
+              <p className="mt-0.5 whitespace-nowrap text-[7px] font-mono tracking-tight text-[#6B6570] sm:text-[9px] md:text-xs">
                 {hex.toUpperCase()}
               </p>
             </div>
