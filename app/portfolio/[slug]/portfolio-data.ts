@@ -133,7 +133,7 @@ export const defaultThumbnailGrid: GalleryItem[] = Array.from(
 // ==========================================
 
 export const socialSections: SectionData[] = [
-  {
+{
   title: "Pelkat PA GPIB Immanuel Pekanbaru",
   username: "pelkatpa.pku",
   bio: "Children's ministry Sunday service.",
@@ -142,33 +142,62 @@ export const socialSections: SectionData[] = [
   avatarBg: "from-blue-500 to-indigo-400",
 
   posts: [
-    { src: "/portfolio/pa-1.avif" },
-    { src: "/portfolio/pa-2.avif" },
-    { src: "/portfolio/pa-3.avif" },
-    { src: "/portfolio/pa-4.avif" },
-    { src: "/portfolio/pa-5.avif" },
-    { src: "/portfolio/pa-6.avif" },
-
+    {
+      src: "/portfolio/pa-1.avif",
+      alt: "Pelkat PA social media post 1",
+      caption: "Pelkat PA",
+    },
+    {
+      src: "/portfolio/pa-2.avif",
+      alt: "Pelkat PA social media post 2",
+      caption: "Pelkat PA",
+    },
+    {
+      src: "/portfolio/pa-3.avif",
+      alt: "Pelkat PA social media post 3",
+      caption: "Pelkat PA",
+    },
+    {
+      src: "/portfolio/pa-4.avif",
+      alt: "Pelkat PA social media post 4",
+      caption: "Pelkat PA",
+    },
+    {
+      src: "/portfolio/pa-5.avif",
+      alt: "Pelkat PA social media post 5",
+      caption: "Pelkat PA",
+    },
+    {
+      src: "/portfolio/pa-6.avif",
+      alt: "Pelkat PA social media post 6",
+      caption: "Pelkat PA",
+    },
     {
       src: "/portfolio/pa-7a.avif",
-      carousel: [
-        "/portfolio/pa-7a.avif",
-        "/portfolio/pa-7b.avif",
-        "/portfolio/pa-7c.avif",
-        "/portfolio/pa-7d.avif",
+      alt: "Pelkat PA carousel 7",
+      caption: "Pelkat PA",
+      subSlides: [
+        { src: "/portfolio/pa-7a.avif" },
+        { src: "/portfolio/pa-7b.avif" },
+        { src: "/portfolio/pa-7c.avif" },
+        { src: "/portfolio/pa-7d.avif" },
       ],
     },
-
-    { src: "/portfolio/pa-8.avif" },
-
+    {
+      src: "/portfolio/pa-8.avif",
+      alt: "Pelkat PA social media post 8",
+      caption: "Pelkat PA",
+    },
     {
       src: "/portfolio/pa-9a.avif",
-      carousel: [
-        "/portfolio/pa-9a.avif",
-        "/portfolio/pa-9b.avif",
-        "/portfolio/pa-9c.avif",
-        "/portfolio/pa-9d.avif",
-        "/portfolio/pa-9e.avif",
+      alt: "Pelkat PA carousel 9",
+      caption: "Pelkat PA",
+      subSlides: [
+        { src: "/portfolio/pa-9a.avif" },
+        { src: "/portfolio/pa-9b.avif" },
+        { src: "/portfolio/pa-9c.avif" },
+        { src: "/portfolio/pa-9d.avif" },
+        { src: "/portfolio/pa-9e.avif" },
       ],
     },
   ],
@@ -178,7 +207,7 @@ export const socialSections: SectionData[] = [
     industry: "Community & Ministry",
     role: "Visual Designer",
     year: "2024",
-    deliverables: "Event assets, social media story templates",
+    deliverables: "Event assets, social media content, and carousel posts",
     tools: "Adobe Illustrator, Canva",
   },
 
