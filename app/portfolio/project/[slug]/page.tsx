@@ -65,7 +65,7 @@ export default function ProjectDetailPage() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-white text-[#2D2433] selection:bg-pink-100 selection:text-pink-900">
       {coverImage && (
-        <section className="mx-auto max-w-6xl pt-20 sm:pt-24 lg:pt-28">
+        <section className={`mx-auto max-w-6xl ${brandBanners[slug] ? "pt-[57px] md:pt-[53px]" : "pt-20 sm:pt-24 lg:pt-28"}`}>
           <div className="relative aspect-[820/312] w-full overflow-hidden bg-pink-50">
             <Image src={coverImage} alt={`${project.title} cover`} fill priority sizes="(max-width: 1280px) 100vw, 1200px" className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#2D2433]/20 via-transparent to-white/5" />
@@ -82,7 +82,7 @@ export default function ProjectDetailPage() {
         </div>
         <div className="max-w-5xl">
           <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">{project.category}</span>
-          <h1 className="mt-4 max-w-5xl text-4xl font-extrabold uppercase leading-[0.94] tracking-tight text-[#2D2433] sm:mt-5 sm:text-6xl lg:text-7xl">{project.title}</h1>
+          <h1 className={`mt-4 max-w-5xl ${isBrandProject ? "text-3xl sm:text-5xl lg:text-6xl" : "text-4xl sm:text-6xl lg:text-7xl"} font-extrabold uppercase leading-[0.94] tracking-tight text-[#2D2433] sm:mt-5`}>{project.title}</h1>
           <div className="mt-8 grid grid-cols-3 border-y border-pink-100 sm:mt-10">
             <div className="border-r border-pink-100 py-4 pr-3 sm:py-5 sm:pr-6"><p className="text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-500 sm:text-[10px]">Client</p><p className="mt-1.5 text-xs font-semibold leading-relaxed text-[#2D2433] sm:text-sm">{project.details.client}</p></div>
             <div className="border-r border-pink-100 px-3 py-4 sm:px-6 sm:py-5"><p className="text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-500 sm:text-[10px]">Industry</p><p className="mt-1.5 text-xs font-semibold leading-relaxed text-[#2D2433] sm:text-sm">{project.details.industry}</p></div>

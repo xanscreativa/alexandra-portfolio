@@ -81,7 +81,7 @@ export default function TypographyPalette({ fontFamily = "Plus Jakarta Sans", fo
     return (
       <div className="w-full bg-white px-1 py-2 sm:px-2 sm:py-3">
         <p className="max-w-3xl text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">
-          The typography uses a rounded sans serif style, with decorative typography applied to the logo. Serif fonts such as Times New Roman should be avoided.
+          Rounded sans serif and decorative lettering create a clean, modern, and distinctive visual identity.
         </p>
       </div>
     );
@@ -90,10 +90,9 @@ export default function TypographyPalette({ fontFamily = "Plus Jakarta Sans", fo
   if (slug === "pelkat-pa-gpib-immanuel-pekanbaru") {
     return (
       <div className="w-full bg-white px-1 py-2 sm:px-2 sm:py-3">
-        <div className="max-w-3xl space-y-2 text-sm leading-6 text-[#40504A] sm:text-base sm:leading-7">
-          <p><span className="font-semibold">Heading:</span> Rounded and decorative fonts are used to create a playful, warm, and friendly visual character that suits the children&apos;s ministry identity.</p>
-          <p><span className="font-semibold">Body Text:</span> KG Primary and Poppins are used for clear, approachable, and easy-to-read supporting text.</p>
-        </div>
+        <p className="max-w-3xl text-sm leading-6 text-[#40504A] sm:text-base sm:leading-7">
+          Rounded and decorative fonts create a warm, playful character for headings, while KG Primary and Poppins ensure clear and comfortable body text.
+        </p>
       </div>
     );
   }
