@@ -1,0 +1,42 @@
+name: Update GPIB Immanuel Description
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update GPIB description
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('app/portfolio/[slug]/portfolio-data.ts')
+          text = path.read_text(encoding='utf-8')
+
+          old = '''    overview:\n      "Designed internal logos, developed visual branding, created brand mascots, crafted social media content, and handled video editing for GPIB Immanuel Pekanbaru.",'''
+          new = '''    overview:\n      "Developed the visual identity for GPIB Immanuel Pekanbaru by designing internal church logos that visually represent the congregation and its identity in Pekanbaru. The project also included creating Elof, a mascot representing GPIB Immanuel Pekanbaru in serving the congregation, as well as developing social media branding and church information materials with a strong, informative, and artistic identity. The visual system was designed to create consistency across church communications while remaining approachable, meaningful, and relevant to the congregation.",'''
+
+          if old not in text:
+              raise SystemExit('Target GPIB overview not found; no changes made.')
+
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+
+      - name: Commit changes and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/portfolio/'[slug]'/portfolio-data.ts .github/workflows/update-gpib-description.yml
+          git rm .github/workflows/update-gpib-description.yml
+          git commit -m "Update GPIB Immanuel project description"
+          git push
