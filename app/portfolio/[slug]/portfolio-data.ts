@@ -134,64 +134,60 @@ export const defaultThumbnailGrid: GalleryItem[] = Array.from(
 
 export const socialSections: SectionData[] = [
   {
-    title: "Pelkat PA GPIB Immanuel Pekanbaru",
-    username: "pelkatpa.pku",
-    bio: "Children's ministry Sunday service.",
-    avatarImage: "/portfolio/pa-logo.avif",
-    avatarText: "P",
-    avatarBg: "from-blue-500 to-indigo-400",
-    posts: [
-      { src: "/portfolio/pa-1.avif" },
-      { src: "/portfolio/pa-2.avif" },
-      { src: "/portfolio/pa-3.avif" },
-      { src: "/portfolio/pa-4.avif" },
-      { src: "/portfolio/pa-5.avif" },
-      { src: "/portfolio/pa-6.avif" },
-      {
-        src: "/portfolio/pa-7.avif",
-        alt: "Pelkat PA social media carousel 7",
-        caption: "Pelkat PA carousel 7",
-        subSlides: [
-          { src: "/portfolio/pa-7.avif" },
-          { src: "/portfolio/pa-7a.avif" },
-          { src: "/portfolio/pa-7b.avif" },
-          { src: "/portfolio/pa-7c.avif" },
-          { src: "/portfolio/pa-7d.avif" },
-        ],
-      },
-      {
-        src: "/portfolio/pa-8.avif",
-        alt: "Pelkat PA social media post 8",
-        caption: "Pelkat PA post 8",
-      },
-      {
-        src: "/portfolio/pa-9.avif",
-        alt: "Pelkat PA social media carousel 9",
-        caption: "Pelkat PA carousel 9",
-        subSlides: [
-          { src: "/portfolio/pa-9.avif" },
-          { src: "/portfolio/pa-9a.avif" },
-          { src: "/portfolio/pa-9b.avif" },
-          { src: "/portfolio/pa-9c.avif" },
-          { src: "/portfolio/pa-9d.avif" },
-          { src: "/portfolio/pa-9e.avif" },
-        ],
-      },
-    ],
-    details: {
-      client: "Pelkat PA GPIB Immanuel Pekanbaru",
-      industry: "Community & Ministry",
-      role: "Visual Designer",
-      year: "2024",
-      deliverables: "Event assets, social media story templates",
-      tools: "Adobe Illustrator, Canva",
+  title: "Pelkat PA GPIB Immanuel Pekanbaru",
+  username: "pelkatpa.pku",
+  bio: "Children's ministry Sunday service.",
+  avatarImage: "/portfolio/pa-logo.avif",
+  avatarText: "P",
+  avatarBg: "from-blue-500 to-indigo-400",
+
+  posts: [
+    { src: "/portfolio/pa-1.avif" },
+    { src: "/portfolio/pa-2.avif" },
+    { src: "/portfolio/pa-3.avif" },
+    { src: "/portfolio/pa-4.avif" },
+    { src: "/portfolio/pa-5.avif" },
+    { src: "/portfolio/pa-6.avif" },
+
+    {
+      src: "/portfolio/pa-7a.avif",
+      carousel: [
+        "/portfolio/pa-7a.avif",
+        "/portfolio/pa-7b.avif",
+        "/portfolio/pa-7c.avif",
+        "/portfolio/pa-7d.avif",
+      ],
     },
-    overview:
-      "Created joyful and engaging visual content for children's ministry events and daily spiritual communication. The designs were developed to feel vibrant, warm, and approachable while maintaining a clear and consistent visual identity.",
-    challenge:
-      "The main challenge was balancing a playful, child-friendly aesthetic with the established branding and visual guidelines of the church.",
+
+    { src: "/portfolio/pa-8.avif" },
+
+    {
+      src: "/portfolio/pa-9a.avif",
+      carousel: [
+        "/portfolio/pa-9a.avif",
+        "/portfolio/pa-9b.avif",
+        "/portfolio/pa-9c.avif",
+        "/portfolio/pa-9d.avif",
+        "/portfolio/pa-9e.avif",
+      ],
+    },
+  ],
+
+  details: {
+    client: "Pelkat PA GPIB Immanuel Pekanbaru",
+    industry: "Community & Ministry",
+    role: "Visual Designer",
+    year: "2024",
+    deliverables: "Event assets, social media story templates",
+    tools: "Adobe Illustrator, Canva",
   },
 
+  overview:
+    "Created joyful and engaging visual content for children's ministry events and daily spiritual communication. The designs were developed to feel vibrant, warm, and approachable while maintaining a clear and consistent visual identity.",
+
+  challenge:
+    "The main challenge was balancing a playful, child-friendly aesthetic with the established branding and visual guidelines of the church.",
+},
   {
     title: "UKSW",
     username: "uksw_salatiga",
