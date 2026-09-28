@@ -7,6 +7,7 @@ import ProjectDetailGallery from "@/components/work/ProjectDetailGallery";
 import ProjectDetailNext from "@/components/work/ProjectDetailNext";
 import ProjectDetailSection from "@/components/work/ProjectDetailSection";
 import ProjectVideo from "@/components/work/ProjectVideo";
+import ColorPalette from "@/components/work/ColorPalette";
 
 // Optional Case Study Extensions for Type Safety
 interface CreativeProcessStep {
@@ -229,19 +230,7 @@ export default async function WorkPage({
                     <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-[#6B6570]">
                       Color Palette
                     </p>
-                    <div className="flex flex-wrap gap-4">
-                      {project.brandColors.map((color: string) => (
-                        <div key={color} className="flex flex-col items-center">
-                          <div
-                            className="h-16 w-16 rounded-2xl border border-black/10 shadow-sm"
-                            style={{ backgroundColor: color }}
-                          />
-                          <span className="mt-2 text-xs font-mono text-[#6B6570]">
-                            {color}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
+                    <ColorPalette colors={project.brandColors} />
                   </div>
                 )}
 
