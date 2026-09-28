@@ -26,6 +26,7 @@ export default function ProjectDetailPage() {
   if (!project) notFound();
 
   const images = project.projectImages ?? project.posts;
+  const isBrandProject = project.category?.toUpperCase() === "BRAND IDENTITY";
   const isGpibProject = slug === "gpib-immanuel-pekanbaru";
   const coverImage = project.posts?.[0]?.src ?? images?.[0]?.src;
 
@@ -128,22 +129,21 @@ export default function ProjectDetailPage() {
         </div>
       </section>
 
-      {/* BRAND DEVELOPMENT / EDITABLE TEMPLATE */}
-      <section className="mx-auto max-w-6xl px-4 pb-12 pt-3 sm:px-8 sm:pb-20 sm:pt-5 lg:px-10">
-        <div className="mb-6 flex items-end justify-between gap-4 sm:mb-8">
-          <div>
-            <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">BRAND DEVELOPMENT</span>
-            <h2 className="mt-3 text-2xl font-extrabold uppercase tracking-tight text-[#2D2433] sm:text-3xl">Brand Guideline</h2>
+      {/* BRAND DEVELOPMENT / SAME TEMPLATE FOR ALL BRAND PROJECTS */}
+      {isBrandProject ? (
+        <section className="mx-auto max-w-6xl px-4 pb-12 pt-3 sm:px-8 sm:pb-20 sm:pt-5 lg:px-10">
+          <div className="mb-6 flex items-end justify-between gap-4 sm:mb-8">
+            <div>
+              <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">BRAND DEVELOPMENT</span>
+              <h2 className="mt-3 text-2xl font-extrabold uppercase tracking-tight text-[#2D2433] sm:text-3xl">Brand Guideline</h2>
+            </div>
+            <span className="hidden rounded-full border border-pink-100 bg-white px-3 py-1 text-[8px] font-mono font-bold uppercase tracking-wider text-[#A39BA4] sm:block">6 IMAGE SLOTS</span>
           </div>
-          <span className="hidden rounded-full border border-pink-100 bg-white px-3 py-1 text-[8px] font-mono font-bold uppercase tracking-wider text-[#A39BA4] sm:block">
-            {isGpibProject ? "6 IMAGE SLOTS" : `${images.length.toString().padStart(2, "0")} IMAGES`}
-          </span>
-        </div>
 
-        {isGpibProject ? (
           <div className="space-y-5 sm:space-y-7">
             {guidelineSlots.map(([number, title, description], index) => {
               const image = images[index];
+
               return (
                 <article key={number} className="overflow-hidden rounded-[24px] border border-pink-100 bg-[#FFFBFD] shadow-[0_18px_50px_-25px_rgba(45,36,51,0.22)] sm:rounded-[30px]">
                   <div className="flex items-center justify-between gap-4 border-b border-pink-100 px-4 py-4 sm:px-6 sm:py-5">
@@ -171,7 +171,7 @@ export default function ProjectDetailPage() {
                       </div>
                     ) : (
                       <div className="flex min-h-[240px] items-center justify-center rounded-2xl border-2 border-dashed border-pink-200 bg-white sm:min-h-[380px]">
-                        <div className="text-center px-6">
+                        <div className="px-6 text-center">
                           <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-pink-50 text-xl font-light text-pink-400">+</div>
                           <p className="mt-3 text-xs font-bold uppercase tracking-wider text-[#6B6570]">Add {title} image</p>
                           <p className="mt-1 text-[10px] leading-relaxed text-[#A39BA4]">Tambahkan file ke public/portfolio lalu masukkan path-nya ke projectImages.</p>
@@ -183,7 +183,13 @@ export default function ProjectDetailPage() {
               );
             })}
           </div>
-        ) : (
+        </section>
+      ) : (
+        <section className="mx-auto max-w-6xl px-4 pb-12 pt-3 sm:px-8 sm:pb-20 sm:pt-5 lg:px-10">
+          <div className="mb-6 flex items-center justify-between sm:mb-8">
+            <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">PROJECT GALLERY</span>
+            <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-[#A39BA4] sm:text-[10px]">{images.length.toString().padStart(2, "0")} {images.length === 1 ? "IMAGE" : "IMAGES"}</span>
+          </div>
           <div className="space-y-5 sm:space-y-8">
             {images.map((image, index) => (
               <figure key={`${image.src}-${index}`} className="overflow-hidden rounded-2xl border border-pink-100 bg-white shadow-[0_18px_45px_-25px_rgba(233,106,152,0.25)] sm:rounded-3xl">
@@ -192,8 +198,8 @@ export default function ProjectDetailPage() {
               </figure>
             ))}
           </div>
-        )}
-      </section>
+        </section>
+      )}
 
       {/* FOOTER NAVIGATION */}
       <div className="mx-auto max-w-6xl px-5 pb-16 sm:px-8 sm:pb-24 lg:px-10">
