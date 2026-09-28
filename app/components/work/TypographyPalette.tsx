@@ -8,7 +8,7 @@ type TypographyPaletteProps = { fontFamily?: string; fontSrc?: string; themes?: 
 
 const ROLE_META = [
   { key: "heading", role: "Heading" },
-  { key: "subheading", role: "Subheading" },
+  { key: "subheading", role: "Sub Heading" },
   { key: "body", role: "Body Text" },
 ] as const;
 
@@ -21,8 +21,6 @@ const BRAND_PALETTES: Record<string, string[]> = {
   "hut-67-pelkat-pa": ["#EE6597", "#FAAF40", "#8BC53F", "#D8A1BD", "#FBBAC8", "#FCF7F3"],
 };
 
-// High-contrast text colors derived from each project's palette.
-// These preserve the project's hue while keeping the typography legible on light tints.
 const TYPE_DARK_COLORS: Record<string, string[]> = {
   "jendela-finansial": ["#075A8C", "#684900", "#2D2C29"],
   "consistrade-brand": ["#081651", "#17337F", "#24445E"],
@@ -37,6 +35,14 @@ const JENDELA_THEMES: TypographyTheme[] = [
   { name: "Yellow Theme", tone: "#FFB719", heading: { family: "Alphakind", src: "/fonts/branding/Alphakind.woff2" }, subheading: { family: "Poppins", src: "/fonts/branding/Poppins.woff2" }, body: { family: "Mulish", src: "/fonts/branding/Mulish.woff2" } },
   { name: "White Theme", tone: "#D7D2C9", heading: { family: "Peach Days", src: "/fonts/branding/PeachDays.woff2" }, subheading: { family: "Dish Out", src: "/fonts/branding/DishOut.woff2" }, body: { family: "Mulish", src: "/fonts/branding/Mulish.woff2" } },
 ];
+
+const CONSISTRADE_THEME: TypographyTheme = {
+  name: "Consistrade Type",
+  tone: "#081651",
+  heading: { family: "Poppins Black", src: "/fonts/branding/Poppins-Black.woff2" },
+  subheading: { family: "Poppins Semi Bold", src: "/fonts/branding/Poppins-SemiBold.woff2" },
+  body: { family: "Outfit", src: "/fonts/branding/Outfit.woff2" },
+};
 
 const HUT67_THEMES: TypographyTheme[] = [
   { name: "HUT 67 Type", tone: "#EE6597", heading: { family: "Howdybun", src: "/fonts/branding/Howdybun.woff2" }, subheading: { family: "Open Sans Condensed", src: "/fonts/branding/OpenSansCondensed.woff2" }, body: { family: "Outfit", src: "/fonts/branding/Outfit.woff2" } },
@@ -73,9 +79,11 @@ export default function TypographyPalette({ fontFamily = "Plus Jakarta Sans", fo
     ? themes
     : slug === "jendela-finansial"
       ? JENDELA_THEMES
-      : slug === "hut-67-pelkat-pa"
-        ? HUT67_THEMES
-        : [fallbackTheme];
+      : slug === "consistrade-brand"
+        ? [CONSISTRADE_THEME]
+        : slug === "hut-67-pelkat-pa"
+          ? HUT67_THEMES
+          : [fallbackTheme];
 
   const palette = BRAND_PALETTES[slug ?? ""] ?? ["#E85D8E", "#F8D9E5", "#2D2433"];
   const darkColors = TYPE_DARK_COLORS[slug ?? ""] ?? ["#2D2433", "#2D2433", "#2D2433"];
@@ -108,19 +116,10 @@ export default function TypographyPalette({ fontFamily = "Plus Jakarta Sans", fo
                     const aaColor = darkColors[roleIndex];
                     return (
                       <div key={item.role} className="min-w-0 text-center">
-                        <div
-                          className="mx-auto flex h-[34px] w-[58px] items-center justify-center rounded-lg sm:h-[36px] sm:w-[64px]"
-                          style={{ backgroundColor: withAlpha(theme.tone, "22") }}
-                        >
+                        <div className="mx-auto flex h-[34px] w-[58px] items-center justify-center rounded-lg sm:h-[36px] sm:w-[64px]" style={{ backgroundColor: withAlpha(theme.tone, "22") }}>
                           <span className="text-lg leading-none sm:text-xl" style={{ color: aaColor, fontFamily: `'${registeredFamily}', sans-serif` }}>Aa</span>
                         </div>
-                        <p
-                          className="mt-2 break-words text-[10px] font-semibold leading-4 sm:text-[11px] sm:leading-4"
-                          style={{ color: aaColor, fontFamily: `'${registeredFamily}', sans-serif` }}
-                          title={font.family}
-                        >
-                          {font.family}
-                        </p>
+                        <p className="mt-2 break-words text-[10px] font-semibold leading-4 sm:text-[11px] sm:leading-4" style={{ color: aaColor, fontFamily: `'${registeredFamily}', sans-serif` }} title={font.family}>{font.family}</p>
                         <p className="mt-0.5 text-[8px] leading-3 text-[#5A535D] sm:text-[9px]">({item.role})</p>
                       </div>
                     );
@@ -138,19 +137,10 @@ export default function TypographyPalette({ fontFamily = "Plus Jakarta Sans", fo
               const aaColor = darkColors[roleIndex];
               return (
                 <div key={item.role} className="min-w-0 text-center">
-                  <div
-                    className="mx-auto flex h-[34px] w-[58px] items-center justify-center rounded-lg sm:h-[36px] sm:w-[64px]"
-                    style={{ backgroundColor: withAlpha(roleColor, "22") }}
-                  >
+                  <div className="mx-auto flex h-[34px] w-[58px] items-center justify-center rounded-lg sm:h-[36px] sm:w-[64px]" style={{ backgroundColor: withAlpha(roleColor, "22") }}>
                     <span className="text-lg leading-none sm:text-xl" style={{ color: aaColor, fontFamily: `'${registeredFamily}', sans-serif` }}>Aa</span>
                   </div>
-                  <p
-                    className="mt-2 break-words text-[10px] font-semibold leading-4 sm:text-[11px] sm:leading-4"
-                    style={{ color: aaColor, fontFamily: `'${registeredFamily}', sans-serif` }}
-                    title={font.family}
-                  >
-                    {font.family}
-                  </p>
+                  <p className="mt-2 break-words text-[10px] font-semibold leading-4 sm:text-[11px] sm:leading-4" style={{ color: aaColor, fontFamily: `'${registeredFamily}', sans-serif` }} title={font.family}>{font.family}</p>
                   <p className="mt-0.5 text-[8px] leading-3 text-[#5A535D] sm:text-[9px]">({item.role})</p>
                 </div>
               );
