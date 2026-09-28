@@ -52,6 +52,17 @@ const JENDELA_THEMES: TypographyTheme[] = [
   },
 ];
 
+const HUT67_THEMES: TypographyTheme[] = [
+  {
+    name: "HUT 67 Type",
+    tone: "#2A8639",
+    heading: { family: "Howdybun", src: "/fonts/branding/Howdybun.woff2" },
+    subheading: { family: "Open Sans Condensed", src: "/fonts/branding/OpenSansCondensed.woff2" },
+    body: { family: "Outfit", src: "/fonts/branding/Outfit.woff2" },
+    note: "BRAND TYPE SYSTEM",
+  },
+];
+
 const getRegisteredFamily = (font: TypographyFont, themeIndex: number, roleIndex: number) =>
   font.src
     ? `Typography-${themeIndex}-${roleIndex}-${font.family.replace(/[^a-zA-Z0-9]/g, "")}`
@@ -93,7 +104,13 @@ export default function TypographyPalette({
     );
   }
 
-  const activeThemes = themes?.length ? themes : slug === "jendela-finansial" ? JENDELA_THEMES : [fallbackTheme];
+  const activeThemes = themes?.length
+    ? themes
+    : slug === "jendela-finansial"
+      ? JENDELA_THEMES
+      : slug === "hut-67-pelkat-pa"
+        ? HUT67_THEMES
+        : [fallbackTheme];
 
   return (
     <>
