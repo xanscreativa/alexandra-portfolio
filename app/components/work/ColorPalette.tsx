@@ -44,26 +44,23 @@ export default function ColorPalette({ colors }: ColorPaletteProps) {
   if (!colors.length) return null;
 
   return (
-    <div className="w-full overflow-x-auto pb-2">
-      <div className="flex min-w-max items-start justify-between gap-6 sm:gap-8 lg:gap-10">
+    <div className="w-full overflow-hidden">
+      <div className="grid w-full grid-cols-6 items-start gap-x-1 gap-y-2 sm:gap-x-2 lg:gap-x-4">
         {colors.map((color) => {
           const hex = color.toUpperCase();
           const name = COLOR_NAMES[hex] ?? "Color";
 
           return (
-            <div
-              key={color}
-              className="flex w-[72px] shrink-0 flex-col items-center text-center sm:w-[88px] lg:w-[104px]"
-            >
+            <div key={color} className="flex min-w-0 flex-col items-center text-center">
               <div
-                className="h-[72px] w-[72px] rounded-full border border-black/10 shadow-[0_5px_12px_rgba(45,36,51,0.16)] sm:h-[88px] sm:w-[88px] lg:h-[104px] lg:w-[104px]"
+                className="h-[48px] w-[48px] rounded-full border border-black/10 sm:h-[72px] sm:w-[72px] lg:h-[104px] lg:w-[104px]"
                 style={{ backgroundColor: color }}
                 aria-label={`${name} ${hex}`}
               />
-              <p className="mt-3 min-h-[32px] text-[10px] font-semibold leading-4 text-[#2D2433] sm:text-xs">
+              <p className="mt-2 min-h-[28px] max-w-full break-words text-[8px] font-semibold leading-3 text-[#2D2433] sm:mt-3 sm:min-h-[32px] sm:text-[10px] sm:leading-4 lg:text-xs">
                 {name}
               </p>
-              <p className="mt-1 font-mono text-[10px] leading-4 text-[#6B6570] sm:text-xs">
+              <p className="mt-0.5 font-mono text-[7px] leading-3 text-[#6B6570] sm:text-[9px] lg:text-xs">
                 {hex}
               </p>
             </div>
