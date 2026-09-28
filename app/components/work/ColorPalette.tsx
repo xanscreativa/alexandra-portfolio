@@ -45,19 +45,19 @@ export default function ColorPalette({ colors }: ColorPaletteProps) {
 
   return (
     <div className="w-full px-[2px] sm:px-2">
-      <div className="flex w-full min-w-0 items-start justify-center gap-x-[15px] sm:gap-x-3 lg:gap-x-5">
+      <div className="flex w-full items-start justify-between gap-x-[8px] sm:gap-x-3 lg:gap-x-5">
         {colors.map((color) => {
           const hex = color.toUpperCase();
           const name = COLOR_NAMES[hex] ?? "Color";
 
           return (
-            <div key={color} className="flex min-w-0 shrink-0 flex-col items-center text-center">
+            <div key={color} className="flex min-w-0 flex-1 flex-col items-center text-center">
               <div
                 className="h-11 w-11 shrink-0 rounded-full border border-black/10 sm:h-[68px] sm:w-[68px] lg:h-[96px] lg:w-[96px]"
                 style={{ backgroundColor: color }}
                 aria-label={`${name} ${hex}`}
               />
-              <p className="mt-2 min-h-[28px] w-[44px] break-words text-[9px] font-semibold leading-3 text-[#2D2433] sm:mt-3 sm:min-h-[32px] sm:w-[68px] sm:text-[10px] sm:leading-4 lg:w-[96px] lg:text-xs">
+              <p className="mt-2 min-h-[28px] w-full break-words text-[9px] font-semibold leading-3 text-[#2D2433] sm:mt-3 sm:min-h-[32px] sm:text-[10px] sm:leading-4 lg:text-xs">
                 {name}
               </p>
               <p className="mt-0.5 whitespace-nowrap font-mono text-[7px] leading-3 text-[#6B6570] sm:text-[9px] lg:text-xs">
