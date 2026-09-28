@@ -580,8 +580,6 @@ export const brandSections: SectionData[] = [
       "Developed the visual identity for GPIB Immanuel Pekanbaru by designing internal church logos that visually represent the congregation and its identity in Pekanbaru. The project also included creating Elof, a mascot representing GPIB Immanuel Pekanbaru in serving the congregation, as well as developing social media branding and church information materials with a strong, informative, and artistic identity. The visual system was designed to create consistency across church communications while remaining approachable, meaningful, and relevant to the congregation.",
     challenge:
       "Building a cohesive visual identity that bridges the church's long standing ministry heritage with a modern, approachable aesthetic for the whole congregation.",
-    bigIdea:
-      "Introducing 'Elof', a mascot inspired by Rudolf Knierim (the first missionary and pastor of GPIB). The name Immanuel Rudolf is abbreviated to Elof with the philosophy: E (ImmanuEl - God with us), L (Light - living in God's light), O (Obedience - walking in His path), and F (Faith - moving forward in faith). Core Philosophy: Walking together with God in light, obedience, and faith.",
     projectImages: [
       {
         src: "/portfolio/branding-gpib.avif",
@@ -618,8 +616,6 @@ export const brandSections: SectionData[] = [
       "A financial and trading education brand providing digital learning modules for users ranging from beginners to professionals. Responsible for logo design, brand character development, and social media content design.",
     challenge:
       "Crafting a professional trading identity that feels welcoming and approachable for beginner traders without being intimidating.",
-    bigIdea:
-      "Introducing 'Teddy', a mascot representing financially savvy youth who enjoys sharing trading knowledge in a relatable and inspiring manner.",
     projectImages: [
       {
         src: "/portfolio/branding-consistrade.avif",
