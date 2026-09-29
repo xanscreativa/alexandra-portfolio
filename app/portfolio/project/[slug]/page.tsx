@@ -18,6 +18,61 @@ const guidelineSlots = [
   ["06", "CHARACTER", "Character / mascot beserta variasi pose dan penggunaannya."],
 ] as const;
 
+const otherBrandGuidelineSlots = [
+  ["01", "LOGO", ""],
+  ["04", "ELEMENT", ""],
+  ["05", "SUPPORTING ELEMENT", ""],
+  ["06", "CHARACTER", ""],
+] as const;
+
+const gpibBrandGuidelineSlots = [
+  ["01", "LOGO", ""],
+  ["02", "MEANING", ""],
+  ["03", "COLORS", ""],
+  ["04", "TYPOGRAPHY", ""],
+  ["05", "SUPPORTING ELEMENT", ""],
+  ["06", "CHARACTER", ""],
+] as const;
+
+const consistradeBrandGuidelineSlots = [
+  ["01", "LOGO", ""],
+  ["02", "LOGO MEANING", ""],
+  ["03", "COLORS", ""],
+  ["04", "TYPOGRAPHY", ""],
+  ["05", "ELEMENT", ""],
+  ["06", "CHARACTER", ""],
+] as const;
+
+const hut63BrandGuidelineSlots = [
+  ["01", "LOGO", ""],
+  ["02", "MEANING", ""],
+  ["03", "CLEAR SPACE", ""],
+  ["04", "SIZE", ""],
+  ["05", "COLORS", ""],
+  ["06", "TYPOGRAPHY", ""],
+  ["07", "MERCHANDISE", ""],
+] as const;
+
+const hut67BrandGuidelineSlots = [
+  ["01", "LOGO", ""],
+  ["02", "MEANING", ""],
+  ["03", "LOGO STRUCTURE", ""],
+  ["04", "CLEAR SPACE", ""],
+  ["05", "COLORS", ""],
+  ["06", "TYPOGRAPHY", ""],
+  ["07", "CHARACTER", ""],
+  ["08", "MERCHANDISE", ""],
+] as const;
+
+const jendelaGuidelineDescriptions: Record<string, string> = {
+  "01": "The existing logo provided by the client served as the foundation for developing the brand's visual language. The visual system was then extended through color, typography, graphic elements, and supporting assets to create a cohesive and recognizable identity.",
+  "02": "The color palette combines blue, yellow, white, and deep navy to create a balance between trust, optimism, and clarity. Blue represents trust, stability, and credibility, while yellow brings optimism, energy, and approachability. White provides clarity and breathing space, while deep navy adds contrast and professionalism.",
+  "03": "Three distinct typographic themes create a visual language that feels fun, approachable, and educational. The variation helps make complex financial topics feel lighter, more engaging, and easier for audiences to explore and understand.",
+  "04": "The visual elements incorporate authentic photographic documentation from various sources to create a relatable and contemporary feel. Object-based photography is edited using selected brand colors, such as white–yellow or white–blue combinations, depending on the visual theme. Photography featuring people uses black-and-white or grayscale treatment to maintain consistency while keeping the overall composition clean and focused.",
+  "05": "A subtle grid system is used as the foundation for the background, adapting to the brand's blue, yellow, and white themes. With approximately 15% transparency, the grid adds texture and visual depth without making the background feel busy or tiring to read. Speech bubbles create a more interactive and conversational feel, while arrows provide additional visual direction and support the information hierarchy.",
+  "06": "Jeni and Jeno represent Millennials and Gen Z—relaxed, curious, and eager to learn and grow. Their connection to financial topics reflects a generation that is increasingly conscious of money, personal growth, and the pursuit of financial freedom. Designed as friendly and supportive characters, Jeni and Jeno make financial education feel more relatable, approachable, and enjoyable.",
+};
+
 const brandColorPalettes: Record<string, string[]> = {
   "jendela-finansial": ["#087FC7", "#FFB719", "#FFFFFF", "#5F8FD1", "#FFF4D6", "#202B3C"],
   "consistrade-brand": ["#081651", "#2846A9", "#72B6F5", "#7C60D7", "#CF71EA", "#F9F6FC"],
@@ -54,6 +109,11 @@ export default function ProjectDetailPage() {
 
   const images = project.projectImages ?? project.posts;
   const isBrandProject = project.category?.toUpperCase() === "BRAND IDENTITY";
+  const isJendelaProject = slug === "jendela-finansial";
+  const isGpibProject = slug === "gpib-immanuel-pekanbaru";
+  const isConsistradeProject = slug === "consistrade-brand";
+  const isHut63Project = slug === "hut-63-pelkat-pa";
+  const isHut67Project = slug === "hut-67-pelkat-pa";
   const coverImage = brandBanners[slug] ?? project.posts?.[0]?.src ?? images?.[0]?.src;
   const colorPalette = brandColorPalettes[slug];
   const typography = brandTypography[slug] ?? { fontFamily: "Plus Jakarta Sans" };
@@ -131,16 +191,129 @@ export default function ProjectDetailPage() {
 
       {isBrandProject ? (
         <section className="mx-auto max-w-6xl px-4 pb-12 pt-3 sm:px-8 sm:pb-20 sm:pt-5 lg:px-10">
+          {isJendelaProject && (
+            <div className="mb-8 max-w-4xl">
+              <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">BIG IDEA</span>
+              <p className="mt-4 whitespace-pre-line text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{project.bigIdea}</p>
+            </div>
+          )}
           <div className="mb-6 flex items-end justify-between gap-4 sm:mb-8">
             <div>
               <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">BRAND DEVELOPMENT</span>
               <h2 className="mt-3 text-2xl font-extrabold uppercase tracking-tight text-[#2D2433] sm:text-3xl">Brand Guideline</h2>
             </div>
-            <span className="hidden rounded-full border border-pink-100 bg-white px-3 py-1 text-[8px] font-mono font-bold uppercase tracking-wider text-[#A39BA4] sm:block">6 IMAGE SLOTS</span>
+            <span className="hidden rounded-full border border-pink-100 bg-white px-3 py-1 text-[8px] font-mono font-bold uppercase tracking-wider text-[#A39BA4] sm:block">{isHut67Project ? "8 BRAND SECTIONS" : isJendelaProject ? "6 IMAGE SLOTS" : "4 IMAGE SLOTS"}</span>
           </div>
           <div className="space-y-5 sm:space-y-7">
-            {guidelineSlots.map(([number, title, description], index) => {
+            {(isJendelaProject
+              ? guidelineSlots
+              : slug === "gpib-immanuel-pekanbaru"
+                ? gpibBrandGuidelineSlots
+                : isConsistradeProject
+                  ? consistradeBrandGuidelineSlots
+                  : isHut63Project
+                    ? hut63BrandGuidelineSlots
+                    : isHut67Project
+                      ? hut67BrandGuidelineSlots
+                      : otherBrandGuidelineSlots
+            ).map(([number, title, description], index) => {
               const image = images[index];
+              const guideline = project.brandGuidelines?.find(
+                (section) => section.number === number
+              );
+              const sectionImages = isJendelaProject
+                ? []
+                : guideline?.images ?? [];
+              const sectionDescription = isJendelaProject
+                ? jendelaGuidelineDescriptions[number]
+                : guideline?.description ?? description;
+              const isColorSection =
+                (isJendelaProject && number === "02") ||
+                (isGpibProject && number === "03") ||
+                (isConsistradeProject && number === "03") ||
+                (isHut63Project && number === "05") ||
+                (isHut67Project && number === "05");
+              const isTypographySection =
+                (isJendelaProject && number === "03") ||
+                (isGpibProject && number === "04") ||
+                (isConsistradeProject && number === "04") ||
+                (isHut63Project && number === "06") ||
+                (isHut67Project && number === "06");
+
+              if (number === "02" && isHut63Project && project.brandMeaning) {
+                return (
+                  <article key={number} className="overflow-hidden rounded-[24px] border border-pink-100 bg-[#FFFBFD] shadow-[0_18px_50px_-25px_rgba(45,36,51,0.22)] sm:rounded-[30px]">
+                    <div className="flex items-center gap-4 border-b border-pink-100 px-4 py-4 sm:px-6 sm:py-5">
+                      <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-pink-50 text-[10px] font-mono font-bold text-pink-600 sm:h-11 sm:w-11 sm:text-xs">02</span>
+                      <h3 className="text-sm font-extrabold uppercase tracking-wide text-[#2D2433] sm:text-base">MEANING</h3>
+                    </div>
+                    <div className="px-4 pt-5 sm:px-6 sm:pt-7">
+                      <div className="mx-auto w-full max-w-2xl overflow-hidden rounded-2xl bg-white">
+                        <Image
+                          src="/portfolio/branding-hut63b.avif"
+                          alt="HUT 63 logo meaning"
+                          width={2430}
+                          height={2430}
+                          sizes="(max-width: 640px) 100vw, 672px"
+                          className="h-auto w-full object-contain"
+                        />
+                      </div>
+                    </div>
+                    <ol className="space-y-4 p-4 sm:space-y-5 sm:p-6">
+                      {project.brandMeaning.map((item, index) => (
+                        <li key={item.title || item.description} className="flex gap-4 rounded-2xl border border-pink-100 bg-white p-4 sm:gap-5 sm:p-5">
+                          <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-pink-50 text-[10px] font-mono font-bold text-pink-600 sm:h-10 sm:w-10 sm:text-xs">
+                            {item.title || String(index + 1).padStart(2, "0")}
+                          </span>
+                          <p className="text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{item.description}</p>
+                        </li>
+                      ))}
+                    </ol>
+                  </article>
+                );
+              }
+
+              if (number === "02" && project.brandMeaning) {
+                const isCompactListProject = isHut63Project;
+                const isHut67MeaningGrid = isHut67Project;
+
+                return (
+                  <article key={number} className="overflow-hidden rounded-[24px] border border-pink-100 bg-[#FFFBFD] shadow-[0_18px_50px_-25px_rgba(45,36,51,0.22)] sm:rounded-[30px]">
+                    <div className="flex items-center gap-4 border-b border-pink-100 px-4 py-4 sm:px-6 sm:py-5">
+                      <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-pink-50 text-[10px] font-mono font-bold text-pink-600 sm:h-11 sm:w-11 sm:text-xs">02</span>
+                      <h3 className={`text-sm font-extrabold uppercase tracking-wide sm:text-base ${isHut67Project ? "text-primary" : "text-[#2D2433]"}`}>MEANING</h3>
+                    </div>
+                    <div className={`grid gap-3 p-3 sm:gap-4 sm:p-5 ${isHut67MeaningGrid ? "grid-cols-1 md:grid-cols-6" : isCompactListProject ? "md:grid-cols-1" : "md:grid-cols-5"}`}>
+                      {project.brandMeaning.map((item) => (
+                        <div
+                          key={item.src + item.title}
+                          className={`min-w-0 rounded-2xl border border-pink-100 bg-white ${isHut67MeaningGrid ? "flex items-center gap-3 p-2.5 sm:gap-3 md:flex-col md:items-center md:gap-2 md:p-2.5" : isCompactListProject ? "flex items-center gap-3 p-3 md:gap-4" : "flex items-center gap-4 p-3 md:flex-col md:items-center md:gap-3"}`}
+                        >
+                          <div className={`relative shrink-0 overflow-hidden rounded-xl bg-pink-50 ${isHut67MeaningGrid ? "h-[76px] w-[76px] sm:h-[80px] sm:w-[80px] md:h-[clamp(4.25rem,5vw,6.25rem)] md:w-[clamp(4.25rem,5vw,6.25rem)]" : "h-[72px] w-[72px] md:h-[clamp(4rem,7vw,6rem)] md:w-[clamp(4rem,7vw,6rem)]"}`}>
+                            <Image
+                              src={item.src}
+                              alt={item.alt || "Logo meaning"}
+                              width={item.width}
+                              height={item.height}
+                              sizes={isHut67MeaningGrid ? "(max-width: 767px) 80px, (max-width: 1280px) 6vw, 120px" : "(max-width: 767px) 72px, (max-width: 1280px) 8vw, 112px"}
+                              className="h-full w-full object-contain"
+                            />
+                          </div>
+                          <p className={`text-xs leading-relaxed text-[#6B6570] ${isHut67MeaningGrid ? "flex-1 md:flex-none md:text-center" : isCompactListProject ? "flex-1 md:text-sm" : "flex-1 md:flex-none md:text-center"}`}>
+                            {item.title && (
+                              <span className={`${isHut67MeaningGrid ? `mb-1 block font-bold md:mb-1 ${isHut67Project ? "text-primary" : "text-[#2D2433]"}` : isCompactListProject ? "mr-2 inline-block min-w-[2.25rem] font-bold text-[#2D2433]" : "mb-1 block font-bold text-[#2D2433]"}`}>
+                                {isHut67Project ? item.title.replace(/^\d+\s*[-–—]\s*/, "") : item.title}
+                              </span>
+                            )}
+                            {item.description}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </article>
+                );
+              }
+
               return (
                 <article key={number} className="overflow-hidden rounded-[24px] border border-pink-100 bg-[#FFFBFD] shadow-[0_18px_50px_-25px_rgba(45,36,51,0.22)] sm:rounded-[30px]">
                   <div className="flex items-center justify-between gap-4 border-b border-pink-100 px-4 py-4 sm:px-6 sm:py-5">
@@ -148,25 +321,108 @@ export default function ProjectDetailPage() {
                       <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-pink-50 text-[10px] font-mono font-bold text-pink-600 sm:h-11 sm:w-11 sm:text-xs">{number}</span>
                       <div>
                         <h3 className="text-sm font-extrabold uppercase tracking-wide text-[#2D2433] sm:text-base">{title}</h3>
-                        <p className="mt-0.5 text-[10px] leading-relaxed text-[#8A818C] sm:text-xs">{description}</p>
                       </div>
                     </div>
-                    <span className="hidden rounded-full border border-pink-100 bg-white px-3 py-1 text-[8px] font-mono font-bold uppercase tracking-wider text-[#A39BA4] sm:block">{index === 1 && colorPalette ? "COLOR GUIDE" : index === 2 ? "TYPE GUIDE" : image ? "IMAGE READY" : "ADD IMAGE"}</span>
+                    <span className="hidden rounded-full border border-pink-100 bg-white px-3 py-1 text-[8px] font-mono font-bold uppercase tracking-wider text-[#A39BA4] sm:block">
+                      {isColorSection && colorPalette
+                        ? "COLOR GUIDE"
+                        : isTypographySection
+                          ? "TYPE GUIDE"
+                          : isJendelaProject
+                            ? image
+                              ? "IMAGE READY"
+                              : "ADD IMAGE"
+                            : sectionImages.length > 0
+                              ? "IMAGE READY"
+                              : "ADD IMAGE"}
+                    </span>
                   </div>
                   <div className="p-3 sm:p-5">
-                    {index === 1 && colorPalette ? (
+                    {isColorSection && colorPalette ? (
                       <div className="rounded-2xl bg-white px-4 py-6 sm:px-6 sm:py-8"><ColorPalette colors={colorPalette} /></div>
-                    ) : index === 2 ? (
+                    ) : isTypographySection ? (
                       <TypographyPalette {...typography} />
-                    ) : image ? (
+                    ) : isJendelaProject && image ? (
                       <div className="relative w-full overflow-hidden rounded-2xl bg-white"><Image src={image.src} alt={image.alt || `${project.title} ${title}`} width={1920} height={1080} sizes="(max-width: 1280px) 100vw, 1152px" className="h-auto w-full object-contain" /></div>
+                    ) : !isJendelaProject && sectionImages.length > 0 ? (
+                      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                        {sectionImages.map((sectionImage, imageIndex) => (
+                          <div
+                            key={`${sectionImage.src}-${imageIndex}`}
+                            className="relative w-full overflow-hidden rounded-2xl bg-white"
+                          >
+                            <Image
+                              src={sectionImage.src}
+                              alt={sectionImage.alt || `${project.title} ${title}`}
+                              width={sectionImage.width}
+                              height={sectionImage.height}
+                              sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 576px"
+                              className="h-auto w-full object-contain"
+                            />
+                          </div>
+                        ))}
+                      </div>
                     ) : (
-                      <div className="flex min-h-[240px] items-center justify-center rounded-2xl border-2 border-dashed border-pink-200 bg-white sm:min-h-[380px]"><div className="px-6 text-center"><div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-pink-50 text-xl font-light text-pink-400">+</div><p className="mt-3 text-xs font-bold uppercase tracking-wider text-[#6B6570]">Add {title} image</p><p className="mt-1 text-[10px] leading-relaxed text-[#A39BA4]">Tambahkan file ke public/portfolio lalu masukkan path-nya ke projectImages.</p></div></div>
+                      <div className="flex min-h-[240px] items-center justify-center rounded-2xl border-2 border-dashed border-pink-200 bg-white sm:min-h-[380px]"><div className="px-6 text-center"><div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-pink-50 text-xl font-light text-pink-400">+</div><p className="mt-3 text-xs font-bold uppercase tracking-wider text-[#6B6570]">Add {title} image</p><p className="mt-1 text-[10px] leading-relaxed text-[#A39BA4]">{isJendelaProject ? "Tambahkan file ke public/portfolio lalu masukkan path-nya ke projectImages." : `Add branding-[project]${Number(number)}.avif to public/portfolio; append -2, -3 for additional images.`}</p></div></div>
+                    )}
+                    {isJendelaProject && (
+                      <p className="mt-4 px-1 text-xs leading-6 text-[#6B6570] sm:px-2 sm:text-sm sm:leading-7">{sectionDescription}</p>
                     )}
                   </div>
+                  {!isJendelaProject && !isColorSection && !isTypographySection && (
+                    <p className="px-4 pb-4 text-xs leading-6 text-[#6B6570] sm:px-7 sm:pb-6 sm:text-sm sm:leading-7">
+                      {sectionDescription}
+                    </p>
+                  )}
                 </article>
               );
             })}
+            {isJendelaProject && (
+              <article className="overflow-hidden rounded-[24px] border border-pink-100 bg-[#FFFBFD] shadow-[0_18px_50px_-25px_rgba(45,36,51,0.22)] sm:rounded-[30px]">
+                <div className="flex items-center gap-3 border-b border-pink-100 px-4 py-4 sm:gap-4 sm:px-6 sm:py-5">
+                  <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-pink-50 text-[10px] font-mono font-bold text-pink-600 sm:h-11 sm:w-11 sm:text-xs">07</span>
+                  <h3 className="text-sm font-extrabold uppercase tracking-wide text-[#2D2433] sm:text-base">SOCIAL MEDIA</h3>
+                </div>
+                <div className="flex flex-col items-start gap-5 p-4 sm:p-6">
+                  <p className="max-w-3xl text-xs leading-6 text-[#6B6570] sm:text-sm sm:leading-7">Explore how the Jendela Finansial visual identity is applied across social media through educational, interactive, and engaging content.</p>
+                  <Link href="/portfolio/social-media-design#jendela-finansial" className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-center text-[10px] font-mono font-bold uppercase tracking-wider text-white transition-colors hover:bg-primary-hover focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary sm:w-fit sm:px-6 sm:text-xs">
+                    VIEW SOCIAL MEDIA PROJECT <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              </article>
+            )}
+            {slug === "pelkat-pa-gpib-immanuel-pekanbaru" && (
+              <article className="overflow-hidden rounded-[24px] border border-pink-100 bg-[#FFFBFD] shadow-[0_18px_50px_-25px_rgba(45,36,51,0.22)] sm:rounded-[30px]">
+                <div className="flex items-center gap-3 border-b border-pink-100 px-4 py-4 sm:gap-4 sm:px-6 sm:py-5">
+                  <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-pink-50 text-[10px] font-mono font-bold text-pink-600 sm:h-11 sm:w-11 sm:text-xs">07</span>
+                  <h3 className="text-sm font-extrabold uppercase tracking-wide text-[#2D2433] sm:text-base">SOCIAL MEDIA</h3>
+                </div>
+                <div className="flex flex-col items-start gap-5 p-4 sm:p-6">
+                  <p className="max-w-3xl text-xs leading-6 text-[#6B6570] sm:text-sm sm:leading-7">
+                    Explore how the Pelkat PA GPIB Immanuel Pekanbaru visual identity is applied across social media through engaging, informative, and community-focused content.
+                  </p>
+                  <Link href="/portfolio/social-media-design#pelkat-pa" className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-center text-[10px] font-mono font-bold uppercase tracking-wider text-white transition-colors hover:bg-primary-hover focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary sm:w-fit sm:px-6 sm:text-xs">
+                    VIEW SOCIAL MEDIA PROJECT <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              </article>
+            )}
+            {isConsistradeProject && (
+              <article className="overflow-hidden rounded-[24px] border border-pink-100 bg-[#FFFBFD] shadow-[0_18px_50px_-25px_rgba(45,36,51,0.22)] sm:rounded-[30px]">
+                <div className="flex items-center gap-3 border-b border-pink-100 px-4 py-4 sm:gap-4 sm:px-6 sm:py-5">
+                  <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-pink-50 text-[10px] font-mono font-bold text-pink-600 sm:h-11 sm:w-11 sm:text-xs">07</span>
+                  <h3 className="text-sm font-extrabold uppercase tracking-wide text-[#2D2433] sm:text-base">SOCIAL MEDIA</h3>
+                </div>
+                <div className="flex flex-col items-start gap-5 p-4 sm:p-6">
+                  <p className="max-w-3xl text-xs leading-6 text-[#6B6570] sm:text-sm sm:leading-7">
+                    Explore how the Consistrade visual identity is applied across educational social content, trading insights, and community-driven digital marketing.
+                  </p>
+                  <Link href="/portfolio/social-media-design#consistrade" className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-center text-[10px] font-mono font-bold uppercase tracking-wider text-white transition-colors hover:bg-primary-hover focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary sm:w-fit sm:px-6 sm:text-xs">
+                    VIEW SOCIAL MEDIA PROJECT <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              </article>
+            )}
           </div>
         </section>
       ) : (

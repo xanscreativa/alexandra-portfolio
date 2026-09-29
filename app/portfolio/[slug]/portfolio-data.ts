@@ -1,5 +1,6 @@
 export interface GalleryItem {
   src: string;
+  title?: string;
   alt?: string;
   caption?: string;
   subSlides?: GalleryItem[];
@@ -13,6 +14,23 @@ export interface SectionDetails {
   year: string;
   deliverables: string;
   tools: string;
+}
+
+export interface BrandGuidelineImage extends GalleryItem {
+  width: number;
+  height: number;
+}
+
+export interface BrandMeaningItem extends BrandGuidelineImage {
+  title?: string;
+  description: string;
+}
+
+export interface BrandGuidelineSection {
+  number: "01" | "02" | "03" | "04" | "05" | "06" | "07" | "08";
+  title: string;
+  description: string;
+  images: BrandGuidelineImage[];
 }
 
 export interface SectionData {
@@ -32,6 +50,10 @@ export interface SectionData {
   category?: string;
   bigIdea?: string;
   projectImages?: GalleryItem[];
+  brandGuidelines?: BrandGuidelineSection[];
+  brandMeaning?: BrandMeaningItem[];
+  instagramHighlights?: GalleryItem[];
+  instagramStories?: GalleryItem[];
 }
 
 export const desainLainItems: GalleryItem[] = [
@@ -132,6 +154,16 @@ export const defaultThumbnailGrid: GalleryItem[] = Array.from(
 // SOCIAL MEDIA
 // ==========================================
 
+const socialProjectDisplayOrder = [
+  "consistrade",
+  "jendelafinansial",
+  "uksw_salatiga",
+  "pelkatpa.pku",
+  "jims_honey_sukabumi",
+  "sanne_skin_beauty",
+  "sambal_lauq",
+];
+
 export const socialSections: SectionData[] = [
 {
   title: "Pelkat PA GPIB Immanuel Pekanbaru",
@@ -226,6 +258,43 @@ export const socialSections: SectionData[] = [
     avatarImage: "/portfolio/uksw-logo.avif",
     avatarText: "U",
     avatarBg: "from-pink-500 to-rose-400",
+    instagramHighlights: [
+      {
+        src: "/portfolio/uksw-highlight1.avif",
+        title: "Tracer Study",
+        alt: "UKSW Instagram highlight 1",
+      },
+      {
+        src: "/portfolio/uksw-highlight2.avif",
+        title: "Faculty",
+        alt: "UKSW Instagram highlight 2",
+      },
+      {
+        src: "/portfolio/uksw-highlight3.avif",
+        title: "Merchan",
+        alt: "UKSW Instagram highlight 3",
+      },
+      {
+        src: "/portfolio/uksw-highlight4.avif",
+        title: "Services",
+        alt: "UKSW Instagram highlight 4",
+      },
+      {
+        src: "/portfolio/uksw-highlight5.avif",
+        title: "Bingo!",
+        alt: "UKSW Instagram highlight 5",
+      },
+      {
+        src: "/portfolio/uksw-highlight6.avif",
+        title: "Announce",
+        alt: "UKSW Instagram highlight 6",
+      },
+      {
+        src: "/portfolio/uksw-highlight7.avif",
+        title: "Booklet",
+        alt: "UKSW Instagram highlight 7",
+      },
+    ],
     posts: [
       {
         src: "/portfolio/uksw-1.avif",
@@ -306,6 +375,45 @@ export const socialSections: SectionData[] = [
     avatarImage: "/portfolio/jendela-finansial-logo.avif",
     avatarText: "JF",
     avatarBg: "from-emerald-500 to-teal-400",
+    instagramHighlights: [
+      {
+        src: "/portfolio/jendela-highlight1.avif",
+        title: "⚠️Penting⚠️",
+        alt: "Jendela Finansial Instagram highlight 1",
+      },
+      {
+        src: "/portfolio/jendela-highlight2.avif",
+        title: "✨Tips✨",
+        alt: "Jendela Finansial Instagram highlight 2",
+      },
+      {
+        src: "/portfolio/jendela-highlight3.avif",
+        title: "🌠Zodiak🌠",
+        alt: "Jendela Finansial Instagram highlight 3",
+      },
+    ],
+    instagramStories: [
+      {
+        src: "/portfolio/jendela-story1.avif",
+        alt: "Jendela Finansial Instagram story 1",
+      },
+      {
+        src: "/portfolio/jendela-story2.webm",
+        alt: "Jendela Finansial Instagram story 2",
+      },
+      {
+        src: "/portfolio/jendela-story3.webm",
+        alt: "Jendela Finansial Instagram story 3",
+      },
+      {
+        src: "/portfolio/jendela-story4.avif",
+        alt: "Jendela Finansial Instagram story 4",
+      },
+      {
+        src: "/portfolio/jendela-story5.avif",
+        alt: "Jendela Finansial Instagram story 5",
+      },
+    ],
     posts: [
       {
         src: "/portfolio/jendela-1.avif",
@@ -441,7 +549,7 @@ export const socialSections: SectionData[] = [
     title: "Consistrade",
     username: "consistrade",
     bio: "Professional corporate and trading brand identity design 📈 Global trade made seamless.",
-    avatarImage: "/portfolio/brand-consistrade.avif",
+    avatarImage: "/portfolio/consistrade.avif",
     avatarText: "C",
     avatarBg: "from-purple-500 to-pink-500",
     posts: [
@@ -469,7 +577,86 @@ export const socialSections: SectionData[] = [
     challenge:
       "Creating a visual identity that feels approachable for beginner traders while maintaining credibility and relevance for more experienced audiences. The challenge was to transform complex trading and financial concepts into clear, engaging, and visually consistent content that supports learning, community engagement, and Consistrade's digital education ecosystem.",
   },
-];
+  {
+    title: "Jims Honey Sukabumi",
+    username: "jims_honey_sukabumi",
+    bio: "Social media content for Jims Honey Sukabumi.",
+    avatarImage: "/portfolio/jims-logo.avif",
+    avatarText: "JH",
+    avatarBg: "from-amber-500 to-orange-400",
+    posts: [
+      { src: "/portfolio/jims1.avif", alt: "Jims Honey Sukabumi social media post 1" },
+      { src: "/portfolio/jims2.avif", alt: "Jims Honey Sukabumi social media post 2" },
+      { src: "/portfolio/jims3.avif", alt: "Jims Honey Sukabumi social media post 3" },
+    ],
+    details: {
+      client: "Jims Honey Sukabumi",
+      industry: "Food & Beverage",
+      role: "Visual Designer",
+      year: "—",
+      deliverables: "Logo and social media posts",
+      tools: "—",
+    },
+    overview:
+      "Social media post designs created for Jims Honey Sukabumi.",
+    challenge:
+      "Developing clear, consistent visuals for the brand's social media communication.",
+  },
+  {
+    title: "Sanne Skin & Beauty",
+    username: "sanne_skin_beauty",
+    bio: "Social media content for Sanne Skin & Beauty.",
+    avatarImage: "/portfolio/sanne-logo.avif",
+    avatarText: "S",
+    avatarBg: "from-rose-400 to-pink-500",
+    posts: [
+      { src: "/portfolio/sanne1.avif", alt: "Sanne Skin & Beauty social media post 1" },
+      { src: "/portfolio/sanne2.avif", alt: "Sanne Skin & Beauty social media post 2" },
+      { src: "/portfolio/sanne3.avif", alt: "Sanne Skin & Beauty social media post 3" },
+    ],
+    details: {
+      client: "Sanne Skin & Beauty",
+      industry: "Beauty & Skincare",
+      role: "Visual Designer",
+      year: "—",
+      deliverables: "Logo and social media posts",
+      tools: "—",
+    },
+    overview:
+      "Social media post designs created for Sanne Skin & Beauty.",
+    challenge:
+      "Developing clear, consistent visuals for the brand's social media communication.",
+  },
+  {
+    title: "Sambal Lauq",
+    username: "sambal_lauq",
+    bio: "Social media content for Sambal Lauq.",
+    avatarImage: "/portfolio/lauq-logo.avif",
+    avatarText: "SL",
+    avatarBg: "from-red-500 to-orange-400",
+    posts: [
+      { src: "/portfolio/lauq1.avif", alt: "Sambal Lauq social media post 1" },
+      { src: "/portfolio/lauq2.avif", alt: "Sambal Lauq social media post 2" },
+      { src: "/portfolio/lauq3.avif", alt: "Sambal Lauq social media post 3" },
+    ],
+    details: {
+      client: "Sambal Lauq",
+      industry: "Food & Beverage",
+      role: "Visual Designer",
+      year: "—",
+      deliverables: "Logo and social media posts",
+      tools: "—",
+    },
+    overview:
+      "Social media post designs created for Sambal Lauq.",
+    challenge:
+      "Developing clear, consistent visuals for the brand's social media communication.",
+  },
+].sort(
+  (firstProject, secondProject) =>
+    socialProjectDisplayOrder.indexOf(firstProject.username) -
+    socialProjectDisplayOrder.indexOf(secondProject.username)
+);
 
 // ==========================================
 // BRAND IDENTITY
@@ -505,11 +692,31 @@ export const brandSections: SectionData[] = [
     challenge:
       "Communicating complex financial concepts to make them approachable, relevant, and engaging for a younger audience through a fresh visual strategy.",
     bigIdea:
-      "Creating mascots Jeni & Jeno to represent Gen Z eager to learn and improve their financial literacy, turning financial education into a friendly and interactive visual experience.",
+      "Jendela Finansial is designed as an educational and interactive social media platform that makes financial topics feel fun, approachable, and relevant to everyday life.\n\nThe content system combines financial education with interactive challenges, comics, character-based storytelling, and monthly templates such as Add Yours and Twibbon.\n\nTo create a consistent and recognizable Instagram feed, content follows three visual themes in a repeating sequence:\n\nBLUE → WHITE → YELLOW → BLUE → WHITE → YELLOW\n\nThis recurring color rhythm creates a visually organized feed while keeping the content varied, engaging, and easy to recognize when audiences browse the profile.",
     projectImages: [
       {
+        src: "/portfolio/branding-jendela1.avif",
+        alt: "Jendela Finansial logo",
+      },
+      {
         src: "/portfolio/branding-jendela.avif",
-        alt: "Jendela Finansial brand identity",
+        alt: "Jendela Finansial brand guideline artwork",
+      },
+      {
+        src: "/portfolio/branding-jendela.avif",
+        alt: "Jendela Finansial brand guideline artwork",
+      },
+      {
+        src: "/portfolio/branding-jendela4.avif",
+        alt: "Jendela Finansial visual elements",
+      },
+      {
+        src: "/portfolio/branding-jendela5.avif",
+        alt: "Jendela Finansial supporting elements",
+      },
+      {
+        src: "/portfolio/branding-jendela6.avif",
+        alt: "Jendela Finansial character",
       },
     ],
   },
@@ -549,6 +756,64 @@ export const brandSections: SectionData[] = [
         alt: "Pelkat PA GPIB Immanuel Pekanbaru brand identity",
       },
     ],
+    brandGuidelines: [
+      {
+        number: "01",
+        title: "LOGO",
+        description:
+          "The primary mark pairs a clear ministry identity with a warm, child-friendly character, keeping the organization recognizable across worship and event materials.",
+        images: [
+          {
+            src: "/portfolio/branding-pelkatpa1.avif",
+            alt: "Pelkat PA GPIB Immanuel Pekanbaru logo",
+            width: 4320,
+            height: 2430,
+          },
+        ],
+      },
+      {
+        number: "04",
+        title: "ELEMENT",
+        description:
+          "Playful shapes and visual motifs create an approachable language for children while giving ministry communications a consistent look.",
+        images: [
+          {
+            src: "/portfolio/branding-pelkatpa4.avif",
+            alt: "Pelkat PA GPIB Immanuel Pekanbaru visual elements",
+            width: 4320,
+            height: 2430,
+          },
+        ],
+      },
+      {
+        number: "05",
+        title: "SUPPORTING ELEMENT",
+        description:
+          "Supporting graphics extend the identity across posters, social media, and event materials without competing with the primary mark.",
+        images: [
+          {
+            src: "/portfolio/branding-pelkatpa5.avif",
+            alt: "Pelkat PA GPIB Immanuel Pekanbaru supporting elements",
+            width: 4320,
+            height: 2430,
+          },
+        ],
+      },
+      {
+        number: "06",
+        title: "CHARACTER",
+        description:
+          "The friendly character gives children a familiar visual companion and helps ministry activities feel welcoming and memorable.",
+        images: [
+          {
+            src: "/portfolio/branding-pelkatpa6.avif",
+            alt: "Pelkat PA GPIB Immanuel Pekanbaru brand character",
+            width: 4320,
+            height: 2430,
+          },
+        ],
+      },
+    ],
   },
 
   {
@@ -586,8 +851,93 @@ export const brandSections: SectionData[] = [
         alt: "GPIB Immanuel Pekanbaru brand identity",
       },
     ],
+    brandGuidelines: [
+      {
+        number: "01",
+        title: "LOGO",
+        description:
+          "The official GPIB logo represents the shared synod identity across GPIB congregations. The new GPIB Immanuel Pekanbaru logo creates a distinctive local identity while maintaining its connection to the wider GPIB identity.",
+        images: [
+          {
+            src: "/portfolio/branding-gpib1.avif",
+            alt: "Official GPIB Immanuel Pekanbaru logo",
+            width: 4320,
+            height: 2430,
+          },
+        ],
+      },
+      {
+        number: "05",
+        title: "SUPPORTING ELEMENT",
+        description:
+          "Visual elements combine GPIB symbols, the mascot, and realistic church photography to maintain a consistent identity. Supporting elements can adapt to programs, campaigns, events, and specific themes.",
+        images: [
+          {
+            src: "/portfolio/branding-gpib5.avif",
+            alt: "GPIB Immanuel Pekanbaru supporting elements",
+            width: 4320,
+            height: 2430,
+          },
+        ],
+      },
+      {
+        number: "06",
+        title: "CHARACTER",
+        description:
+          "Meet Elof, a friendly young pastor mascot inspired by Rudolf Knierim, the first missionary and pastor of GPIB. His name represents Immanuel, Light, Obedience, and Faith, reflecting the philosophy of walking together with God.",
+        images: [
+          {
+            src: "/portfolio/branding-gpib6.avif",
+            alt: "Elof, the GPIB Immanuel Pekanbaru mascot",
+            width: 4320,
+            height: 2430,
+          },
+        ],
+      },
+    ],
+    brandMeaning: [
+      {
+        src: "/portfolio/branding-gpib1a.avif",
+        alt: "GPIB church silhouette meaning",
+        width: 2430,
+        height: 2430,
+        description:
+          "The church silhouette represents GPIB Immanuel Pekanbaru as a spiritual home, with the cross symbolizing faith, hope, and Christ at the center of life.",
+      },
+      {
+        src: "/portfolio/branding-gpib1b.avif",
+        alt: "GPIB dove meaning",
+        width: 2430,
+        height: 2430,
+        description:
+          "The dove represents the Holy Spirit, symbolizing love, peace, and a welcoming spirit.",
+      },
+      {
+        src: "/portfolio/branding-gpib1c.avif",
+        alt: "GPIB palm leaf meaning",
+        width: 2430,
+        height: 2430,
+        description:
+          "The palm leaf symbolizes victory, joy, hope, and the spiritual growth of the congregation.",
+      },
+      {
+        src: "/portfolio/branding-gpib1d.avif",
+        alt: "GPIB circle meaning",
+        width: 2430,
+        height: 2430,
+        description:
+          "The circle represents unity, togetherness, and the congregation as one body in Christ.",
+      },
+      {
+        src: "/portfolio/branding-gpib1e.avif",
+        alt: "GPIB surrounding text meaning",
+        width: 2430,
+        height: 2430,
+        description:
+          "The surrounding text reinforces unity, togetherness, and the church's identity within the community.",
+      },
+    ],
   },
-
   {
     slug: "consistrade-brand",
     category: "BRAND IDENTITY",
@@ -620,6 +970,88 @@ export const brandSections: SectionData[] = [
       {
         src: "/portfolio/branding-consistrade.avif",
         alt: "Consistrade brand identity",
+      },
+    ],
+    brandGuidelines: [
+      {
+        number: "01",
+        title: "LOGO",
+        description:
+          "The logo establishes a confident identity for financial education while remaining clear and accessible to learners at every level.",
+        images: [
+          {
+            src: "/portfolio/branding-consistrade1.avif",
+            alt: "Consistrade logo",
+            width: 2430,
+            height: 2430,
+          },
+        ],
+      },
+      {
+        number: "02",
+        title: "LOGO MEANING",
+        description:
+          "The logo system reflects the core idea of disciplined growth in trading and financial learning: a clear, modern symbol that feels trustworthy and approachable for newcomers while staying professional for advanced learners.",
+        images: [
+          {
+            src: "/portfolio/branding-consistrade2.avif",
+            alt: "Consistrade logo meaning",
+            width: 2430,
+            height: 2430,
+          },
+        ],
+      },
+      {
+        number: "03",
+        title: "COLORS",
+        description:
+          "The color palette combines deep navy, royal blue, and bright purple tones to communicate trust, clarity, and growth in a professional trading ecosystem.",
+        images: [],
+      },
+      {
+        number: "04",
+        title: "TYPOGRAPHY",
+        description:
+          "The typography uses a clean geometric sans serif style to reinforce clarity, precision, and accessible financial education for a wider audience.",
+        images: [],
+      },
+      {
+        number: "05",
+        title: "ELEMENT",
+        description:
+          "A focused visual element system supports trading and learning content with consistent structure and clear information hierarchy.",
+        images: [
+          {
+            src: "/portfolio/branding-consistrade5.avif",
+            alt: "Consistrade visual elements",
+            width: 4320,
+            height: 2430,
+          },
+        ],
+      },
+      {
+        number: "06",
+        title: "CHARACTER",
+        description:
+          "The brand character adds a welcoming human touch, helping make complex trading concepts feel more approachable.",
+        images: [
+          {
+            src: "/portfolio/branding-consistrade6.avif",
+            alt: "Consistrade brand character",
+            width: 4320,
+            height: 2430,
+          },
+        ],
+      },
+    ],
+    brandMeaning: [
+      {
+        src: "/portfolio/branding-consistrade2.avif",
+        alt: "Consistrade logo meaning",
+        width: 2430,
+        height: 2430,
+        description:
+          "The mark combines clarity, confidence, and momentum to represent disciplined learning and consistent growth in trading education.",
       },
     ],
   },
@@ -658,6 +1090,132 @@ export const brandSections: SectionData[] = [
         alt: "63rd Anniversary of Pelkat PA GPIB brand identity",
       },
     ],
+    brandGuidelines: [
+      {
+        number: "01",
+        title: "LOGO",
+        description:
+          "The anniversary emblem combines the 63-year milestone with ministry symbolism in a distinctive mark for nationwide celebrations.",
+        images: [
+          {
+            src: "/portfolio/branding-hut63a.avif",
+            alt: "HUT 63 Pelkat PA GPIB logo",
+            width: 2430,
+            height: 2430,
+          },
+        ],
+      },
+      {
+        number: "02",
+        title: "MEANING",
+        description:
+          "The five meaning statements explain the celebration's central message, number symbolism, ministry identity, togetherness, and faith foundation.",
+        images: [],
+      },
+      {
+        number: "03",
+        title: "CLEAR SPACE",
+        description:
+          "Clear space protects the logo's visual impact and ensures that it remains clean, balanced, and recognizable across different applications.",
+        images: [
+          {
+            src: "/portfolio/branding-hut63c.avif",
+            alt: "HUT 63 clear space guide",
+            width: 4320,
+            height: 2430,
+          },
+        ],
+      },
+      {
+        number: "04",
+        title: "SIZE",
+        description:
+          "The size guidelines define the minimum proportions needed to keep the logo clear, legible, and visually consistent across different applications.",
+        images: [
+          {
+            src: "/portfolio/branding-hut63d.avif",
+            alt: "HUT 63 size guideline",
+            width: 4320,
+            height: 2430,
+          },
+        ],
+      },
+      {
+        number: "05",
+        title: "COLORS",
+        description:
+          "The color palette reflects the joyful, meaningful, and faithful spirit of the 63rd Pelkat PA GPIB anniversary. The colors create a balance between celebration, unity, and a strong foundation of faith.",
+        images: [],
+      },
+      {
+        number: "06",
+        title: "TYPOGRAPHY",
+        description:
+          "The typography is designed to feel clear, friendly, and celebratory, supporting the anniversary identity while keeping the message easy to read and accessible.",
+        images: [],
+      },
+      {
+        number: "07",
+        title: "MERCHANDISE",
+        description:
+          "The merchandise extends the HUT 63 identity into physical products, creating a simple and memorable expression of the anniversary that can be shared and worn by the Pelkat PA community.",
+        images: [
+          {
+            src: "/portfolio/branding-hut63g.avif",
+            alt: "HUT 63 merchandise",
+            width: 4320,
+            height: 2430,
+          },
+        ],
+      },
+    ],
+    brandMeaning: [
+      {
+        title: "01",
+        src: "/portfolio/branding-hut63b.avif",
+        alt: "HUT 63 meaning 01",
+        width: 2430,
+        height: 2430,
+        description:
+          "Represents the main celebration of the Pelkat PA GPIB anniversary.",
+      },
+      {
+        title: "02",
+        src: "/portfolio/branding-hut63b.avif",
+        alt: "HUT 63 meaning 02",
+        width: 2430,
+        height: 2430,
+        description:
+          "The numbers 6 and 3 replace the letters G and B, symbolizing unity in diversity and the 63rd anniversary of Pelkat PA GPIB. The rice stalk represents humility.",
+      },
+      {
+        title: "03",
+        src: "/portfolio/branding-hut63b.avif",
+        alt: "HUT 63 meaning 03",
+        width: 2430,
+        height: 2430,
+        description:
+          "The letters P and I stand for “Pemberita Injil” (Gospel Proclaimers).",
+      },
+      {
+        title: "04",
+        src: "/portfolio/branding-hut63b.avif",
+        alt: "HUT 63 meaning 04",
+        width: 2430,
+        height: 2430,
+        description:
+          "The two overlapping hands symbolize unity, teamwork, and cooperation.",
+      },
+      {
+        title: "05",
+        src: "/portfolio/branding-hut63b.avif",
+        alt: "HUT 63 meaning 05",
+        width: 2430,
+        height: 2430,
+        description:
+          "White represents faith as the foundation of every action, done for the glory of God.",
+      },
+    ],
   },
 
   {
@@ -692,6 +1250,36 @@ export const brandSections: SectionData[] = [
       {
         src: "/portfolio/branding-hut67.avif",
         alt: "67th Anniversary of Pelkat PA GPIB brand identity",
+      },
+    ],
+    brandGuidelines: [
+      {
+        number: "01",
+        title: "LOGO",
+        description:
+          "The anniversary logo presents the 67th milestone as a clear, memorable emblem for official nationwide celebrations.",
+        images: [],
+      },
+      {
+        number: "04",
+        title: "ELEMENT",
+        description:
+          "A coordinated visual language gives anniversary communications a consistent and celebratory character.",
+        images: [],
+      },
+      {
+        number: "05",
+        title: "SUPPORTING ELEMENT",
+        description:
+          "Supporting graphics extend the anniversary identity across event materials while maintaining a unified presentation.",
+        images: [],
+      },
+      {
+        number: "06",
+        title: "CHARACTER",
+        description:
+          "Character artwork can help make the anniversary message feel approachable and engaging for children and families.",
+        images: [],
       },
     ],
   },
@@ -1005,9 +1593,160 @@ export const logoSections: SectionData[] = [
 // BRAND PROJECT CASE STUDIES ONLY
 // ==========================================
 
+const hut67BrandGuidelines: BrandGuidelineSection[] = [
+  {
+    number: "01",
+    title: "LOGO",
+    description:
+      "The HUT 67 logo represents 67 years of Pelkat PA GPIB nurturing children to grow in faith, love, and togetherness.",
+    images: [
+      {
+        src: "/portfolio/branding-hut671.avif",
+        alt: "HUT 67 Pelkat PA GPIB logo",
+        width: 2430,
+        height: 2430,
+      },
+    ],
+  },
+  {
+    number: "03",
+    title: "LOGO STRUCTURE",
+    description:
+      "The logo structure defines the relationship and proportion of each visual element to maintain a consistent and recognizable identity.",
+    images: [
+      {
+        src: "/portfolio/branding-hut672.avif",
+        alt: "HUT 67 logo structure",
+        width: 4320,
+        height: 2430,
+      },
+    ],
+  },
+  {
+    number: "04",
+    title: "CLEAR SPACE",
+    description:
+      "The clear space ensures the HUT 67 logo remains visible, balanced, and recognizable across different applications.",
+    images: [
+      {
+        src: "/portfolio/branding-hut673.avif",
+        alt: "HUT 67 logo clear space guide",
+        width: 4320,
+        height: 2430,
+      },
+    ],
+  },
+  {
+    number: "05",
+    title: "COLORS",
+    description: "",
+    images: [],
+  },
+  {
+    number: "06",
+    title: "TYPOGRAPHY",
+    description: "",
+    images: [],
+  },
+  {
+    number: "07",
+    title: "CHARACTER",
+    description:
+      "The characters represent the Pelkat PA family across three generations: Oma and Opa, Mama and Papa, Grace and Patrick, and two young ministry volunteers—a male and female servant. Together, they represent family, togetherness, and the shared journey of growing in faith across generations.",
+    images: [
+      {
+        src: "/portfolio/branding-hut677.avif",
+        alt: "HUT 67 Pelkat PA family characters",
+        width: 4320,
+        height: 2430,
+      },
+    ],
+  },
+  {
+    number: "08",
+    title: "MERCHANDISE",
+    description:
+      "The merchandise features T-shirts in sand and baby pink, creating a warm, youthful, and approachable expression of the HUT 67 visual identity.",
+    images: [
+      {
+        src: "/portfolio/branding-hut678.avif",
+        alt: "HUT 67 merchandise T-shirts in sand and baby pink",
+        width: 4320,
+        height: 2430,
+      },
+    ],
+  },
+];
+
+const hut67BrandMeaning: BrandMeaningItem[] = [
+  {
+    title: "01 — Dandelion",
+    src: "/portfolio/branding-hut67a.avif",
+    alt: "HUT 67 dandelion meaning",
+    width: 2430,
+    height: 2430,
+    description:
+      "Symbolizes growing faith. Like a dandelion spreading its seeds, children are called to keep growing in the Lord.",
+  },
+  {
+    title: "02 — Number 67",
+    src: "/portfolio/branding-hut67b.avif",
+    alt: "HUT 67 number 67 meaning",
+    width: 2430,
+    height: 2430,
+    description:
+      "Represents 67 years of Pelkat PA GPIB nurturing children in faith and Christ's love. The 67 forms a sprout, symbolizing the seed of faith growing into the church's next generation.",
+  },
+  {
+    title: "03 — 7 Seeds",
+    src: "/portfolio/branding-hut67c.avif",
+    alt: "HUT 67 seven seeds meaning",
+    width: 2430,
+    height: 2430,
+    description:
+      "Represents GPIB children growing daily under God's care and love. The pink circles symbolize God's blessings carried by each child to become a blessing to others.",
+  },
+  {
+    title: "04 — Flying Seed",
+    src: "/portfolio/branding-hut67d.avif",
+    alt: "HUT 67 flying seed meaning",
+    width: 2430,
+    height: 2430,
+    description:
+      "Symbolizes Pelkat PA being sent to share God's love through Diakonia (serving), Marturia (witnessing), and Koinonia (fellowship).",
+  },
+  {
+    title: "05 — Number 7",
+    src: "/portfolio/branding-hut67e.avif",
+    alt: "HUT 67 number 7 meaning",
+    width: 2430,
+    height: 2430,
+    description:
+      "The long downward stroke represents children rooted deeply in God's Word, enabling them to grow strong and steadfast.",
+  },
+  {
+    title: "06 — Text Color & White Outline",
+    src: "/portfolio/branding-hut67f.avif",
+    alt: "HUT 67 text color and white outline meaning",
+    width: 2430,
+    height: 2430,
+    description:
+      "The colors represent the joy, diversity, talents, and happiness of children growing together as God's family. The white outline symbolizes God's presence, protection, and love over every child's growth.",
+  },
+];
+
 export const projectCaseStudies: SectionData[] = brandSections.map(
   (project) => ({
     ...project,
+
+    brandGuidelines:
+      project.slug === "hut-67-pelkat-pa"
+        ? hut67BrandGuidelines
+        : project.brandGuidelines,
+    brandMeaning:
+      project.slug === "hut-67-pelkat-pa"
+        ? hut67BrandMeaning
+        : project.brandMeaning,
 
     category: project.category ?? "BRAND IDENTITY",
 

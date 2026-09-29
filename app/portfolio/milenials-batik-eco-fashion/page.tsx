@@ -6,19 +6,19 @@ const lookbooks = [
   {
     title: "Lookbook 01",
     subtitle: "Klaster Parahita",
-    href: "https://online.fliphtml5.com/xanscreativa/Lookbook-Klaster-Parahita/",
+    href: "https://publuu.com/flip-book/1187983/2643082",
     image: "/portfolio/lookbook-parahita.avif",
   },
   {
     title: "Lookbook 02",
     subtitle: "Klaster Kab. Pati",
-    href: "https://online.fliphtml5.com/xanscreativa/Lookbook-Klaster-Kab-Pati/",
+    href: "https://publuu.com/flip-book/1187983/2643079",
     image: "/portfolio/lookbook-pati.avif",
   },
   {
     title: "Lookbook 03",
     subtitle: "Klaster Kota Semarang & Kota Surakarta",
-    href: "https://online.fliphtml5.com/xanscreativa/jzyt/",
+    href: "https://publuu.com/flip-book/1187983/2643083",
     image: "/portfolio/lookbook-semarang.avif",
   },
 ];

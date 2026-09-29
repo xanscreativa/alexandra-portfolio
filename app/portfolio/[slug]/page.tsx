@@ -11,6 +11,10 @@ import {
   ChevronDown,
   ChevronLeft,
 } from "lucide-react";
+import {
+  InstagramHighlights,
+  InstagramStories,
+} from "./InstagramMediaRows";
 
 import { getPortfolioBySlug, getNextPortfolio } from "@/data/portfolio";
 import { useLanguage } from "@/context/LanguageContext";
@@ -179,6 +183,24 @@ export default function PortfolioDetailPage() {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [activeModalState, handleNextModal, handlePrevModal]);
+
+  useEffect(() => {
+    if (slug !== "social-media-design") return;
+
+    const targetId = window.location.hash.slice(1);
+    if (
+      targetId !== "jendela-finansial" &&
+      targetId !== "pelkat-pa" &&
+      targetId !== "consistrade"
+    ) {
+      return;
+    }
+
+    document.getElementById(targetId)?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }, [slug]);
 
   const openPostModal = (
     sectionTitle: string,
@@ -391,21 +413,35 @@ export default function PortfolioDetailPage() {
 
         ) : isSocialMedia ? (
 
-          <div className="space-y-12 sm:space-y-16">
+          <div className="space-y-4">
 
             {socialSections.map((section, sIndex) => {
 
               const isExpanded =
                 expandedSections[sIndex] || false;
 
+              const isNewSocialProject = [
+                "jims_honey_sukabumi",
+                "sanne_skin_beauty",
+                "sambal_lauq",
+              ].includes(section.username);
               const isSquare =
-                section.title === "UKSW";
+                section.title === "UKSW" || isNewSocialProject;
+              const projectAnchorId =
+                section.username === "jendelafinansial"
+                  ? "jendela-finansial"
+                  : section.username === "pelkatpa.pku"
+                    ? "pelkat-pa"
+                    : section.username === "consistrade"
+                      ? "consistrade"
+                    : undefined;
 
               return (
 
                 <div
+                  id={projectAnchorId}
                   key={sIndex}
-                  className="relative mx-auto space-y-4 rounded-2xl border border-pink-200/80 bg-white p-3 shadow-[0_20px_60px_-15px_rgba(233,106,152,0.1)] sm:space-y-6 sm:rounded-[36px] sm:p-8"
+                  className={`relative mx-auto space-y-4 rounded-2xl border border-pink-200/80 bg-white p-3 shadow-[0_20px_60px_-15px_rgba(233,106,152,0.1)] sm:space-y-6 sm:rounded-[36px] sm:p-8 ${projectAnchorId ? "scroll-mt-16" : ""}`}
                 >
 
                   <div className="flex items-center justify-between gap-3 border-b border-pink-100 pb-3 sm:pb-4">
@@ -450,7 +486,14 @@ export default function PortfolioDetailPage() {
 
                   </div>
 
-                  <div className="grid grid-cols-3 gap-2 sm:gap-4">
+                  {section.instagramHighlights && (
+                    <InstagramHighlights
+                      images={section.instagramHighlights}
+                      compact={section.title === "UKSW"}
+                    />
+                  )}
+
+                  <div className={`grid grid-cols-3 gap-2 sm:gap-4 ${isNewSocialProject ? "mx-auto w-full max-w-4xl" : ""}`}>
 
                     {section.posts.map(
                       (item, itemIndex) => {
@@ -495,7 +538,7 @@ export default function PortfolioDetailPage() {
                               }
                               fill
                               sizes="(max-width: 640px) 33vw, (max-width: 1024px) 33vw, 33vw"
-                              className="object-cover transition-transform duration-500 group-hover:scale-105"
+                              className={`transition-transform duration-500 ${isNewSocialProject ? "object-contain" : "object-cover group-hover:scale-105"}`}
                             />
 
                             <div className="absolute inset-0 flex items-center justify-center bg-[#2D2433]/25 p-1 text-center font-mono text-[10px] font-bold text-white opacity-0 backdrop-blur-[1px] transition-opacity duration-300 sm:text-base sm:group-hover:opacity-100">
@@ -514,6 +557,10 @@ export default function PortfolioDetailPage() {
                     )}
 
                   </div>
+
+                  {section.instagramStories && (
+                    <InstagramStories images={section.instagramStories} />
+                  )}
 
                   <div className="block pt-1 sm:hidden">
 
