@@ -217,7 +217,7 @@ export default function ResumePage() {
                     </a>
 
                     <a
-                      href="https://behance.com/dorotheaalexand"
+                      href="https://www.behance.net/dorothealexand/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 rounded-full border border-pink-100 px-3 py-1.5 font-medium text-[#6B6570] transition-all hover:border-pink-300 hover:bg-pink-50 hover:text-pink-600"
