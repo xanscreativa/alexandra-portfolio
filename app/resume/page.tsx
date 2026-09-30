@@ -60,7 +60,7 @@ export default function ResumePage() {
                   <h1 className="max-w-2xl text-[28px] font-extrabold leading-[1.08] tracking-tight text-[#2D2433] sm:text-4xl lg:text-5xl">
                     Dorothea Alexandra
                     <span className="block">
-                      <span className="text-[#2D2433]">Manuputty</span><span className="text-pink-500">, S.Ds</span>
+                      <span className="text-[#2D2433]">Manuputty,</span><span className="text-pink-500"> S.Ds</span>
                     </span>
                   </h1>
                   <p className="mt-3 text-sm font-semibold text-[#77717A] sm:text-base">Visual / Brand Designer</p>
