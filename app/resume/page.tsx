@@ -42,7 +42,7 @@ const experiences = [
     date: "2023 – 2025",
     company: "PT. Tera Infinity Ultima",
     description:
-      "Owned visual design output and creative direction for Jendela Finansial's branding and marketing materials. Designed static and carousel content across a broad range of content pillars — financial-literacy “challenge” campaigns, comic series, entertainment content, breaking news, and educational content — distributed on Instagram, TikTok, and YouTube.",
+      "Owned visual design output and creative direction for Jendela Finansial's branding and marketing materials. Designed static and carousel content across a broad range of content pillars financial-literacy “challenge” campaigns, comic series, entertainment content, breaking news, and educational content distributed on Instagram, TikTok, and YouTube.",
   },
   {
     title: "Graphic Designer (Internship)",
@@ -265,7 +265,7 @@ export default function ResumePage() {
                 <p className="text-[11px] leading-[1.7] text-[#6B6570] sm:text-sm sm:leading-relaxed">
                   Visual & Brand Designer with 6+ years of hands-on experience
                   across branding, packaging, visual communication, and video/photo
-                  content — including leading the visual design and creative direction
+                  content including leading the visual design and creative direction
                   for a financial brand's marketing materials. National award-winning
                   in packaging and logo design, with additional experience teaching
                   graphic design and mentoring young creatives. Comfortable owning a
@@ -418,7 +418,7 @@ export default function ResumePage() {
                 </p>
                 <ul className="mt-3 space-y-1.5 text-[10.5px] leading-[1.6] text-[#77717A] sm:text-xs">
                   <li>• Designed 3 lookbooks for the collection.</li>
-                  <li>• Designed 3 distinct packaging types — primary, main, and shipping packaging.</li>
+                  <li>• Designed 3 distinct packaging types primary, main, and shipping packaging.</li>
                   <li>• Designed promotional materials.</li>
                   <li>• Photographed products during the fashion show and photoshoot for the lookbooks.</li>
                 </ul>

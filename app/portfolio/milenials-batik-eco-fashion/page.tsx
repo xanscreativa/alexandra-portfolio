@@ -1,24 +1,24 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, BookOpen } from "lucide-react";
 
 const lookbooks = [
   {
     title: "Lookbook 01",
     subtitle: "Klaster Parahita",
-    href: "https://publuu.com/flip-book/1187983/2643082",
+    slug: "parahita",
     image: "/portfolio/lookbook-parahita.avif",
   },
   {
     title: "Lookbook 02",
     subtitle: "Klaster Kab. Pati",
-    href: "https://publuu.com/flip-book/1187983/2643079",
+    slug: "kab-pati",
     image: "/portfolio/lookbook-pati.avif",
   },
   {
     title: "Lookbook 03",
     subtitle: "Klaster Kota Semarang & Kota Surakarta",
-    href: "https://publuu.com/flip-book/1187983/2643083",
+    slug: "semarang-surakarta",
     image: "/portfolio/lookbook-semarang.avif",
   },
 ];
@@ -77,11 +77,9 @@ export default function MilenialsBatikEcoFashionPage() {
 
           <div className="grid gap-6 md:grid-cols-3">
             {lookbooks.map((lookbook, index) => (
-              <a
-                key={lookbook.href}
-                href={lookbook.href}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                key={lookbook.slug}
+                href={`/lookbook/${lookbook.slug}`}
                 className="group block rounded-[24px] border border-pink-100 bg-white p-3 shadow-[0_12px_35px_-18px_rgba(45,36,51,0.25)] transition-all duration-300 hover:-translate-y-2 hover:border-pink-200 hover:shadow-[0_24px_45px_-18px_rgba(233,106,152,0.28)]"
               >
                 <div className="relative aspect-[4/5] overflow-hidden rounded-[18px] bg-pink-50">
@@ -101,19 +99,19 @@ export default function MilenialsBatikEcoFashionPage() {
                       </p>
                     </div>
                     <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-[#2D2433] shadow-lg transition-transform duration-300 group-hover:rotate-6">
-                      <ExternalLink size={16} />
+                      <BookOpen size={16} />
                     </span>
                   </div>
                 </div>
                 <div className="flex items-center justify-between px-2 pb-2 pt-4">
                   <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#6B6570]">
-                    Open Lookbook
+                    VIEW LOOKBOOK
                   </span>
                   <span className="text-xs font-bold text-pink-600">
                     0{index + 1}
                   </span>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>

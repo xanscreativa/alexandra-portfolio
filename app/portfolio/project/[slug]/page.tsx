@@ -70,7 +70,7 @@ const jendelaGuidelineDescriptions: Record<string, string> = {
   "03": "Three distinct typographic themes create a visual language that feels fun, approachable, and educational. The variation helps make complex financial topics feel lighter, more engaging, and easier for audiences to explore and understand.",
   "04": "The visual elements incorporate authentic photographic documentation from various sources to create a relatable and contemporary feel. Object-based photography is edited using selected brand colors, such as white–yellow or white–blue combinations, depending on the visual theme. Photography featuring people uses black-and-white or grayscale treatment to maintain consistency while keeping the overall composition clean and focused.",
   "05": "A subtle grid system is used as the foundation for the background, adapting to the brand's blue, yellow, and white themes. With approximately 15% transparency, the grid adds texture and visual depth without making the background feel busy or tiring to read. Speech bubbles create a more interactive and conversational feel, while arrows provide additional visual direction and support the information hierarchy.",
-  "06": "Jeni and Jeno represent Millennials and Gen Z—relaxed, curious, and eager to learn and grow. Their connection to financial topics reflects a generation that is increasingly conscious of money, personal growth, and the pursuit of financial freedom. Designed as friendly and supportive characters, Jeni and Jeno make financial education feel more relatable, approachable, and enjoyable.",
+  "06": "Jeni and Jeno represent Millennials and Gen Z relaxed, curious, and eager to learn and grow. Their connection to financial topics reflects a generation that is increasingly conscious of money, personal growth, and the pursuit of financial freedom. Designed as friendly and supportive characters, Jeni and Jeno make financial education feel more relatable, approachable, and enjoyable.",
 };
 
 const brandColorPalettes: Record<string, string[]> = {
@@ -262,8 +262,11 @@ export default function ProjectDetailPage() {
                     <ol className="space-y-4 p-4 sm:space-y-5 sm:p-6">
                       {project.brandMeaning.map((item, index) => (
                         <li key={item.title || item.description} className="flex gap-4 rounded-2xl border border-pink-100 bg-white p-4 sm:gap-5 sm:p-5">
-                          <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-pink-50 text-[10px] font-mono font-bold text-pink-600 sm:h-10 sm:w-10 sm:text-xs">
-                            {item.title || String(index + 1).padStart(2, "0")}
+                          <span
+                            className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#56B48C] text-[10px] font-mono font-medium text-transparent"
+                            style={{ WebkitTextStroke: "0.75px #FFFFFF" }}
+                          >
+                            {index + 1}
                           </span>
                           <p className="text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{item.description}</p>
                         </li>

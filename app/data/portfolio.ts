@@ -631,13 +631,13 @@ export const portfolioCollections: PortfolioCollection[] = [
   },
 
   // =========================================================
-  // 8. PRINT & CAMPAIGN DESIGN
+  // 8. PRINT DESIGN
   // =========================================================
   {
     id: 8,
     slug: "desain-lain",
-    title: "Print & Campaign Design",
-    category: "PRINT & CAMPAIGN DESIGN",
+    title: "Print Design",
+    category: "PRINT DESIGN",
     tagline:
       "A collection of print, campaign, promotional, and apparel design projects.",
     description:
