@@ -203,18 +203,6 @@ export default function ResumePage() {
                     Pekanbaru, Riau, Indonesia
                   </div>
 
-                  {/* Phone */}
-                  <a
-                    href="tel:+6285180001184"
-                    className="flex items-center gap-2.5 transition-colors hover:text-pink-600"
-                  >
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-pink-50 text-pink-500">
-                      <Phone className="h-3.5 w-3.5" />
-                    </span>
-
-                    +62 851 8000 1184
-                  </a>
-
                   {/* Social Links */}
                   <div className="flex flex-wrap gap-2 pt-1">
 
