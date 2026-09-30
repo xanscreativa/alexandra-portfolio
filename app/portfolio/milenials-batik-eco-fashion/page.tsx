@@ -6,19 +6,19 @@ const lookbooks = [
   {
     title: "Lookbook 01",
     subtitle: "Klaster Parahita",
-    slug: "parahita",
+    href: "https://heyzine.com/flip-book/8e4329edf6.html",
     image: "/portfolio/lookbook-parahita.avif",
   },
   {
     title: "Lookbook 02",
     subtitle: "Klaster Kab. Pati",
-    slug: "kab-pati",
+    href: "https://heyzine.com/flip-book/705ad0737f.html",
     image: "/portfolio/lookbook-pati.avif",
   },
   {
     title: "Lookbook 03",
     subtitle: "Klaster Kota Semarang & Kota Surakarta",
-    slug: "semarang-surakarta",
+    href: "https://heyzine.com/flip-book/3c6bd85a51.html",
     image: "/portfolio/lookbook-semarang.avif",
   },
 ];
@@ -77,9 +77,11 @@ export default function MilenialsBatikEcoFashionPage() {
 
           <div className="grid gap-6 md:grid-cols-3">
             {lookbooks.map((lookbook, index) => (
-              <Link
-                key={lookbook.slug}
-                href={`/lookbook/${lookbook.slug}`}
+              <a
+                key={lookbook.href}
+                href={lookbook.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group block rounded-[24px] border border-pink-100 bg-white p-3 shadow-[0_12px_35px_-18px_rgba(45,36,51,0.25)] transition-all duration-300 hover:-translate-y-2 hover:border-pink-200 hover:shadow-[0_24px_45px_-18px_rgba(233,106,152,0.28)]"
               >
                 <div className="relative aspect-[4/5] overflow-hidden rounded-[18px] bg-pink-50">
@@ -111,7 +113,7 @@ export default function MilenialsBatikEcoFashionPage() {
                     0{index + 1}
                   </span>
                 </div>
-              </Link>
+              </a>
             ))}
           </div>
         </div>
