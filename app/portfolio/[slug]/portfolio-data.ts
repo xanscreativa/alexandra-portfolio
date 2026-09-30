@@ -1075,7 +1075,7 @@ export const brandSections: SectionData[] = [
     details: {
       client: "GPIB Synod Children's Ministry Board",
       industry: "Children Ministry",
-      role: "Logo Designer",
+      role: "Winner Logo Design Competition",
       year: "2022",
       deliverables: "Logo design (competition entry)",
       tools: "Illustrator",
