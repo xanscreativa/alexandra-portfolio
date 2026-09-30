@@ -43,7 +43,7 @@ export default function About() {
                   WebkitTextFillColor: "transparent",
                 }}
               >
-                Hello!
+                hello!
               </span>
             </h2>
           </FadeUp>
