@@ -68,6 +68,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const t = (key: string, values?: Record<string, string | number>) => {
     const template =
       resolveTranslation(lang, key) ??
+      (lang === "id" ? translations.id.contentTranslations?.[key] : undefined) ??
       resolveTranslation("en", key) ??
       String(key);
 

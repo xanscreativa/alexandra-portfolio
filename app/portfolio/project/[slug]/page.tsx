@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound, useParams } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 import { getProjectBySlug } from "../../[slug]/portfolio-data";
 import ColorPalette from "@/components/work/ColorPalette";
@@ -106,6 +107,7 @@ const brandTypography: Record<string, { fontFamily: string; fontSrc?: string }> 
 };
 
 export default function ProjectDetailPage() {
+  const { t } = useLanguage();
   const params = useParams();
   const slug = params?.slug as string;
   const project = getProjectBySlug(slug);
@@ -142,13 +144,20 @@ export default function ProjectDetailPage() {
     const label = "Keywords:";
     const labelIndex = description.indexOf(label);
 
-    if (labelIndex === -1) return description;
+    if (labelIndex === -1) return t(description);
+
+    const keywords = description
+      .slice(labelIndex + label.length)
+      .trim()
+      .split(" · ")
+      .map((keyword) => t(keyword))
+      .join(" · ");
 
     return (
       <>
-        {description.slice(0, labelIndex)}
-        <span className="text-[#E96A98]">{label}</span>
-        {description.slice(labelIndex + label.length)}
+        {t(description.slice(0, labelIndex))}
+        <span className="text-[#E96A98]">{t(label)}</span>
+        {" "}{keywords}
       </>
     );
   };
@@ -168,7 +177,7 @@ export default function ProjectDetailPage() {
         <div className="mb-7 sm:mb-9">
           <Link href={isCharacterProject ? "/portfolio/character-design" : "/portfolio/brand-identity"} className="inline-flex items-center gap-2 py-1 text-[10px] font-mono font-bold uppercase tracking-wider text-[#6B6570] transition-colors hover:text-pink-600 sm:text-xs">
             <ArrowLeft className="h-3.5 w-3.5" />
-            {isCharacterProject ? "BACK TO CHARACTER DESIGN" : "BACK TO BRAND IDENTITY"}
+            {t(isCharacterProject ? "BACK TO CHARACTER DESIGN" : "BACK TO BRAND IDENTITY")}
           </Link>
         </div>
         <div className="max-w-5xl">
@@ -177,7 +186,7 @@ export default function ProjectDetailPage() {
               <h1 className="max-w-5xl text-3xl font-extrabold uppercase leading-[0.94] tracking-tight text-[#2D2433] sm:text-5xl lg:text-6xl">{project.title}</h1>
               {project.visualStyle?.length ? (
                 <p className="mt-4 text-xs font-medium leading-relaxed text-[#E96A98] sm:text-sm">
-                  {project.visualStyle.join(" • ")}
+                  {project.visualStyle.map((style) => t(style)).join(" • ")}
                 </p>
               ) : null}
             </>
@@ -199,17 +208,17 @@ export default function ProjectDetailPage() {
         {isGuidelineProject ? (
           <div>
             <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">{isCharacterProject ? "BRIEF" : "DESIGN APPROACH"}</span>
-            <p className="mt-4 max-w-4xl text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{designApproach}</p>
+            <p className="mt-4 max-w-4xl text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{t(designApproach)}</p>
           </div>
         ) : (
           <div className="grid gap-8 md:grid-cols-2 md:gap-12 lg:gap-20">
             <div>
               <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">BIG IDEA</span>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{project.bigIdea || project.overview}</p>
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{t(project.bigIdea || project.overview)}</p>
             </div>
             <div>
               <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">DESIGN APPROACH</span>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{designApproach}</p>
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{t(designApproach)}</p>
             </div>
           </div>
         )}
@@ -217,7 +226,7 @@ export default function ProjectDetailPage() {
           <div className="mt-10 border-t border-pink-100 pt-8 sm:mt-14 sm:pt-10">
             <div className="max-w-4xl">
               <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">{isCharacterProject ? "PURPOSE" : "CHALLENGE"}</span>
-              <p className="mt-4 text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{project.challenge}</p>
+              <p className="mt-4 text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{t(project.challenge)}</p>
             </div>
           </div>
         )}
@@ -246,7 +255,7 @@ export default function ProjectDetailPage() {
               {!isCharacterProject && (
                 <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">BRAND DEVELOPMENT</span>
               )}
-              <h2 className={`${isCharacterProject ? "" : "mt-3 "}text-2xl font-extrabold uppercase tracking-tight text-[#2D2433] sm:text-3xl`}>{isCharacterProject ? "CHARACTER DEVELOPMENT" : "Brand Guideline"}</h2>
+              <h2 className={`${isCharacterProject ? "" : "mt-3 "}text-2xl font-extrabold uppercase tracking-tight text-[#2D2433] sm:text-3xl`}>{t(isCharacterProject ? "CHARACTER DEVELOPMENT" : "Brand Guideline")}</h2>
             </div>
             {!isCharacterProject && (
               <span className="hidden rounded-full border border-pink-100 bg-white px-3 py-1 text-[8px] font-mono font-bold uppercase tracking-wider text-[#A39BA4] sm:block">{isHut67Project ? "8 BRAND SECTIONS" : isJendelaProject ? "6 IMAGE SLOTS" : "4 IMAGE SLOTS"}</span>
@@ -309,7 +318,7 @@ export default function ProjectDetailPage() {
                   <article key={number} className="overflow-hidden rounded-[24px] border border-pink-100 bg-[#FFFBFD] shadow-[0_18px_50px_-25px_rgba(45,36,51,0.22)] sm:rounded-[30px]">
                     <div className="flex items-center gap-4 border-b border-pink-100 px-4 py-4 sm:px-6 sm:py-5">
                       <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-pink-50 text-[10px] font-mono font-bold text-pink-600 sm:h-11 sm:w-11 sm:text-xs">02</span>
-                      <h3 className="text-sm font-extrabold uppercase tracking-wide text-[#2D2433] sm:text-base">MEANING</h3>
+                      <h3 className="text-sm font-extrabold uppercase tracking-wide text-[#2D2433] sm:text-base">{t("MEANING")}</h3>
                     </div>
                     <div className="px-4 pt-5 sm:px-6 sm:pt-7">
                       <div className="mx-auto w-full max-w-2xl overflow-hidden rounded-2xl bg-white">
@@ -332,7 +341,7 @@ export default function ProjectDetailPage() {
                           >
                             {index + 1}
                           </span>
-                          <p className="text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{item.description}</p>
+                          <p className="text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{t(item.description)}</p>
                         </li>
                       ))}
                     </ol>
@@ -349,7 +358,7 @@ export default function ProjectDetailPage() {
                   <article key={number} className="overflow-hidden rounded-[24px] border border-pink-100 bg-[#FFFBFD] shadow-[0_18px_50px_-25px_rgba(45,36,51,0.22)] sm:rounded-[30px]">
                     <div className="flex items-center gap-4 border-b border-pink-100 px-4 py-4 sm:px-6 sm:py-5">
                       <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-pink-50 text-[10px] font-mono font-bold text-pink-600 sm:h-11 sm:w-11 sm:text-xs">02</span>
-                      <h3 className={`text-sm font-extrabold uppercase tracking-wide sm:text-base ${isHut67Project ? "text-primary" : "text-[#2D2433]"}`}>MEANING</h3>
+                      <h3 className={`text-sm font-extrabold uppercase tracking-wide sm:text-base ${isHut67Project ? "text-primary" : "text-[#2D2433]"}`}>{t("MEANING")}</h3>
                     </div>
                     <div className={`grid gap-3 p-3 sm:gap-4 sm:p-5 ${isHut67MeaningGrid ? "grid-cols-1 md:grid-cols-6" : isCompactListProject ? "md:grid-cols-1" : isConsistradeMeaning ? "md:grid-cols-5 lg:grid-cols-1" : "md:grid-cols-5"}`}>
                       {project.brandMeaning.map((item) => (
@@ -373,7 +382,7 @@ export default function ProjectDetailPage() {
                                 {isHut67Project ? item.title.replace(/^\d+\s*[-–—]\s*/, "") : item.title}
                               </span>
                             )}
-                            {item.description}
+                            {t(item.description)}
                           </p>
                         </div>
                       ))}
@@ -388,7 +397,7 @@ export default function ProjectDetailPage() {
                     {isBrandCharacterSection ? (
                       <>
                         <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-pink-50 text-[10px] font-mono font-bold text-pink-600 sm:h-11 sm:w-11 sm:text-xs">{number}</span>
-                        <h3 className="text-sm font-extrabold uppercase tracking-wide text-[#2D2433] sm:text-base">{title}</h3>
+                        <h3 className="text-sm font-extrabold uppercase tracking-wide text-[#2D2433] sm:text-base">{t(title)}</h3>
                       </>
                     ) : (
                       <>
@@ -529,9 +538,9 @@ export default function ProjectDetailPage() {
                   <h3 className="text-sm font-extrabold uppercase tracking-wide text-[#2D2433] sm:text-base">SOCIAL MEDIA</h3>
                 </div>
                 <div className="flex flex-col items-start gap-5 p-4 sm:p-6">
-                  <p className="max-w-3xl text-xs leading-6 text-[#6B6570] sm:text-sm sm:leading-7">Explore how the Jendela Finansial visual identity is applied across social media through educational, interactive, and engaging content.</p>
+                  <p className="max-w-3xl text-xs leading-6 text-[#6B6570] sm:text-sm sm:leading-7">{t("Explore how the Jendela Finansial visual identity is applied across social media through educational, interactive, and engaging content.")}</p>
                   <Link href="/portfolio/social-media-design#jendela-finansial" className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-center text-[10px] font-mono font-bold uppercase tracking-wider text-white transition-colors hover:bg-primary-hover focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary sm:w-fit sm:px-6 sm:text-xs">
-                    VIEW SOCIAL MEDIA PROJECT <span aria-hidden="true">→</span>
+                    {t("VIEW SOCIAL MEDIA PROJECT")} <span aria-hidden="true">→</span>
                   </Link>
                 </div>
               </article>
