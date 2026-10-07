@@ -1,8 +1,12 @@
+import { portfolioCollections } from "@/data/portfolio";
+
 export interface GalleryItem {
   src: string;
   title?: string;
   alt?: string;
   caption?: string;
+  width?: number;
+  height?: number;
   subSlides?: GalleryItem[];
   isVideo?: boolean;
 }
@@ -49,11 +53,17 @@ export interface SectionData {
   slug?: string;
   category?: string;
   bigIdea?: string;
+  characterProject?: {
+    slug: string;
+  };
+  visualStyle?: string[];
   projectImages?: GalleryItem[];
   brandGuidelines?: BrandGuidelineSection[];
   brandMeaning?: BrandMeaningItem[];
   instagramHighlights?: GalleryItem[];
   instagramStories?: GalleryItem[];
+  characterColorPalette?: string[];
+  characterColorPaletteDescription?: string;
 }
 
 export const desainLainItems: GalleryItem[] = [
@@ -692,7 +702,7 @@ export const brandSections: SectionData[] = [
     challenge:
       "Communicating complex financial concepts to make them approachable, relevant, and engaging for a younger audience through a fresh visual strategy.",
     bigIdea:
-      "Jendela Finansial is designed as an educational and interactive social media platform that makes financial topics feel fun, approachable, and relevant to everyday life.\n\nThe content system combines financial education with interactive challenges, comics, character-based storytelling, and monthly templates such as Add Yours and Twibbon.\n\nTo create a consistent and recognizable Instagram feed, content follows three visual themes in a repeating sequence:\n\nBLUE → WHITE → YELLOW → BLUE → WHITE → YELLOW\n\nThis recurring color rhythm creates a visually organized feed while keeping the content varied, engaging, and easy to recognize when audiences browse the profile.",
+      "Jendela Finansial is designed as an educational and interactive social media platform that makes financial topics feel fun, approachable, and relevant to everyday life.\n\nThe content system combines financial education with interactive challenges, comics, character-based storytelling, and monthly templates such as Add Yours and Twibbon.\n\nTo create a consistent and recognizable Instagram feed, content follows three visual themes in a repeating sequence:\n\nBlue → White → Yellow 🔁\n\nThis recurring color rhythm creates a visually organized feed while keeping the content varied, engaging, and easy to recognize when audiences browse the profile.",
     projectImages: [
       {
         src: "/portfolio/branding-jendela1.avif",
@@ -719,6 +729,9 @@ export const brandSections: SectionData[] = [
         alt: "Jendela Finansial character",
       },
     ],
+    characterProject: {
+      slug: "character-jeni-and-jeno",
+    },
   },
 
   {
@@ -851,6 +864,9 @@ export const brandSections: SectionData[] = [
         alt: "GPIB Immanuel Pekanbaru brand identity",
       },
     ],
+    characterProject: {
+      slug: "character-elof",
+    },
     brandGuidelines: [
       {
         number: "01",
@@ -883,8 +899,7 @@ export const brandSections: SectionData[] = [
       {
         number: "06",
         title: "CHARACTER",
-        description:
-          "Meet Elof, a friendly young pastor mascot inspired by Rudolf Knierim, the first missionary and pastor of GPIB. His name represents Immanuel, Light, Obedience, and Faith, reflecting the philosophy of walking together with God.",
+        description: "",
         images: [
           {
             src: "/portfolio/branding-gpib6.avif",
@@ -972,6 +987,9 @@ export const brandSections: SectionData[] = [
         alt: "Consistrade brand identity",
       },
     ],
+    characterProject: {
+      slug: "character-tedy",
+    },
     brandGuidelines: [
       {
         number: "01",
@@ -1032,8 +1050,7 @@ export const brandSections: SectionData[] = [
       {
         number: "06",
         title: "CHARACTER",
-        description:
-          "The brand character adds a welcoming human touch, helping make complex trading concepts feel more approachable.",
+        description: "",
         images: [
           {
             src: "/portfolio/branding-consistrade6.avif",
@@ -1768,5 +1785,185 @@ export const projectCaseStudies: SectionData[] = brandSections.map(
 // ==========================================
 
 export function getProjectBySlug(slug: string) {
-  return projectCaseStudies.find((project) => project.slug === slug);
+  const existingProject = projectCaseStudies.find((project) => project.slug === slug);
+  if (existingProject) return existingProject;
+
+  const characterCollection = portfolioCollections.find(
+    (collection) => collection.slug === "character-design"
+  );
+  const legacyCharacterNames: Record<string, string> = {
+    "character-emily": "Emily the Great",
+    "character-teddy": "Tedy",
+  };
+  const character = characterCollection?.items.find(
+    (item) =>
+      getCharacterProjectSlug(item.title) === slug ||
+      legacyCharacterNames[slug] === item.title
+  );
+
+  if (!character) return undefined;
+
+  const name = character.characterName ?? character.title;
+  const imageDimensions: Record<string, { width: number; height: number }> = {
+    "/portfolio/jeni-jeno.avif": { width: 1117, height: 1408 },
+    "/portfolio/elof.avif": { width: 1620, height: 2025 },
+    "/portfolio/teddy.avif": { width: 1620, height: 2025 },
+    "/portfolio/emily.avif": { width: 3375, height: 4219 },
+    "/portfolio/character-elof.avif": { width: 3840, height: 2160 },
+    "/portfolio/character-emily.avif": { width: 3840, height: 2160 },
+    "/portfolio/character-emily1.avif": { width: 3840, height: 2160 },
+    "/portfolio/character-jeni.avif": { width: 3840, height: 2160 },
+    "/portfolio/character-jenijeno.avif": { width: 1920, height: 1080 },
+    "/portfolio/character-jenijeno1.avif": { width: 1920, height: 1080 },
+    "/portfolio/character-jeno.avif": { width: 3840, height: 2160 },
+    "/portfolio/character-teddy.avif": { width: 3840, height: 2160 },
+    "/portfolio/character-teddy1.avif": { width: 3840, height: 2160 },
+    "/portfolio/jendela-1.avif": { width: 3544, height: 4430 },
+    "/portfolio/jendela-highlight1.avif": { width: 4501, height: 4500 },
+    "/portfolio/jendela-highlight2.avif": { width: 4501, height: 4500 },
+    "/portfolio/jendela-highlight3.avif": { width: 4500, height: 4500 },
+    "/portfolio/jendela-finansial.avif": { width: 1620, height: 2025 },
+    "/portfolio/jendela-story4.avif": { width: 750, height: 1333 },
+  };
+  const toGuidelineImage = (src: string, alt: string): BrandGuidelineImage => ({
+    src,
+    alt,
+    ...(imageDimensions[src] ?? { width: 1600, height: 2000 }),
+  });
+  const explorationLabels: Record<string, string> = {
+    "/portfolio/character-elof.avif": "Sketch / Character Exploration",
+    "/portfolio/character-emily.avif": "Character Sketch / Exploration",
+    "/portfolio/character-jenijeno.avif": "Full-Body Character Sketch",
+    "/portfolio/character-jenijeno1.avif": "Expression Sketch / Exploration",
+    "/portfolio/character-teddy.avif": "Character Sketch / Exploration",
+  };
+  const finalImages = character.images.length > 0 ? character.images : [character.cover];
+  const explorationDescription = [
+    character.characterExploration ?? character.characterConcept ?? character.description,
+    character.visualStyle?.length
+      ? `Keywords: ${character.visualStyle.join(" · ")}`
+      : undefined,
+  ].filter(Boolean).join("\n\n");
+  const characterApplicationDescriptions: Record<string, string> = {
+    Elof: "Elof was developed as a visual character for social media content, helping bring the brand to life across both video and poster-based communication.",
+    "Jeni & Jeno": "Jeni & Jeno were applied across social media content, appearing in both video and poster-based communication to create a more playful and relatable brand presence.",
+    Tedy: "Tedy was applied to social media content across both video and poster-based communication, helping create a friendly and approachable visual presence for the brand.",
+    "Emily the Great": "Emily was developed as a character for Telegram stickers, bringing her playful and expressive personality into a fun and engaging form of everyday communication.",
+  };
+  const characterProjectMetadata: Record<
+    string,
+    Pick<SectionDetails, "year" | "deliverables" | "tools">
+  > = {
+    "Jeni & Jeno": {
+      year: "2024",
+      deliverables:
+        "Character design for social media and video content for financial education.",
+      tools: "Adobe Illustrator",
+    },
+    "Emily the Great": {
+      year: "2025",
+      deliverables: "Character design for Telegram stickers.",
+      tools: "Adobe Illustrator",
+    },
+    Tedy: {
+      year: "2025",
+      deliverables: "Character design for social media content for financial education.",
+      tools: "Adobe Illustrator",
+    },
+    Elof: {
+      year: "2026",
+      deliverables:
+        "Character design for social media and supporting materials for church ministry information at GPIB Immanuel Pekanbaru.",
+      tools: "Adobe Illustrator",
+    },
+  };
+  const characterGuidelines: BrandGuidelineSection[] = [
+    {
+      number: "01",
+      title: "CONCEPT & EXPLORATION",
+      description: explorationDescription,
+      images: (character.characterExplorationImages ?? []).map((src, index) => {
+        const label = explorationLabels[src] ?? `Concept and exploration ${index + 1}`;
+        return {
+          ...toGuidelineImage(src, `${name} ${label.toLowerCase()}`),
+          caption: label,
+        };
+      }),
+    },
+    {
+      number: "02",
+      title: "COLORS",
+      description: character.colorPaletteDescription ?? "",
+      images: [],
+    },
+    {
+      number: "03",
+      title: "FINAL CHARACTER",
+      description: character.characterFinalDescription ?? "",
+      images: finalImages.map((src, index) => {
+        const characterLabel =
+          name === "Jeni & Jeno" ? (index === 0 ? "Jeni" : "Jeno") : name;
+        return {
+          ...toGuidelineImage(src, `${characterLabel} final character artwork`),
+          ...(name === "Jeni & Jeno" ? { caption: `${characterLabel} — Final Character` } : {}),
+        };
+      }),
+    },
+    {
+      number: "04",
+      title: "APPLICATIONS",
+      description: characterApplicationDescriptions[name] ?? "",
+      images:
+        name === "Emily the Great"
+          ? [
+              toGuidelineImage(
+                "/portfolio/character-emily2.avif",
+                "Emily Telegram stickers"
+              ),
+            ]
+          : [],
+    },
+    {
+      number: "05",
+      title: "REFLECTION",
+      description: character.reflection ?? "",
+      images: [],
+    },
+  ];
+
+  return {
+    slug,
+    category: "CHARACTER DESIGN",
+    title: name,
+    username: slug,
+    bio: character.description,
+    avatarImage: character.cover,
+    avatarText: name.slice(0, 2).toUpperCase(),
+    avatarBg: "from-pink-400 to-rose-500",
+    posts: [{ src: character.cover, alt: `${name} character artwork` }],
+    details: {
+      client: "—",
+      industry: "Character Design & Illustration",
+      role: character.visualStyle?.join(" · ") ?? "Character Illustration",
+      ...characterProjectMetadata[name],
+    },
+    overview: character.characterBrief ?? character.description,
+    challenge: character.characterPurpose ?? "",
+    bigIdea: character.characterConcept ?? character.characterExploration ?? character.description,
+    projectImages: [],
+    visualStyle: character.visualStyle,
+    brandGuidelines: characterGuidelines,
+    characterColorPalette: character.colorPalette?.map((swatch) => swatch.hex),
+    characterColorPaletteDescription: character.colorPaletteDescription,
+  } satisfies SectionData;
+}
+
+export function getCharacterProjectSlug(title: string) {
+  const normalizedTitle = title
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+
+  return `character-${normalizedTitle}`;
 }

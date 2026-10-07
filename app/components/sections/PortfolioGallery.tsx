@@ -175,7 +175,7 @@ export default function PortfolioGallery() {
         {/* GRID GALLERY */}
         <div className="grid grid-cols-12 items-center gap-2.5 sm:gap-4 lg:gap-5">
           {WORKS.map((item, index) => (
-            <div key={item.id} className={item.span}>
+            <div key={item.id} className={`${item.span} lg:col-span-4`}>
               <FadeUp delay={index * 0.05}>
                 <Link
                   href={`/portfolio/${item.slug}`}
@@ -184,8 +184,9 @@ export default function PortfolioGallery() {
                 >
                   <div className="relative z-10">
                     <div
-                      style={{ aspectRatio: item.aspectRatio }}
-                      className="relative w-full overflow-hidden rounded-lg bg-pink-50/50 sm:rounded-xl"
+                      className={`relative w-full overflow-hidden rounded-lg bg-pink-50/50 sm:rounded-xl ${
+                        item.aspectRatio === "4/5" ? "aspect-[4/5]" : "aspect-square"
+                      } ${index % 2 === 1 ? "lg:aspect-[4/5]" : "lg:aspect-square"}`}
                     >
                       <Image
                         src={item.image}

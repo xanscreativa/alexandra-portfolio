@@ -1,92 +1,95 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
 export default function CustomCursor() {
-  const [position, setPosition] = useState({
-    x: 0,
-    y: 0,
-  });
-
-  const [hover, setHover] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 1024px)");
-    const updateDesktop = () => setIsDesktop(mediaQuery.matches);
+    const desktopQuery = window.matchMedia(
+      "(min-width: 1024px) and (pointer: fine) and (hover: hover)"
+    );
+    const updateDesktop = () => setIsActive(desktopQuery.matches);
 
     updateDesktop();
-    mediaQuery.addEventListener("change", updateDesktop);
-
-    if (!mediaQuery.matches) {
-      return () => mediaQuery.removeEventListener("change", updateDesktop);
-    }
-
-    const move = (e: MouseEvent) => {
-      setPosition({
-        x: e.clientX,
-        y: e.clientY,
-      });
-    };
-
-    const enter = () => setHover(true);
-    const leave = () => setHover(false);
-
-    const interactiveElements = document.querySelectorAll("a,button");
-
-    window.addEventListener("mousemove", move);
-
-    interactiveElements.forEach((el) => {
-      el.addEventListener("mouseenter", enter);
-      el.addEventListener("mouseleave", leave);
-    });
+    desktopQuery.addEventListener("change", updateDesktop);
 
     return () => {
-      window.removeEventListener("mousemove", move);
-
-      interactiveElements.forEach((el) => {
-        el.removeEventListener("mouseenter", enter);
-        el.removeEventListener("mouseleave", leave);
-      });
-
-      mediaQuery.removeEventListener("change", updateDesktop);
+      desktopQuery.removeEventListener("change", updateDesktop);
     };
   }, []);
 
-  if (!isDesktop) {
+  useEffect(() => {
+    if (!isActive) {
+      return;
+    }
+
+    const root = document.documentElement;
+    const cursor = cursorRef.current;
+    if (!cursor) {
+      return;
+    }
+
+    let targetX = -100;
+    let targetY = -100;
+    let animationFrame = 0;
+
+    const renderPosition = () => {
+      cursor.style.transform = `translate3d(${targetX - 10}px, ${targetY - 2}px, 0)`;
+      animationFrame = 0;
+    };
+
+    const handleMouseMove = (event: MouseEvent) => {
+      targetX = event.clientX;
+      targetY = event.clientY;
+      cursor.style.opacity = "1";
+      root.classList.add("wand-cursor-active");
+
+      if (!animationFrame) {
+        animationFrame = window.requestAnimationFrame(renderPosition);
+      }
+    };
+
+    const handleMouseLeave = () => {
+      cursor.style.opacity = "0";
+      root.classList.remove("wand-cursor-active");
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    document.documentElement.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      root.classList.remove("wand-cursor-active");
+      window.removeEventListener("mousemove", handleMouseMove);
+      document.documentElement.removeEventListener(
+        "mouseleave",
+        handleMouseLeave
+      );
+      window.cancelAnimationFrame(animationFrame);
+    };
+  }, [isActive]);
+
+  if (!isActive) {
     return null;
   }
 
   return (
-    <>
-      <motion.div
-        animate={{
-          x: position.x - (hover ? 28 : 10),
-          y: position.y - (hover ? 28 : 10),
-          width: hover ? 56 : 20,
-          height: hover ? 56 : 20,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 500,
-          damping: 30,
-        }}
-        className="pointer-events-none fixed left-0 top-0 z-[999999] rounded-full border border-pink-500"
+    <div
+      ref={cursorRef}
+      aria-hidden="true"
+      className="pointer-events-none fixed left-0 top-0 z-[999999] will-change-transform"
+      style={{ opacity: 0 }}
+    >
+      <Image
+        src="/wand.svg"
+        alt=""
+        width={39}
+        height={40}
+        unoptimized
+        draggable={false}
       />
-
-      <motion.div
-        animate={{
-          x: position.x - 3,
-          y: position.y - 3,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 900,
-          damping: 40,
-        }}
-        className="pointer-events-none fixed left-0 top-0 z-[999999] h-1.5 w-1.5 rounded-full bg-pink-500"
-      />
-    </>
+    </div>
   );
 }

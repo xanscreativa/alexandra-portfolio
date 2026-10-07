@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Lexend_Deca } from "next/font/google";
 import "./globals.css";
 import MouseGlow from "@/components/ui/MouseGlow";
+import CustomCursor from "@/components/layout/CustomCursor";
 import { LanguageProvider } from "@/context/LanguageContext";
 import Navbar from "@/components/layout/Navbar"; 
 
@@ -33,6 +34,7 @@ export default function RootLayout({
         <LanguageProvider>
           <Navbar /> 
           <MouseGlow />
+          <CustomCursor />
           {children}
         </LanguageProvider>
       </body>

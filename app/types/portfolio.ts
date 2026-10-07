@@ -14,12 +14,37 @@ export interface PortfolioMeta {
   tools: string;
 }
 
+export interface CharacterDetail {
+  name: string;
+  traits: string[];
+}
+
+export interface CharacterPaletteSwatch {
+  name: string;
+  hex: string;
+  description?: string;
+}
+
 export interface PortfolioItem {
   title: string;
   subtitle?: string;
   description: string;
   cover: string;
   images: string[];
+  characterName?: string;
+  characterBrief?: string;
+  characterPurpose?: string;
+  characterConcept?: string;
+  characterExploration?: string;
+  characterExplorationImages?: string[];
+  characterFinalDescription?: string;
+  characterDetails?: CharacterDetail[];
+  visualStyle?: string[];
+  colorPalette?: CharacterPaletteSwatch[];
+  colorPaletteDescription?: string;
+  applications?: string[];
+  reflection?: string;
+  gallery?: string[];
 }
 
 export interface PortfolioCollection {

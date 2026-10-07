@@ -28,6 +28,7 @@ import {
   socialSections,
   brandSections,
   logoSections,
+  getCharacterProjectSlug,
 } from "./portfolio-data";
 import { TikTokLiveMockup } from "./TikTokLiveMockup";
 
@@ -66,7 +67,6 @@ export default function PortfolioDetailPage() {
   const [startPos, setStartPos] = useState<number>(0);
 
   const carouselRef = useRef<HTMLDivElement | null>(null);
-
   const toggleSection = (index: number) => {
     setExpandedSections((prev) => ({
       ...prev,
@@ -104,7 +104,7 @@ export default function PortfolioDetailPage() {
     });
 
     setDragOffset(0);
-  }, []);
+  }, [setActiveModalState]);
 
   const handlePrevModal = useCallback(() => {
     setActiveModalState((prev) => {
@@ -120,7 +120,7 @@ export default function PortfolioDetailPage() {
     });
 
     setDragOffset(0);
-  }, []);
+  }, [setActiveModalState]);
 
   const handlePointerDown = (e: React.PointerEvent) => {
     if (
@@ -308,9 +308,10 @@ export default function PortfolioDetailPage() {
             {isCharacterDesign
               ? collection.items.map((item) => (
 
-                  <div
+                  <Link
                     key={item.title}
-                    className="group overflow-hidden rounded-2xl border border-[#E9DCE4] bg-white p-3.5 shadow-[0_10px_30px_-10px_rgba(233,106,152,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-12px_rgba(233,106,152,0.18)] active:scale-95 sm:p-5"
+                    href={`/portfolio/project/${getCharacterProjectSlug(item.title)}`}
+                    className="group cursor-pointer overflow-hidden rounded-2xl border border-[#E9DCE4] bg-white p-3.5 shadow-[0_10px_30px_-10px_rgba(233,106,152,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-12px_rgba(233,106,152,0.18)] active:scale-95 sm:p-5"
                   >
 
                     <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl border border-[#E9DCE4] bg-pink-50/50">
@@ -333,7 +334,7 @@ export default function PortfolioDetailPage() {
 
                     </div>
 
-                  </div>
+                  </Link>
 
                 ))
               : (isBrandIdentity

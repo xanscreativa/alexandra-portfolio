@@ -412,16 +412,22 @@ export const portfolioCollections: PortfolioCollection[] = [
     id: 5,
     slug: "character-design",
     title: "Character Design",
-    category: "ILLUSTRATION",
-    tagline: "",
-    description: "",
+    category: "CHARACTER DESIGN",
+    tagline:
+      "Original mascots and character illustrations created to make each brand feel memorable, approachable, and distinct.",
+    description:
+      "Original mascot and character design work built to reflect each brand's identity, values, and audience in a warm, memorable way.",
 
     cover: "/portfolio/character.avif",
 
-    overview: "",
-    challenge: "",
-    solution: "",
-    outcome: "",
+    overview:
+      "A collection of character-driven visual identities created to translate brand personality into approachable, expressive illustration.",
+    challenge:
+      "Creating character identities that feel consistent with each brand while remaining memorable, expressive, and easy to apply across digital channels and campaigns.",
+    solution:
+      "Developed original mascot and illustration systems rooted in the brand's tone, audience, and values so each character could carry the identity naturally across content and campaigns.",
+    outcome:
+      "Delivered distinct character systems that help each brand feel more human, relatable, and recognizable in its communication.",
 
     meta: {
       client: "Jendela Finansial",
@@ -445,30 +451,166 @@ export const portfolioCollections: PortfolioCollection[] = [
       {
         title: "Elof",
         subtitle: "Character Illustration",
-        description: "",
+        description:
+          "Elof is a friendly illustrated character designed with a warm, approachable appearance and a clear storytelling-oriented visual style.",
         cover: "/portfolio/elof.avif",
-        images: ["/portfolio/elof.avif"],
+        images: ["/portfolio/banner-elof.avif"],
+        characterName: "Elof",
+        characterExplorationImages: ["/portfolio/character-elof.avif"],
+        characterBrief:
+          "Elof is a friendly illustrated character designed with a warm, approachable appearance and a clear storytelling-oriented visual style.",
+        characterPurpose:
+          "To create a memorable character that can support visual storytelling through expressive features and recognizable visual elements.",
+        characterExploration:
+          "Elof was developed with a warm and friendly illustration approach, combining simplified character proportions with recognizable details such as his glasses, green vest, white robe, and walking staff.",
+        characterFinalDescription:
+          "The final character combines soft proportions, expressive eyes, and distinctive costume elements to create a recognizable and approachable character.",
+        visualStyle: ["Friendly", "Warm", "Storytelling", "Approachable"],
+        colorPaletteDescription:
+          "The Elof color palette combines warm cream and golden tones with earthy brown, green, and soft skin tones to create a warm and approachable visual character. The earthy colors reinforce the storytelling atmosphere, while the brighter yellow tones add warmth and optimism.",
+        colorPalette: [
+          { name: "SOFT CREAM", hex: "#FAD887" },
+          { name: "GOLDEN YELLOW", hex: "#FDCE69" },
+          { name: "WARM BROWN", hex: "#895336" },
+          { name: "DEEP CHARCOAL", hex: "#221F1B" },
+          { name: "SAGE GREEN", hex: "#709751" },
+          { name: "SOFT PEACH", hex: "#C58D5C" },
+        ],
+        reflection:
+          "Elof allowed me to explore character illustration through simplified proportions, expressive facial features, and distinctive costume details. The final design focuses on creating a character that feels warm, recognizable, and suitable for visual storytelling.",
       },
       {
         title: "Jeni & Jeno",
         subtitle: "Character Illustration",
-        description: "",
+        description:
+          "Mascot character design created to make financial education feel more approachable and relatable.",
         cover: "/portfolio/jeni-jeno.avif",
-        images: ["/portfolio/jeni-jeno.avif"],
+        images: ["/portfolio/character-jeni.avif", "/portfolio/character-jeno.avif"],
+        characterName: "Jeni & Jeno",
+        characterExplorationImages: [
+          "/portfolio/character-jenijeno.avif",
+          "/portfolio/character-jenijeno1.avif",
+        ],
+        characterBrief:
+          "Jeni and Jeno are a playful character duo designed with expressive features, rounded shapes, and a warm, approachable visual style.",
+        characterPurpose:
+          "To create memorable and approachable characters that can support visual storytelling and creative applications.",
+        characterConcept:
+          "Jeni and Jeno represent Millennials and Gen Z — relaxed, curious, and eager to learn and grow. Their presence reflects a generation increasingly conscious of money, personal growth, and the pursuit of financial freedom.",
+        characterExploration:
+          "Developed with a cute, playful, and expressive approach, focusing on rounded proportions, expressive eyes, distinctive hairstyles, and playful visual details.",
+        characterFinalDescription:
+          "The final character design combines rounded forms, expressive facial features, distinctive hairstyles, and playful color accents to create a friendly and memorable character duo.",
+        visualStyle: ["Cute", "Playful", "Expressive", "Friendly"],
+        colorPaletteDescription:
+          "The Jeni & Jeno color palette combines deep neutrals with warm and vibrant accents to create a playful, expressive, and approachable visual identity. Deep hair tones provide contrast and definition, while warm peach creates a soft and friendly foundation. Royal blue and emerald green bring expressive character accents, while sunny yellow and soft orange add cheerful energy and warmth.",
+        applications: [
+          "/portfolio/jendela-finansial.avif",
+          "/portfolio/jendela-highlight3.avif",
+          "/portfolio/jendela-story4.avif",
+        ],
+        colorPalette: [
+          {
+            name: "MIDNIGHT HAIR",
+            hex: "#242222",
+            description:
+              "Main color for the characters' hair and dark outlines, providing strong definition while maintaining a soft and playful visual feel.",
+          },
+          {
+            name: "WARM PEACH",
+            hex: "#F9C9A5",
+            description:
+              "A warm skin tone that gives the characters a soft, friendly, and approachable appearance.",
+          },
+          {
+            name: "ROYAL BLUE",
+            hex: "#303B9B",
+            description:
+              "A vibrant blue accent used in Jeno's eyes, adding an expressive, playful, and energetic quality.",
+          },
+          {
+            name: "EMERALD GREEN",
+            hex: "#08735C",
+            description:
+              "A fresh green accent used in Jeni's eyes, adding liveliness and visual distinction.",
+          },
+          {
+            name: "SUNNY YELLOW",
+            hex: "#FFBE2E",
+            description:
+              "A cheerful accent color that adds warmth, brightness, and playful energy to the character design.",
+          },
+          {
+            name: "SOFT ORANGE",
+            hex: "#F7943D",
+            description:
+              "A warm accent that adds energy and creates a more vibrant and approachable overall character palette.",
+          },
+        ],
+        reflection:
+          "Jeni & Jeno were designed with rounded forms, expressive features, and playful visual details to create a friendly and memorable character duo. The visual direction focuses on making both characters feel approachable while maintaining distinctive personalities. The final design aims to create characters that can communicate emotion clearly across different visual applications.",
       },
       {
-        title: "Teddy",
+        title: "Tedy",
         subtitle: "Character Illustration",
-        description: "",
+        description:
+          "Tedy is a friendly character illustration designed with a clean, youthful, and approachable visual style.",
+        characterName: "Tedy",
+        characterExplorationImages: ["/portfolio/character-teddy.avif"],
+        characterBrief:
+          "Tedy is a friendly character illustration designed with a clean, youthful, and approachable visual style.",
+        characterPurpose:
+          "To create a recognizable character that can communicate a friendly and modern personality through expressive illustration.",
+        characterExploration:
+          "Tedy was developed with a clean and youthful character approach, combining simplified proportions, expressive eyes, and a soft blue-purple visual atmosphere.",
+        characterFinalDescription:
+          "The final design combines soft proportions, expressive eyes, and a clean outfit to create a friendly and visually approachable character.",
+        visualStyle: ["Friendly", "Youthful", "Modern", "Approachable"],
+        colorPaletteDescription:
+          "The Tedy color palette combines soft white, lavender, sky blue, and subtle pink with deeper charcoal and purple accents. The lighter colors create a youthful and approachable atmosphere, while the darker tones provide contrast and definition. Together, the palette gives the character a clean, modern, and friendly visual presence.",
+        colorPalette: [
+          { name: "SOFT WHITE", hex: "#FDFBFD" },
+          { name: "LAVENDER", hex: "#EED3FB" },
+          { name: "SKY BLUE", hex: "#7C98F3" },
+          { name: "SOFT PINK", hex: "#FAD2D1" },
+          { name: "DEEP CHARCOAL", hex: "#22201F" },
+          { name: "DEEP PURPLE", hex: "#4C3765" },
+        ],
+        reflection:
+          "Tedy allowed me to explore a softer approach to character illustration through simple proportions, expressive eyes, and a light color palette. The final design focuses on creating a character that feels friendly, modern, and easy to connect with.",
         cover: "/portfolio/teddy.avif",
-        images: ["/portfolio/teddy.avif"],
+        images: ["/portfolio/character-teddy1.avif"],
       },
       {
-        title: "Emily",
+        title: "Emily the Great",
         subtitle: "Character Illustration",
-        description: "",
+        description:
+          "Emily the Great is an expressive character illustration designed around a playful, energetic, and confident visual personality.",
+        characterName: "Emily the Great",
+        characterBrief:
+          "Emily the Great is an expressive character illustration designed around a playful, energetic, and confident visual personality.",
+        characterPurpose:
+          "To create a recognizable character identity that can communicate personality and energy through expressive poses and visual storytelling.",
+        characterExploration:
+          "Emily was developed through expressive character illustration, exploring different facial expressions and poses to create a playful and energetic personality.",
+        characterFinalDescription:
+          "The final character uses expressive facial features, varied poses, and bold visual elements to create a lively and recognizable character identity.",
+        visualStyle: ["Playful", "Expressive", "Energetic", "Confident"],
+        colorPaletteDescription:
+          "The Emily color palette combines bold reds, deep burgundy, black, and metallic gold to create a confident and energetic visual identity. Red establishes intensity and personality, while gold adds a sense of ambition and value. Warm skin tones and soft coral accents balance the stronger colors and keep the character approachable.",
+        colorPalette: [
+          { name: "BOLD RED", hex: "#B91919" },
+          { name: "DEEP BURGUNDY", hex: "#8F0D0D" },
+          { name: "CHARCOAL BLACK", hex: "#161414" },
+          { name: "WARM PEACH", hex: "#F4C99E" },
+          { name: "METALLIC GOLD", hex: "#D2A221" },
+          { name: "SOFT CORAL", hex: "#C97568" },
+        ],
+        reflection:
+          "Emily allowed me to explore how character expressions, poses, and visual context can work together to communicate personality. The design combines playful expressions with bold visual elements to create a character that feels energetic, confident, and memorable.",
         cover: "/portfolio/emily.avif",
-        images: ["/portfolio/emily.avif"],
+        images: ["/portfolio/character-emily1.avif"],
+        characterExplorationImages: ["/portfolio/character-emily.avif"],
       },
     ],
   },

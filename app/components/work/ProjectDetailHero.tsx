@@ -95,7 +95,7 @@ export default function ProjectDetailHero({ project }: Props) {
           whileInView="show"
           viewport={{ once: true }}
           variants={fadeUp}
-          className="mt-20 overflow-hidden rounded-[40px] shadow-[0_40px_120px_rgba(45,36,51,.12)]"
+          className="mx-auto mt-20 w-full overflow-hidden rounded-[40px] shadow-[0_40px_120px_rgba(45,36,51,.12)] lg:w-[50vw] lg:max-w-200"
         >
           <Image
             src={project.cover}
@@ -103,7 +103,7 @@ export default function ProjectDetailHero({ project }: Props) {
             width={1800}
             height={1200}
             priority
-            className="h-[460px] w-full object-cover transition duration-700 hover:scale-[1.02] sm:h-[640px] lg:h-[720px]"
+            className="h-[460px] w-full object-cover transition duration-700 hover:scale-[1.02] sm:h-[640px] lg:h-auto"
           />
         </motion.div>
 
