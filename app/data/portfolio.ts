@@ -2,6 +2,309 @@ import type { PortfolioCollection } from "@/types/portfolio";
 
 export type { PortfolioCollection } from "@/types/portfolio";
 
+type Locale = "en" | "id";
+
+const portfolioEntryTranslations: Record<
+  string,
+  Record<Locale, Partial<PortfolioCollection>>
+> = {
+  "social-media-design": {
+    en: {
+      title: "Social Media Design",
+      category: "CREATIVE DIRECTION",
+      tagline:
+        "Editorial social media systems with clean layouts and consistent visual rhythm.",
+      description:
+        "Editorial social media systems with clean layouts and consistent branding.",
+      overview:
+        "Editorial social media systems designed to look refined, coherent, and premium across feed, story, and campaign touchpoints.",
+      challenge:
+        "Maintaining brand consistency across diverse social media platforms while keeping individual post designs visually engaging and culturally relevant for different audiences.",
+      solution:
+        "Developed a flexible grid system, uniform typographic rules, and curated color palettes that allow for high content variety without compromising overall brand identity.",
+      outcome:
+        "Increased visual consistency across client social feeds, resulting in higher brand recognition and an average 35% growth in audience engagement.",
+    },
+    id: {
+      title: "Desain Media Sosial",
+      category: "DIREKSI KREATIF",
+      tagline:
+        "Sistem media sosial editorial dengan tata letak bersih dan ritme visual yang konsisten.",
+      description:
+        "Sistem media sosial editorial dengan tata letak bersih dan branding yang konsisten.",
+      overview:
+        "Sistem media sosial editorial yang dirancang agar tampil rapi, konsisten, dan premium di feed, story, serta semua titik sentuh kampanye.",
+      challenge:
+        "Menjaga konsistensi merek di berbagai platform media sosial sambil tetap membuat setiap desain individual menarik dan relevan secara budaya untuk audiens yang berbeda.",
+      solution:
+        "Mengembangkan sistem grid yang fleksibel, aturan tipografi yang seragam, serta palet warna yang terkurasi agar konten tetap beragam tanpa mengorbankan identitas merek secara keseluruhan.",
+      outcome:
+        "Meningkatkan konsistensi visual di feed media sosial klien, menghasilkan pengenalan merek yang lebih kuat dan rata-rata pertumbuhan engagement audiens 35%.",
+    },
+  },
+  "brand-identity": {
+    en: {
+      title: "Brand Identity",
+      category: "CREATIVE DIRECTION",
+      tagline:
+        "Building cohesive brand experiences through strategic visual identity and storytelling.",
+      description:
+        "Building cohesive brand experiences through strategic visual identity, social media systems, content design, and creative storytelling.",
+      overview:
+        "A comprehensive branding project that combines visual identity, social media content, campaign design, motion graphics, and digital storytelling into one consistent brand ecosystem.",
+      challenge:
+        "Traditional financial and community platforms often suffer from visual rigidity. The goal was to humanize the identity without losing professional credibility.",
+      solution:
+        "Crafted a modern brand design language with warm, approachable typography, structured grids, and versatile brand marks adaptable across digital and physical touchpoints.",
+      outcome:
+        "Successfully launched the refreshed brand identity, driving over 40% higher digital interaction and establishing a distinct market presence.",
+    },
+    id: {
+      title: "Identitas Brand",
+      category: "DIREKSI KREATIF",
+      tagline:
+        "Membangun pengalaman merek yang kohesif melalui identitas visual strategis dan storytelling.",
+      description:
+        "Membangun pengalaman merek yang kohesif melalui identitas visual strategis, sistem media sosial, desain konten, dan storytelling kreatif.",
+      overview:
+        "Proyek branding yang komprehensif ini memadukan identitas visual, konten media sosial, desain kampanye, motion graphics, dan storytelling digital menjadi satu ekosistem merek yang konsisten.",
+      challenge:
+        "Platform finansial dan komunitas tradisional sering terlihat kaku secara visual. Tujuannya adalah memanusiakan identitas tanpa kehilangan kredibilitas profesional.",
+      solution:
+        "Menciptakan bahasa desain merek yang modern dengan tipografi yang hangat dan mudah didekati, grid yang terstruktur, serta brand mark yang fleksibel untuk berbagai titik sentuh digital dan fisik.",
+      outcome:
+        "Berhasil meluncurkan identitas merek yang diperbarui, mendorong interaksi digital lebih dari 40% dan membangun kehadiran pasar yang khas.",
+    },
+  },
+  "logo-design": {
+    en: {
+      title: "Logo Design",
+      category: "VISUAL IDENTITY",
+      tagline:
+        "Timeless logo systems designed for brands, churches, and communities.",
+      description:
+        "Timeless logo systems designed for brands, churches, and communities.",
+      overview:
+        "Timeless logo systems built for communities, churches, and brands that need a confident and lasting identity.",
+      challenge:
+        "Creating symbolic logos that capture deep organizational values while remaining minimalist, scalable, and versatile for multi-medium reproduction.",
+      solution:
+        "Focused on geometry, purposeful symbolism, and strong typographic balance to produce clean marks that function seamlessly from tiny digital icons to large event banners.",
+      outcome:
+        "Delivered iconic visual marks embraced by client communities and easily implemented across all organizational collateral.",
+    },
+    id: {
+      title: "Desain Logo",
+      category: "IDENTITAS VISUAL",
+      tagline:
+        "Sistem logo yang timeless untuk brand, gereja, dan komunitas.",
+      description:
+        "Sistem logo yang timeless untuk brand, gereja, dan komunitas.",
+      overview:
+        "Sistem logo yang timeless dibuat untuk komunitas, gereja, dan brand yang membutuhkan identitas yang percaya diri dan tahan lama.",
+      challenge:
+        "Menciptakan logo simbolik yang menangkap nilai organisasi secara mendalam sekaligus tetap minimalis, scalable, dan serbaguna untuk reproduksi multi-media.",
+      solution:
+        "Berfokus pada geometri, simbolisme yang bermakna, dan keseimbangan tipografi yang kuat untuk menghasilkan marka yang bersih dan berfungsi dengan mulus dari ikon digital kecil hingga spanduk acara besar.",
+      outcome:
+        "Menyampaikan marka visual ikonik yang diterima komunitas klien dan mudah diterapkan di seluruh materi organisasi.",
+    },
+  },
+  "thumbnail-design": {
+    en: {
+      title: "Thumbnail Design",
+      category: "CONTENT DESIGN",
+      tagline:
+        "High-performing vertical content & thumbnails (1080x1920) crafted with strong visual hierarchy.",
+      description:
+        "High-performing YouTube Shorts, TikTok, and Instagram Reels thumbnails crafted in vertical 1080x1920 format.",
+      overview:
+        "High-performing vertical thumbnails (1080x1920) designed to balance clarity, storytelling, and premium visual hierarchy for mobile-first content platforms.",
+      challenge:
+        "Standing out in fast-scrolling mobile video feeds where viewers make click decisions in milliseconds.",
+      solution:
+        "Engineered high-contrast vertical visual compositions with bold focal points, expressive typography, and clear subject isolation optimized for 9:16 ratio.",
+      outcome:
+        "Achieved measurable increases in Click-Through Rates (CTR) across client social and short-form video channels.",
+    },
+    id: {
+      title: "Desain Thumbnail",
+      category: "DESAIN KONTEN",
+      tagline:
+        "Konten vertikal dan thumbnail berkinerja tinggi (1080x1920) yang dibuat dengan hierarki visual yang kuat.",
+      description:
+        "Thumbnail YouTube Shorts, TikTok, dan Instagram Reels yang berperforma tinggi dibuat dalam format vertikal 1080x1920.",
+      overview:
+        "Thumbnail vertikal berkinerja tinggi (1080x1920) yang dirancang untuk menyeimbangkan kejelasan, storytelling, dan hierarki visual premium untuk platform konten mobile-first.",
+      challenge:
+        "Bersaing di feed video mobile yang bergerak cepat, di mana penonton mengambil keputusan klik dalam hitungan milidetik.",
+      solution:
+        "Mendesain komposisi visual vertikal berkontras tinggi dengan titik fokus yang tegas, tipografi ekspresif, dan isolasi objek yang jelas yang dioptimalkan untuk rasio 9:16.",
+      outcome:
+        "Mencapai peningkatan CTR yang terukur di kanal media sosial dan video pendek klien.",
+    },
+  },
+  "character-design": {
+    en: {
+      title: "Character Design",
+      category: "CHARACTER DESIGN",
+      tagline:
+        "Original mascots and character illustrations created to make each brand feel memorable, approachable, and distinct.",
+      description:
+        "Original mascot and character design work built to reflect each brand's identity, values, and audience in a warm, memorable way.",
+      overview:
+        "A collection of character-driven visual identities created to translate brand personality into approachable, expressive illustration.",
+      challenge:
+        "Creating character identities that feel consistent with each brand while remaining memorable, expressive, and easy to apply across digital channels and campaigns.",
+      solution:
+        "Developed original mascot and illustration systems rooted in the brand's tone, audience, and values so each character could carry the identity naturally across content and campaigns.",
+      outcome:
+        "Delivered distinct character systems that help each brand feel more human, relatable, and recognizable in its communication.",
+    },
+    id: {
+      title: "Desain Karakter",
+      category: "DESAIN KARAKTER",
+      tagline:
+        "Maskot dan ilustrasi karakter original yang dibuat agar setiap brand terasa mudah diingat, dekat, dan khas.",
+      description:
+        "Pekerjaan desain maskot dan karakter original yang dibangun untuk merefleksikan identitas, nilai, dan audiens setiap brand dengan cara yang hangat dan mudah diingat.",
+      overview:
+        "Kumpulan identitas visual berbasis karakter yang dibuat untuk menerjemahkan kepribadian merek menjadi ilustrasi yang mudah didekati dan ekspresif.",
+      challenge:
+        "Menciptakan identitas karakter yang konsisten dengan setiap brand sekaligus tetap mudah diingat, ekspresif, dan mudah diterapkan di kanal digital serta kampanye.",
+      solution:
+        "Mengembangkan sistem maskot dan ilustrasi original yang berakar pada tone, audiens, dan nilai brand sehingga setiap karakter dapat membawa identitas secara alami di berbagai konten dan kampanye.",
+      outcome:
+        "Menghasilkan sistem karakter yang khas sehingga setiap brand terasa lebih manusiawi, dekat, dan mudah dikenali dalam komunikasinya.",
+    },
+  },
+  "live-stream-design": {
+    en: {
+      title: "Live Stream Design",
+      category: "CONTENT DESIGN",
+      tagline:
+        "Creative graphics for live streaming overlays, events, and posters.",
+      description:
+        "Creative graphics for live streaming overlays, events, and posters.",
+      overview:
+        "A collection of visually engaging design assets created to support live events, stream overlays, and promotional visuals.",
+      challenge:
+        "Creating clean and attention-grabbing graphics that remain readable in live motion and under fast-moving broadcast conditions.",
+      solution:
+        "Built highly readable overlays and event graphics using clear hierarchy, strong color contrast, and consistent brand styling.",
+      outcome:
+        "Improved the visual quality and professionalism of live stream branding across multiple events and community channels.",
+    },
+    id: {
+      title: "Desain Live Stream",
+      category: "DESAIN KONTEN",
+      tagline:
+        "Grafis kreatif untuk overlay live stream, event, dan poster.",
+      description:
+        "Grafis kreatif untuk overlay live stream, event, dan poster.",
+      overview:
+        "Kumpulan aset desain yang menarik secara visual untuk mendukung acara live, overlay stream, dan visual promosi.",
+      challenge:
+        "Membuat grafis yang bersih dan menarik perhatian serta tetap mudah dibaca di kondisi live motion dan siaran yang bergerak cepat.",
+      solution:
+        "Membangun overlay dan grafis event yang sangat mudah dibaca menggunakan hierarki yang jelas, kontras warna yang kuat, dan gaya merek yang konsisten.",
+      outcome:
+        "Meningkatkan kualitas visual dan profesionalisme branding live stream di berbagai event dan kanal komunitas.",
+    },
+  },
+  "desain-lain": {
+    en: {
+      title: "Print Design",
+      category: "PRINT DESIGN",
+      tagline:
+        "A collection of print, campaign, promotional, and apparel design projects.",
+      description:
+        "A collection of graphic design projects including backdrops, banners, advertising campaigns, promotional materials, and apparel design.",
+      overview:
+        "A selection of promotional and print-focused projects created for different visual communication needs.",
+      challenge:
+        "Adapting visual concepts to different campaign needs, print formats, advertising materials, and apparel applications.",
+      solution:
+        "Applied graphic design fundamentals to create clear, engaging visuals that work across physical and promotional media.",
+      outcome:
+        "A varied selection that demonstrates adaptability across print, advertising, campaign, and merchandise applications.",
+    },
+    id: {
+      title: "Desain Cetak",
+      category: "DESAIN CETAK",
+      tagline:
+        "Koleksi proyek desain cetak, kampanye, promosi, dan apparel.",
+      description:
+        "Koleksi proyek desain grafis yang mencakup backdrop, banner, kampanye iklan, materi promosi, dan desain apparel.",
+      overview:
+        "Pilihan proyek promosi dan fokus cetak yang dibuat untuk kebutuhan komunikasi visual yang berbeda.",
+      challenge:
+        "Menyesuaikan konsep visual dengan kebutuhan kampanye yang berbeda, format cetak, materi promosi, dan aplikasi apparel.",
+      solution:
+        "Menerapkan prinsip desain grafis untuk menciptakan visual yang jelas, menarik, dan berfungsi di media fisik maupun promosi.",
+      outcome:
+        "Koleksi yang beragam yang menunjukkan kemampuan adaptasi di berbagai aplikasi cetak, iklan, kampanye, dan merchandise.",
+    },
+  },
+};
+
+const portfolioItemTextMap: Record<string, Record<Locale, string>> = {
+  "Brand Identity": { en: "Brand Identity", id: "Identitas Brand" },
+  "Social Media Design": { en: "Social Media Design", id: "Desain Media Sosial" },
+  "Logo Design": { en: "Logo Design", id: "Desain Logo" },
+  "Thumbnail Design": { en: "Thumbnail Design", id: "Desain Thumbnail" },
+  "Character Design": { en: "Character Design", id: "Desain Karakter" },
+  "Live Stream Design": { en: "Live Stream Design", id: "Desain Live Stream" },
+  "Print Design": { en: "Print Design", id: "Desain Cetak" },
+  "Branding": { en: "Branding", id: "Branding" },
+};
+
+function localizePortfolioCollection(
+  collection: PortfolioCollection,
+  lang: Locale
+): PortfolioCollection {
+  const translation = portfolioEntryTranslations[collection.slug];
+  const translatedTitle = translation?.[lang]?.title ?? collection.title;
+  const translatedCategory = translation?.[lang]?.category ?? collection.category;
+  const translatedTagline = translation?.[lang]?.tagline ?? collection.tagline;
+  const translatedDescription = translation?.[lang]?.description ?? collection.description;
+  const translatedOverview = translation?.[lang]?.overview ?? collection.overview;
+  const translatedChallenge = translation?.[lang]?.challenge ?? collection.challenge;
+  const translatedSolution = translation?.[lang]?.solution ?? collection.solution;
+  const translatedOutcome = translation?.[lang]?.outcome ?? collection.outcome;
+
+  return {
+    ...collection,
+    title: translatedTitle,
+    category: translatedCategory,
+    tagline: translatedTagline,
+    description: translatedDescription,
+    overview: translatedOverview,
+    challenge: translatedChallenge,
+    solution: translatedSolution,
+    outcome: translatedOutcome,
+    meta: {
+      ...collection.meta,
+      client: lang === "id" && collection.meta.client === "UKSW Salatiga" ? "UKSW Salatiga" : collection.meta.client,
+    },
+    items: collection.items.map((item) => {
+      const entry = portfolioItemTextMap[item.title];
+      return {
+        ...item,
+        title: entry ? entry[lang] : item.title,
+        subtitle:
+          lang === "id" && item.subtitle === "Feed Post"
+            ? "Post Feed"
+            : item.subtitle,
+        description:
+          lang === "id" && item.description === "Lookbook design — open to explore the full piece."
+            ? "Desain lookbook — buka untuk melihat seluruh karya."
+            : item.description,
+      };
+    }),
+  };
+}
+
 export const portfolioCollections: PortfolioCollection[] = [
   // =========================================================
   // 1. SOCIAL MEDIA DESIGN
@@ -856,11 +1159,11 @@ export const portfolioCollections: PortfolioCollection[] = [
 // =========================================================
 
 export function getPortfolioBySlug(
-  slug: string
+  slug: string,
+  lang: Locale = "en"
 ): PortfolioCollection | undefined {
-  return portfolioCollections.find(
-    (item) => item.slug === slug
-  );
+  const project = portfolioCollections.find((item) => item.slug === slug);
+  return project ? localizePortfolioCollection(project, lang) : undefined;
 }
 
 // =========================================================
@@ -868,7 +1171,8 @@ export function getPortfolioBySlug(
 // =========================================================
 
 export function getNextPortfolio(
-  currentSlug: string
+  currentSlug: string,
+  lang: Locale = "en"
 ): PortfolioCollection {
   const currentIndex = portfolioCollections.findIndex(
     (item) => item.slug === currentSlug
@@ -877,5 +1181,5 @@ export function getNextPortfolio(
   const nextIndex =
     (currentIndex + 1) % portfolioCollections.length;
 
-  return portfolioCollections[nextIndex];
+  return localizePortfolioCollection(portfolioCollections[nextIndex], lang);
 }

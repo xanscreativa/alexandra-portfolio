@@ -1,6 +1,6 @@
 ﻿export type Locale = "en" | "id";
 
-export const translations: Record<Locale, Record<string, any>> = {
+export const translations: Record<Locale, Record<string, string>> = {
   en: {
     projects: "Projects",
     about: "About",
@@ -718,8 +718,8 @@ export const translations: Record<Locale, Record<string, any>> = {
     notFoundLabel: "Halaman tidak ditemukan",
     notFoundTitle: "Sepertinya halaman ini tidak ada.",
     notFoundDescription: "Halaman yang kamu cari mungkin sudah dipindahkan atau sudah tidak tersedia.",
-    returnHome: "Kembali ke Berkamu →",
-    returnHomeAria: "Kembali ke bagian utama berkamu",
+    returnHome: "Kembali →",
+    returnHomeAria: "Kembali ke bagian utama",
     servicesBadge: "LAYANAN & KEAHLIAN",
     servicesTitle: "Solusi visual yang membantu kebutuhan kreatif brand kamu.",
     servicesHint: "Pilih layanan untuk melihat kemampuan dan hasil kerja yang bisa saya bantu.",
@@ -987,8 +987,8 @@ export const translations: Record<Locale, Record<string, any>> = {
       notFoundLabel: "Halaman tidak ditemukan",
       notFoundTitle: "Sepertinya halaman ini tidak ada.",
       notFoundDescription: "Halaman yang kamu cari mungkin sudah dipindahkan atau sudah tidak tersedia.",
-      returnHome: "Kembali ke Berkamu →",
-      returnHomeAria: "Kembali ke bagian utama berkamu"
+      returnHome: "Kembali →",
+      returnHomeAria: "Kembali ke bagian utama"
     },
     servicesSection: {
       servicesBadge: "LAYANAN & KEAHLIAN",

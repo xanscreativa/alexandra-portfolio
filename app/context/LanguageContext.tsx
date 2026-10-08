@@ -1,8 +1,13 @@
-// context/LanguageContext.tsx (atau app/context/LanguageContext.tsx)
 "use client";
 
-import React, { createContext, useContext, useEffect, useState, ReactNode } from "react";
-import { Locale, translations } from "@/data/translations";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
+import { type Locale, translations } from "@/data/translations";
 
 type Language = Locale;
 
@@ -14,15 +19,23 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === "object" && value !== null;
+
 function resolveTranslation(locale: Language, key: string): string | undefined {
   const path = key.split(".");
 
-  const lookupByPath = (value: unknown, segments: string[]): string | undefined => {
-    if (!value || typeof value !== "object") return undefined;
+  const lookupByPath = (
+    value: unknown,
+    segments: string[]
+  ): string | undefined => {
+    let current: unknown = value;
 
-    let current: any = value;
     for (const segment of segments) {
-      if (!current || typeof current !== "object" || !(segment in current)) return undefined;
+      if (!isRecord(current) || !(segment in current)) {
+        return undefined;
+      }
+
       current = current[segment];
     }
 
@@ -30,36 +43,57 @@ function resolveTranslation(locale: Language, key: string): string | undefined {
   };
 
   const lookupByName = (value: unknown, target: string): string | undefined => {
-    if (!value || typeof value !== "object") return undefined;
-
-    if (target in (value as Record<string, unknown>)) {
-      const candidate = (value as Record<string, unknown>)[target];
-      if (typeof candidate === "string") return candidate;
+    if (!isRecord(value)) {
+      return undefined;
     }
 
-    for (const child of Object.values(value as Record<string, unknown>)) {
+    if (target in value) {
+      const candidate = value[target];
+      if (typeof candidate === "string") {
+        return candidate;
+      }
+    }
+
+    for (const child of Object.values(value)) {
       const found = lookupByName(child, target);
-      if (found) return found;
+      if (found) {
+        return found;
+      }
     }
 
     return undefined;
   };
 
-  return lookupByPath(translations[locale], path) ?? lookupByName(translations[locale], key) ?? undefined;
+  return (
+    lookupByPath(translations[locale], path) ??
+    lookupByName(translations[locale], key) ??
+    undefined
+  );
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLang] = useState<Language>("en");
+  const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
     const savedLanguage = window.localStorage.getItem("xans-language");
-    if (savedLanguage === "en" || savedLanguage === "id") setLang(savedLanguage);
+    const nextLang = savedLanguage === "id" ? "id" : "en";
+    setLang(nextLang);
+    setIsHydrated(true);
   }, []);
 
   useEffect(() => {
+    if (!isHydrated || typeof window === "undefined") {
+      return;
+    }
+
     window.localStorage.setItem("xans-language", lang);
     document.documentElement.lang = lang;
-  }, [lang]);
+  }, [lang, isHydrated]);
 
   const toggleLang = () => {
     setLang((prev) => (prev === "en" ? "id" : "en"));
@@ -68,12 +102,14 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const t = (key: string, values?: Record<string, string | number>) => {
     const template =
       resolveTranslation(lang, key) ??
-      (lang === "id" ? translations.id.contentTranslations?.[key] : undefined) ??
       resolveTranslation("en", key) ??
       String(key);
 
     return values
-      ? template.replace(/\{(\w+)\}/g, (_, name: string) => String(values[name] ?? `{${name}}`))
+      ? template.replace(
+          /\{(\w+)\}/g,
+          (_, name: string) => String(values[name] ?? `{${name}}`)
+        )
       : template;
   };
 
@@ -86,8 +122,10 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
 export function useLanguage() {
   const context = useContext(LanguageContext);
+
   if (!context) {
     throw new Error("useLanguage must be used within a LanguageProvider");
   }
+
   return context;
 }

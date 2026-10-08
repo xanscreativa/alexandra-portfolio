@@ -29,6 +29,7 @@ import {
   brandSections,
   logoSections,
   getCharacterProjectSlug,
+  localizeSectionData,
 } from "./portfolio-data";
 import { TikTokLiveMockup } from "./TikTokLiveMockup";
 
@@ -47,13 +48,22 @@ export default function PortfolioDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
 
-  const collection = getPortfolioBySlug(slug);
+  const collection = getPortfolioBySlug(slug, lang);
 
   if (!collection) {
     notFound();
   }
 
-  const nextCollection = getNextPortfolio(slug);
+  const nextCollection = getNextPortfolio(slug, lang);
+  const localizedSocialSections = socialSections.map((section) =>
+    localizeSectionData(section, lang)
+  );
+  const localizedBrandSections = brandSections.map((section) =>
+    localizeSectionData(section, lang)
+  );
+  const localizedLogoSections = logoSections.map((section) =>
+    localizeSectionData(section, lang)
+  );
 
   const [activeModalState, setActiveModalState] =
     useState<ActiveModalState | null>(null);
@@ -338,8 +348,8 @@ export default function PortfolioDetailPage() {
 
                 ))
               : (isBrandIdentity
-                  ? brandSections
-                  : logoSections
+                  ? localizedBrandSections
+                  : localizedLogoSections
                 ).map((section, sIndex) => {
 
                   const post = section.posts[0];
@@ -416,7 +426,7 @@ export default function PortfolioDetailPage() {
 
           <div className="space-y-4">
 
-            {socialSections.map((section, sIndex) => {
+            {localizedSocialSections.map((section, sIndex) => {
 
               const isExpanded =
                 expandedSections[sIndex] || false;

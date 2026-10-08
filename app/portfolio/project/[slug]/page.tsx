@@ -73,6 +73,14 @@ const jendelaGuidelineDescriptions: Record<string, string> = {
   "05": "A subtle grid system is used as the foundation for the background, adapting to the brand's blue, yellow, and white themes. With approximately 15% transparency, the grid adds texture and visual depth without making the background feel busy or tiring to read. Speech bubbles create a more interactive and conversational feel, while arrows provide additional visual direction and support the information hierarchy.",
 };
 
+const jendelaGuidelineDescriptionsId: Record<string, string> = {
+  "01": "Logo yang sudah ada dari klien menjadi fondasi untuk mengembangkan bahasa visual brand. Sistem visual lalu diperluas melalui warna, tipografi, elemen grafis, dan aset pendukung untuk menciptakan identitas yang kohesif dan mudah dikenali.",
+  "02": "Palet warna menggabungkan biru, kuning, putih, dan navy gelap untuk menciptakan keseimbangan antara kepercayaan, optimisme, dan kejelasan. Biru merepresentasikan kepercayaan, stabilitas, dan kredibilitas, sementara kuning membawa optimisme, energi, dan kedekatan. Putih memberi ruang bernapas dan kejelasan, sedangkan navy gelap menambah kontras dan profesionalisme.",
+  "03": "Tiga tema tipografi yang berbeda menciptakan bahasa visual yang terasa menyenangkan, mudah didekati, dan edukatif. Variasi ini membantu topik finansial yang kompleks terasa lebih ringan, lebih menarik, dan lebih mudah dijelajahi serta dipahami audiens.",
+  "04": "Elemen visual menggabungkan dokumentasi fotografi autentik dari berbagai sumber untuk menciptakan kesan yang relatable dan kontemporer. Fotografi berbasis objek diedit menggunakan warna brand yang dipilih, seperti kombinasi putih-kuning atau putih-biru, tergantung pada tema visual. Fotografi yang menampilkan orang menggunakan pendekatan hitam-putih atau grayscale untuk menjaga konsistensi sambil tetap menjaga komposisi tetap bersih dan fokus.",
+  "05": "Sistem grid halus digunakan sebagai fondasi latar belakang, menyesuaikan tema biru, kuning, dan putih brand. Dengan transparansi sekitar 15%, grid menambah tekstur dan kedalaman visual tanpa membuat latar terasa ramai atau melelahkan dibaca. Balon percakapan menciptakan nuansa yang lebih interaktif dan komunikatif, sementara panah memberikan arahan visual tambahan dan mendukung hierarki informasi.",
+};
+
 const brandColorPalettes: Record<string, string[]> = {
   "jendela-finansial": ["#087FC7", "#FFB719", "#FFFFFF", "#5F8FD1", "#FFF4D6", "#202B3C"],
   "consistrade-brand": ["#081651", "#2846A9", "#72B6F5", "#7C60D7", "#CF71EA", "#F9F6FC"],
@@ -107,12 +115,34 @@ const brandTypography: Record<string, { fontFamily: string; fontSrc?: string }> 
 };
 
 export default function ProjectDetailPage() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const params = useParams();
   const slug = params?.slug as string;
-  const project = getProjectBySlug(slug);
+  const project = getProjectBySlug(slug, lang);
 
   if (!project) notFound();
+
+  const localizedGuidelineSlots =
+    lang === "id"
+      ? [
+          ["01", "LOGO", "Logo utama, variasi logo, dan penjelasan sistem identitas."],
+          ["02", "WARNA", "Warna utama, warna pendukung, dan palet yang membangun karakter merek."],
+          ["03", "TIPOGRAFI", "Jenis huruf utama, pendukung, dan aturan hierarki visual."],
+          ["04", "ELEMEN", "Elemen visual yang membangun karakter dan konsistensi brand."],
+          ["05", "ELEMEN PENDUKUNG", "Ikon, simbol, pola, dan elemen pendukung komunikasi."],
+          ["06", "KARAKTER", "Karakter / mascot beserta variasi pose dan penggunaannya."],
+        ]
+      : guidelineSlots;
+
+  const sectionBadgeLabelMap = {
+    colorGuide: lang === "id" ? "PEDOMAN WARNA" : "COLOR GUIDE",
+    typeGuide: lang === "id" ? "PEDOMAN TIPOGRAFI" : "TYPE GUIDE",
+    imageReady: lang === "id" ? "SIAP GAMBAR" : "IMAGE READY",
+    addImage: lang === "id" ? "TAMBAH GAMBAR" : "ADD IMAGE",
+    finalArtwork: lang === "id" ? "KARYA AKHIR" : "FINAL ARTWORK",
+    applications: lang === "id" ? "APLIKASI" : "APPLICATIONS",
+    projectDetails: lang === "id" ? "DETAIL PROYEK" : "PROJECT DETAILS",
+  } as const;
 
   const images = project.projectImages ?? project.posts;
   const isBrandProject = project.category?.toUpperCase() === "BRAND IDENTITY";
@@ -136,13 +166,41 @@ export default function ProjectDetailPage() {
   ) ?? [];
   const typography = brandTypography[slug] ?? { fontFamily: "Plus Jakarta Sans" };
 
-  const designApproach = slug === "gpib-immanuel-pekanbaru"
-    ? "I translated the concept into a practical visual system by redesigning the internal church logo, developing Elof as the church mascot, establishing colors, typography, graphic elements, and supporting symbols, then applying the system across social media and church information materials for a more consistent communication experience."
-    : project.overview;
+  const designApproach =
+    slug === "gpib-immanuel-pekanbaru"
+      ? lang === "id"
+        ? "Saya menerjemahkan konsep ke dalam sistem visual yang praktis dengan mendesain ulang logo internal gereja, mengembangkan Elof sebagai mascot gereja, menetapkan warna, tipografi, elemen grafis, serta simbol pendukung, lalu menerapkan sistem tersebut di media sosial dan materi informasi gereja untuk pengalaman komunikasi yang lebih konsisten."
+        : "I translated the concept into a practical visual system by redesigning the internal church logo, developing Elof as the church mascot, establishing colors, typography, graphic elements, and supporting symbols, then applying the system across social media and church information materials for a more consistent communication experience."
+      : project.overview;
+  const categoryLabel =
+    lang === "id"
+      ? project.category?.toUpperCase() === "BRAND IDENTITY"
+        ? "IDENTITAS MEREK"
+        : project.category?.toUpperCase() === "CHARACTER DESIGN"
+          ? "DESAIN KARAKTER"
+          : project.category
+      : project.category;
+  const bigIdeaLabel = lang === "id" ? "IDE BESAR" : "BIG IDEA";
+  const designApproachLabel = lang === "id" ? "PENDEKATAN DESAIN" : "DESIGN APPROACH";
+  const challengeLabel = lang === "id" ? "TANTANGAN" : "CHALLENGE";
+  const briefLabel = lang === "id" ? "RINGKASAN" : "BRIEF";
+  const backLinkText =
+    lang === "id"
+      ? isCharacterProject
+        ? "KEMBALI KE DESAIN KARAKTER"
+        : "KEMBALI KE IDENTITAS MEREK"
+      : isCharacterProject
+        ? "BACK TO CHARACTER DESIGN"
+        : "BACK TO BRAND IDENTITY";
+  const socialMediaCtaText = lang === "id" ? "LIHAT PROYEK MEDIA SOSIAL" : "VIEW SOCIAL MEDIA PROJECT";
+  const brandDevelopmentLabel = lang === "id" ? "PENGEMBANGAN MEREK" : "BRAND DEVELOPMENT";
+  const mediaSocialTitle = lang === "id" ? "MEDIA SOSIAL" : "SOCIAL MEDIA";
+  const projectGalleryLabel = lang === "id" ? "GALERI PROYEK" : "PROJECT GALLERY";
+  const imageCountLabel = lang === "id" ? "GAMBAR" : "IMAGE";
 
   const renderCharacterDescription = (description: string) => {
-    const label = "Keywords:";
-    const labelIndex = description.indexOf(label);
+    const label = lang === "id" ? "Kata kunci:" : "Keywords:";
+    const labelIndex = description.indexOf(lang === "id" ? "Kata kunci:" : "Keywords:");
 
     if (labelIndex === -1) return t(description);
 
@@ -177,7 +235,7 @@ export default function ProjectDetailPage() {
         <div className="mb-7 sm:mb-9">
           <Link href={isCharacterProject ? "/portfolio/character-design" : "/portfolio/brand-identity"} className="inline-flex items-center gap-2 py-1 text-[10px] font-mono font-bold uppercase tracking-wider text-[#6B6570] transition-colors hover:text-pink-600 sm:text-xs">
             <ArrowLeft className="h-3.5 w-3.5" />
-            {t(isCharacterProject ? "BACK TO CHARACTER DESIGN" : "BACK TO BRAND IDENTITY")}
+            {backLinkText}
           </Link>
         </div>
         <div className="max-w-5xl">
@@ -192,12 +250,12 @@ export default function ProjectDetailPage() {
             </>
           ) : (
             <>
-              <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">{project.category}</span>
+              <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">{categoryLabel}</span>
               <h1 className={`mt-4 max-w-5xl ${isGuidelineProject ? "text-3xl sm:text-5xl lg:text-6xl" : "text-4xl sm:text-6xl lg:text-7xl"} font-extrabold uppercase leading-[0.94] tracking-tight text-[#2D2433] sm:mt-5`}>{project.title}</h1>
               <div className="mt-8 grid grid-cols-3 border-y border-pink-100 sm:mt-10">
-                <div className="border-r border-pink-100 py-4 pr-3 sm:py-5 sm:pr-6"><p className="text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-500 sm:text-[10px]">Client</p><p className="mt-1.5 text-xs font-semibold leading-relaxed text-[#2D2433] sm:text-sm">{project.details.client}</p></div>
-                <div className="border-r border-pink-100 px-3 py-4 sm:px-6 sm:py-5"><p className="text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-500 sm:text-[10px]">Industry</p><p className="mt-1.5 text-xs font-semibold leading-relaxed text-[#2D2433] sm:text-sm">{project.details.industry}</p></div>
-                <div className="py-4 pl-3 sm:py-5 sm:pl-6"><p className="text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-500 sm:text-[10px]">Role</p><p className="mt-1.5 text-xs font-semibold leading-relaxed text-[#2D2433] sm:text-sm">{project.details.role}</p></div>
+                <div className="border-r border-pink-100 py-4 pr-3 sm:py-5 sm:pr-6"><p className="text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-500 sm:text-[10px]">{t("client")}</p><p className="mt-1.5 text-xs font-semibold leading-relaxed text-[#2D2433] sm:text-sm">{project.details.client}</p></div>
+                <div className="border-r border-pink-100 px-3 py-4 sm:px-6 sm:py-5"><p className="text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-500 sm:text-[10px]">{t("industry")}</p><p className="mt-1.5 text-xs font-semibold leading-relaxed text-[#2D2433] sm:text-sm">{project.details.industry}</p></div>
+                <div className="py-4 pl-3 sm:py-5 sm:pl-6"><p className="text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-500 sm:text-[10px]">{t("role")}</p><p className="mt-1.5 text-xs font-semibold leading-relaxed text-[#2D2433] sm:text-sm">{project.details.role}</p></div>
               </div>
             </>
           )}
@@ -207,17 +265,17 @@ export default function ProjectDetailPage() {
       <section className="mx-auto max-w-6xl px-5 pb-8 sm:px-8 sm:pb-12 lg:px-10">
         {isGuidelineProject ? (
           <div>
-            <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">{isCharacterProject ? "BRIEF" : "DESIGN APPROACH"}</span>
+            <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">{isCharacterProject ? briefLabel : designApproachLabel}</span>
             <p className="mt-4 max-w-4xl text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{t(designApproach)}</p>
           </div>
         ) : (
           <div className="grid gap-8 md:grid-cols-2 md:gap-12 lg:gap-20">
             <div>
-              <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">BIG IDEA</span>
+              <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">{bigIdeaLabel}</span>
               <p className="mt-4 max-w-2xl text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{t(project.bigIdea || project.overview)}</p>
             </div>
             <div>
-              <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">DESIGN APPROACH</span>
+              <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">{designApproachLabel}</span>
               <p className="mt-4 max-w-2xl text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{t(designApproach)}</p>
             </div>
           </div>
@@ -225,7 +283,7 @@ export default function ProjectDetailPage() {
         {project.challenge && (
           <div className="mt-10 border-t border-pink-100 pt-8 sm:mt-14 sm:pt-10">
             <div className="max-w-4xl">
-              <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">{isCharacterProject ? "PURPOSE" : "CHALLENGE"}</span>
+              <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">{isCharacterProject ? "TUJUAN" : challengeLabel}</span>
               <p className="mt-4 text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{t(project.challenge)}</p>
             </div>
           </div>
@@ -235,9 +293,9 @@ export default function ProjectDetailPage() {
       <section className="mx-auto max-w-6xl px-5 pb-10 sm:px-8 sm:pb-16 lg:px-10">
         <div className="rounded-2xl border border-pink-100 bg-pink-50/40 p-5 sm:rounded-3xl sm:p-7 lg:p-8">
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            <div><span className="block text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-500 sm:text-[10px]">Year</span><span className="mt-1.5 block text-sm font-bold text-[#2D2433]">{project.details.year}</span></div>
-            <div><span className="block text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-500 sm:text-[10px]">Deliverables</span><span className="mt-1.5 block text-sm font-bold leading-relaxed text-[#2D2433]">{project.details.deliverables}</span></div>
-            <div><span className="block text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-500 sm:text-[10px]">Tools</span><span className="mt-1.5 block text-sm font-bold leading-relaxed text-[#2D2433]">{project.details.tools}</span></div>
+            <div><span className="block text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-500 sm:text-[10px]">{t("year")}</span><span className="mt-1.5 block text-sm font-bold text-[#2D2433]">{project.details.year}</span></div>
+            <div><span className="block text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-500 sm:text-[10px]">{t("deliverables")}</span><span className="mt-1.5 block text-sm font-bold leading-relaxed text-[#2D2433]">{project.details.deliverables}</span></div>
+            <div><span className="block text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-500 sm:text-[10px]">{t("tools")}</span><span className="mt-1.5 block text-sm font-bold leading-relaxed text-[#2D2433]">{project.details.tools}</span></div>
           </div>
         </div>
       </section>
@@ -246,19 +304,19 @@ export default function ProjectDetailPage() {
         <section className="mx-auto max-w-6xl px-4 pb-12 pt-3 sm:px-8 sm:pb-20 sm:pt-5 lg:px-10">
           {isJendelaProject && (
             <div className="mb-8 max-w-4xl">
-              <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">BIG IDEA</span>
+              <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">{bigIdeaLabel}</span>
               <p className="mt-4 whitespace-pre-line text-sm leading-7 text-[#6B6570] sm:text-base sm:leading-8">{project.bigIdea}</p>
             </div>
           )}
           <div className="mb-6 flex items-end justify-between gap-4 sm:mb-8">
             <div>
               {!isCharacterProject && (
-                <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">BRAND DEVELOPMENT</span>
+                <span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">{brandDevelopmentLabel}</span>
               )}
-              <h2 className={`${isCharacterProject ? "" : "mt-3 "}text-2xl font-extrabold uppercase tracking-tight text-[#2D2433] sm:text-3xl`}>{t(isCharacterProject ? "CHARACTER DEVELOPMENT" : "Brand Guideline")}</h2>
+              <h2 className={`${isCharacterProject ? "" : "mt-3 "}text-2xl font-extrabold uppercase tracking-tight text-[#2D2433] sm:text-3xl`}>{lang === "id" ? (isCharacterProject ? "PENGEMBANGAN KARAKTER" : "PANDUAN BRAND") : t(isCharacterProject ? "CHARACTER DEVELOPMENT" : "Brand Guideline")}</h2>
             </div>
             {!isCharacterProject && (
-              <span className="hidden rounded-full border border-pink-100 bg-white px-3 py-1 text-[8px] font-mono font-bold uppercase tracking-wider text-[#A39BA4] sm:block">{isHut67Project ? "8 BRAND SECTIONS" : isJendelaProject ? "6 IMAGE SLOTS" : "4 IMAGE SLOTS"}</span>
+              <span className="hidden rounded-full border border-pink-100 bg-white px-3 py-1 text-[8px] font-mono font-bold uppercase tracking-wider text-[#A39BA4] sm:block">{isHut67Project ? "8 BAGIAN MEREK" : isJendelaProject ? "6 SLOT GAMBAR" : "4 SLOT GAMBAR"}</span>
             )}
           </div>
           <div className="space-y-5 sm:space-y-7">
@@ -284,7 +342,9 @@ export default function ProjectDetailPage() {
                 ? []
                 : guideline?.images ?? [];
               const sectionDescription = isJendelaProject
-                ? jendelaGuidelineDescriptions[number]
+                ? lang === "id"
+                  ? jendelaGuidelineDescriptionsId[number]
+                  : jendelaGuidelineDescriptions[number]
                 : guideline?.description ?? description;
               const isCharacterColors =
                 isCharacterProject && number === "02" && title === "COLORS";
@@ -410,23 +470,23 @@ export default function ProjectDetailPage() {
                         <span className="hidden rounded-full border border-pink-100 bg-white px-3 py-1 text-[8px] font-mono font-bold uppercase tracking-wider text-[#A39BA4] sm:block">
                           {isCharacterProject
                             ? number === "03"
-                              ? "FINAL ARTWORK"
+                              ? sectionBadgeLabelMap.finalArtwork
                               : number === "02"
-                                ? "COLOR GUIDE"
+                                ? sectionBadgeLabelMap.colorGuide
                               : number === "04"
-                                ? "APPLICATIONS"
-                                : "PROJECT DETAILS"
+                                ? sectionBadgeLabelMap.applications
+                                : sectionBadgeLabelMap.projectDetails
                             : isColorSection && colorPalette
-                            ? "COLOR GUIDE"
+                            ? sectionBadgeLabelMap.colorGuide
                             : isTypographySection
-                              ? "TYPE GUIDE"
+                              ? sectionBadgeLabelMap.typeGuide
                               : isJendelaProject
                                 ? image
-                                  ? "IMAGE READY"
-                                  : "ADD IMAGE"
+                                  ? sectionBadgeLabelMap.imageReady
+                                  : sectionBadgeLabelMap.addImage
                                 : sectionImages.length > 0
-                                  ? "IMAGE READY"
-                                  : "ADD IMAGE"}
+                                  ? sectionBadgeLabelMap.imageReady
+                                  : sectionBadgeLabelMap.addImage}
                         </span>
                       </>
                     )}
@@ -445,7 +505,7 @@ export default function ProjectDetailPage() {
                           />
                         </div>
                         <Link href={`/portfolio/project/${project.characterProject.slug}`} className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-center text-[10px] font-mono font-bold uppercase tracking-wider text-white transition-colors hover:bg-primary-hover focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary sm:w-fit sm:px-6 sm:text-xs">
-                          VIEW CHARACTER PROJECT <span aria-hidden="true">→</span>
+                          {lang === "id" ? "LIHAT PROYEK KARAKTER" : "VIEW CHARACTER PROJECT"} <span aria-hidden="true">→</span>
                         </Link>
                       </>
                     ) : isCharacterProject && number === "02" && sectionImages.length === 0 && !isCharacterColors ? (
@@ -489,7 +549,7 @@ export default function ProjectDetailPage() {
                         </p>
                         {characterSocialMediaHref && (
                           <Link href={characterSocialMediaHref} className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-center text-[10px] font-mono font-bold uppercase tracking-wider text-white transition-colors hover:bg-primary-hover focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary sm:w-fit sm:px-6 sm:text-xs">
-                            VIEW SOCIAL MEDIA PROJECT <span aria-hidden="true">→</span>
+                            {socialMediaCtaText} <span aria-hidden="true">→</span>
                           </Link>
                         )}
                       </>
@@ -517,8 +577,7 @@ export default function ProjectDetailPage() {
                         ))}
                       </div>
                     ) : (
-                      <div className="flex min-h-[240px] items-center justify-center rounded-2xl border-2 border-dashed border-pink-200 bg-white sm:min-h-[380px]"><div className="px-6 text-center"><div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-pink-50 text-xl font-light text-pink-400">+</div><p className="mt-3 text-xs font-bold uppercase tracking-wider text-[#6B6570]">Add {title} image</p><p className="mt-1 text-[10px] leading-relaxed text-[#A39BA4]">{isJendelaProject ? "Tambahkan file ke public/portfolio lalu masukkan path-nya ke projectImages." : `Add branding-[project]${Number(number)}.avif to public/portfolio; append -2, -3 for additional images.`}</p></div></div>
-                    )}
+                      <div className="flex min-h-[240px] items-center justify-center rounded-2xl border-2 border-dashed border-pink-200 bg-white sm:min-h-[380px]"><div className="px-6 text-center"><div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-pink-50 text-xl font-light text-pink-400">+</div>                      <p className="mt-3 text-xs font-bold uppercase tracking-wider text-[#6B6570]">{lang === "id" ? `Tambahkan gambar ${title}` : `Add ${title} image`}</p><p className="mt-1 text-[10px] leading-relaxed text-[#A39BA4]">{isJendelaProject ? "Tambahkan file ke public/portfolio lalu masukkan path-nya ke projectImages." : lang === "id" ? `Tambahkan branding-${project.slug ?? slug}-${Number(number)}.avif ke public/portfolio; tambahkan -2, -3 untuk gambar tambahan.` : `Add branding-[project]${Number(number)}.avif to public/portfolio; append -2, -3 for additional images.`}</p></div></div>                    )}
                     {isJendelaProject && !isBrandCharacterSection && (
                       <p className="mt-4 px-1 text-xs leading-6 text-[#6B6570] sm:px-2 sm:text-sm sm:leading-7">{sectionDescription}</p>
                     )}
@@ -535,12 +594,12 @@ export default function ProjectDetailPage() {
               <article className="overflow-hidden rounded-[24px] border border-pink-100 bg-[#FFFBFD] shadow-[0_18px_50px_-25px_rgba(45,36,51,0.22)] sm:rounded-[30px]">
                 <div className="flex items-center gap-3 border-b border-pink-100 px-4 py-4 sm:gap-4 sm:px-6 sm:py-5">
                   <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-pink-50 text-[10px] font-mono font-bold text-pink-600 sm:h-11 sm:w-11 sm:text-xs">07</span>
-                  <h3 className="text-sm font-extrabold uppercase tracking-wide text-[#2D2433] sm:text-base">SOCIAL MEDIA</h3>
+                  <h3 className="text-sm font-extrabold uppercase tracking-wide text-[#2D2433] sm:text-base">{mediaSocialTitle}</h3>
                 </div>
                 <div className="flex flex-col items-start gap-5 p-4 sm:p-6">
-                  <p className="max-w-3xl text-xs leading-6 text-[#6B6570] sm:text-sm sm:leading-7">{t("Explore how the Jendela Finansial visual identity is applied across social media through educational, interactive, and engaging content.")}</p>
+                  <p className="max-w-3xl text-xs leading-6 text-[#6B6570] sm:text-sm sm:leading-7">{lang === "id" ? "Lihat bagaimana identitas visual Jendela Finansial diterapkan di media sosial melalui konten edukatif, interaktif, dan menarik." : "Explore how the Jendela Finansial visual identity is applied across social media through educational, interactive, and engaging content."}</p>
                   <Link href="/portfolio/social-media-design#jendela-finansial" className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-center text-[10px] font-mono font-bold uppercase tracking-wider text-white transition-colors hover:bg-primary-hover focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary sm:w-fit sm:px-6 sm:text-xs">
-                    {t("VIEW SOCIAL MEDIA PROJECT")} <span aria-hidden="true">→</span>
+                    {socialMediaCtaText} <span aria-hidden="true">→</span>
                   </Link>
                 </div>
               </article>
@@ -549,14 +608,14 @@ export default function ProjectDetailPage() {
               <article className="overflow-hidden rounded-[24px] border border-pink-100 bg-[#FFFBFD] shadow-[0_18px_50px_-25px_rgba(45,36,51,0.22)] sm:rounded-[30px]">
                 <div className="flex items-center gap-3 border-b border-pink-100 px-4 py-4 sm:gap-4 sm:px-6 sm:py-5">
                   <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-pink-50 text-[10px] font-mono font-bold text-pink-600 sm:h-11 sm:w-11 sm:text-xs">07</span>
-                  <h3 className="text-sm font-extrabold uppercase tracking-wide text-[#2D2433] sm:text-base">SOCIAL MEDIA</h3>
+                  <h3 className="text-sm font-extrabold uppercase tracking-wide text-[#2D2433] sm:text-base">{mediaSocialTitle}</h3>
                 </div>
                 <div className="flex flex-col items-start gap-5 p-4 sm:p-6">
                   <p className="max-w-3xl text-xs leading-6 text-[#6B6570] sm:text-sm sm:leading-7">
-                    Explore how the Pelkat PA GPIB Immanuel Pekanbaru visual identity is applied across social media through engaging, informative, and community-focused content.
+                    {lang === "id" ? "Lihat bagaimana identitas visual Pelkat PA GPIB Immanuel Pekanbaru diterapkan di media sosial melalui konten yang informatif, menarik, dan berfokus pada komunitas." : "Explore how the Pelkat PA GPIB Immanuel Pekanbaru visual identity is applied across social media through engaging, informative, and community-focused content."}
                   </p>
                   <Link href="/portfolio/social-media-design#pelkat-pa" className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-center text-[10px] font-mono font-bold uppercase tracking-wider text-white transition-colors hover:bg-primary-hover focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary sm:w-fit sm:px-6 sm:text-xs">
-                    VIEW SOCIAL MEDIA PROJECT <span aria-hidden="true">→</span>
+                    {socialMediaCtaText} <span aria-hidden="true">→</span>
                   </Link>
                 </div>
               </article>
@@ -565,14 +624,14 @@ export default function ProjectDetailPage() {
               <article className="overflow-hidden rounded-[24px] border border-pink-100 bg-[#FFFBFD] shadow-[0_18px_50px_-25px_rgba(45,36,51,0.22)] sm:rounded-[30px]">
                 <div className="flex items-center gap-3 border-b border-pink-100 px-4 py-4 sm:gap-4 sm:px-6 sm:py-5">
                   <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-pink-50 text-[10px] font-mono font-bold text-pink-600 sm:h-11 sm:w-11 sm:text-xs">07</span>
-                  <h3 className="text-sm font-extrabold uppercase tracking-wide text-[#2D2433] sm:text-base">SOCIAL MEDIA</h3>
+                  <h3 className="text-sm font-extrabold uppercase tracking-wide text-[#2D2433] sm:text-base">{mediaSocialTitle}</h3>
                 </div>
                 <div className="flex flex-col items-start gap-5 p-4 sm:p-6">
                   <p className="max-w-3xl text-xs leading-6 text-[#6B6570] sm:text-sm sm:leading-7">
-                    Explore how the Consistrade visual identity is applied across educational social content, trading insights, and community-driven digital marketing.
+                    {lang === "id" ? "Lihat bagaimana identitas visual Consistrade diterapkan di konten media sosial edukatif, insight trading, dan pemasaran digital yang berorientasi komunitas." : "Explore how the Consistrade visual identity is applied across educational social content, trading insights, and community-driven digital marketing."}
                   </p>
                   <Link href="/portfolio/social-media-design#consistrade" className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-center text-[10px] font-mono font-bold uppercase tracking-wider text-white transition-colors hover:bg-primary-hover focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary sm:w-fit sm:px-6 sm:text-xs">
-                    VIEW SOCIAL MEDIA PROJECT <span aria-hidden="true">→</span>
+                    {socialMediaCtaText} <span aria-hidden="true">→</span>
                   </Link>
                 </div>
               </article>
@@ -581,13 +640,13 @@ export default function ProjectDetailPage() {
         </section>
       ) : (
         <section className="mx-auto max-w-6xl px-4 pb-12 pt-3 sm:px-8 sm:pb-20 sm:pt-5 lg:px-10">
-          <div className="mb-6 flex items-center justify-between sm:mb-8"><span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">PROJECT GALLERY</span><span className="text-[9px] font-mono font-bold uppercase tracking-wider text-[#A39BA4] sm:text-[10px]">{images.length.toString().padStart(2, "0")} {images.length === 1 ? "IMAGE" : "IMAGES"}</span></div>
+          <div className="mb-6 flex items-center justify-between sm:mb-8"><span className="inline-flex rounded-full border border-pink-200 bg-pink-50 px-3 py-1.5 text-[9px] font-mono font-bold uppercase tracking-[0.16em] text-pink-600 sm:px-3.5 sm:py-2 sm:text-[10px]">{projectGalleryLabel}</span><span className="text-[9px] font-mono font-bold uppercase tracking-wider text-[#A39BA4] sm:text-[10px]">{images.length.toString().padStart(2, "0")} {images.length === 1 ? imageCountLabel : lang === "id" ? "GAMBAR" : "IMAGES"}</span></div>
           <div className="space-y-5 sm:space-y-8">{images.map((image, index) => (<figure key={`${image.src}-${index}`} className="overflow-hidden rounded-2xl border border-pink-100 bg-white shadow-[0_18px_45px_-25px_rgba(233,106,152,0.25)] sm:rounded-3xl"><Image src={image.src} alt={image.alt || `${project.title} ${index + 1}`} width={1920} height={1080} priority={index === 0} sizes="(max-width: 1280px) 100vw, 1152px" className="h-auto w-full object-cover" />{image.caption && <figcaption className="px-4 py-3 text-xs leading-relaxed text-[#6B6570] sm:px-6 sm:py-4 sm:text-sm">{image.caption}</figcaption>}</figure>))}</div>
         </section>
       )}
 
       <div className="mx-auto max-w-6xl px-5 pb-16 sm:px-8 sm:pb-24 lg:px-10">
-        <Link href={isCharacterProject ? "/portfolio/character-design" : "/portfolio/brand-identity"} className="inline-flex items-center gap-2 rounded-full border border-pink-200 bg-pink-50 px-5 py-2.5 text-[10px] font-mono font-bold uppercase tracking-wider text-pink-600 transition-all hover:-translate-x-1 hover:bg-pink-100 sm:px-6 sm:py-3 sm:text-xs"><ArrowLeft className="h-3.5 w-3.5" />{isCharacterProject ? "BACK TO CHARACTER DESIGN" : "BACK TO BRAND IDENTITY"}</Link>
+        <Link href={isCharacterProject ? "/portfolio/character-design" : "/portfolio/brand-identity"} className="inline-flex items-center gap-2 rounded-full border border-pink-200 bg-pink-50 px-5 py-2.5 text-[10px] font-mono font-bold uppercase tracking-wider text-pink-600 transition-all hover:-translate-x-1 hover:bg-pink-100 sm:px-6 sm:py-3 sm:text-xs"><ArrowLeft className="h-3.5 w-3.5" />{backLinkText}</Link>
       </div>
     </main>
   );

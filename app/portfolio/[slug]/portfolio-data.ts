@@ -66,6 +66,573 @@ export interface SectionData {
   characterColorPaletteDescription?: string;
 }
 
+type Locale = "en" | "id";
+
+const sectionCopy: Record<string, Record<Locale, Partial<SectionData>>> = {
+  "pelkatpa.pku": {
+    en: {
+      title: "Pelkat PA GPIB Immanuel Pekanbaru",
+      bio: "Children's ministry Sunday service.",
+      overview:
+        "Created joyful and engaging visual content for children's ministry events and daily spiritual communication. The designs were developed to feel vibrant, warm, and approachable while maintaining a clear and consistent visual identity.",
+      challenge:
+        "Creating clear and inspiring visuals that resonate with children while still aligned with the values and tone of the church ministry.",
+      details: {
+        client: "Pelkat PA GPIB Immanuel Pekanbaru",
+        industry: "Community & Ministry",
+        role: "Visual Designer",
+        year: "2024",
+        deliverables: "Event assets, social media content, and carousel posts",
+        tools: "Adobe Illustrator, Canva",
+      },
+    },
+    id: {
+      title: "Pelkat PA GPIB Immanuel Pekanbaru",
+      bio: "Layanan anak-anak di hari Minggu.",
+      overview:
+        "Membuat konten visual yang ceria dan menarik untuk acara pelayanan anak serta komunikasi spiritual harian. Desain dikembangkan agar terasa hidup, hangat, dan mudah didekati sambil tetap menjaga identitas visual yang jelas dan konsisten.",
+      challenge:
+        "Menciptakan visual yang jelas dan inspiratif yang sesuai untuk anak-anak sekaligus tetap selaras dengan nilai dan tone pelayanan gereja.",
+      details: {
+        client: "Pelkat PA GPIB Immanuel Pekanbaru",
+        industry: "Komunitas & Pelayanan",
+        role: "Desainer Visual",
+        year: "2024",
+        deliverables: "Aset acara, konten media sosial, dan carousel post",
+        tools: "Adobe Illustrator, Canva",
+      },
+    },
+  },
+  jendelafinansial: {
+    en: {
+      title: "Jendela Finansial",
+      bio: "Smart financial tips and wealth education made simple 💡 Grow your future with us.",
+      overview:
+        "Focused on building a strong financial education presence through a warm, approachable, and informative visual system for social media platforms.",
+      challenge:
+        "Explaining complex financial concepts clearly without losing engagement or making the content feel intimidating.",
+      details: {
+        client: "Jendela Finansial",
+        industry: "Financial Education",
+        role: "Visual Designer",
+        year: "2024",
+        deliverables: "Instagram system, educational content, campaign creatives",
+        tools: "Adobe Photoshop, Adobe Illustrator",
+      },
+    },
+    id: {
+      title: "Jendela Finansial",
+      bio: "Tips finansial cerdas dan edukasi kekayaan yang sederhana 💡 Kembangkan masa depanmu bersama kami.",
+      overview:
+        "Fokus membangun kehadiran edukasi finansial yang kuat melalui sistem visual yang hangat, mudah didekati, dan informatif untuk platform media sosial.",
+      challenge:
+        "Menjelaskan konsep finansial yang kompleks dengan jelas tanpa mengurangi engagement atau membuat konten terasa menakutkan.",
+      details: {
+        client: "Jendela Finansial",
+        industry: "Edukasi Keuangan",
+        role: "Desainer Visual",
+        year: "2024",
+        deliverables: "Sistem Instagram, konten edukasi, kreatif kampanye",
+        tools: "Adobe Photoshop, Adobe Illustrator",
+      },
+    },
+  },
+  "consistrade-brand": {
+    en: {
+      title: "Consistrade",
+      bio: "Creative business solutions that scale with clarity.",
+      overview:
+        "Built a professional and scalable brand system centered on clarity, trust, and modern business communication.",
+      challenge:
+        "Representing a growing business with a visual language that feels credible, modern, and easy to understand.",
+      details: {
+        client: "Consistrade",
+        industry: "Business & Consulting",
+        role: "Brand Designer",
+        year: "2024",
+        deliverables: "Brand identity and campaign applications",
+        tools: "Adobe Illustrator, Photoshop",
+      },
+    },
+    id: {
+      title: "Consistrade",
+      bio: "Solusi bisnis kreatif yang berkembang dengan kejelasan.",
+      overview:
+        "Membangun sistem merek yang profesional dan scalable dengan fokus pada kejelasan, kepercayaan, dan komunikasi bisnis modern.",
+      challenge:
+        "Mewakili bisnis yang berkembang dengan bahasa visual yang terasa kredibel, modern, dan mudah dipahami.",
+      details: {
+        client: "Consistrade",
+        industry: "Bisnis & Konsultasi",
+        role: "Desainer Brand",
+        year: "2024",
+        deliverables: "Identitas brand dan aplikasi kampanye",
+        tools: "Adobe Illustrator, Photoshop",
+      },
+    },
+  },
+  "gpib-immanuel-pekanbaru": {
+    en: {
+      title: "GPIB Immanuel Pekanbaru",
+      bio: "Church ministry identity built around clarity and warmth.",
+      overview:
+        "Developed a community-centered brand system that helps church communications feel more cohesive and welcoming across digital channels.",
+      challenge:
+        "Creating a meaningful church identity that balances spiritual values with a contemporary and accessible visual language.",
+      details: {
+        client: "GPIB Immanuel Pekanbaru",
+        industry: "Community & Church",
+        role: "Brand & Visual Designer",
+        year: "2025",
+        deliverables: "Brand identity, mascot, social content",
+        tools: "Adobe Illustrator, Photoshop, Canva",
+      },
+    },
+    id: {
+      title: "GPIB Immanuel Pekanbaru",
+      bio: "Identitas pelayanan gereja yang dibangun dengan kehangatan dan kejelasan.",
+      overview:
+        "Mengembangkan sistem brand yang berpusat pada komunitas agar komunikasi gereja terasa lebih kohesif dan ramah di berbagai kanal digital.",
+      challenge:
+        "Menciptakan identitas gereja yang bermakna dengan menyeimbangkan nilai spiritual dan bahasa visual yang kontemporer serta mudah diakses.",
+      details: {
+        client: "GPIB Immanuel Pekanbaru",
+        industry: "Komunitas & Gereja",
+        role: "Desainer Brand & Visual",
+        year: "2025",
+        deliverables: "Identitas brand, mascot, konten sosial",
+        tools: "Adobe Illustrator, Photoshop, Canva",
+      },
+    },
+  },
+};
+
+export function localizeSectionData(
+  section: SectionData,
+  lang: Locale
+): SectionData {
+  const baseKey = section.slug ?? section.username;
+  const normalizedKey = baseKey
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "");
+
+  const copy =
+    sectionCopy[baseKey] ??
+    sectionCopy[normalizedKey] ??
+    sectionCopy[section.username ?? ""];
+
+  const localized = copy?.[lang];
+
+  const localizedProjectContent: Record<string, Partial<SectionData>> = {
+    "jendela-finansial": {
+      bio: "Tips finansial cerdas dan edukasi kekayaan yang sederhana 💡 Kembangkan masa depanmu bersama kami.",
+      overview:
+        "Fokus membangun kehadiran edukasi finansial yang kuat melalui sistem visual yang hangat, mudah didekati, dan informatif untuk platform media sosial.",
+      challenge:
+        "Menjelaskan konsep finansial yang kompleks dengan jelas tanpa mengurangi engagement atau membuat konten terasa menakutkan.",
+      bigIdea:
+        "Jendela Finansial dirancang sebagai platform media sosial edukatif dan interaktif yang membuat topik finansial terasa menyenangkan, mudah didekati, dan relevan dalam kehidupan sehari-hari.\n\nSistem kontennya menggabungkan edukasi finansial dengan tantangan interaktif, komik, storytelling berbasis karakter, serta template bulanan seperti Add Yours dan Twibbon.\n\nUntuk menciptakan feed Instagram yang konsisten dan mudah dikenali, konten mengikuti tiga tema visual yang berulang:\n\nBiru → Putih → Kuning 🔁\n\nIrama warna berulang ini menciptakan feed yang teratur secara visual sambil menjaga variasi konten, keterlibatan, dan kemudahan pengenalan saat audiens menjelajahi profil.",
+    },
+    "gpib-immanuel-pekanbaru": {
+      bio: "Identitas pelayanan gereja yang dibangun dengan kehangatan dan kejelasan.",
+      overview:
+        "Mengembangkan sistem brand yang berpusat pada komunitas agar komunikasi gereja terasa lebih kohesif dan ramah di berbagai kanal digital.",
+      challenge:
+        "Menciptakan identitas gereja yang bermakna dengan menyeimbangkan nilai spiritual dan bahasa visual yang kontemporer serta mudah diakses.",
+      bigIdea:
+        "GPIB Immanuel Pekanbaru dibangun melalui identitas visual yang berbasis komunitas agar komunikasi gereja terasa lebih kohesif, hangat, dan ramah di berbagai kanal digital. Proyek ini mencakup pembuatan logo internal gereja, pengembangan Elof sebagai maskot, serta branding media sosial dan materi informasi gereja dengan identitas yang kuat, informatif, dan artistik.",
+    },
+    "consistrade-brand": {
+      bio: "Solusi bisnis kreatif yang berkembang dengan kejelasan.",
+      overview:
+        "Membangun sistem merek yang profesional dan scalable dengan fokus pada kejelasan, kepercayaan, dan komunikasi bisnis modern.",
+      challenge:
+        "Mewakili bisnis yang berkembang dengan bahasa visual yang terasa kredibel, modern, dan mudah dipahami.",
+      bigIdea:
+        "Brand edukasi finansial dan trading ini menyediakan modul pembelajaran digital untuk pengguna dari level pemula hingga profesional. Tanggung jawab utama mencakup desain logo, pengembangan karakter brand, dan desain konten media sosial.",
+    },
+    "character-jeni-and-jeno": {
+      bio: "Karakter edukasi finansial yang ramah, ekspresif, dan mudah diingat.",
+      overview:
+        "Jeni & Jeno dikembangkan sebagai karakter edukasi finansial yang ramah, ekspresif, dan mudah diingat untuk membantu audiens muda merasa lebih dekat dengan topik keuangan dan investasi.",
+      challenge:
+        "Menciptakan karakter yang dapat menjembatani edukasi finansial dengan gaya visual yang lebih menyenangkan, mudah didekati, dan konsisten di berbagai konten.",
+      bigIdea:
+        "Jeni & Jeno dikembangkan sebagai karakter edukasi finansial yang ramah, ekspresif, dan mudah diingat, membantu audiens muda merasa lebih dekat dengan topik keuangan dan investasi dalam bentuk yang ringan dan menyenangkan.",
+    },
+    "character-elof": {
+      bio: "Karakter yang hangat dan ramah untuk komunikasi gereja dan media sosial.",
+      overview:
+        "Elof dikembangkan sebagai karakter yang hangat, ramah, dan mudah didekati untuk mendukung komunikasi gereja dan materi informasi dengan gaya visual yang menceritakan nilai pelayanan.",
+      challenge:
+        "Menciptakan karakter yang mudah diingat, ekspresif, dan konsisten agar dapat mendukung narasi visual serta komunikasi komunitas gereja.",
+      bigIdea:
+        "Elof dikembangkan dengan pendekatan ilustrasi yang hangat dan ramah, menggabungkan proporsi karakter yang sederhana dengan detail yang mudah dikenali seperti kacamata, rompi hijau, jubah putih, dan tongkat berjalan.",
+    },
+    "character-tedy": {
+      bio: "Karakter edukasi finansial yang tampil ramah, modern, dan dapat didekati.",
+      overview:
+        "Tedy dikembangkan sebagai karakter edukasi finansial yang menampilkan gaya belajar yang lebih santai, hangat, dan mudah didekati bagi audiens umum.",
+      challenge:
+        "Menciptakan karakter yang terasa ramah dan dipercaya sekaligus tetap relevan untuk pendidikan trading dan finansial yang lebih serius.",
+      bigIdea:
+        "Tedy dikembangkan sebagai karakter edukasi trading yang ramah dan modern, dengan ekspresi yang terlihat mudah didekati untuk mendorong rasa percaya diri saat belajar finansial.",
+    },
+    "character-teddy": {
+      bio: "Karakter edukasi finansial yang tampil ramah, modern, dan dapat didekati.",
+      overview:
+        "Tedy dikembangkan sebagai karakter edukasi finansial yang menampilkan gaya belajar yang lebih santai, hangat, dan mudah didekati bagi audiens umum.",
+      challenge:
+        "Menciptakan karakter yang terasa ramah dan dipercaya sekaligus tetap relevan untuk pendidikan trading dan finansial yang lebih serius.",
+      bigIdea:
+        "Tedy dikembangkan sebagai karakter edukasi trading yang ramah dan modern, dengan ekspresi yang terlihat mudah didekati untuk mendorong rasa percaya diri saat belajar finansial.",
+    },
+    "character-emily-the-great": {
+      bio: "Karakter yang playful, ekspresif, dan mudah diingat untuk komunikasi digital sehari-hari.",
+      overview:
+        "Emily the Great dikembangkan sebagai karakter stiker Telegram dengan karakter yang ekspresif, playful, dan mudah diingat untuk membuat komunikasi digital terasa lebih hidup.",
+      challenge:
+        "Menciptakan karakter yang unik, mudah dikenali, dan cocok untuk komunikasi ringan serta interaksi sehari-hari di platform digital.",
+      bigIdea:
+        "Emily the Great dikembangkan sebagai karakter yang playful dan ekspresif untuk stiker Telegram, membawa kepribadian yang ceria ke dalam bentuk komunikasi digital yang lebih santai dan menyenangkan.",
+    },
+    "character-emily": {
+      bio: "Karakter yang playful, ekspresif, dan mudah diingat untuk komunikasi digital sehari-hari.",
+      overview:
+        "Emily the Great dikembangkan sebagai karakter stiker Telegram dengan karakter yang ekspresif, playful, dan mudah diingat untuk membuat komunikasi digital terasa lebih hidup.",
+      challenge:
+        "Menciptakan karakter yang unik, mudah dikenali, dan cocok untuk komunikasi ringan serta interaksi sehari-hari di platform digital.",
+      bigIdea:
+        "Emily the Great dikembangkan sebagai karakter yang playful dan ekspresif untuk stiker Telegram, membawa kepribadian yang ceria ke dalam bentuk komunikasi digital yang lebih santai dan menyenangkan.",
+    },
+  };
+
+  const localizedBrandGuidelineDescriptions: Record<string, Record<string, string>> = {
+    "jendela-finansial": {
+      "01": "Logo yang sudah ada dari klien menjadi fondasi untuk mengembangkan bahasa visual brand. Sistem visual lalu diperluas melalui warna, tipografi, elemen grafis, dan aset pendukung untuk menciptakan identitas yang kohesif dan mudah dikenali.",
+      "02": "Palet warna menggabungkan biru, kuning, putih, dan navy gelap untuk menciptakan keseimbangan antara kepercayaan, optimisme, dan kejelasan. Biru merepresentasikan kepercayaan, stabilitas, dan kredibilitas, sementara kuning membawa optimisme, energi, dan kedekatan. Putih memberi ruang bernapas dan kejelasan, sedangkan navy gelap menambah kontras dan profesionalisme.",
+      "03": "Tiga tema tipografi yang berbeda menciptakan bahasa visual yang terasa menyenangkan, mudah didekati, dan edukatif. Variasi ini membantu topik finansial yang kompleks terasa lebih ringan, lebih menarik, dan lebih mudah dijelajahi serta dipahami audiens.",
+      "04": "Elemen visual menggabungkan dokumentasi fotografi autentik dari berbagai sumber untuk menciptakan kesan yang relatable dan kontemporer. Fotografi berbasis objek diedit menggunakan warna brand yang dipilih, seperti kombinasi putih-kuning atau putih-biru, tergantung pada tema visual. Fotografi yang menampilkan orang menggunakan pendekatan hitam-putih atau grayscale untuk menjaga konsistensi sambil tetap menjaga komposisi tetap bersih dan fokus.",
+      "05": "Sistem grid halus digunakan sebagai fondasi latar belakang, menyesuaikan tema biru, kuning, dan putih brand. Dengan transparansi sekitar 15%, grid menambah tekstur dan kedalaman visual tanpa membuat latar terasa ramai atau melelahkan dibaca. Balon percakapan menciptakan nuansa yang lebih interaktif dan komunikatif, sementara panah memberikan arahan visual tambahan dan mendukung hierarki informasi.",
+    },
+    "gpib-immanuel-pekanbaru": {
+      "01": "Logo resmi GPIB mewakili identitas sinode yang dibagikan di seluruh jemaat GPIB. Logo baru GPIB Immanuel Pekanbaru menciptakan identitas lokal yang khas sambil tetap terhubung dengan identitas GPIB yang lebih luas.",
+      "05": "Elemen visual menggabungkan simbol GPIB, maskot, dan fotografi gereja yang realistis untuk menjaga identitas yang konsisten. Elemen pendukung dapat menyesuaikan diri dengan program, kampanye, acara, dan tema tertentu.",
+      "06": "Karakter membantu membangun kehangatan dan kedekatan komunitas, sekaligus memperkuat pengenalan identitas gereja di kanal komunikasi yang lebih luas.",
+    },
+    "consistrade-brand": {
+      "01": "Logo membangun identitas yang percaya diri untuk edukasi finansial sambil tetap jelas dan mudah diakses bagi pembelajar di semua level.",
+      "02": "Sistem logo mencerminkan ide utama pertumbuhan disiplin dalam trading dan pembelajaran finansial: simbol yang jelas, modern, dan dapat dipercaya untuk pemula sekaligus tetap profesional untuk pembelajar tingkat lanjut.",
+      "03": "Palet warna menggabungkan biru laut, biru kerajaan, dan ungu cerah untuk menyampaikan kepercayaan, kejelasan, dan pertumbuhan dalam ekosistem trading yang profesional.",
+      "04": "Tipografi menggunakan gaya sans serif geometris yang bersih untuk memperkuat kejelasan, presisi, dan edukasi finansial yang mudah diakses untuk audiens yang lebih luas.",
+      "05": "Sistem elemen visual yang terfokus mendukung konten trading dan pembelajaran dengan struktur yang konsisten dan hierarki informasi yang jelas.",
+      "06": "Karakter brand membantu membangun kehangatan dan pendekatan yang lebih ramah, sekaligus memperkuat identitas edukasi finansial di setiap titik sentuh digital.",
+    },
+    "hut-63-pelkat-pa": {
+      "02": "Lima pernyataan makna menjelaskan pesan utama perayaan, simbol angka, identitas pelayanan, kebersamaan, dan fondasi iman.",
+      "03": "Ruang kosong menjaga pengaruh visual logo dan memastikan logo tetap bersih, seimbang, dan mudah dikenali di berbagai aplikasi.",
+      "04": "Panduan ukuran menentukan proporsi minimum agar logo tetap jelas, mudah dibaca, dan konsisten secara visual di berbagai aplikasi.",
+      "05": "Palet warna mencerminkan semangat kebahagiaan, makna, dan iman dalam perayaan HUT ke-63 Pelkat PA. Warna-warna ini menciptakan keseimbangan antara perayaan, persatuan, dan fondasi iman yang kuat.",
+      "06": "Tipografi dirancang agar terasa jelas, ramah, dan meriah, mendukung identitas perayaan sambil menjaga pesan mudah dibaca dan terjangkau.",
+      "07": "Merchandise memperluas identitas HUT 63 ke produk fisik, menciptakan ekspresi yang sederhana dan berkesan yang dapat dibagikan dan dipakai oleh komunitas Pelkat PA.",
+    },
+    "hut-67-pelkat-pa": {
+      "01": "Logo perayaan menampilkan tonggak 67 tahun sebagai emblem yang jelas dan mudah diingat untuk perayaan resmi di tingkat nasional.",
+      "03": "Struktur logo menentukan hubungan dan proporsi setiap elemen visual untuk menjaga identitas yang konsisten dan mudah dikenali.",
+      "04": "Ruang kosong memastikan logo HUT 67 tetap terlihat, seimbang, dan mudah dikenali di berbagai aplikasi.",
+      "06": "Tipografi bersifat bersih, hangat, dan meriah sehingga mendukung identitas perayaan dengan pesan yang mudah dibaca dan terasa inklusif.",
+      "07": "Karakter mewakili keluarga Pelkat PA dalam tiga generasi: Oma dan Opa, Mama dan Papa, Grace dan Patrick, serta dua relawan muda pelayanan—laki-laki dan perempuan.",
+    },
+    "character-jeni-and-jeno": {
+      "01": "Konsep dan eksplorasi mengembangkan karakter berpasangan yang ramah, enerjik, dan mudah diingat untuk konten edukasi finansial yang lebih dekat dengan audiens muda.",
+      "02": "Palet warna menciptakan keseimbangan antara ceria, modern, dan percaya diri agar karakter terasa dinamis tanpa kehilangan kejelasan visual.",
+      "03": "Karakter final dibuat dengan ekspresi yang ekspresif dan proporsi yang mudah dikenali agar siap diterapkan dalam media sosial dan materi edukasi.",
+      "04": "Aplikasi karakter hadir di konten media sosial dan komunikasi berbasis video serta poster untuk membangun kehadiran merek yang lebih playful dan relatable.",
+      "05": "Refleksi menegaskan bahwa karakter ini dirancang untuk membantu audiens merasa lebih dekat, lebih percaya diri, dan lebih termotivasi saat belajar finansial.",
+    },
+    "character-elof": {
+      "01": "Konsep dan eksplorasi membangun Elof sebagai karakter visual yang hangat, ramah, dan mudah diingat untuk komunikasi media sosial serta materi informasi gereja.",
+      "02": "Palet warna mencerminkan spirit pelayanan gereja yang hangat, bersih, dan menyampaikan kesejukan dalam setiap komunikasi visual.",
+      "03": "Karakter final dibuat dengan bentuk yang sederhana namun ekspresif, agar mudah diaplikasikan di media sosial, poster, dan materi pendukung lainnya.",
+      "04": "Aplikasi karakter hadir di konten media sosial dan materi komunikasi gereja untuk membuat identitas lebih hidup, manusiawi, dan mudah didekati.",
+      "05": "Refleksi menegaskan bahwa Elof tidak hanya menjadi maskot, tetapi juga alat komunikasi yang memperkuat hubungan komunitas dan pelayanan gereja.",
+    },
+    "character-tedy": {
+      "01": "Konsep dan eksplorasi membangun karakter Tedy dengan tampilan yang ramah dan mudah didekati agar edukasi finansial terasa lebih nyaman untuk audiens umum.",
+      "02": "Palet warna menciptakan keseimbangan antara modern, percaya diri, dan menyenangkan sehingga karakter tetap relevan untuk materi edukasi finance.",
+      "03": "Karakter final dibuat dengan bentuk yang sederhana dan ekspresif agar mudah diterapkan di media sosial dan materi edukasi.",
+      "04": "Aplikasi karakter hadir di konten media sosial yang mengedukasi, membantu menciptakan kehadiran visual yang lebih hangat dan ringan.",
+      "05": "Refleksi menegaskan bahwa karakter ini dirancang untuk membuat pembelajaran tentang trading dan finansial terasa lebih santai namun tetap kredibel.",
+    },
+    "character-emily-the-great": {
+      "01": "Konsep dan eksplorasi membangun Emily sebagai karakter yang playful, ekspresif, dan mudah diingat untuk bentuk komunikasi sehari-hari yang lebih santai.",
+      "02": "Palet warna mencerminkan karakter yang ceria, modern, dan mudah dikenali, sesuai dengan kebutuhan komunikasi sticker dan konten digital.",
+      "03": "Karakter final dibuat agar tetap ekspresif dan fleksibel dalam berbagai pose, sehingga mudah dipakai untuk sticker dan materi digital yang ringan.",
+      "04": "Aplikasi karakter dimanfaatkan untuk stiker Telegram dan bentuk komunikasi digital yang lebih interaktif dan dekat dengan audiens.",
+      "05": "Refleksi menegaskan bahwa Emily dirancang sebagai karakter yang memikat, menyenangkan, dan mudah dibawa ke dalam keseharian komunikasi digital.",
+    },
+  };
+
+  const resolveLocalizedGuidelines = (guidelines?: BrandGuidelineSection[]) =>
+    guidelines?.map((item) => {
+      const translatedDescription =
+        lang === "id"
+          ? localizedBrandGuidelineDescriptions[baseKey]?.[item.number] ??
+            localizedBrandGuidelineDescriptions[normalizedKey]?.[item.number] ??
+            localizedBrandGuidelineDescriptions[section.slug ?? ""]?.[item.number]
+          : undefined;
+
+      return translatedDescription ? { ...item, description: translatedDescription } : item;
+    });
+
+  const idFallbacks: Record<string, Partial<SectionData>> = {
+    uksw_salatiga: {
+      bio: "Kreativitas minoritas kampus.",
+      overview:
+        "Membuat konten visual yang menarik untuk platform media sosial universitas, termasuk unggahan promosi, thumbnail video, dan fotografi untuk mendukung berbagai kegiatan dan komunikasi kampus.",
+      challenge:
+        "Membuat konten yang menarik secara visual dan konsisten untuk berbagai komunikasi kampus sambil beradaptasi dengan berbagai format, audiens, dan kebutuhan kreatif.",
+      details: {
+        client: "UKSW Salatiga",
+        industry: "Pendidikan",
+        role: "Desainer Visual Magang",
+        year: "2022",
+        deliverables: "Konten media sosial, thumbnail, fotografi",
+        tools: "Adobe Photoshop, Adobe Illustrator",
+      },
+    },
+    jendelafinansial: {
+      bio: "Tips finansial cerdas dan edukasi kekayaan yang sederhana 💡 Kembangkan masa depanmu bersama kami.",
+      overview:
+        "Mengembangkan konten visual dan aset branding untuk platform edukasi finansial yang membantu Gen Z menjadi lebih sadar secara finansial. Karya ini mencakup pembuatan konten media sosial, desain karakter original, dan visual yang menarik untuk tantangan finansial, berita, dan konten edukasi.",
+      challenge:
+        "Membuat topik finansial terasa mudah didekati dan menarik bagi Gen Z sambil membangun identitas visual yang khas untuk mengomunikasikan konten edukasi, berita finansial, dan tantangan interaktif dengan cara yang jelas, relatable, dan menarik secara visual.",
+      details: {
+        client: "Jendela Finansial",
+        industry: "Edukasi Keuangan",
+        role: "Desainer Visual Utama",
+        year: "2024",
+        deliverables:
+          "Konten media sosial, desain karakter, aset branding, kampanye edukasi",
+        tools: "Adobe Photoshop, Adobe Illustrator",
+      },
+    },
+    "jendela-finansial": {
+      bio: "Tips finansial cerdas dan edukasi kekayaan yang sederhana 💡 Kembangkan masa depanmu bersama kami.",
+      overview:
+        "Mengembangkan konten visual dan aset branding untuk platform edukasi finansial yang membantu Gen Z menjadi lebih sadar secara finansial. Karya ini mencakup pembuatan konten media sosial, desain karakter original, dan visual yang menarik untuk tantangan finansial, berita, dan konten edukasi.",
+      challenge:
+        "Membuat topik finansial terasa mudah didekati dan menarik bagi Gen Z sambil membangun identitas visual yang khas untuk mengomunikasikan konten edukasi, berita finansial, dan tantangan interaktif dengan cara yang jelas, relatable, dan menarik secara visual.",
+      details: {
+        client: "Jendela Finansial",
+        industry: "Edukasi Keuangan",
+        role: "Desainer Visual Utama",
+        year: "2024",
+        deliverables:
+          "Konten media sosial, desain karakter, aset branding, kampanye edukasi",
+        tools: "Adobe Photoshop, Adobe Illustrator",
+      },
+    },
+    consistrade: {
+      bio: "Pendidikan finansial dan trading yang profesional. 📊📉",
+      overview:
+        "Membangun identitas dan sistem visual untuk brand edukasi finansial dan trading, termasuk logo, karakter brand, dan desain konten media sosial yang mendukung modul pembelajaran digital untuk audiens dari pemula hingga profesional.",
+      challenge:
+        "Menciptakan identitas trading yang profesional namun tetap ramah dan mudah didekati bagi trader pemula tanpa terasa menakutkan.",
+      details: {
+        client: "Consistrade",
+        industry: "Edukasi Keuangan & Trading",
+        role: "Desainer Visual",
+        year: "2025",
+        deliverables: "Desain logo, karakter brand, konten media sosial",
+        tools: "Adobe Photoshop, Adobe Illustrator",
+      },
+    },
+    "consistrade-brand": {
+      bio: "Pendidikan finansial dan trading yang profesional. 📊📉",
+      overview:
+        "Membangun identitas dan sistem visual untuk brand edukasi finansial dan trading, termasuk logo, karakter brand, dan desain konten media sosial yang mendukung modul pembelajaran digital untuk audiens dari pemula hingga profesional.",
+      challenge:
+        "Menciptakan identitas trading yang profesional namun tetap ramah dan mudah didekati bagi trader pemula tanpa terasa menakutkan.",
+      details: {
+        client: "Consistrade",
+        industry: "Edukasi Keuangan & Trading",
+        role: "Desainer Visual",
+        year: "2025",
+        deliverables: "Desain logo, karakter brand, konten media sosial",
+        tools: "Adobe Photoshop, Adobe Illustrator",
+      },
+    },
+    gpibimmanuelpku: {
+      bio: "Identitas branding gereja dan sistem visual. 🙏🕊️",
+      overview:
+        "Mengembangkan identitas visual GPIB Immanuel Pekanbaru dengan merancang logo internal gereja yang merepresentasikan jemaat dan identitasnya di Pekanbaru. Proyek ini juga mencakup pembuatan Elof, mascot yang mewakili GPIB Immanuel Pekanbaru dalam melayani jemaat, serta pengembangan branding media sosial dan materi informasi gereja dengan identitas yang kuat, informatif, dan artistik.",
+      challenge:
+        "Membangun identitas visual yang kohesif yang menghubungkan warisan pelayanan gereja yang sudah lama berdiri dengan estetika modern yang ramah untuk seluruh jemaat.",
+      details: {
+        client: "GPIB Immanuel Pekanbaru",
+        industry: "Gereja",
+        role: "Desainer Visual",
+        year: "2025",
+        deliverables:
+          "Desain logo, branding, desain karakter, desain media sosial, editing video",
+        tools: "Illustrator, Figma, Photoshop",
+      },
+    },
+    "gpib-immanuel-pekanbaru": {
+      bio: "Identitas branding gereja dan sistem visual. 🙏🕊️",
+      overview:
+        "Mengembangkan identitas visual GPIB Immanuel Pekanbaru dengan merancang logo internal gereja yang merepresentasikan jemaat dan identitasnya di Pekanbaru. Proyek ini juga mencakup pembuatan Elof, mascot yang mewakili GPIB Immanuel Pekanbaru dalam melayani jemaat, serta pengembangan branding media sosial dan materi informasi gereja dengan identitas yang kuat, informatif, dan artistik.",
+      challenge:
+        "Membangun identitas visual yang kohesif yang menghubungkan warisan pelayanan gereja yang sudah lama berdiri dengan estetika modern yang ramah untuk seluruh jemaat.",
+      details: {
+        client: "GPIB Immanuel Pekanbaru",
+        industry: "Gereja",
+        role: "Desainer Visual",
+        year: "2025",
+        deliverables:
+          "Desain logo, branding, desain karakter, desain media sosial, editing video",
+        tools: "Illustrator, Figma, Photoshop",
+      },
+    },
+    "pelkat-pa-gpib-immanuel-pekanbaru": {
+      bio: "Layanan anak-anak di hari Minggu.",
+      overview:
+        "Membuat konten visual yang ceria dan menarik untuk acara pelayanan anak serta komunikasi spiritual harian. Desain dikembangkan agar terasa hidup, hangat, dan mudah didekati sambil tetap menjaga identitas visual yang jelas dan konsisten.",
+      challenge:
+        "Menciptakan visual yang jelas dan inspiratif yang sesuai untuk anak-anak sekaligus tetap selaras dengan nilai dan tone pelayanan gereja.",
+      details: {
+        client: "Pelkat PA GPIB Immanuel Pekanbaru",
+        industry: "Pelayanan Anak",
+        role: "Desainer Visual",
+        year: "2025",
+        deliverables: "Aset acara, konten media sosial, dan carousel post",
+        tools: "Adobe Illustrator, Canva",
+      },
+    },
+    jims_honey_sukabumi: {
+      bio: "Konten media sosial untuk Jims Honey Sukabumi.",
+      overview:
+        "Membuat desain post media sosial yang jelas, konsisten, dan menarik untuk komunikasi brand di platform digital.",
+      challenge:
+        "Membangun visual yang konsisten dan mudah diingat untuk kebutuhan promosi produk serta komunikasi merek secara online.",
+      details: {
+        client: "Jims Honey Sukabumi",
+        industry: "Makanan & Minuman",
+        role: "Visual Designer",
+        year: "2025",
+        deliverables: "Logo dan post media sosial",
+        tools: "Canva, Photoshop",
+      },
+    },
+    sanne_skin_beauty: {
+      bio: "Konten media sosial untuk Sanne Skin & Beauty.",
+      overview:
+        "Membuat desain post media sosial yang rapi, konsisten, dan terarah untuk memperkuat komunikasi brand skincare di platform digital.",
+      challenge:
+        "Menyusun visual yang konsisten dan mudah dikenali agar brand terasa profesional, terpercaya, dan menarik untuk audiens yang ingin membeli produk perawatan kulit.",
+      details: {
+        client: "Sanne Skin & Beauty",
+        industry: "Beauty & Skincare",
+        role: "Visual Designer",
+        year: "2025",
+        deliverables: "Logo dan post media sosial",
+        tools: "Canva, Photoshop",
+      },
+    },
+    sambal_lauq: {
+      bio: "Konten media sosial untuk Sambal Lauq.",
+      overview:
+        "Membuat desain post media sosial yang jelas, menarik, dan konsisten untuk mendukung komunikasi produk kuliner di platform digital.",
+      challenge:
+        "Menghadirkan visual yang konsisten dan kuat agar merek makanan terasa lebih mudah dikenali, menarik, dan relevan di media sosial.",
+      details: {
+        client: "Sambal Lauq",
+        industry: "Makanan & Minuman",
+        role: "Visual Designer",
+        year: "2025",
+        deliverables: "Logo dan post media sosial",
+        tools: "Canva, Photoshop",
+      },
+    },
+  };
+
+  const fallback =
+    lang === "id"
+      ? idFallbacks[baseKey] ?? idFallbacks[normalizedKey] ?? idFallbacks[section.username ?? ""]
+      : undefined;
+
+  const idCategoryMap: Record<string, string> = {
+    "social-media-design": "DESAIN MEDIA SOSIAL",
+    "brand-identity": "IDENTITAS MEREK",
+    "logo-design": "DESAIN LOGO",
+    "thumbnail-design": "DESAIN THUMBNAIL",
+    "character-design": "DESAIN KARAKTER",
+    "live-stream-design": "DESAIN LIVE STREAM",
+    "desain-lain": "DESAIN LAINNYA",
+    "jendela-finansial": "IDENTITAS MEREK",
+    "consistrade-brand": "IDENTITAS MEREK",
+    "gpib-immanuel-pekanbaru": "IDENTITAS MEREK",
+    "pelkat-pa-gpib-immanuel-pekanbaru": "IDENTITAS MEREK",
+    "character-jeni-and-jeno": "DESAIN KARAKTER",
+    "character-elof": "DESAIN KARAKTER",
+    "character-tedy": "DESAIN KARAKTER",
+    "character-teddy": "DESAIN KARAKTER",
+    "character-emily-the-great": "DESAIN KARAKTER",
+    "character-emily": "DESAIN KARAKTER",
+  };
+
+  return {
+    ...section,
+    title: localized?.title ?? section.title,
+    category: section.category,
+    bio:
+      lang === "id"
+        ? localized?.bio ??
+          localizedProjectContent[baseKey]?.bio ??
+          localizedProjectContent[normalizedKey]?.bio ??
+          localizedProjectContent[section.slug ?? ""]?.bio ??
+          fallback?.bio ??
+          section.bio
+        : localized?.bio ?? fallback?.bio ?? section.bio,
+    overview:
+      lang === "id"
+        ? localized?.overview ??
+          localizedProjectContent[baseKey]?.overview ??
+          localizedProjectContent[normalizedKey]?.overview ??
+          localizedProjectContent[section.slug ?? ""]?.overview ??
+          fallback?.overview ??
+          section.overview
+        : localized?.overview ?? fallback?.overview ?? section.overview,
+    challenge:
+      lang === "id"
+        ? localized?.challenge ??
+          localizedProjectContent[baseKey]?.challenge ??
+          localizedProjectContent[normalizedKey]?.challenge ??
+          localizedProjectContent[section.slug ?? ""]?.challenge ??
+          fallback?.challenge ??
+          section.challenge
+        : localized?.challenge ?? fallback?.challenge ?? section.challenge,
+    bigIdea:
+      lang === "id"
+        ? localizedProjectContent[baseKey]?.bigIdea ??
+          localizedProjectContent[normalizedKey]?.bigIdea ??
+          localizedProjectContent[section.slug ?? ""]?.bigIdea ??
+          localizedProjectContent[baseKey]?.overview ??
+          localizedProjectContent[normalizedKey]?.overview ??
+          localizedProjectContent[section.slug ?? ""]?.overview ??
+          section.bigIdea ??
+          section.overview
+        : section.bigIdea ?? section.overview,
+    brandGuidelines: resolveLocalizedGuidelines(section.brandGuidelines),
+    details: {
+      ...section.details,
+      ...(localized?.details ?? {}),
+      ...(fallback?.details ?? {}),
+    },
+  };
+}
+
 export const desainLainItems: GalleryItem[] = [
   {
     src: "/portfolio/backdrop-fa.avif",
@@ -1784,9 +2351,9 @@ export const projectCaseStudies: SectionData[] = brandSections.map(
 // GET BRAND PROJECT BY SLUG
 // ==========================================
 
-export function getProjectBySlug(slug: string) {
+export function getProjectBySlug(slug: string, lang: Locale = "en") {
   const existingProject = projectCaseStudies.find((project) => project.slug === slug);
-  if (existingProject) return existingProject;
+  if (existingProject) return localizeSectionData(existingProject, lang);
 
   const characterCollection = portfolioCollections.find(
     (collection) => collection.slug === "character-design"
@@ -1931,7 +2498,7 @@ export function getProjectBySlug(slug: string) {
     },
   ];
 
-  return {
+  const localizedCharacterProject = {
     slug,
     category: "CHARACTER DESIGN",
     title: name,
@@ -1956,6 +2523,8 @@ export function getProjectBySlug(slug: string) {
     characterColorPalette: character.colorPalette?.map((swatch) => swatch.hex),
     characterColorPaletteDescription: character.colorPaletteDescription,
   } satisfies SectionData;
+
+  return localizeSectionData(localizedCharacterProject, lang);
 }
 
 export function getCharacterProjectSlug(title: string) {
