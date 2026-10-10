@@ -20,9 +20,11 @@ interface ToolItem {
   name: string;
   levelText: "Expert" | "Advanced" | "Intermediate";
   levelKey: TranslationKey;
-  percentage: number;
+  rating: 4 | 4.8;
   icon: React.ReactNode;
 }
+
+const MAX_RATING = 5;
 
 interface SkillCategory {
   category: string;
@@ -115,21 +117,21 @@ const skills: SkillCategory[] = [
         name: "Adobe Illustrator",
         levelText: "Expert",
         levelKey: "levelExpert",
-        percentage: 95,
+        rating: 4.8,
         icon: SoftwareIcons.Illustrator,
       },
       {
         name: "Adobe Photoshop",
         levelText: "Expert",
         levelKey: "levelExpert",
-        percentage: 92,
+        rating: 4.0,
         icon: SoftwareIcons.Photoshop,
       },
       {
         name: "Canva",
         levelText: "Expert",
         levelKey: "levelExpert",
-        percentage: 90,
+        rating: 4.8,
         icon: SoftwareIcons.Canva,
       },
     ],
@@ -160,14 +162,14 @@ const skills: SkillCategory[] = [
         name: "Adobe Premiere Pro",
         levelText: "Advanced",
         levelKey: "levelAdvanced",
-        percentage: 86,
+        rating: 4.0,
         icon: SoftwareIcons.Premiere,
       },
       {
         name: "CapCut",
         levelText: "Expert",
         levelKey: "levelExpert",
-        percentage: 92,
+        rating: 4.8,
         icon: SoftwareIcons.CapCut,
       },
     ],
@@ -198,14 +200,14 @@ const skills: SkillCategory[] = [
         name: "Figma",
         levelText: "Advanced",
         levelKey: "levelAdvanced",
-        percentage: 85,
+        rating: 4.0,
         icon: SoftwareIcons.Figma,
       },
       {
         name: "VS Code",
         levelText: "Intermediate",
         levelKey: "levelIntermediate",
-        percentage: 76,
+        rating: 4.0,
         icon: SoftwareIcons.VSCode,
       },
     ],
@@ -241,14 +243,14 @@ const skills: SkillCategory[] = [
         name: "DSLR & Mirrorless",
         levelText: "Expert",
         levelKey: "levelExpert",
-        percentage: 90,
+        rating: 4.8,
         icon: Icons.Camera,
       },
       {
         name: "Adobe Lightroom",
         levelText: "Advanced",
         levelKey: "levelAdvanced",
-        percentage: 85,
+        rating: 4.8,
         icon: SoftwareIcons.Lightroom,
       },
     ],
@@ -459,7 +461,7 @@ export default function Skills() {
                               <motion.div
                                 initial={{ width: 0 }}
                                 whileInView={{
-                                  width: `${tool.percentage}%`,
+                                  width: `${(tool.rating / MAX_RATING) * 100}%`,
                                 }}
                                 viewport={{ once: true }}
                                 transition={{
