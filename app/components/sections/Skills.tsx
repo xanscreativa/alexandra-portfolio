@@ -60,10 +60,10 @@ const Icons = {
 
   CreativeSpark: (
     <svg
-      className="h-3.5 w-3.5 transition-transform duration-300 group-hover/tool:scale-110 sm:h-5 sm:w-5"
+      className="h-3.5 w-3.5 text-[#E96A98] transition-colors duration-300 group-hover:text-white group-hover/tool:scale-110 sm:h-5 sm:w-5"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="#E96A98"
+      stroke="currentColor"
       strokeWidth="2"
       aria-hidden="true"
     >
@@ -97,7 +97,7 @@ const skills: SkillCategory[] = [
     descriptionKey: "skillsGraphicDescription",
     categoryIcon: (
       <svg
-        className="h-3.5 w-3.5 text-pink-500 sm:h-5 sm:w-5"
+        className="h-3.5 w-3.5 text-pink-500 transition-colors duration-300 group-hover:text-white sm:h-5 sm:w-5"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -142,7 +142,7 @@ const skills: SkillCategory[] = [
     descriptionKey: "skillsVideoDescription",
     categoryIcon: (
       <svg
-        className="h-3.5 w-3.5 text-pink-500 sm:h-5 sm:w-5"
+        className="h-3.5 w-3.5 text-pink-500 transition-colors duration-300 group-hover:text-white sm:h-5 sm:w-5"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -180,7 +180,7 @@ const skills: SkillCategory[] = [
     descriptionKey: "skillsUiUxDescription",
     categoryIcon: (
       <svg
-        className="h-3.5 w-3.5 text-pink-500 sm:h-5 sm:w-5"
+        className="h-3.5 w-3.5 text-pink-500 transition-colors duration-300 group-hover:text-white sm:h-5 sm:w-5"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -218,7 +218,7 @@ const skills: SkillCategory[] = [
     descriptionKey: "skillsPhotographyDescription",
     categoryIcon: (
       <svg
-        className="h-3.5 w-3.5 text-pink-500 sm:h-5 sm:w-5"
+        className="h-3.5 w-3.5 text-pink-500 transition-colors duration-300 group-hover:text-white sm:h-5 sm:w-5"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"

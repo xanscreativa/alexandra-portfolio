@@ -1,6 +1,21 @@
 ﻿export type Locale = "en" | "id";
 
-export const translations: Record<Locale, Record<string, string>> = {
+type TranslationTree = {
+  [key: string]: string | TranslationTree;
+};
+
+type TranslationShape<T> = {
+  [Key in keyof T]: T[Key] extends string ? string : TranslationShape<T[Key]>;
+};
+
+function defineTranslations<English extends TranslationTree>(dictionaries: {
+  en: English;
+  id: TranslationShape<English>;
+}) {
+  return dictionaries;
+}
+
+export const translations = defineTranslations({
   en: {
     projects: "Projects",
     about: "About",
@@ -105,7 +120,7 @@ export const translations: Record<Locale, Record<string, string>> = {
     skillsBadge: "EXPERTISE & TOOLKIT",
     skillsTitlePrefix: "Crafting visual impact through",
     skillsTitleHighlight: "purposeful tools",
-    skillsDescription: "A practical toolkit combining design disciplines, production skills, and industry-stkamurd creative software.",
+    skillsDescription: "A practical toolkit combining design disciplines, production skills, and industry's creative software.",
     skillsGraphicDesign: "Graphic Design",
     skillsGraphicDescription: "Visual identity, typography, & marketing assets.",
     skillsVideoEditing: "Video Editing",
@@ -373,7 +388,7 @@ export const translations: Record<Locale, Record<string, string>> = {
       skillsBadge: "EXPERTISE & TOOLKIT",
       skillsTitlePrefix: "Crafting visual impact through",
       skillsTitleHighlight: "purposeful tools",
-      skillsDescription: "A balanced stack of industry-stkamurd creative software and core visual disciplines.",
+      skillsDescription: "A balanced stack of industry's' creative software and core visual disciplines.",
       skillsGraphicDesign: "Graphic Design",
       skillsGraphicDescription: "Visual identity, typography, & marketing assets.",
       skillsVideoEditing: "Video Editing",
@@ -667,7 +682,7 @@ export const translations: Record<Locale, Record<string, string>> = {
     skillsBadge: "KEAHLIAN & TOOLS",
     skillsTitlePrefix: "Menciptakan dampak visual dengan",
     skillsTitleHighlight: "tools yang tepat",
-    skillsDescription: "Toolkit praktis yang menggabungkan disiplin desain, kemampuan produksi, dan software kreatif berstkamur industri.",
+    skillsDescription: "Toolkit praktis yang menggabungkan disiplin desain, kemampuan produksi, dan industri software kreatif",
     skillsGraphicDesign: "Desain Grafis",
     skillsGraphicDescription: "Identitas visual, tipografi, dan aset pemasaran.",
     skillsVideoEditing: "Video Editing",
@@ -1125,4 +1140,4 @@ export const translations: Record<Locale, Record<string, string>> = {
       footer: "Dorothea Alexandra Manuputty · Visual / Brand Designer · Resume Portofolio"
     }
   }
-};
+});
