@@ -18,13 +18,21 @@ type TranslationKey =
 
 interface ToolItem {
   name: string;
-  levelText: "Expert" | "Advanced" | "Intermediate";
-  levelKey: TranslationKey;
-  rating: 4 | 4.8;
+  rating: 3.5 | 4 | 4.8;
   icon: React.ReactNode;
 }
 
-const MAX_RATING = 5;
+function getLevelKey(rating: ToolItem["rating"]) {
+  if (rating >= 4.5) {
+    return "levelExpert";
+  }
+
+  if (rating >= 4) {
+    return "levelAdvanced";
+  }
+
+  return "levelIntermediate";
+}
 
 interface SkillCategory {
   category: string;
@@ -115,22 +123,16 @@ const skills: SkillCategory[] = [
     tools: [
       {
         name: "Adobe Illustrator",
-        levelText: "Expert",
-        levelKey: "levelExpert",
         rating: 4.8,
         icon: SoftwareIcons.Illustrator,
       },
       {
         name: "Adobe Photoshop",
-        levelText: "Expert",
-        levelKey: "levelExpert",
         rating: 4.0,
         icon: SoftwareIcons.Photoshop,
       },
       {
         name: "Canva",
-        levelText: "Expert",
-        levelKey: "levelExpert",
         rating: 4.8,
         icon: SoftwareIcons.Canva,
       },
@@ -160,15 +162,11 @@ const skills: SkillCategory[] = [
     tools: [
       {
         name: "Adobe Premiere Pro",
-        levelText: "Advanced",
-        levelKey: "levelAdvanced",
         rating: 4.0,
         icon: SoftwareIcons.Premiere,
       },
       {
         name: "CapCut",
-        levelText: "Expert",
-        levelKey: "levelExpert",
         rating: 4.8,
         icon: SoftwareIcons.CapCut,
       },
@@ -198,16 +196,12 @@ const skills: SkillCategory[] = [
     tools: [
       {
         name: "Figma",
-        levelText: "Advanced",
-        levelKey: "levelAdvanced",
         rating: 4.0,
         icon: SoftwareIcons.Figma,
       },
       {
         name: "VS Code",
-        levelText: "Intermediate",
-        levelKey: "levelIntermediate",
-        rating: 4.0,
+        rating: 3.5,
         icon: SoftwareIcons.VSCode,
       },
     ],
@@ -241,15 +235,11 @@ const skills: SkillCategory[] = [
     tools: [
       {
         name: "DSLR & Mirrorless",
-        levelText: "Expert",
-        levelKey: "levelExpert",
         rating: 4.8,
         icon: Icons.Camera,
       },
       {
         name: "Adobe Lightroom",
-        levelText: "Advanced",
-        levelKey: "levelAdvanced",
         rating: 4.8,
         icon: SoftwareIcons.Lightroom,
       },
@@ -439,16 +429,17 @@ export default function Skills() {
 
                                 <span className="sm:hidden">
                                   {t(
-                                    tool.levelKey === "levelExpert"
+                                    getLevelKey(tool.rating) === "levelExpert"
                                       ? "levelExpertShort"
-                                      : tool.levelKey === "levelAdvanced"
+                                      : getLevelKey(tool.rating) ===
+                                        "levelAdvanced"
                                       ? "levelAdvancedShort"
                                       : "levelIntermediateShort"
                                   )}
                                 </span>
 
                                 <span className="hidden sm:inline">
-                                  {t(tool.levelKey)}
+                                  {t(getLevelKey(tool.rating))}
                                 </span>
 
                               </span>
@@ -461,7 +452,7 @@ export default function Skills() {
                               <motion.div
                                 initial={{ width: 0 }}
                                 whileInView={{
-                                  width: `${(tool.rating / MAX_RATING) * 100}%`,
+                                  width: `${(tool.rating / 5) * 100}%`,
                                 }}
                                 viewport={{ once: true }}
                                 transition={{
