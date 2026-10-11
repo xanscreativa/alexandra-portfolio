@@ -221,7 +221,7 @@ export default function ProjectDetailPage() {
   };
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-white text-[#2D2433] selection:bg-pink-100 selection:text-pink-900">
+      <main className="min-h-screen overflow-x-hidden bg-white text-[#2D2433] selection:bg-pink-100 selection:text-pink-900">
       {coverImage && (
         <section className="w-full pt-[57px] md:pt-[53px]">
           <div className="relative aspect-[820/312] w-full overflow-hidden bg-pink-50">
@@ -453,6 +453,9 @@ export default function ProjectDetailPage() {
 
               return (
                 <article key={number} className="overflow-hidden rounded-[24px] border border-pink-100 bg-[#FFFBFD] shadow-[0_18px_50px_-25px_rgba(45,36,51,0.22)] sm:rounded-[30px]">
+                  {isJendelaProject && number === "06" && title === "CHARACTER" && (
+                    <JendelaCharacterIntro />
+                  )}
                   <div className={`${isBrandCharacterSection ? "flex items-center gap-3 sm:gap-4" : "flex items-center justify-between gap-4"} border-b border-pink-100 px-4 py-4 sm:px-6 sm:py-5`}>
                     {isBrandCharacterSection ? (
                       <>
@@ -648,6 +651,127 @@ export default function ProjectDetailPage() {
       <div className="mx-auto max-w-6xl px-5 pb-16 sm:px-8 sm:pb-24 lg:px-10">
         <Link href={isCharacterProject ? "/portfolio/character-design" : "/portfolio/brand-identity"} className="inline-flex items-center gap-2 rounded-full border border-pink-200 bg-pink-50 px-5 py-2.5 text-[10px] font-mono font-bold uppercase tracking-wider text-pink-600 transition-all hover:-translate-x-1 hover:bg-pink-100 sm:px-6 sm:py-3 sm:text-xs"><ArrowLeft className="h-3.5 w-3.5" />{backLinkText}</Link>
       </div>
-    </main>
+      </main>
+  );
+}
+
+function JendelaCharacterIntro() {
+  return (
+    <>
+      <style jsx global>{`
+        @keyframes jendela-jeni-intro {
+          0% {
+            transform: translateX(-100%);
+            opacity: 1;
+            visibility: visible;
+            animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+          }
+          21.28% {
+            transform: translateX(0);
+            opacity: 1;
+            visibility: visible;
+            animation-timing-function: linear;
+          }
+          85.11% {
+            transform: translateX(0);
+            opacity: 1;
+            visibility: visible;
+            animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+          }
+          100% {
+            transform: translateX(-100%);
+            opacity: 0;
+            visibility: hidden;
+          }
+        }
+
+        @keyframes jendela-jeno-intro {
+          0% {
+            transform: translateX(100%);
+            opacity: 1;
+            visibility: visible;
+            animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+          }
+          21.28% {
+            transform: translateX(0);
+            opacity: 1;
+            visibility: visible;
+            animation-timing-function: linear;
+          }
+          85.11% {
+            transform: translateX(0);
+            opacity: 1;
+            visibility: visible;
+            animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+          }
+          100% {
+            transform: translateX(100%);
+            opacity: 0;
+            visibility: hidden;
+          }
+        }
+
+        .jendela-intro-character {
+          position: fixed;
+          bottom: 0;
+          z-index: 30;
+          width: 42vw;
+          height: auto;
+          object-fit: contain;
+          pointer-events: none;
+          animation-duration: 4.7s;
+          animation-fill-mode: both;
+        }
+
+        .jendela-intro-jeni {
+          left: 0;
+          animation-name: jendela-jeni-intro;
+        }
+
+        .jendela-intro-jeno {
+          right: 0;
+          animation-name: jendela-jeno-intro;
+        }
+
+        @media (min-width: 640px) {
+          .jendela-intro-character {
+            width: 36vw;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .jendela-intro-character {
+            width: 33.333vw;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .jendela-intro-character {
+            animation: none;
+            display: none;
+          }
+        }
+      `}</style>
+      <Image
+        src="/portfolio/jeni.png"
+        alt=""
+        aria-hidden="true"
+        width={2160}
+        height={2700}
+        sizes="(max-width: 639px) 42vw, (max-width: 1023px) 36vw, 33.333vw"
+        priority
+        className="jendela-intro-character jendela-intro-jeni"
+      />
+      <Image
+        src="/portfolio/jeno.png"
+        alt=""
+        aria-hidden="true"
+        width={2160}
+        height={2700}
+        sizes="(max-width: 639px) 42vw, (max-width: 1023px) 36vw, 33.333vw"
+        priority
+        className="jendela-intro-character jendela-intro-jeno"
+      />
+    </>
   );
 }
