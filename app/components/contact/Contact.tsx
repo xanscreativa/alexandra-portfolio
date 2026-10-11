@@ -44,7 +44,7 @@ export default function Contact() {
               </h2>
 
               <p className="mt-4 sm:mt-6 max-w-xl text-xs xs:text-sm sm:text-base leading-relaxed text-[#6B6570]">
-                Whether you need strategic graphic design, cinematic video editing, or end-to-end visual identity—let’s build something that resonates.
+                Whether you need strategic graphic design, cinematic video editing, or end-to-end visual identity let’s build something that resonates.
               </p>
 
               <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3.5 w-full sm:w-auto">

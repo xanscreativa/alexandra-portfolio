@@ -341,7 +341,7 @@ export function localizeSectionData(
       "03": "Struktur logo menentukan hubungan dan proporsi setiap elemen visual untuk menjaga identitas yang konsisten dan mudah dikenali.",
       "04": "Ruang kosong memastikan logo HUT 67 tetap terlihat, seimbang, dan mudah dikenali di berbagai aplikasi.",
       "06": "Tipografi bersifat bersih, hangat, dan meriah sehingga mendukung identitas perayaan dengan pesan yang mudah dibaca dan terasa inklusif.",
-      "07": "Karakter mewakili keluarga Pelkat PA dalam tiga generasi: Oma dan Opa, Mama dan Papa, Grace dan Patrick, serta dua relawan muda pelayanan—laki-laki dan perempuan.",
+      "07": "Karakter mewakili keluarga Pelkat PA dalam tiga generasi: Oma dan Opa, Mama dan Papa, Grace dan Patrick, serta dua relawan muda pelayanan laki-laki dan perempuan.",
     },
     "character-jeni-and-jeno": {
       "01": "Konsep dan eksplorasi mengembangkan karakter berpasangan yang ramah, enerjik, dan mudah diingat untuk konten edukasi finansial yang lebih dekat dengan audiens muda.",
@@ -1150,7 +1150,7 @@ export const socialSections: SectionData[] = [
       tools: "Adobe Photoshop, Adobe Illustrator, Canva",
     },
     overview:
-      "Developed visual and branding assets for Consistrade, a financial education platform focused on helping traders—from beginners to professionals—learn and grow consistently. The work included building a cohesive brand identity, creating character designs, and developing engaging visual assets for digital products, trading modules, educational classes, and community-based content.",
+      "Developed visual and branding assets for Consistrade, a financial education platform focused on helping traders from beginners to professionals learn and grow consistently. The work included building a cohesive brand identity, creating character designs, and developing engaging visual assets for digital products, trading modules, educational classes, and community-based content.",
     challenge:
       "Creating a visual identity that feels approachable for beginner traders while maintaining credibility and relevance for more experienced audiences. The challenge was to transform complex trading and financial concepts into clear, engaging, and visually consistent content that supports learning, community engagement, and Consistrade's digital education ecosystem.",
   },
@@ -2236,7 +2236,7 @@ const hut67BrandGuidelines: BrandGuidelineSection[] = [
     number: "07",
     title: "CHARACTER",
     description:
-      "The characters represent the Pelkat PA family across three generations: Oma and Opa, Mama and Papa, Grace and Patrick, and two young ministry volunteers—a male and female servant. Together, they represent family, togetherness, and the shared journey of growing in faith across generations.",
+      "The characters represent the Pelkat PA family across three generations: Oma and Opa, Mama and Papa, Grace and Patrick, and two young ministry volunteers a male and female servant. Together, they represent family, togetherness, and the shared journey of growing in faith across generations.",
     images: [
       {
         src: "/portfolio/branding-hut677.avif",
