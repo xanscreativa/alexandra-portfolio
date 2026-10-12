@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, useParams } from "next/navigation";
@@ -97,11 +98,11 @@ const brandBanners: Record<string, string> = {
   "hut-63-pelkat-pa": "/portfolio/banner-hut63.avif",
   "gpib-immanuel-pekanbaru": "/portfolio/banner-gpib.avif",
   "pelkat-pa-gpib-immanuel-pekanbaru": "/portfolio/banner-pelkatpa.avif",
-  "character-elof": "/portfolio/banner-elof.avif",
-  "character-jeni-and-jeno": "/portfolio/banner-jenijeno.avif",
-  "character-tedy": "/portfolio/banner-teddy.avif",
+  "character-elof": "/portfolio/banner-elof1.avif",
+  "character-jeni-and-jeno": "/portfolio/banner-jenijeno1.avif",
+  "character-tedy": "/portfolio/banner-teddy1.avif",
   "character-emily-the-great": "/portfolio/banner-emily.avif",
-  "character-teddy": "/portfolio/banner-teddy.avif",
+  "character-teddy": "/portfolio/banner-teddy1.avif",
   "character-emily": "/portfolio/banner-emily.avif",
 };
 
@@ -149,6 +150,70 @@ export default function ProjectDetailPage() {
   const isCharacterProject = project.category?.toUpperCase() === "CHARACTER DESIGN";
   const isGuidelineProject = isBrandProject || isCharacterProject;
   const isJendelaProject = slug === "jendela-finansial";
+  const characterIntroAssets: {
+    characters: Array<{
+      src: string;
+      position: "left" | "right" | "center";
+      mobileTall?: boolean;
+      halfFrame?: boolean;
+      visibleWidth?: number;
+    }>;
+  } | null =
+    slug === "character-jeni-and-jeno"
+      ? {
+          characters: [
+            {
+              src: "/portfolio/jeni.png",
+              position: "left",
+              halfFrame: true,
+              visibleWidth: 0.7305556,
+            },
+            {
+              src: "/portfolio/jeno.png",
+              position: "right",
+              halfFrame: true,
+              visibleWidth: 0.7078704,
+            },
+          ],
+        }
+      : slug === "character-tedy" || slug === "character-teddy"
+        ? {
+            characters: [
+              {
+                src: "/portfolio/teddy.png",
+                position: "left",
+                halfFrame: true,
+                visibleWidth: 0.9273148,
+              },
+              {
+                src: "/portfolio/teddy2.png",
+                position: "right",
+                halfFrame: true,
+                visibleWidth: 0.912963,
+              },
+            ],
+          }
+        : slug === "character-emily-the-great" || slug === "character-emily"
+          ? {
+              characters: [
+                {
+                  src: "/portfolio/emily.png",
+                  position: "center",
+                  mobileTall: true,
+                },
+              ],
+            }
+          : slug === "character-elof"
+            ? {
+                characters: [
+                  {
+                    src: "/portfolio/elof.png",
+                    position: "center",
+                    mobileTall: true,
+                  },
+                ],
+              }
+            : null;
   const isGpibProject = slug === "gpib-immanuel-pekanbaru";
   const isConsistradeProject = slug === "consistrade-brand";
   const isHut63Project = slug === "hut-63-pelkat-pa";
@@ -222,6 +287,12 @@ export default function ProjectDetailPage() {
 
   return (
       <main className="min-h-screen overflow-x-hidden bg-white text-[#2D2433] selection:bg-pink-100 selection:text-pink-900">
+      {characterIntroAssets && (
+        <PortfolioCharacterIntro
+          key={slug}
+          characters={characterIntroAssets.characters}
+        />
+      )}
       {coverImage && (
         <section className="w-full pt-[57px] md:pt-[53px]">
           <div className="relative aspect-[820/312] w-full overflow-hidden bg-pink-50">
@@ -453,9 +524,6 @@ export default function ProjectDetailPage() {
 
               return (
                 <article key={number} className="overflow-hidden rounded-[24px] border border-pink-100 bg-[#FFFBFD] shadow-[0_18px_50px_-25px_rgba(45,36,51,0.22)] sm:rounded-[30px]">
-                  {isJendelaProject && number === "06" && title === "CHARACTER" && (
-                    <JendelaCharacterIntro />
-                  )}
                   <div className={`${isBrandCharacterSection ? "flex items-center gap-3 sm:gap-4" : "flex items-center justify-between gap-4"} border-b border-pink-100 px-4 py-4 sm:px-6 sm:py-5`}>
                     {isBrandCharacterSection ? (
                       <>
@@ -655,123 +723,389 @@ export default function ProjectDetailPage() {
   );
 }
 
-function JendelaCharacterIntro() {
+function PortfolioCharacterIntro({
+  characters,
+}: {
+  characters: Array<{
+    src: string;
+    position: "left" | "right" | "center";
+    mobileTall?: boolean;
+    halfFrame?: boolean;
+    visibleWidth?: number;
+  }>;
+}) {
+  const [isVisible, setIsVisible] = useState(true);
+  const [isExiting, setIsExiting] = useState(false);
+  const hasStartedExit = useRef(false);
+  const hasUserScrollIntent = useRef(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!hasUserScrollIntent.current || hasStartedExit.current) return;
+
+      hasStartedExit.current = true;
+
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        setIsVisible(false);
+        return;
+      }
+
+      setIsExiting(true);
+    };
+
+    const handleWheel = (event: WheelEvent) => {
+      if (event.deltaY !== 0) hasUserScrollIntent.current = true;
+    };
+
+    const handleTouchMove = () => {
+      hasUserScrollIntent.current = true;
+    };
+
+    const handlePointerDown = (event: PointerEvent) => {
+      if (event.clientX >= document.documentElement.clientWidth) {
+        hasUserScrollIntent.current = true;
+      }
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const target = event.target;
+      if (
+        target instanceof HTMLElement &&
+        (target.isContentEditable ||
+          target instanceof HTMLInputElement ||
+          target instanceof HTMLTextAreaElement ||
+          target instanceof HTMLSelectElement)
+      ) {
+        return;
+      }
+
+      if (
+        [
+          "ArrowDown",
+          "ArrowUp",
+          "PageDown",
+          "PageUp",
+          "Home",
+          "End",
+          " ",
+        ].includes(event.key)
+      ) {
+        hasUserScrollIntent.current = true;
+      }
+    };
+
+    window.addEventListener("wheel", handleWheel, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    window.addEventListener("pointerdown", handlePointerDown, { passive: true });
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("pointerdown", handlePointerDown);
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  if (!isVisible) return null;
+
+  const handleExitAnimationEnd = (
+    event: React.AnimationEvent<HTMLImageElement>
+  ) => {
+    if (
+      event.animationName === "portfolio-character-left-exit" ||
+      event.animationName === "portfolio-character-right-exit" ||
+      event.animationName === "portfolio-character-center-exit"
+    ) {
+      setIsVisible(false);
+    }
+  };
+
+  const animationClass = isExiting
+    ? "portfolio-character-intro-exiting"
+    : "";
+
   return (
     <>
       <style jsx global>{`
-        @keyframes jendela-jeni-intro {
+        @keyframes portfolio-character-left-enter {
           0% {
             transform: translateX(-100%);
-            opacity: 1;
-            visibility: visible;
-            animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-          }
-          21.28% {
-            transform: translateX(0);
-            opacity: 1;
-            visibility: visible;
-            animation-timing-function: linear;
-          }
-          85.11% {
-            transform: translateX(0);
-            opacity: 1;
-            visibility: visible;
-            animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
           }
           100% {
-            transform: translateX(-100%);
-            opacity: 0;
-            visibility: hidden;
+            transform: translateX(0);
           }
         }
 
-        @keyframes jendela-jeno-intro {
+        @keyframes portfolio-character-right-enter {
           0% {
             transform: translateX(100%);
-            opacity: 1;
-            visibility: visible;
-            animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-          }
-          21.28% {
-            transform: translateX(0);
-            opacity: 1;
-            visibility: visible;
-            animation-timing-function: linear;
-          }
-          85.11% {
-            transform: translateX(0);
-            opacity: 1;
-            visibility: visible;
-            animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
           }
           100% {
-            transform: translateX(100%);
-            opacity: 0;
-            visibility: hidden;
+            transform: translateX(0);
           }
         }
 
-        .jendela-intro-character {
+        @keyframes portfolio-character-center-enter {
+          0% {
+            transform: translateY(100%);
+          }
+          100% {
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes portfolio-character-left-exit {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
+
+        @keyframes portfolio-character-right-exit {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(100%);
+          }
+        }
+
+        @keyframes portfolio-character-center-exit {
+          0% {
+            transform: translateY(0);
+          }
+          100% {
+            transform: translateY(100%);
+          }
+        }
+
+        .portfolio-character-intro {
           position: fixed;
           bottom: 0;
           z-index: 30;
-          width: 42vw;
+          width: 50vw;
           height: auto;
           object-fit: contain;
           pointer-events: none;
-          animation-duration: 4.7s;
+          animation-duration: 1s;
           animation-fill-mode: both;
+          animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+          will-change: transform;
         }
 
-        .jendela-intro-jeni {
+        .portfolio-character-intro-left {
           left: 0;
-          animation-name: jendela-jeni-intro;
+          animation-name: portfolio-character-left-enter;
         }
 
-        .jendela-intro-jeno {
+        .portfolio-character-intro-right {
           right: 0;
-          animation-name: jendela-jeno-intro;
+          animation-name: portfolio-character-right-enter;
+        }
+
+        .portfolio-character-intro-center {
+          left: 50%;
+          margin-left: -25vw;
+          animation-name: portfolio-character-center-enter;
+        }
+
+        .portfolio-character-intro-center.portfolio-character-intro-exiting {
+          right: auto;
+          animation-name: portfolio-character-center-exit;
+          animation-duration: 700ms;
+          animation-timing-function: ease-in;
+        }
+
+        .portfolio-character-intro-left.portfolio-character-intro-exiting {
+          animation-name: portfolio-character-left-exit;
+          animation-duration: 700ms;
+          animation-timing-function: ease-in;
+        }
+
+        .portfolio-character-intro-right.portfolio-character-intro-exiting {
+          animation-name: portfolio-character-right-exit;
+          animation-duration: 700ms;
+          animation-timing-function: ease-in;
+        }
+
+        .portfolio-character-intro-frame {
+          position: fixed;
+          bottom: 0;
+          z-index: 30;
+          width: 50%;
+          height: 100vh;
+          height: 100dvh;
+          container-type: inline-size;
+          overflow: hidden;
+          pointer-events: none;
+          animation-duration: 1s;
+          animation-fill-mode: both;
+          animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+          will-change: transform;
+        }
+
+        .portfolio-character-intro-frame-left {
+          left: 0;
+          animation-name: portfolio-character-left-enter;
+        }
+
+        .portfolio-character-intro-frame-right {
+          right: 0;
+          animation-name: portfolio-character-right-enter;
+        }
+
+        .portfolio-character-intro-frame.portfolio-character-intro-exiting {
+          animation-duration: 700ms;
+          animation-timing-function: ease-in;
+        }
+
+        .portfolio-character-intro-frame-left.portfolio-character-intro-exiting {
+          animation-name: portfolio-character-left-exit;
+        }
+
+        .portfolio-character-intro-frame-right.portfolio-character-intro-exiting {
+          animation-name: portfolio-character-right-exit;
+        }
+
+        .portfolio-character-intro-frame-image {
+          position: absolute;
+          bottom: 0;
+          width: auto;
+          height: calc(125cqw / var(--character-visible-width));
+          max-width: none;
+          object-fit: contain;
+          pointer-events: none;
+        }
+
+        .portfolio-character-intro-frame-left .portfolio-character-intro-frame-image {
+          left: 0;
+        }
+
+        .portfolio-character-intro-frame-right .portfolio-character-intro-frame-image {
+          right: 0;
         }
 
         @media (min-width: 640px) {
-          .jendela-intro-character {
-            width: 36vw;
+          .portfolio-character-intro {
+            width: 40vw;
+          }
+
+          .portfolio-character-intro-center {
+            margin-left: -20vw;
+          }
+        }
+
+        @media (max-width: 639px) {
+          .portfolio-character-intro-frame-image {
+            height: min(
+              100dvh,
+              calc(125cqw / var(--character-visible-width))
+            );
+          }
+
+          .portfolio-character-intro-mobile-tall {
+            width: auto;
+            height: 50vh;
+            height: 50dvh;
+            max-width: 100vw;
+            max-height: 100vh;
+            max-height: 100dvh;
+          }
+
+          .portfolio-character-intro-mobile-tall.portfolio-character-intro-center {
+            left: 50%;
+            margin-left: 0;
+            translate: -50% 0;
           }
         }
 
         @media (min-width: 1024px) {
-          .jendela-intro-character {
+          .portfolio-character-intro-frame-image {
+            width: 66.666cqw;
+            height: auto;
+          }
+
+          .portfolio-character-intro-frame-left .portfolio-character-intro-frame-image {
+            left: 0;
+            right: auto;
+          }
+
+          .portfolio-character-intro-frame-right .portfolio-character-intro-frame-image {
+            right: 0;
+            left: auto;
+          }
+
+          .portfolio-character-intro {
             width: 33.333vw;
+          }
+
+          .portfolio-character-intro-center {
+            margin-left: -16.667vw;
           }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .jendela-intro-character {
+          .portfolio-character-intro,
+          .portfolio-character-intro-frame {
             animation: none;
-            display: none;
+            transform: none;
+            will-change: auto;
           }
         }
       `}</style>
-      <Image
-        src="/portfolio/jeni.png"
-        alt=""
-        aria-hidden="true"
-        width={2160}
-        height={2700}
-        sizes="(max-width: 639px) 42vw, (max-width: 1023px) 36vw, 33.333vw"
-        priority
-        className="jendela-intro-character jendela-intro-jeni"
-      />
-      <Image
-        src="/portfolio/jeno.png"
-        alt=""
-        aria-hidden="true"
-        width={2160}
-        height={2700}
-        sizes="(max-width: 639px) 42vw, (max-width: 1023px) 36vw, 33.333vw"
-        priority
-        className="jendela-intro-character jendela-intro-jeno"
-      />
+      {characters.map((character) => {
+        const frameImageStyle =
+          character.halfFrame && character.visibleWidth
+            ? ({
+                "--character-visible-width": character.visibleWidth,
+              } as React.CSSProperties & {
+                "--character-visible-width": number;
+              })
+            : undefined;
+        const image = (
+          <Image
+            src={character.src}
+            alt=""
+            aria-hidden="true"
+            width={2160}
+            height={2700}
+            sizes={
+              character.halfFrame && character.visibleWidth
+                ? `(max-width: 1023px) ${Math.ceil(50 / character.visibleWidth)}vw, 33.333vw`
+                : "(max-width: 639px) 50vw, (max-width: 1023px) 40vw, 33.333vw"
+            }
+            priority
+            className={
+              character.halfFrame
+                ? "portfolio-character-intro-frame-image"
+                : `portfolio-character-intro portfolio-character-intro-${character.position} ${character.mobileTall ? "portfolio-character-intro-mobile-tall" : ""} ${animationClass}`
+            }
+            style={frameImageStyle}
+            onAnimationEnd={
+              character.halfFrame ? undefined : handleExitAnimationEnd
+          }
+          />
+        );
+
+        if (character.halfFrame) {
+          return (
+            <div
+              key={character.src}
+              onAnimationEnd={handleExitAnimationEnd}
+              className={`portfolio-character-intro-frame portfolio-character-intro-frame-${character.position} ${animationClass}`}
+            >
+              {image}
+            </div>
+          );
+        }
+
+        return image;
+      })}
     </>
   );
 }
