@@ -1069,6 +1069,7 @@ function PortfolioCharacterIntro({
             : undefined;
         const image = (
           <Image
+            key={character.src}
             src={character.src}
             alt=""
             aria-hidden="true"

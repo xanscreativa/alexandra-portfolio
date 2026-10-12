@@ -115,7 +115,7 @@ export default function ColorPalette({
           return (
             <div key={color} className="flex min-w-0 flex-1 flex-col items-center text-center">
               <div
-                className="h-14 w-full shrink-0 rounded-xl border border-black/10 sm:h-[68px] sm:w-[68px] sm:rounded-full lg:h-[96px] lg:w-[96px]"
+                className="h-14 w-full shrink-0 rounded-xl border border-black/10 sm:h-[68px] sm:w-[68px] sm:rounded-full lg:aspect-[1.6] lg:h-auto lg:w-full lg:max-w-[180px] lg:rounded-lg"
                 style={{ backgroundColor: color }}
                 aria-label={`${name} ${hex}`}
               />
