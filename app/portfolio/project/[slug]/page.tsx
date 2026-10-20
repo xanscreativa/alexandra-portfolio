@@ -159,7 +159,51 @@ export default function ProjectDetailPage() {
       visibleWidth?: number;
     }>;
   } | null =
-    slug === "character-jeni-and-jeno"
+    isBrandProject && slug === "gpib-immanuel-pekanbaru"
+      ? {
+          characters: [
+            {
+              src: "/portfolio/elof.png",
+              position: "center",
+              mobileTall: true,
+            },
+          ],
+        }
+      : isBrandProject && slug === "jendela-finansial"
+        ? {
+            characters: [
+              {
+                src: "/portfolio/jeni.png",
+                position: "left",
+                halfFrame: true,
+                visibleWidth: 0.7305556,
+              },
+              {
+                src: "/portfolio/jeno.png",
+                position: "right",
+                halfFrame: true,
+                visibleWidth: 0.7078704,
+              },
+            ],
+          }
+        : isBrandProject && slug === "consistrade-brand"
+          ? {
+              characters: [
+                {
+                  src: "/portfolio/teddy.png",
+                  position: "left",
+                  halfFrame: true,
+                  visibleWidth: 0.9273148,
+                },
+                {
+                  src: "/portfolio/teddy2.png",
+                  position: "right",
+                  halfFrame: true,
+                  visibleWidth: 0.912963,
+                },
+              ],
+            }
+          : slug === "character-jeni-and-jeno"
       ? {
           characters: [
             {
