@@ -50,8 +50,7 @@ export default function About() {
 
           <FadeUp delay={0.2}>
             <div className="mx-auto mt-5 max-w-3xl space-y-4 text-center text-sm leading-7 text-[#6B6570] sm:mt-6 sm:text-base sm:leading-8 lg:text-lg">
-              <p>{t("aboutDesc1")}</p>
-              <p>{t("aboutDesc2")}</p>
+              <p>{t("aboutDescription")}</p>
             </div>
           </FadeUp>
 

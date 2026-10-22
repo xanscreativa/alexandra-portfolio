@@ -150,13 +150,7 @@ export default function Hero() {
             {/* Heading & Role */}
             <div>
               <h1 className="mt-1 text-3xl font-black leading-[1.08] tracking-tight text-[#2D2433] xs:text-4xl sm:mt-2.5 sm:text-5xl lg:text-5xl xl:text-[3.75rem] 2xl:text-[4rem]">
-                Dorothea Alexandra{" "}
-                <span className="whitespace-nowrap">
-                  Manuputty,{" "}
-                  <span className="bg-gradient-to-r from-pink-600 via-pink-500 to-rose-400 bg-clip-text text-transparent">
-                    S.Ds
-                  </span>
-                </span>
+                {t("heroHeadline")}
               </h1>
 
               <p className="mt-2 text-base font-bold tracking-wide text-pink-600 sm:text-lg lg:text-lg xl:text-xl">
