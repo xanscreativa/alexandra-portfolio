@@ -23,48 +23,69 @@ type ExperienceEntry = {
   descriptionKey?: string;
 };
 
+type VolunteerExperienceEntry = {
+  titleKey: string;
+  organizationKey: string;
+  dateKey: string;
+  descriptionKey: string;
+};
+
 const professionalExperiences: ExperienceEntry[] = [
-  { titleKey: "experienceVideoEditor", dateKey: "date2024_2026", company: "PT. Tera Infinity Ultima", descriptionKey: "experienceVideoEditorDescription" },
-  { titleKey: "experienceFreelanceDesigner", dateKey: "date2022Present", company: "Self-employed", descriptionKey: "experienceFreelanceDesignerDescription" },
+  { titleKey: "experienceFreelanceDesigner", dateKey: "dateJul2022Present", company: "Freelance", descriptionKey: "experienceFreelanceDesignerDescription" },
+  { titleKey: "experienceTeraDesigner", dateKey: "dateFeb2024Sep2026", company: "PT. Tera Infinity Ultima", descriptionKey: "experienceTeraDesignerDescription" },
 ];
 
 const teachingExperiences: ExperienceEntry[] = [
-  { titleKey: "experienceGraphicTeacher", dateKey: "date2025Present", company: "SMP Kalam Kudus Pekanbaru", descriptionKey: "experienceGraphicTeacherDescription" },
-  { titleKey: "experiencePaintingTeacher", dateKey: "date2025Present", company: "SMP Kalam Kudus Pekanbaru", descriptionKey: "experiencePaintingTeacherDescription" },
-  { titleKey: "experienceDesignClubCoach", dateKey: "date2026Present", company: "Forum Anak GPIB Immanuel Pekanbaru", descriptionKey: "experienceDesignClubCoachDescription" },
+  { titleKey: "experienceGraphicTeacher", dateKey: "dateAug2025Present", company: "SMP Kristen Kalam Kudus Pekanbaru", descriptionKey: "experienceGraphicTeacherDescription" },
+  { titleKey: "experiencePaintingTeacher", dateKey: "dateAug2025Present", company: "SMP Kristen Kalam Kudus Pekanbaru", descriptionKey: "experiencePaintingTeacherDescription" },
+  { titleKey: "experienceGraphicTutor", dateKey: "dateJan2026Present", company: "GPIB Immanuel Pekanbaru", descriptionKey: "experienceGraphicTutorDescription" },
 ];
 
 const additionalDesignExperiences: ExperienceEntry[] = [
-  { titleKey: "experienceIntern", dateKey: "dateThreeMonths2022", company: "Biro Promosi, Humas dan Alumni, Satya Wacana Christian University" },
-  { titleKey: "experiencePackagingLecturer", dateKey: "dateFourMonths2022", company: "Visual Communication Design Major, SWCU" },
-  { titleKey: "experienceResearchGraphicDesigner", dateKey: "dateOneYear2022", company: "Productive Innovative Research Team (Rispro), SWCU" },
-  { titleKey: "experienceResearchAssistant", dateKey: "date2021_2022", company: "“Milenial's Batik Eco-Fashion” — Matching Fund Kedaireka Program, SWCU", descriptionKey: "experienceResearchAssistantDescription" },
-  { titleKey: "experiencePhotographerIntern", dateKey: "dateThreeMonths2021", company: "Dreams Studio Salatiga" },
-  { titleKey: "experiencePhotographyLecturer", dateKey: "dateFourMonths2021", company: "Visual Communication Design Major, SWCU" },
+  { titleKey: "experienceResearchAssistant", dateKey: "dateJul2021Aug2023", company: "Universitas Kristen Satya Wacana", descriptionKey: "experienceResearchAssistantDescription" },
+  { titleKey: "experienceIntern", dateKey: "dateFebApr2022", company: "Universitas Kristen Satya Wacana", descriptionKey: "experienceInternDescription" },
+  { titleKey: "experienceDreamsDesigner", dateKey: "dateAugNov2021", company: "Dreams Studio", descriptionKey: "experienceDreamsDesignerDescription" },
 ];
 
-const designSkills = ["skillGraphicDesign", "skillBranding", "skillIllustration", "skillPackaging", "skillLayout", "skillVideoEditing", "skillPhotography"];
-const creativeCollaborationSkills = ["skillArtDirection", "skillTeamLeadership", "skillTeaching", "skillCopywriting", "skillAICreative", "skillPrint", "skillMarketing"];
-const software = ["Adobe Illustrator", "Adobe Premiere Pro", "Adobe Photoshop", "Figma", "CapCut", "Canva"];
+const volunteerExperiences: VolunteerExperienceEntry[] = [
+  { titleKey: "volunteerSundaySchoolTeacher", organizationKey: "volunteerSundaySchoolOrganization", dateKey: "dateSep2018Present", descriptionKey: "volunteerSundaySchoolTeacherDescription" },
+  { titleKey: "volunteerCreativeDesigner", organizationKey: "volunteerCreativeTeamOrganization", dateKey: "dateJul2026Present", descriptionKey: "volunteerCreativeDesignerDescription" },
+  { titleKey: "volunteerSocialMediaDesigner", organizationKey: "volunteerSocialMediaOrganization", dateKey: "dateFeb2022Present", descriptionKey: "volunteerSocialMediaDesignerDescription" },
+  { titleKey: "volunteerSecretary", organizationKey: "volunteerSecretaryOrganization", dateKey: "dateApr2025Present", descriptionKey: "volunteerSecretaryDescription" },
+  { titleKey: "volunteerInfocommCoordinator", organizationKey: "volunteerInfocommOrganization", dateKey: "dateApr2021Apr2023", descriptionKey: "volunteerInfocommCoordinatorDescription" },
+];
+
+const designSkills = ["skillBrandDesign", "skillLogoDesign", "skillGraphicDesign", "skillWebDesign", "skillCommercialPhotography", "skillVideoEditing", "skillPackagingDesign"];
+const creativeCollaborationSkills = ["skillTeamwork", "skillMicrosoftOffice", "skillAdministration"];
 
 export default function ResumePage() {
   const { t } = useLanguage();
+  const handleDownloadPdf = () => {
+    const previousTitle = document.title;
+    const restoreTitle = () => {
+      document.title = previousTitle;
+    };
+
+    window.addEventListener("afterprint", restoreTitle, { once: true });
+    document.title = "Dorothea-Alexandra-Manuputty-Resume";
+    window.print();
+  };
 
   return (
-    <main className="min-h-screen bg-[#FFFDFC] text-[#2D2433] px-6 pt-16 pb-24 sm:px-8 sm:pt-28 sm:pb-10 lg:px-10">
+    <main className="resume-document min-h-screen bg-[#FFFDFC] text-[#2D2433] px-6 pt-16 pb-24 sm:px-8 sm:pt-28 sm:pb-10 lg:px-10">
       <div className="mx-auto max-w-5xl">
-        <div className="mb-6 flex items-center justify-between sm:mb-8">
+        <div className="resume-toolbar mb-6 flex items-center justify-between sm:mb-8">
           <Link href="/" className="group inline-flex items-center gap-2 text-xs font-semibold text-[#77717A] transition-colors hover:text-pink-600 sm:text-sm">
             <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
             {t("resumeSection.backHome")}
           </Link>
-          <a href="/CV-Dorothea-Alexandra-Manuputty.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-1.5 rounded-full bg-pink-500 px-3.5 py-2 text-[10px] font-bold text-white shadow-lg shadow-pink-200 transition-all hover:-translate-y-0.5 hover:bg-pink-600 hover:shadow-xl sm:px-6 sm:py-3 sm:text-xs sm:gap-2">
+          <button type="button" onClick={handleDownloadPdf} className="inline-flex items-center justify-center gap-1.5 rounded-full bg-pink-500 px-3.5 py-2 text-[10px] font-bold text-white shadow-lg shadow-pink-200 transition-all hover:-translate-y-0.5 hover:bg-pink-600 hover:shadow-xl sm:px-6 sm:py-3 sm:text-xs sm:gap-2">
             <Download className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
             <span>{t("resumeSection.downloadPdf")}</span>
-          </a>
+          </button>
         </div>
 
-        <div className="overflow-hidden rounded-[26px] border border-pink-100 bg-white shadow-[0_20px_60px_rgba(45,36,51,0.10)]">
+        <div className="resume-sheet overflow-hidden rounded-[26px] border border-pink-100 bg-white shadow-[0_20px_60px_rgba(45,36,51,0.10)]">
           <header className="relative overflow-hidden border-b border-pink-100 px-5 py-7 sm:px-10 sm:py-10 lg:px-12">
             <div className="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full bg-pink-100/70 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-28 -left-20 h-52 w-52 rounded-full bg-pink-50 blur-3xl" />
@@ -73,7 +94,7 @@ export default function ResumePage() {
                 <span className="h-2 w-2 rounded-full bg-pink-500" />
                 {t("resumeSection.badge")}
               </div>
-              <div className="grid gap-7 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+              <div className="resume-header-grid grid gap-7 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
                 <div>
                   <h1 className="max-w-2xl text-[28px] font-extrabold leading-[1.08] tracking-tight text-[#2D2433] sm:text-4xl lg:text-5xl">
                     Dorothea Alexandra
@@ -93,14 +114,16 @@ export default function ResumePage() {
                     Pekanbaru, Indonesia
                   </div>
                   <div className="flex flex-wrap gap-2 pt-1">
-                    <a href="https://xandra-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-full border border-pink-100 px-3 py-1.5 font-medium text-[#6B6570] transition-all hover:border-pink-300 hover:bg-pink-50 hover:text-pink-600"><Globe className="h-3 w-3" />{t("resumeSection.portfolioLink")}</a>
+                    <a href="https://xandra-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-full border border-pink-100 px-3 py-1.5 font-medium text-[#6B6570] transition-all hover:border-pink-300 hover:bg-pink-50 hover:text-pink-600"><Globe className="h-3 w-3" />{t("resumeSection.websiteLink")}</a>
+                    <a href="https://www.behance.net/dorothealexand" target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-full border border-pink-100 px-3 py-1.5 font-medium text-[#6B6570] transition-all hover:border-pink-300 hover:bg-pink-50 hover:text-pink-600">Behance</a>
+                    <a href="https://www.linkedin.com/in/dorotheaalexandra" target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-full border border-pink-100 px-3 py-1.5 font-medium text-[#6B6570] transition-all hover:border-pink-300 hover:bg-pink-50 hover:text-pink-600">LinkedIn</a>
                   </div>
                 </div>
               </div>
             </div>
           </header>
 
-          <div className="px-5 py-7 sm:px-10 sm:py-10 lg:px-12">
+          <div className="resume-content px-5 py-7 sm:px-10 sm:py-10 lg:px-12">
             <section className="mb-10">
               <SectionTitle icon={<BookOpen className="h-4 w-4" />} title={t("resumeSection.summaryTitle")} />
               <div className="rounded-2xl bg-pink-50/60 p-4 sm:p-5">
@@ -140,12 +163,15 @@ export default function ResumePage() {
 
             <section className="mb-10">
               <SectionTitle icon={<BookOpen className="h-4 w-4" />} title={t("resumeSection.volunteerTitle")} />
-              <div className="rounded-2xl border border-pink-100 bg-white p-4 shadow-sm sm:p-5">
-                <ul className="space-y-3 text-[10.5px] leading-[1.6] text-[#77717A] sm:text-xs">
-                  <li className="flex gap-2"><span className="text-pink-400">•</span><span><strong>{t("resumeSection.volunteerGraphicDesignLabel")}</strong> — GPIB Children&apos;s Ministry Council ({t("resumeSection.date2022Present")}): {t("resumeSection.volunteerGraphicDesignDescription")}</span></li>
-                  <li className="flex gap-2"><span className="text-pink-400">•</span><span><strong>{t("resumeSection.volunteerCommitteeLabel")}</strong> — GPIB Taman Sari Salatiga (2020 – 2023) and GPIB Immanuel Pekanbaru ({t("resumeSection.date2025Present")}): {t("resumeSection.volunteerCommitteeDescription")}</span></li>
-                  <li className="flex gap-2"><span className="text-pink-400">•</span><span><strong>{t("resumeSection.volunteerVolunteer")}</strong> — Pelkat PA GPIB ({t("resumeSection.date2017Present")}): {t("resumeSection.volunteerVolunteerDescription")}</span></li>
-                </ul>
+              <div className="grid gap-4 lg:grid-cols-2">
+                {volunteerExperiences.map((experience) => (
+                  <article key={experience.titleKey} className="resume-entry-card min-w-0 rounded-2xl border border-pink-100 bg-white p-4 shadow-sm transition-colors hover:border-pink-200 sm:p-5">
+                    <h3 className="text-sm font-bold leading-snug text-[#2D2433] sm:text-base">{t(`resumeSection.${experience.titleKey}`)}</h3>
+                    <p className="mt-1 break-words text-xs font-medium leading-relaxed text-[#77717A] sm:text-[13px]">{t(`resumeSection.${experience.organizationKey}`)}</p>
+                    <span className="mt-3 inline-flex max-w-full break-words rounded-full bg-pink-50 px-2.5 py-1 text-[10px] font-semibold leading-relaxed text-pink-600 sm:text-[11px]">{t(`resumeSection.${experience.dateKey}`)}</span>
+                    <p className="mt-3 text-xs leading-[1.7] text-[#6B6570] sm:text-[13px] sm:leading-relaxed">{t(`resumeSection.${experience.descriptionKey}`)}</p>
+                  </article>
+                ))}
               </div>
             </section>
 
@@ -154,25 +180,12 @@ export default function ResumePage() {
               <div className="rounded-2xl border border-pink-100 bg-white p-4 shadow-sm sm:p-5">
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                   <div>
-                    <h3 className="text-sm font-bold text-[#2D2433] sm:text-base">Satya Wacana Christian University (SWCU)</h3>
+                    <h3 className="text-sm font-bold text-[#2D2433] sm:text-base">Universitas Kristen Satya Wacana</h3>
                     <p className="mt-1 text-[10px] font-semibold text-pink-600 sm:text-xs">{t("resumeSection.educationDegree")}</p>
+                    <p className="mt-2 max-w-3xl text-[10.5px] leading-[1.65] text-[#77717A] sm:text-xs">{t("resumeSection.educationDescription")}</p>
                   </div>
-                  <span className="w-fit rounded-full bg-pink-50 px-2.5 py-1 text-[9px] font-bold text-pink-600 sm:text-[10px]">2018 – 2023</span>
+                  <span className="w-fit rounded-full bg-pink-50 px-2.5 py-1 text-[9px] font-bold text-pink-600 sm:text-[10px]">{t("resumeSection.educationDate")}</span>
                 </div>
-              </div>
-            </section>
-
-            <section className="mb-10">
-              <SectionTitle icon={<Briefcase className="h-4 w-4" />} title={t("resumeSection.selectedProjectsTitle")} />
-              <div className="rounded-2xl border border-pink-100 bg-pink-50/40 p-4 sm:p-5">
-                <h3 className="text-sm font-bold text-[#2D2433] sm:text-base">Milenial&apos;s Batik Eco-Fashion</h3>
-                <p className="mt-1 text-[10px] font-semibold text-pink-600 sm:text-xs">{t("resumeSection.selectedProjectSubtitle")}</p>
-                <ul className="mt-3 space-y-1.5 text-[10.5px] leading-[1.6] text-[#77717A] sm:text-xs">
-                  <li>• {t("resumeSection.selectedProjectItemOne")}</li>
-                  <li>• {t("resumeSection.selectedProjectItemTwo")}</li>
-                  <li>• {t("resumeSection.selectedProjectItemThree")}</li>
-                  <li>• {t("resumeSection.selectedProjectItemFour")}</li>
-                </ul>
               </div>
             </section>
 
@@ -182,35 +195,56 @@ export default function ResumePage() {
                 <div className="rounded-2xl border border-pink-100 bg-pink-50/40 p-4 sm:p-5">
                   <p className="mb-2 text-[9px] font-extrabold uppercase tracking-[0.16em] text-[#8A828C]">{t("resumeSection.designSkillsTitle")}</p>
                   <div className="flex flex-wrap gap-1.5">{designSkills.map((skillKey) => <span key={skillKey} className="rounded-full border border-pink-100 bg-white px-2.5 py-1.5 text-[9px] font-semibold text-pink-700 shadow-sm sm:text-[10px]">{t(`resumeSection.${skillKey}`)}</span>)}</div>
-                  <p className="mb-2 mt-4 text-[9px] font-extrabold uppercase tracking-[0.16em] text-[#8A828C]">{t("resumeSection.creativeCollaborationTitle")}</p>
-                  <div className="flex flex-wrap gap-1.5">{creativeCollaborationSkills.map((skillKey) => <span key={skillKey} className="rounded-full border border-pink-100 bg-white px-2.5 py-1.5 text-[9px] font-semibold text-pink-700 shadow-sm sm:text-[10px]">{t(`resumeSection.${skillKey}`)}</span>)}</div>
                 </div>
                 <div className="rounded-2xl border border-pink-100 bg-pink-50/40 p-4 sm:p-5">
-                  <p className="mb-3 text-[9px] font-extrabold uppercase tracking-[0.16em] text-[#8A828C]">{t("resumeSection.software")}</p>
-                  <div className="flex flex-wrap gap-1.5">{software.map((item) => <span key={item} className="rounded-full border border-pink-100 bg-white px-2.5 py-1.5 text-[9px] font-semibold text-pink-700 shadow-sm sm:text-[10px]">{item}</span>)}</div>
+                  <p className="mb-2 text-[9px] font-extrabold uppercase tracking-[0.16em] text-[#8A828C]">{t("resumeSection.creativeCollaborationTitle")}</p>
+                  <div className="flex flex-wrap gap-1.5">{creativeCollaborationSkills.map((skillKey) => <span key={skillKey} className="rounded-full border border-pink-100 bg-white px-2.5 py-1.5 text-[9px] font-semibold text-pink-700 shadow-sm sm:text-[10px]">{t(`resumeSection.${skillKey}`)}</span>)}</div>
                 </div>
               </div>
             </section>
 
-            <div className="grid gap-5 lg:grid-cols-2">
-              <section>
-                <SectionTitle icon={<Award className="h-4 w-4" />} title={t("resumeSection.certificationsTitle")} />
-                <div className="space-y-3">
-                  <AchievementCard title={t("resumeSection.certificationShima")} subtitle={t("resumeSection.certificationShimaSubtitle")} />
-                  <AchievementCard title={t("resumeSection.certificationFigma")} subtitle={t("resumeSection.certificationFigmaSubtitle")} />
-                </div>
-              </section>
-              <section>
-                <SectionTitle icon={<Award className="h-4 w-4" />} title={t("resumeSection.awardsTitle")} />
-                <div className="space-y-3">
-                  <AchievementCard title={t("resumeSection.awardLogo")} subtitle={t("resumeSection.awardLogoSubtitle")} />
-                  <AchievementCard title={t("resumeSection.awardPackaging")} subtitle={t("resumeSection.awardPackagingSubtitle")} />
-                </div>
-              </section>
-            </div>
+            <section className="mb-10">
+              <SectionTitle icon={<Award className="h-4 w-4" />} title={t("resumeSection.certificationsTitle")} />
+              <div className="grid gap-3 md:grid-cols-2">
+                  <AchievementCard
+                    title={t("resumeSection.certificationShima")}
+                    period={t("resumeSection.certificationShimaYear")}
+                    metadata={[{ label: t("resumeSection.organizerLabel"), value: t("resumeSection.certificationShimaOrganizer") }]}
+                    description={t("resumeSection.certificationShimaDescription")}
+                  />
+                  <AchievementCard
+                    title={t("resumeSection.certificationFigma")}
+                    period={t("resumeSection.certificationFigmaYear")}
+                    metadata={[{ label: t("resumeSection.organizerLabel"), value: t("resumeSection.certificationFigmaOrganizer") }]}
+                    description={t("resumeSection.certificationFigmaDescription")}
+                  />
+              </div>
+            </section>
+            <section className="mb-10">
+              <SectionTitle icon={<Award className="h-4 w-4" />} title={t("resumeSection.awardsTitle")} />
+              <div className="grid gap-3 md:grid-cols-2">
+                  <AchievementCard
+                    title={t("resumeSection.awardLogo")}
+                    period={t("resumeSection.awardDate")}
+                    metadata={[
+                      { label: t("resumeSection.categoryLabel"), value: t("resumeSection.awardLogoCategory") },
+                    ]}
+                    description={t("resumeSection.awardLogoDescription")}
+                  />
+                  <AchievementCard
+                    title={t("resumeSection.awardPackaging")}
+                    period={t("resumeSection.awardDate")}
+                    metadata={[
+                      { label: t("resumeSection.categoryLabel"), value: t("resumeSection.awardPackagingCategory") },
+                      { label: t("resumeSection.organizerLabel"), value: t("resumeSection.awardPackagingOrganizer") },
+                    ]}
+                    description={t("resumeSection.awardPackagingDescription")}
+                  />
+              </div>
+            </section>
           </div>
 
-          <div className="h-1.5 bg-gradient-to-r from-pink-300 via-pink-500 to-pink-300" />
+          <div className="resume-bottom-accent h-1.5 bg-gradient-to-r from-pink-300 via-pink-500 to-pink-300" />
         </div>
 
         <p className="mt-5 text-center text-[9px] font-medium text-[#A39CA5]">{t("resumeSection.footer")}</p>
@@ -221,9 +255,9 @@ export default function ResumePage() {
 
 function ExperienceTimeline({ experiences }: { experiences: { title: string; date: string; company?: string; description?: string }[] }) {
   return (
-    <div className="relative ml-1 space-y-7 border-l border-pink-200 pl-5 sm:ml-2 sm:pl-7">
+    <div className="resume-experience-list relative ml-1 space-y-7 border-l border-pink-200 pl-5 sm:ml-2 sm:pl-7">
       {experiences.map((experience, index) => (
-        <div key={`${experience.title}-${index}`} className="relative">
+        <div key={`${experience.title}-${index}`} className="resume-experience-item relative">
           <span className="absolute -left-[25px] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-white bg-pink-500 shadow-[0_0_0_3px_rgba(244,114,182,0.15)] sm:-left-[35px]" />
           <div className="rounded-xl transition-colors hover:bg-pink-50/40 sm:p-1">
             <div className="flex flex-col gap-1.5 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
@@ -253,16 +287,35 @@ function SectionTitle({ icon, title }: { icon: ReactNode; title: string }) {
   );
 }
 
-function AchievementCard({ title, subtitle }: { title: string; subtitle: string }) {
+function AchievementCard({
+  title,
+  period,
+  metadata,
+  description,
+}: {
+  title: string;
+  period: string;
+  metadata: { label: string; value: string }[];
+  description: string;
+}) {
   return (
-    <div className="group rounded-2xl border border-pink-100 bg-pink-50/40 p-4 transition-all hover:-translate-y-0.5 hover:border-pink-200 hover:bg-pink-50 sm:p-5">
-      <div className="flex gap-3">
-        <div className="mt-0.5 h-2 w-2 shrink-0 rounded-full bg-pink-500" />
-        <div>
-          <p className="text-[11px] font-bold leading-snug text-[#2D2433] sm:text-xs">{title}</p>
-          <p className="mt-1 text-[9px] font-medium leading-relaxed text-pink-600 sm:text-[10px]">{subtitle}</p>
+    <article className="resume-entry-card min-w-0 rounded-2xl border border-pink-100 bg-white p-4 shadow-sm transition-colors hover:border-pink-200 sm:p-4">
+      <div className="flex min-w-0 items-start gap-2.5">
+        <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-pink-500" />
+        <div className="min-w-0 flex-1">
+          <h3 className="break-words text-sm font-semibold leading-snug text-[#2D2433] sm:text-[15px]">{title}</h3>
+          <div className="mt-2.5 flex flex-wrap items-center gap-x-2 gap-y-1.5">
+            <span className="rounded-full bg-pink-50 px-2.5 py-1 text-[10px] font-semibold leading-tight text-pink-700">{period}</span>
+            {metadata.map((item) => (
+              <p key={item.label} className="min-w-0 break-words text-[11px] leading-relaxed text-[#77717A]">
+                <span className="font-semibold text-[#6B6570]">{item.label}: </span>
+                {item.value}
+              </p>
+            ))}
+          </div>
+          <p className="mt-2.5 text-xs leading-[1.7] text-[#6B6570]">{description}</p>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
