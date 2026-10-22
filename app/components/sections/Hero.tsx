@@ -242,7 +242,7 @@ export default function Hero() {
                 {[
                   { n: 50, l: t("statProjects") },
                   { n: 8, l: t("statBrands") },
-                  { n: 6, l: t("statYears") },
+                  { n: 5, l: t("statYears") },
                   { n: 200, l: t("statAssets") },
                 ].map((s) => (
                   <div
