@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import type { ReactNode } from "react";
 import { useLanguage } from "@/context/LanguageContext";
+import { formatResumePeriod } from "./date-format";
 
 type ExperienceEntry = {
   titleKey: string;
@@ -59,7 +60,7 @@ const designSkills = ["skillBrandDesign", "skillLogoDesign", "skillGraphicDesign
 const creativeCollaborationSkills = ["skillTeamwork", "skillMicrosoftOffice", "skillAdministration"];
 
 export default function ResumePage() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const handleDownloadPdf = () => {
     const previousTitle = document.title;
     const restoreTitle = () => {
@@ -135,7 +136,7 @@ export default function ResumePage() {
               <SectionTitle icon={<Briefcase className="h-4 w-4" />} title={t("resumeSection.workTitle")} />
               <ExperienceTimeline experiences={professionalExperiences.map((experience) => ({
                 title: t(`resumeSection.${experience.titleKey}`),
-                date: t(`resumeSection.${experience.dateKey}`),
+                date: formatResumePeriod(t(`resumeSection.${experience.dateKey}`), lang),
                 company: experience.company,
                 description: experience.descriptionKey ? t(`resumeSection.${experience.descriptionKey}`) : undefined,
               }))} />
@@ -145,7 +146,7 @@ export default function ResumePage() {
               <SectionTitle icon={<BookOpen className="h-4 w-4" />} title={t("resumeSection.teachingTitle")} />
               <ExperienceTimeline experiences={teachingExperiences.map((experience) => ({
                 title: t(`resumeSection.${experience.titleKey}`),
-                date: t(`resumeSection.${experience.dateKey}`),
+                date: formatResumePeriod(t(`resumeSection.${experience.dateKey}`), lang),
                 company: experience.company,
                 description: experience.descriptionKey ? t(`resumeSection.${experience.descriptionKey}`) : undefined,
               }))} />
@@ -155,7 +156,7 @@ export default function ResumePage() {
               <SectionTitle icon={<Briefcase className="h-4 w-4" />} title={t("resumeSection.additionalExperienceTitle")} />
               <ExperienceTimeline experiences={additionalDesignExperiences.map((experience) => ({
                 title: t(`resumeSection.${experience.titleKey}`),
-                date: t(`resumeSection.${experience.dateKey}`),
+                date: formatResumePeriod(t(`resumeSection.${experience.dateKey}`), lang),
                 company: experience.company,
                 description: experience.descriptionKey ? t(`resumeSection.${experience.descriptionKey}`) : undefined,
               }))} />
@@ -168,7 +169,7 @@ export default function ResumePage() {
                   <article key={experience.titleKey} className="resume-entry-card min-w-0 rounded-2xl border border-pink-100 bg-white p-4 shadow-sm transition-colors hover:border-pink-200 sm:p-5">
                     <h3 className="text-sm font-bold leading-snug text-[#2D2433] sm:text-base">{t(`resumeSection.${experience.titleKey}`)}</h3>
                     <p className="mt-1 break-words text-xs font-medium leading-relaxed text-[#77717A] sm:text-[13px]">{t(`resumeSection.${experience.organizationKey}`)}</p>
-                    <span className="mt-3 inline-flex max-w-full break-words rounded-full bg-pink-50 px-2.5 py-1 text-[10px] font-semibold leading-relaxed text-pink-600 sm:text-[11px]">{t(`resumeSection.${experience.dateKey}`)}</span>
+                    <span className="mt-3 inline-flex max-w-full break-words rounded-full bg-pink-50 px-2.5 py-1 text-[10px] font-semibold leading-relaxed text-pink-600 sm:text-[11px]">{formatResumePeriod(t(`resumeSection.${experience.dateKey}`), lang)}</span>
                     <p className="mt-3 text-xs leading-[1.7] text-[#6B6570] sm:text-[13px] sm:leading-relaxed">{t(`resumeSection.${experience.descriptionKey}`)}</p>
                   </article>
                 ))}
@@ -184,7 +185,7 @@ export default function ResumePage() {
                     <p className="mt-1 text-[10px] font-semibold text-pink-600 sm:text-xs">{t("resumeSection.educationDegree")}</p>
                     <p className="mt-2 max-w-3xl text-[10.5px] leading-[1.65] text-[#77717A] sm:text-xs">{t("resumeSection.educationDescription")}</p>
                   </div>
-                  <span className="w-fit rounded-full bg-pink-50 px-2.5 py-1 text-[9px] font-bold text-pink-600 sm:text-[10px]">{t("resumeSection.educationDate")}</span>
+                  <span className="w-fit rounded-full bg-pink-50 px-2.5 py-1 text-[9px] font-bold text-pink-600 sm:text-[10px]">{formatResumePeriod(t("resumeSection.educationDate"), lang)}</span>
                 </div>
               </div>
             </section>
@@ -208,13 +209,13 @@ export default function ResumePage() {
               <div className="grid gap-3 md:grid-cols-2">
                   <AchievementCard
                     title={t("resumeSection.certificationShima")}
-                    period={t("resumeSection.certificationShimaYear")}
+                    period={formatResumePeriod(t("resumeSection.certificationShimaYear"), lang)}
                     metadata={[{ label: t("resumeSection.organizerLabel"), value: t("resumeSection.certificationShimaOrganizer") }]}
                     description={t("resumeSection.certificationShimaDescription")}
                   />
                   <AchievementCard
                     title={t("resumeSection.certificationFigma")}
-                    period={t("resumeSection.certificationFigmaYear")}
+                    period={formatResumePeriod(t("resumeSection.certificationFigmaYear"), lang)}
                     metadata={[{ label: t("resumeSection.organizerLabel"), value: t("resumeSection.certificationFigmaOrganizer") }]}
                     description={t("resumeSection.certificationFigmaDescription")}
                   />
@@ -225,7 +226,7 @@ export default function ResumePage() {
               <div className="grid gap-3 md:grid-cols-2">
                   <AchievementCard
                     title={t("resumeSection.awardLogo")}
-                    period={t("resumeSection.awardDate")}
+                    period={formatResumePeriod(t("resumeSection.awardDate"), lang)}
                     metadata={[
                       { label: t("resumeSection.categoryLabel"), value: t("resumeSection.awardLogoCategory") },
                     ]}
@@ -233,7 +234,7 @@ export default function ResumePage() {
                   />
                   <AchievementCard
                     title={t("resumeSection.awardPackaging")}
-                    period={t("resumeSection.awardDate")}
+                    period={formatResumePeriod(t("resumeSection.awardDate"), lang)}
                     metadata={[
                       { label: t("resumeSection.categoryLabel"), value: t("resumeSection.awardPackagingCategory") },
                       { label: t("resumeSection.organizerLabel"), value: t("resumeSection.awardPackagingOrganizer") },
