@@ -21,6 +21,8 @@ type ExperienceEntry = {
   titleKey: string;
   dateKey: string;
   company?: string;
+  workArrangementKey?: string;
+  employmentTypeKey?: string;
   descriptionKey?: string;
 };
 
@@ -33,19 +35,19 @@ type VolunteerExperienceEntry = {
 
 const professionalExperiences: ExperienceEntry[] = [
   { titleKey: "experienceFreelanceDesigner", dateKey: "dateJul2022Present", company: "Freelance", descriptionKey: "experienceFreelanceDesignerDescription" },
-  { titleKey: "experienceTeraDesigner", dateKey: "dateFeb2024Sep2026", company: "PT. Tera Infinity Ultima", descriptionKey: "experienceTeraDesignerDescription" },
+  { titleKey: "experienceTeraDesigner", dateKey: "dateFeb2024Sep2026", company: "PT. Tera Infinity Ultima", workArrangementKey: "experienceTeraDesignerWorkArrangement", descriptionKey: "experienceTeraDesignerDescription" },
 ];
 
 const teachingExperiences: ExperienceEntry[] = [
   { titleKey: "experienceGraphicTeacher", dateKey: "dateAug2025Present", company: "SMP Kristen Kalam Kudus Pekanbaru", descriptionKey: "experienceGraphicTeacherDescription" },
   { titleKey: "experiencePaintingTeacher", dateKey: "dateAug2025Present", company: "SMP Kristen Kalam Kudus Pekanbaru", descriptionKey: "experiencePaintingTeacherDescription" },
-  { titleKey: "experienceGraphicTutor", dateKey: "dateJan2026Present", company: "GPIB Immanuel Pekanbaru", descriptionKey: "experienceGraphicTutorDescription" },
+  { titleKey: "experienceGraphicTutor", dateKey: "date2026", company: "GPIB Immanuel Pekanbaru", descriptionKey: "experienceGraphicTutorDescription" },
 ];
 
 const additionalDesignExperiences: ExperienceEntry[] = [
   { titleKey: "experienceResearchAssistant", dateKey: "dateJul2021Aug2023", company: "Universitas Kristen Satya Wacana", descriptionKey: "experienceResearchAssistantDescription" },
-  { titleKey: "experienceIntern", dateKey: "dateFebApr2022", company: "Universitas Kristen Satya Wacana", descriptionKey: "experienceInternDescription" },
-  { titleKey: "experienceDreamsDesigner", dateKey: "dateAugNov2021", company: "Dreams Studio", descriptionKey: "experienceDreamsDesignerDescription" },
+  { titleKey: "experienceIntern", dateKey: "dateFebApr2022", company: "Universitas Kristen Satya Wacana", employmentTypeKey: "experienceInternship", descriptionKey: "experienceInternDescription" },
+  { titleKey: "experienceDreamsDesigner", dateKey: "dateAugNov2021", company: "Dreams Studio", employmentTypeKey: "experienceInternship", descriptionKey: "experienceDreamsDesignerDescription" },
 ];
 
 const volunteerExperiences: VolunteerExperienceEntry[] = [
@@ -138,6 +140,7 @@ export default function ResumePage() {
                 title: t(`resumeSection.${experience.titleKey}`),
                 date: formatResumePeriod(t(`resumeSection.${experience.dateKey}`), lang),
                 company: experience.company,
+                workArrangement: experience.workArrangementKey ? t(`resumeSection.${experience.workArrangementKey}`) : undefined,
                 description: experience.descriptionKey ? t(`resumeSection.${experience.descriptionKey}`) : undefined,
               }))} />
             </section>
@@ -158,6 +161,7 @@ export default function ResumePage() {
                 title: t(`resumeSection.${experience.titleKey}`),
                 date: formatResumePeriod(t(`resumeSection.${experience.dateKey}`), lang),
                 company: experience.company,
+                employmentType: experience.employmentTypeKey ? t(`resumeSection.${experience.employmentTypeKey}`) : undefined,
                 description: experience.descriptionKey ? t(`resumeSection.${experience.descriptionKey}`) : undefined,
               }))} />
             </section>
@@ -254,7 +258,7 @@ export default function ResumePage() {
   );
 }
 
-function ExperienceTimeline({ experiences }: { experiences: { title: string; date: string; company?: string; description?: string }[] }) {
+function ExperienceTimeline({ experiences }: { experiences: { title: string; date: string; company?: string; workArrangement?: string; employmentType?: string; description?: string }[] }) {
   return (
     <div className="resume-experience-list relative ml-1 space-y-7 border-l border-pink-200 pl-5 sm:ml-2 sm:pl-7">
       {experiences.map((experience, index) => (
@@ -265,6 +269,7 @@ function ExperienceTimeline({ experiences }: { experiences: { title: string; dat
               <div>
                 <h3 className="text-sm font-bold leading-snug text-[#2D2433] sm:text-base">{experience.title}</h3>
                 {experience.company && <p className="mt-1 text-[11px] font-semibold text-pink-600 sm:text-xs">{experience.company}</p>}
+                {(experience.workArrangement || experience.employmentType) && <p className="mt-1 text-[10px] font-medium text-[#77717A] sm:text-[11px]">{experience.workArrangement ?? experience.employmentType}</p>}
               </div>
               <span className="w-fit shrink-0 rounded-full bg-pink-50 px-2.5 py-1 text-[9px] font-bold text-pink-600 sm:text-[10px]">{experience.date}</span>
             </div>
