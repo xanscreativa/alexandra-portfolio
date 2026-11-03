@@ -38,6 +38,7 @@ interface ActiveModalState {
   posts: GalleryItem[];
   currentIndex: number;
   isSquare: boolean;
+  usePeekCarousel?: boolean;
   isPortrait1080x1920?: boolean;
   isCoverFB?: boolean;
 }
@@ -217,7 +218,8 @@ export default function PortfolioDetailPage() {
     postItem: GalleryItem,
     isSquare: boolean,
     isPortrait1080x1920?: boolean,
-    isCoverFB?: boolean
+    isCoverFB?: boolean,
+    usePeekCarousel = false
   ) => {
     if (isLiveStreamDesign) {
       const currentIndex = liveStreamItems.findIndex(
@@ -242,6 +244,7 @@ export default function PortfolioDetailPage() {
         posts: postItem.subSlides,
         currentIndex: 0,
         isSquare,
+        usePeekCarousel,
         isPortrait1080x1920,
         isCoverFB,
       });
@@ -436,6 +439,12 @@ export default function PortfolioDetailPage() {
                 "sanne_skin_beauty",
                 "sambal_lauq",
               ].includes(section.username);
+              const usePeekCarousel = [
+                "consistrade",
+                "jendelafinansial",
+                "uksw_salatiga",
+                "pelkatpa.pku",
+              ].includes(section.username);
               const isSquare =
                 section.title === "UKSW" || isNewSocialProject;
               const projectAnchorId =
@@ -531,7 +540,10 @@ export default function PortfolioDetailPage() {
                               openPostModal(
                                 section.title,
                                 item,
-                                isSquare
+                                isSquare,
+                                undefined,
+                                undefined,
+                                usePeekCarousel
                               )
                             }
                             className={`group relative cursor-pointer overflow-hidden rounded-lg border border-pink-100 bg-pink-50 transition-all duration-300 hover:shadow-lg active:scale-95 sm:rounded-2xl ${
@@ -987,7 +999,9 @@ export default function PortfolioDetailPage() {
 
           <div
             className={`relative flex w-full flex-col items-center gap-4 sm:gap-6 ${
-              activeModalState.isCoverFB
+              activeModalState.usePeekCarousel
+                ? "max-w-5xl"
+                : activeModalState.isCoverFB
                 ? "max-w-3xl"
                 : activeModalState.isPortrait1080x1920
                 ? "max-w-[340px] sm:max-w-[380px]"
@@ -1016,6 +1030,28 @@ export default function PortfolioDetailPage() {
                       --peek-offset: 0%;
                     }
                   }
+
+                  .social-project-peek-track {
+                    --slide-w: 78%;
+                    --slide-gap: 0.5rem;
+                    --peek-offset: 12%;
+                  }
+
+                  @media (min-width: 640px) {
+                    .social-project-peek-track {
+                      --slide-w: 80%;
+                      --slide-gap: 0.625rem;
+                      --peek-offset: 10%;
+                    }
+                  }
+
+                  @media (min-width: 1024px) {
+                    .social-project-peek-track {
+                      --slide-w: 30%;
+                      --slide-gap: 2%;
+                      --peek-offset: 35%;
+                    }
+                  }
                 `}} />
 
                 <div
@@ -1028,7 +1064,7 @@ export default function PortfolioDetailPage() {
                 >
 
                   <div
-                    className="flex items-center peek-track"
+                    className={`flex items-center peek-track ${activeModalState.usePeekCarousel ? "social-project-peek-track" : ""}`}
                     style={{
                       transform: `translate3d(calc(var(--peek-offset) - ${activeModalState.currentIndex} * (var(--slide-w) + var(--slide-gap)) + ${dragOffset}px), 0, 0)`,
                       transition: isDragging

@@ -1130,15 +1130,41 @@ export const socialSections: SectionData[] = [
     avatarText: "C",
     avatarBg: "from-purple-500 to-pink-500",
     posts: [
-      { src: "/portfolio/consistrade-1.avif" },
+      {
+        src: "/portfolio/consistrade-1.avif",
+        subSlides: [
+          { src: "/portfolio/consistrade-1.avif" },
+          { src: "/portfolio/consistrade-1a.avif" },
+          { src: "/portfolio/consistrade-1b.avif" },
+          { src: "/portfolio/consistrade-1c.avif" },
+          { src: "/portfolio/consistrade-1d.avif" },
+        ],
+      },
       { src: "/portfolio/consistrade-2.avif" },
       { src: "/portfolio/consistrade-3.avif" },
-      { src: "/portfolio/consistrade-4.avif" },
-      { src: "/portfolio/consistrade-5.avif" },
+      {
+        src: "/portfolio/consistrade-4.avif",
+        subSlides: [
+          { src: "/portfolio/consistrade-4.avif" },
+          { src: "/portfolio/consistrade-4a.avif" },
+          { src: "/portfolio/consistrade-4b.avif" },
+          { src: "/portfolio/consistrade-4c.avif" },
+          { src: "/portfolio/consistrade-4d.avif" },
+          { src: "/portfolio/consistrade-4e.avif" },
+        ],
+      },
+      {
+        src: "/portfolio/consistrade-5.avif",
+        subSlides: [
+          { src: "/portfolio/consistrade-5.avif" },
+          { src: "/portfolio/consistrade-5a.avif" },
+          { src: "/portfolio/consistrade-5b.avif" },
+          { src: "/portfolio/consistrade-5c.avif" },
+          { src: "/portfolio/consistrade-5d.avif" },
+          { src: "/portfolio/consistrade-5e.avif" },
+        ],
+      },
       { src: "/portfolio/consistrade-6.avif" },
-      { src: "/portfolio/consistrade-7.avif" },
-      { src: "/portfolio/consistrade-8.avif" },
-      { src: "/portfolio/consistrade-9.avif" },
     ],
     details: {
       client: "Consistrade",

@@ -52,7 +52,6 @@ const additionalDesignExperiences: ExperienceEntry[] = [
 
 const volunteerExperiences: VolunteerExperienceEntry[] = [
   { titleKey: "volunteerSundaySchoolTeacher", organizationKey: "volunteerSundaySchoolOrganization", dateKey: "dateSep2018Present", descriptionKey: "volunteerSundaySchoolTeacherDescription" },
-  { titleKey: "volunteerCreativeDesigner", organizationKey: "volunteerCreativeTeamOrganization", dateKey: "dateJul2026Present", descriptionKey: "volunteerCreativeDesignerDescription" },
   { titleKey: "volunteerSocialMediaDesigner", organizationKey: "volunteerSocialMediaOrganization", dateKey: "dateFeb2022Present", descriptionKey: "volunteerSocialMediaDesignerDescription" },
   { titleKey: "volunteerSecretary", organizationKey: "volunteerSecretaryOrganization", dateKey: "dateApr2025Present", descriptionKey: "volunteerSecretaryDescription" },
   { titleKey: "volunteerInfocommCoordinator", organizationKey: "volunteerInfocommOrganization", dateKey: "dateApr2021Apr2023", descriptionKey: "volunteerInfocommCoordinatorDescription" },
